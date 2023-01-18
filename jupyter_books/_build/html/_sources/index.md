@@ -1,13 +1,15 @@
 # Welcome To The World Of Recommendations and Ranking
 
-At our company, we aim to to promote relevant content to users such that they can spend leisure time
-by watching interesting titles. Also, we want to find relevant title by users' search query and
-put it on top so that minimum effort is needed to start watching the title.
+In most companies like OKKO (my current workpalce) or Netflix, we aim to to promote relevant content
+to users such that they can spend leisure time by watching interesting titles. Also, we want to find
+relevant title by users' search query and put it on top so that minimum effort is needed
+to start watching the title. Yet, in many other industries such as e-commerce, banking etc.
+recommending relevant products or helping to find necessary service signifficantly increases sales
 
 Basically, these two problems can be viewed as a ranking problem, right? In the first case,
 we have to rank titles based on users' preference. In the second one, we have to rank the
-most similar to query and most likely to be clicked/watched.
-
+most similar to query and most likely to be clicked/watched. In this hand book, we will dive into
+these two topics and learn how to code it as well.
 
 ## Self-Introduction
 

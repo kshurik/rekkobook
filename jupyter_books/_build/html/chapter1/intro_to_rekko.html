@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Welcome to your Jupyter Book" href="../intro.html" />
+    <link rel="prev" title="Table of Contents" href="../intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Table of Contents
                 </a>
             </li>
         </ul>
@@ -273,12 +273,36 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#baseline">
+   Baseline
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -290,6 +314,19 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#baseline">
+   Baseline
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -299,7 +336,35 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-recommendation-problem">
 <h1>Introduction to Recommendation Problem<a class="headerlink" href="#introduction-to-recommendation-problem" title="Permalink to this headline">#</a></h1>
-<p>To be done</p>
+<p>The main idea of recommendation is to rank relevant items according to some criterion.
+As it was mentioned earlier, recommender systems intersect with ranking problem:
+smart news feed, contacts recommendation, search response ranking, suggesting point B in ride –
+all this stuff can be reffered to personal ranking. Mostly, two-level architecture is used
+in both problems. First, we generate candidates that we consider relevant for a user / search query.
+Then, we try to rank such that the most relevant ones are in top. Thus, difference often occur
+in the first-level models. In ranking part it is quite similar.</p>
+<p>In recommendations, we need user-item interaction and meta data of both.</p>
+<ul class="simple">
+<li><p>In the first level model, we use embeddings and some similarity metric to generate
+candidates to get highest recall i.e. complete set of items that might be relevant;</p></li>
+<li><p>In the second level, we use ranking model to get highest recall i.e. positive event.</p></li>
+</ul>
+<p>Usually, positive event can be divided into two types:</p>
+<ul class="simple">
+<li><p>Explicit target: rating, purchase event etc., but they are rare;</p></li>
+<li><p>Implicit target: some proxy of explicit target like click, start watch etc., we have more such data in general</p></li>
+</ul>
+<p>There is no unique way to define target, but in industry we use combination of both with preliminary research on target.</p>
+<p>Also, in recommendation we should consider special cases:</p>
+<ul class="simple">
+<li><p>Items which user has already interacted with - there is no need to recommend films or books again, but it is
+ok for groceries;</p></li>
+<li><p>Cold Start problem – user does not have any history on our platform</p></li>
+</ul>
+<section id="baseline">
+<h2>Baseline<a class="headerlink" href="#baseline" title="Permalink to this headline">#</a></h2>
+<p>There are various ways</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -333,7 +398,7 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome to your Jupyter Book</p>
+            <p class="prev-next-title">Table of Contents</p>
         </div>
     </a>
 </div>
