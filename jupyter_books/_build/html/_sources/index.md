@@ -4,7 +4,8 @@ In most companies like OKKO (my current workpalce) or Netflix, we aim to to prom
 to users such that they can spend leisure time by watching interesting titles. Also, we want to find
 relevant title by users' search query and put it on top so that minimum effort is needed
 to start watching the title. Yet, in many other industries such as e-commerce, banking etc.
-recommending relevant products or helping to find necessary service signifficantly increases sales
+recommending relevant products or helping to find necessary service signifficantly increase
+user satisfaction and/or sales.
 
 Basically, these two problems can be viewed as a ranking problem, right? In the first case,
 we have to rank titles based on users' preference. In the second one, we have to rank the
@@ -21,7 +22,7 @@ finally -- online streaming platofrm OKKO.
 I got my masters at [International School of Economics and Finance](https://www.hse.ru/en/ma/financial/)
 (Higher School of Economics) and before that BSc in Economics minoring in Data Science
 
-You can reach out to me via:
+You can reach out to me via
 - Email: khalilbekov92@gmail.com
 - LinkedIn: linkedin.com/in/skhalilbekov
 
