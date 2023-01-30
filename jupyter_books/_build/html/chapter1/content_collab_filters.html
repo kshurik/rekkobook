@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Baseline &#8212; Rekko Handbook</title>
+    <title>Content-based and Collaborative Filtering &#8212; Rekko Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Content-based and Collaborative Filtering" href="content_collab_filters.html" />
-    <link rel="prev" title="Introduction to Recommendation Problem" href="intro_to_rekko.html" />
+    <link rel="prev" title="Baseline" href="baseline.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -119,13 +118,13 @@ const thebe_selector_output = ".output, .cell_output"
    Introduction to Recommendation Problem
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="baseline.html">
    Baseline Implementation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="content_collab_filters.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Content-based and Collaborative Filtering
   </a>
  </li>
@@ -219,7 +218,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/kshurik/rekko_handbook/issues/new?title=Issue%20on%20page%20%2Fchapter1/baseline.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/kshurik/rekko_handbook/issues/new?title=Issue%20on%20page%20%2Fchapter1/content_collab_filters.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -247,7 +246,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter1/baseline.md"
+        <a href="../_sources/chapter1/content_collab_filters.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -284,23 +283,104 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Content-based and Collaborative Filtering
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-based-filtering">
+     Content-based Filtering
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collaborative-filtering">
+     Collaborative Filtering
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementations">
+     Python Implementations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Baseline</h1>
+                <h1>Content-based and Collaborative Filtering</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Content-based and Collaborative Filtering
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-based-filtering">
+     Content-based Filtering
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collaborative-filtering">
+     Collaborative Filtering
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementations">
+     Python Implementations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -308,12 +388,48 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="baseline">
-<h1>Baseline<a class="headerlink" href="#baseline" title="Permalink to this headline">#</a></h1>
-<p>There are various ways to generate baseline recommendations. One of them is to recommend popular items
-based on some metrics like rating, counters (watch times, number of purchases, clicks etc.). Also,
-we can use groupping based on user segments to make more accurate and relevant recommendations.</p>
-<p>In this chapter, I will walk through baseline recommender using <a class="reference external" href="https://www.kaggle.com/code/quangnhatbui/movie-recommender/data">MovieLens Data</a>x</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="content-based-and-collaborative-filtering">
+<h1>Content-based and Collaborative Filtering<a class="headerlink" href="#content-based-and-collaborative-filtering" title="Permalink to this headline">#</a></h1>
+<p>In this section, we will go through with 2 straightforward ways to generate candidates for recommendations.
+As we mentioned before, these are <em>content-based</em> and <em>collaborative</em> filterings. In this chapter,
+we will go through explanation of both methods with examples and finnally discuss various libraries
+to implement them. First, let’s consider <em>content-based filttering</em>.</p>
+<section id="content-based-filtering">
+<h2>Content-based Filtering<a class="headerlink" href="#content-based-filtering" title="Permalink to this headline">#</a></h2>
+<p>Content-based filtering can be used in a variety of applications, from recommending films and music to suggesting
+restaurants and travel destinations. In this part, we’ll discuss how content-based filtering works and provide
+some examples.</p>
+<p>Content-based filtering is a type of recommender system that recommends items to users based on their past
+preferences and behaviors. It works by analyzing a user’s preferences, in terms of attributes such as genre,
+director, actor, or even a combination of these, and then recommending other items that have similar attributes.</p>
+<p>For example, if a user has previously watched romantic comedies with Julia Roberts, content-based filtering
+would recommend other romantic comedies with Julia Roberts, or other films featuring similar actors or directors.</p>
+<p>Content-based filtering is based on the assumption that users who liked one item will likely like similar items.
+To generate recommendations, the system first identifies the attributes of the items that the user has previously
+interacted with. It then identifies other items that have similar attributes and recommends them to the user.
+For example, if a user has previously listened to Taylor Swift songs, the system will identify other Taylor Swift
+songs as well as songs with similar attributes, such as a similar genre or artist.</p>
+<p>In conclusion, content-based filtering is a type of recommender system that recommends items to users based on their
+past preferences and behaviors.</p>
+</section>
+<section id="collaborative-filtering">
+<h2>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="python-implementations">
+<h2>Python Implementations<a class="headerlink" href="#python-implementations" title="Permalink to this headline">#</a></h2>
+<p>There are many Python libraries available for content-based filtering such as Surprise &amp; LightFM.
+One of the most popular libraries is Surprise, which is a Python machine learning library for
+recommendation systems. It includes several algorithms for making predictions and performing content-based filtering.</p>
+<p>Another library is LightFM, which is a Python library for building recommendation systems. It includes a set of
+algorithms for content-based filtering, such as the weighting of item attributes and personalized rankings.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="todo">
+<h1>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>about collaborative filtering</p></li>
+<li><p>discuss more deeply python libraries implementation in terms features / time</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -343,19 +459,12 @@ we can use groupping based on user segments to make more accurate and relevant r
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="intro_to_rekko.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="baseline.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to Recommendation Problem</p>
+            <p class="prev-next-title">Baseline</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="content_collab_filters.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Content-based and Collaborative Filtering</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

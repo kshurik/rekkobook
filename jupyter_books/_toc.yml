@@ -10,3 +10,5 @@ parts:
     title: Introduction to Recommendation Problem
   - file: chapter1/baseline
     title: Baseline Implementation
+  - file: chapter1/content_collab_filters
+    title: Conten-Based and Collaborative Filtering
