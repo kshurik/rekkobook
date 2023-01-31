@@ -3,10 +3,7 @@
 The main idea of recommendation is to rank relevant items according to some criterion.
 As it was mentioned earlier, recommender systems intersect with ranking problem:
 smart news feed, contacts recommendation, search response ranking, suggesting point B in ride --
-all this stuff can be reffered to personal ranking. Mostly, two-level architecture is used
-in both problems. First, we generate candidates that we consider relevant for a user / search query.
-Then, we try to rank such that the most relevant ones are in top. Thus, difference often occur
-in the first-level models. In ranking part it is quite similar. Now, let's focus on recommendations.
+all this stuff can be reffered to personal ranking.
 
 Recommender systems are a type of machine learning models that use data about an individual’s
 preferences and interests to make personalized product or service recommendations.
@@ -15,13 +12,38 @@ retailers to suggest films/items that watchers/customers may be interested in.
 They are also used in other industries such as streaming music services,
 online dating sites, and social networks.
 
-Recommender systems analyze data about users and their behavior, such as what they have watched
+Recommenders analyze data about users and their behavior, such as what they have watched
 or rated,how much time they have spent interacting with an item. The data is then used to make
 predictions about what items a user may be interested in.
 For example, a online streaming services may use the data to recommend a film or song that user
 is likely to interact with based on their past preferences.
 
-In addition, they can be divided into two main types: content-based and collaborative filtering.
+Mostly, two-level architecture is used -- it makes use of two separate components each with its own
+distinct purpose. It can be viewed as candidates generation and personalization levels. Together
+they provide an effective and efficient way to recommend relevant items to users.
+At the candidates generation level, the system processes explicit and implicit user data to generate
+recommendations. These recommendations are based on observed user behavior, including ratings and watched
+history, combined with the characteristics of the available items and the relationships between them.
+The system may also leverage additional external data sources, such as social media, to gather more
+precise and detailed insights. 
+
+At the user personalization level, the system further refines the recommendations generated
+from the 1st level. This further refinement is done using machine learning algorithms.
+These algorithms are used to create a personalized user profile that reflects an individual’s
+preferences and interests. This profile is then used to tailor the recommendations to each
+individual user, ensuring that the items suggested are truly relevant to them.
+
+Overall, we generate candidates that we consider relevant for a user / search query.
+This means we try to maximize recall first (all possible candidates that might be clicked i.e.
+all 1 must be found). Then, we try to rank such that the most relevant ones are on top -- 
+in this scenario we maximize precision -- how many relevant items we put on top.
+Thus, difference often occur in the first-level models. In ranking part it is quite similar.
+Now, let's focus on recommendations.
+
+![](img/2_architecture.png)
+
+First-level model can be divided into two main types: content-based and collaborative filtering.
+However, the hybrid scheme when we mix both types is used as well.
 *Content-based* systems use information about an item’s features and compare them to the features
 of items a customer has previously interacted with.
 For example, a in OKKO our service may use information about a film's genre, actors,

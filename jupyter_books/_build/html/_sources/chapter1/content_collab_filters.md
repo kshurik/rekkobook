@@ -4,7 +4,7 @@ As we mentioned before, these are *content-based* and *collaborative* filterings
 we will go through explanation of both methods with examples and finnally discuss various libraries
 to implement them. First, let's consider *content-based filttering*.
 
-### Content-based Filtering
+## Content-based Filtering
 Content-based filtering can be used in a variety of applications, from recommending films and music to suggesting
 restaurants and travel destinations. In this part, we'll discuss how content-based filtering works and provide
 some examples.
@@ -24,11 +24,12 @@ songs as well as songs with similar attributes, such as a similar genre or artis
 
 In conclusion, content-based filtering is a type of recommender system that recommends items to users based on their
 past preferences and behaviors. 
-### Collaborative Filtering
+
+## Collaborative Filtering
 
 
 
-### Python Implementations
+## Python Implementations
 There are many Python libraries available for content-based filtering such as Surprise & LightFM.
 One of the most popular libraries is Surprise, which is a Python machine learning library for
 recommendation systems. It includes several algorithms for making predictions and performing content-based filtering.
@@ -40,4 +41,4 @@ algorithms for content-based filtering, such as the weighting of item attributes
 # TODO
 - about collaborative filtering
 - discuss more deeply python libraries implementation in terms features / time
-
+- maybe add example with codes here -- not another markdown
