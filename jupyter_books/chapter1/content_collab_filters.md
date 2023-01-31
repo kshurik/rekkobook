@@ -40,7 +40,8 @@ the relationships between words in a given dataset. In summary, word embeddings 
 for representing words in a meaningful way. They can be used to identify relationships between words,
 sclassify documents, and visualize data. 
 
-Now, let's consider *content-based filttering* and use simple Word2Vec/Doc2Vec model to get such recommendations.
+Now, let's consider *content-based filttering* and use simple Word2Vec/Doc2Vec
+model to get such recommendations.
 
 ## Content-based Filtering
 Content-based filtering can be used in a variety of applications, from recommending films and music to suggesting
@@ -62,7 +63,11 @@ recommendations is showed with "Similar to ...". It is additional nudge to incre
 as recommendations with explanation seems to be really personalized from the user's point of view.
 
 In conclusion, content-based filtering is a type of recommender system that recommends items to users based on their
-past preferences and behaviors. 
+past preferences and behaviors. Next, we jump to coding part and create simple Word2Vec model via [`gensim`](https://pypi.org/project/gensim/) library.
+Well explained logic of Word2Vec model you can find [here](https://israelg99.github.io/2017-03-23-Word2Vec-Explained/).
+Here, we will not discuss details of implementation.
+
+
 
 ## Collaborative Filtering
 
