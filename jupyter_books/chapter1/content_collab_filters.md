@@ -67,7 +67,7 @@ past preferences and behaviors. Next, we jump to coding part and create simple W
 Well explained logic of Word2Vec model you can find [here](https://israelg99.github.io/2017-03-23-Word2Vec-Explained/).
 Here, we will not discuss details of implementation.
 
-
+**TODO ADD PYTHON CODE**
 
 ## Collaborative Filtering
 
