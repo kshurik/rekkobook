@@ -325,6 +325,7 @@ fit(data, item_col=ITEM_COLUMN, groups=['group'])
 
 
 # #### 3.3.2. Recommend Part
+# Here, we just use calculated recommendations from above method `fit()`
 
 # In[24]:
 
