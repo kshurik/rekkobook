@@ -235,8 +235,22 @@ Further, we will prettify our code and wrap it into functions
 ### 3.3. Wrap everything into pretty functions
 #### 3.3.1. Fit Part
 
+In this function, we need to support 4 main parameters
+- data -- it is going to be pandas classic DataFrame;
+- item_col -- name of the item id column so we can apply on any dataset;
+- groups -- if we need groupwise recommendations;
+- max_candidates -- number of recommendations to return
+
+Thus, our function will get pandas data frame with necessary data, calculate popularity for a given type -
+groupwise or not and return ids
+
 ```{code-cell} ipython3
-def fit(data: pd.DataFrame, item_col: str, groups: list = None , max_candidates: int = 20):
+def fit(
+    data: pd.DataFrame,
+    item_col: str,
+    groups: list = None,
+    max_candidates: int = 20
+    ):
     """
     function runs all pipeline to generate recommendations based on given group
     :data: dataframe of interactions
@@ -266,7 +280,11 @@ fit(data, item_col=ITEM_COLUMN, groups=['group'])
 
 #### 3.3.2. Recommend Part
 ```{code-cell} ipython3
-def recommend(users: pd.DataFrame, recommendations: pd.DataFrame, groups: list = None, K: int = 10):
+def recommend(
+    users: pd.DataFrame,
+    recommendations: pd.DataFrame,
+    groups: list = None,
+    K: int = 10):
     """
     recommends items for a given list of users
     :users: series / list of users to recommend

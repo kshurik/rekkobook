@@ -968,8 +968,8 @@ Also, if we want to get recommendations based on some user groups we can easily 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [1939, 1563, 91690, 91673, 31225, 2267, 4930, ...
-2    [876, 114464, 8675, 53883, 8699, 93855, 4140, ...
+1    [27523, 872, 31973, 1942, 49280, 6163, 5179, 6...
+2    [8675, 8933, 3021, 3024, 665, 3036, 309, 3112,...
 dtype: object
 </pre></div>
 </div>
@@ -1037,13 +1037,13 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1091,35 +1091,35 @@ for all users i.e. <em>base_recommendations</em></p>
       <td>1</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[1939, 1563, 91690, 91673, 31225, 2267, 4930, ...</td>
+      <td>[27523, 872, 31973, 1942, 49280, 6163, 5179, 6...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[876, 114464, 8675, 53883, 8699, 93855, 4140, ...</td>
+      <td>[8675, 8933, 3021, 3024, 665, 3036, 309, 3112,...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[876, 114464, 8675, 53883, 8699, 93855, 4140, ...</td>
+      <td>[8675, 8933, 3021, 3024, 665, 3036, 309, 3112,...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[876, 114464, 8675, 53883, 8699, 93855, 4140, ...</td>
+      <td>[27523, 872, 31973, 1942, 49280, 6163, 5179, 6...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[1939, 1563, 91690, 91673, 31225, 2267, 4930, ...</td>
+      <td>[8675, 8933, 3021, 3024, 665, 3036, 309, 3112,...</td>
     </tr>
   </tbody>
 </table>
@@ -1132,9 +1132,23 @@ Further, we will prettify our code and wrap it into functions</p>
 <h3>3.3. Wrap everything into pretty functions<a class="headerlink" href="#wrap-everything-into-pretty-functions" title="Permalink to this headline">#</a></h3>
 <section id="fit-part">
 <h4>3.3.1. Fit Part<a class="headerlink" href="#fit-part" title="Permalink to this headline">#</a></h4>
+<p>In this function, we need to support 4 main parameters</p>
+<ul class="simple">
+<li><p>data – it is going to be pandas classic DataFrame;</p></li>
+<li><p>item_col – name of the item id column so we can apply on any dataset;</p></li>
+<li><p>groups – if we need groupwise recommendations;</p></li>
+<li><p>max_candidates – number of recommendations to return</p></li>
+</ul>
+<p>Thus, our function will get pandas data frame with necessary data, calculate popularity for a given type -
+groupwise or not and return ids</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">item_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">,</span> <span class="n">max_candidates</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">item_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_candidates</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    function runs all pipeline to generate recommendations based on given group</span>
 <span class="sd">    :data: dataframe of interactions</span>
@@ -1177,8 +1191,8 @@ Further, we will prettify our code and wrap it into functions</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [1939, 1563, 91690, 91673, 31225, 2267, 4930, ...
-2    [876, 114464, 8675, 53883, 8699, 93855, 4140, ...
+1    [27523, 872, 31973, 1942, 49280, 6163, 5179, 6...
+2    [8675, 8933, 3021, 3024, 665, 3036, 309, 3112,...
 dtype: object
 </pre></div>
 </div>
@@ -1189,7 +1203,11 @@ dtype: object
 <h4>3.3.2. Recommend Part<a class="headerlink" href="#recommend-part" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recommend</span><span class="p">(</span><span class="n">users</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">recommendations</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recommend</span><span class="p">(</span>
+    <span class="n">users</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">recommendations</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">K</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    recommends items for a given list of users</span>
 <span class="sd">    :users: series / list of users to recommend</span>
@@ -1265,13 +1283,13 @@ dtype: object
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1316,31 +1334,31 @@ dtype: object
       <th>0</th>
       <td>1</td>
       <td>1</td>
-      <td>[1939, 1563, 91690, 91673, 31225, 2267, 4930, ...</td>
+      <td>[27523, 872, 31973, 1942, 49280, 6163, 5179, 6...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
-      <td>[876, 114464, 8675, 53883, 8699, 93855, 4140, ...</td>
+      <td>[8675, 8933, 3021, 3024, 665, 3036, 309, 3112,...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>2</td>
-      <td>[876, 114464, 8675, 53883, 8699, 93855, 4140, ...</td>
+      <td>[8675, 8933, 3021, 3024, 665, 3036, 309, 3112,...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>2</td>
-      <td>[876, 114464, 8675, 53883, 8699, 93855, 4140, ...</td>
+      <td>1</td>
+      <td>[27523, 872, 31973, 1942, 49280, 6163, 5179, 6...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>1</td>
-      <td>[1939, 1563, 91690, 91673, 31225, 2267, 4930, ...</td>
+      <td>2</td>
+      <td>[8675, 8933, 3021, 3024, 665, 3036, 309, 3112,...</td>
     </tr>
   </tbody>
 </table>
