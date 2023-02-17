@@ -67,10 +67,58 @@ past preferences and behaviors. Next, we jump to coding part and create simple W
 Well explained logic of Word2Vec model you can find [here](https://israelg99.github.io/2017-03-23-Word2Vec-Explained/).
 Here, we will not discuss details of implementation.
 
-**TODO ADD PYTHON CODE**
+**TODO ADD PYTHON CODE FOR CONTENT BASED HERE**
 
-## Collaborative Filtering
+## Collaborative Filtering [WIP]
+Collaborative filtering is a powerful method for recommendation systems used to predict user preferences or
+interests. It is based on the notion that people who have similar tastes and preferences in one domain are likely
+to have similar tastes and preferences in a different domain. The collaborative filtering technique seeks to identify
+users who have similar tastes and preferences, based on their past interactions, and then use those users'
+interactions of items to predict relevance of similar items for the user. The goal of collaborative filtering is
+to use the opinions of other people to make predictions about a user’s preferences and interests.
+This is done by finding users who have similar tastes and preferences as the user in question, and then using
+those users’ ratings of items to make predictions about how the user would rate the same items.
+There are two main approaches to collaborative filtering: memory-based and model-based. 
 
+### Memory-based Collaborative Filtering
+Memory-based collaborative filtering, also known as neighborhood-based collaborative filtering, is an approach
+that relies on finding similar users or items based on their behavior or preferences. The basic idea is to use
+the ratings or interactions of users with items to identify other users who have similar tastes, and then use
+the ratings of those similar users to make recommendations to a target user. One common approach in memory-based
+collaborative filtering is user-based collaborative filtering. In this approach, the similarity between users is
+calculated based on their ratings for items. A similarity metric such as the cosine similarity or Pearson correlation
+coefficient is often used to measure the similarity between two users. The similarity scores are then used to
+identify the most similar users to the target user. Once the most similar users are identified, their ratings
+for items are used to generate recommendations for the target user. Item-based collaborative filtering is another
+common approach in memory-based collaborative filtering. In this approach, the similarity between items is calculated
+based on the ratings of users who have rated both items. The similarity scores are then used to identify items that
+are similar to the items that the target user has already rated highly. Once the similar items are identified,
+they are recommended to the target user. One advantage of memory-based collaborative filtering is that it is easy
+to implement and interpret. The algorithm is relatively simple and does not require a lot of computational resources.
+Additionally, memory-based collaborative filtering can be effective when there is a lot of data available and the
+user-item matrix is sparse. However, memory-based collaborative filtering also has several disadvantages.
+One major limitation is that it is prone to the cold-start problem, which occurs when there is not enough data
+available to identify similar users or items. Additionally, memory-based collaborative filtering can be
+computationally expensive when there are a large number of users or items.
+
+### Model-based Collaborative Filtering
+Model-based collaborative filtering is an approach that uses machine learning algorithms to learn a model from 
+the ratings or interactions of users with items. The model is then used to make predictions about the ratings of
+users for items that they have not yet interacted with. One common approach in model-based collaborative filtering
+is matrix factorization. In this approach, the user-item matrix is decomposed into two lower-dimensional matrices:
+a user matrix and an item matrix. The user matrix represents the latent preferences of users, and the item matrix
+represents the latent attributes of items. The dot product of the user and item matrices gives the predicted rating
+for a user-item pair. Matrix factorization is typically performed using a technique called Singular Value Decomposition (SVD).
+However, SVD is computationally expensive and may not scale well to large datasets. Therefore, alternative techniques
+such as Alternating Least Squares (ALS) and Stochastic Gradient Descent (SGD) are often used. Another common approach
+in model-based collaborative filtering is deep learning. In this approach, a neural network is used to learn a
+representation of users and items. The network takes as input the ratings or interactions of users with items and
+outputs a prediction of the rating for a user-item pair. Deep learning has the advantage of being able to capture
+complex patterns in the data and can be used to learn non-linear relationships between users and items.
+One advantage of model-based collaborative filtering is that it can handle the cold-start problem by using the
+learned model to make predictions about items that have not yet been rated by users. Additionally, model-based
+collaborative filtering can be more accurate than memory-based collaborative filtering, especially when there are
+a large number of users and items. However, model-based collaborative filtering also
 
 
 ## Python Implementations
