@@ -286,7 +286,8 @@ def recommend(
     users: pd.DataFrame,
     recommendations: pd.DataFrame,
     groups: list = None,
-    K: int = 10):
+    K: int = 10
+    ):
     """
     recommends items for a given list of users
     :users: series / list of users to recommend

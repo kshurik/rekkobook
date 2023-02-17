@@ -968,8 +968,8 @@ Also, if we want to get recommendations based on some user groups we can easily 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [3021, 43267, 8675, 8699, 1543, 54328, 5473, 4...
-2    [2310, 2752, 1941, 787, 116, 279, 4442, 876, 3...
+1    [1563, 565, 1859, 2330, 114464, 54256, 309, 90...
+2    [1484, 2284, 1859, 872, 8675, 9010, 74727, 190...
 dtype: object
 </pre></div>
 </div>
@@ -1031,7 +1031,7 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1091,35 +1091,35 @@ for all users i.e. <em>base_recommendations</em></p>
       <td>1</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2310, 2752, 1941, 787, 116, 279, 4442, 876, 3...</td>
+      <td>[1484, 2284, 1859, 872, 8675, 9010, 74727, 190...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2310, 2752, 1941, 787, 116, 279, 4442, 876, 3...</td>
+      <td>[1484, 2284, 1859, 872, 8675, 9010, 74727, 190...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[3021, 43267, 8675, 8699, 1543, 54328, 5473, 4...</td>
+      <td>[1484, 2284, 1859, 872, 8675, 9010, 74727, 190...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[3021, 43267, 8675, 8699, 1543, 54328, 5473, 4...</td>
+      <td>[1563, 565, 1859, 2330, 114464, 54256, 309, 90...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[3021, 43267, 8675, 8699, 1543, 54328, 5473, 4...</td>
+      <td>[1563, 565, 1859, 2330, 114464, 54256, 309, 90...</td>
     </tr>
   </tbody>
 </table>
@@ -1191,8 +1191,8 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [3021, 43267, 8675, 8699, 1543, 54328, 5473, 4...
-2    [2310, 2752, 1941, 787, 116, 279, 4442, 876, 3...
+1    [1563, 565, 1859, 2330, 114464, 54256, 309, 90...
+2    [1484, 2284, 1859, 872, 8675, 9010, 74727, 190...
 dtype: object
 </pre></div>
 </div>
@@ -1208,7 +1208,8 @@ dtype: object
     <span class="n">users</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">recommendations</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">K</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">K</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    recommends items for a given list of users</span>
 <span class="sd">    :users: series / list of users to recommend</span>
@@ -1278,7 +1279,7 @@ dtype: object
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1335,31 +1336,31 @@ dtype: object
       <th>0</th>
       <td>1</td>
       <td>2</td>
-      <td>[2310, 2752, 1941, 787, 116, 279, 4442, 876, 3...</td>
+      <td>[1484, 2284, 1859, 872, 8675, 9010, 74727, 190...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
-      <td>[2310, 2752, 1941, 787, 116, 279, 4442, 876, 3...</td>
+      <td>[1484, 2284, 1859, 872, 8675, 9010, 74727, 190...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>1</td>
-      <td>[3021, 43267, 8675, 8699, 1543, 54328, 5473, 4...</td>
+      <td>2</td>
+      <td>[1484, 2284, 1859, 872, 8675, 9010, 74727, 190...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
       <td>1</td>
-      <td>[3021, 43267, 8675, 8699, 1543, 54328, 5473, 4...</td>
+      <td>[1563, 565, 1859, 2330, 114464, 54256, 309, 90...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
       <td>1</td>
-      <td>[3021, 43267, 8675, 8699, 1543, 54328, 5473, 4...</td>
+      <td>[1563, 565, 1859, 2330, 114464, 54256, 309, 90...</td>
     </tr>
   </tbody>
 </table>
