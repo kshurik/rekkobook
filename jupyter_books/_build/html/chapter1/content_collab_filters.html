@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Markdown Files &#8212; Rekko Handbook</title>
+    <title>Content-based and Collaborative Filterings in a Nutshell &#8212; Rekko Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Baseline" href="baseline.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -102,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Table of Contents
                 </a>
             </li>
         </ul>
@@ -111,10 +112,20 @@ const thebe_selector_output = ".output, .cell_output"
   CHAPTER 1 - Overivew of Recommendation Systems
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro_to_rekko.html">
    Introduction to Recommendation Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="baseline.html">
+   Baseline Implementation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Content-based and Collaborative Filterings in a Nutshell
   </a>
  </li>
 </ul>
@@ -207,7 +218,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/kshurik/rekko_handbook/issues/new?title=Issue%20on%20page%20%2Fchapter1/overview.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/kshurik/rekko_handbook/issues/new?title=Issue%20on%20page%20%2Fchapter1/content_collab_filters.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -235,7 +246,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter1/overview.md"
+        <a href="../_sources/chapter1/content_collab_filters.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -294,24 +305,36 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-myst">
-   What is MyST?
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Content-based and Collaborative Filterings in a Nutshell
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embeddings-explained">
+     Embeddings Explained
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-based-filtering">
+     Content-based Filtering
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collaborative-filtering">
+     Collaborative Filtering
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementations">
+     Python Implementations
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sample-roles-and-directives">
-   Sample Roles and Directives
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#citations">
-   Citations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learn-more">
-   Learn more
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
   </a>
  </li>
 </ul>
@@ -323,7 +346,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Markdown Files</h1>
+                <h1>Content-based and Collaborative Filterings in a Nutshell</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -333,24 +356,36 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-myst">
-   What is MyST?
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Content-based and Collaborative Filterings in a Nutshell
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embeddings-explained">
+     Embeddings Explained
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-based-filtering">
+     Content-based Filtering
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collaborative-filtering">
+     Collaborative Filtering
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementations">
+     Python Implementations
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sample-roles-and-directives">
-   Sample Roles and Directives
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#citations">
-   Citations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learn-more">
-   Learn more
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
   </a>
  </li>
 </ul>
@@ -363,59 +398,89 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="markdown-files">
-<h1>Markdown Files<a class="headerlink" href="#markdown-files" title="Permalink to this headline">#</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.
-This is a simple file to help you get started and show off some syntax.</p>
-<section id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Permalink to this headline">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
-<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="content-based-and-collaborative-filterings-in-a-nutshell">
+<h1>Content-based and Collaborative Filterings in a Nutshell<a class="headerlink" href="#content-based-and-collaborative-filterings-in-a-nutshell" title="Permalink to this headline">#</a></h1>
+<p>In this section, we will go through with 2 straightforward ways to generate candidates for recommendations.
+As we mentioned before, these are <em>content-based</em> and <em>collaborative</em> filterings. Yet,
+we will go through explanation of both methods with examples and finnally discuss various libraries
+to implement them. Before that we have to define and understand embeddings. As you might have noticed,
+we mentioned a lot “similar items”, “similar users” etc and question arises – how we define that similarity?
+Speaking of calculation of similarity it is pretty straightforward – we calcualte cosine between two arrays.
+The intruging part is how do we get these arrays from our data.</p>
+<section id="embeddings-explained">
+<h2>Embeddings Explained<a class="headerlink" href="#embeddings-explained" title="Permalink to this headline">#</a></h2>
+<p>The evolution of text processing started from one-hot encoding. When there was text data, Data Scientists
+would preprocess them (lower case, remove symbols etc.) and then create one-hot representations of words or
+n-grams (when we split words/text into 2-3-…-n parts by characters). Finally, use some ML model on top of it.
+Notwithstanding the fact of easiness and interpretability of this approach, human language is sophisticated
+and various words can mean different meanings depending on the context and such techinique fails in most cases.</p>
+<p>Therefore, embeddings have become a next stage in text processing pipeline. It is type of word representation
+that allows words with similar meaning to have a similar representation. Unlike methods such as one-hot encoding,
+word embeddings provide a way to represent words in a more meaningful way, by mapping them to a vector of real
+numbers in a continuous vector space. The idea behind word embedding is to use a neural network to learn
+relationships between words in a dataset. The neural network is trained to assign a numeric vector to each word
+in the dataset. The vector is typically of fixed length and the goal is to find a vector that accurately
+represents the meaning of the word, in the context of the dataset. This allows for words in similar contexts
+to have similar vector representations.</p>
+<p>For example, imagine a dataset of movie reviews. Let’s say that the neural network has been trained to assign
+a vector to each word in the dataset. If the word “amazing” is used in a movie review, then the vector assigned
+to “amazing” will be similar to the vector assigned to “incredible”. This is because the meanings of these two
+words are similar and they are often used in similar contexts. Word embeddings can also be used to identify
+relationships between words. For example, consider the words “man” and “woman”. If the neural network assigned
+similar vectors to these two words, this would indicate that the two words are related.  In addition to
+identifying relationships between words, word embeddings can also be used to classify documents. For example,
+if a document contains the words “amazing” and “incredible”, then the neural network can assign an appropriate
+vector to each of these words. If a second document contains similar words, then the neural network can assign
+similar vectors to these words. This allows the neural network to accurately classify the documents as being similar.</p>
+<p>Finally, word embeddings can be used for data visualization. By plotting the vectors assigned to words in
+a two-dimensional space, it is possible to see how words are related. This can be a useful tool for understanding
+the relationships between words in a given dataset. In summary, word embeddings are a powerful tool
+for representing words in a meaningful way. They can be used to identify relationships between words,
+sclassify documents, and visualize data.</p>
+<p>Now, let’s consider <em>content-based filttering</em> and use simple Word2Vec/Doc2Vec
+model to get such recommendations.</p>
 </section>
-<section id="sample-roles-and-directives">
-<h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Permalink to this headline">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are kind of like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<p>Here is a “note” directive:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>It will be rendered in a special box when you build your book.</p>
-<p>Here is an inline directive to refer to a document: <span class="xref std std-doc">markdown-notebooks</span>.</p>
+<section id="content-based-filtering">
+<h2>Content-based Filtering<a class="headerlink" href="#content-based-filtering" title="Permalink to this headline">#</a></h2>
+<p>Content-based filtering can be used in a variety of applications, from recommending films and music to suggesting
+restaurants and travel destinations. In this part, we’ll discuss how content-based filtering works and provide
+some examples.</p>
+<p>Content-based filtering is a type of recommender system that recommends items to users based on their past
+preferences and behaviors. It works by analyzing a user’s preferences, in terms of attributes such as genre,
+director, actor, or even a combination of these, and then recommending other items that have similar attributes.
+For example, if a user has previously watched romantic comedies with Julia Roberts, content-based filtering
+would recommend other romantic comedies with Julia Roberts, or other films featuring similar actors or directors.</p>
+<p>Content-based filtering is based on the assumption that users who liked one item will likely like similar items.
+To generate recommendations, the system first identifies the attributes of the items that the user has previously
+interacted with. It then identifies other items that have similar attributes and recommends them to the user.
+For example, if a user has previously listened to Taylor Swift songs, the system will identify other Taylor Swift
+songs as well as songs with similar attributes, such as a similar genre or artist. In industry, this type of
+recommendations is showed with “Similar to …”. It is additional nudge to increase interest of a user
+as recommendations with explanation seems to be really personalized from the user’s point of view.</p>
+<p>In conclusion, content-based filtering is a type of recommender system that recommends items to users based on their
+past preferences and behaviors. Next, we jump to coding part and create simple Word2Vec model via <a class="reference external" href="https://pypi.org/project/gensim/"><code class="docutils literal notranslate"><span class="pre">gensim</span></code></a> library.
+Well explained logic of Word2Vec model you can find <a class="reference external" href="https://israelg99.github.io/2017-03-23-Word2Vec-Explained/">here</a>.
+Here, we will not discuss details of implementation.</p>
+<p><strong>TODO ADD PYTHON CODE</strong></p>
 </section>
-<section id="citations">
-<h2>Citations<a class="headerlink" href="#citations" title="Permalink to this headline">#</a></h2>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="#id3" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="docutils container" id="id2">
-<dl class="citation">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">HdHPK14</a></span></dt>
-<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</dd>
-</dl>
-</div>
+<section id="collaborative-filtering">
+<h2>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline">#</a></h2>
 </section>
-<section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this headline">#</a></h2>
-<p>This is just a simple starter to get you started.
-You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
+<section id="python-implementations">
+<h2>Python Implementations<a class="headerlink" href="#python-implementations" title="Permalink to this headline">#</a></h2>
+<p>There are many Python libraries available for content-based filtering such as Surprise &amp; LightFM.
+One of the most popular libraries is Surprise, which is a Python machine learning library for
+recommendation systems. It includes several algorithms for making predictions and performing content-based filtering.</p>
+<p>Another library is LightFM, which is a Python library for building recommendation systems. It includes a set of
+algorithms for content-based filtering, such as the weighting of item attributes and personalized rankings.</p>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="todo">
+<h1>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>about collaborative filtering</p></li>
+<li><p>discuss more deeply python libraries implementation for collaborative filtering in terms features / time</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -445,6 +510,13 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="baseline.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Baseline</p>
+        </div>
+    </a>
 </div>
             </footer>
         </div>

@@ -8,3 +8,7 @@ parts:
   chapters:
   - file: chapter1/intro_to_rekko
     title: Introduction to Recommendation Problem
+  - file: chapter1/baseline
+    title: Baseline Implementation
+  - file: chapter1/content_collab_filters
+    title: Content-Based and Collaborative Filtering

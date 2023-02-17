@@ -3,7 +3,7 @@
 
 title: Rekko Handbook
 author: Shuhrat Khalilbekov
-logo: ./supplements/img/logo.png
+#logo: ./supplements/img/logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -14,10 +14,6 @@ execute:
 latex:
   latex_documents:
     targetname: book.tex
-
-# Add a bibtex file so that we can create citations
-bibtex_bibfiles:
-  - references.bib
 
 # Information about where the book exists on the web
 repository:
