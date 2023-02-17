@@ -1,9 +1,9 @@
-# Content-based and Collaborative Filtering
+# Content-based and Collaborative Filterings in a Nutshell
 In this section, we will go through with 2 straightforward ways to generate candidates for recommendations.
-As we mentioned before, these are *content-based* and *collaborative* filterings. In this chapter,
+As we mentioned before, these are *content-based* and *collaborative* filterings. Yet,
 we will go through explanation of both methods with examples and finnally discuss various libraries
-to implement them. Before that we have to define and understand embeddings. As you might noticed,
-We mentioned a lot "similar items", "similar users" etc and question arises -- how we define that similarity?
+to implement them. Before that we have to define and understand embeddings. As you might have noticed,
+we mentioned a lot "similar items", "similar users" etc and question arises -- how we define that similarity?
 Speaking of calculation of similarity it is pretty straightforward -- we calcualte cosine between two arrays.
 The intruging part is how do we get these arrays from our data.
 
@@ -84,5 +84,4 @@ algorithms for content-based filtering, such as the weighting of item attributes
 
 # TODO
 - about collaborative filtering
-- discuss more deeply python libraries implementation in terms features / time
-- maybe add example with codes here -- not another markdown
+- discuss more deeply python libraries implementation for collaborative filtering in terms features / time

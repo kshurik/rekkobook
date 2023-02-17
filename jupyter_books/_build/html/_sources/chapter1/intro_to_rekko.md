@@ -42,7 +42,8 @@ Now, let's focus on recommendations.
 
 ![](img/2_architecture.png)
 
-In addition, they can be divided into two main types: content-based and collaborative filtering.
+First-level model can be divided into two main types: content-based and collaborative filtering.
+However, the hybrid scheme when we mix both types is used as well.
 *Content-based* systems use information about an item’s features and compare them to the features
 of items a customer has previously interacted with.
 For example, a in OKKO our service may use information about a film's genre, actors,
@@ -91,4 +92,4 @@ Finally, in recommendations we should consider special cases that require thorou
 - Items which user has already interacted with - there is no need to recommend films or books again, but it is
 ok for groceries, for example;
 
-In the next section, we will define baseline for recommendation task based on heurist method and implement it.
+In the next section, we will define baseline for recommendation task based on heuristic method and implement it.

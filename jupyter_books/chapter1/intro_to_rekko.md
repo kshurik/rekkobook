@@ -92,4 +92,4 @@ Finally, in recommendations we should consider special cases that require thorou
 - Items which user has already interacted with - there is no need to recommend films or books again, but it is
 ok for groceries, for example;
 
-In the next section, we will define baseline for recommendation task based on heurist method and implement it.
+In the next section, we will define baseline for recommendation task based on heuristic method and implement it.

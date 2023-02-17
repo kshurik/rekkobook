@@ -126,7 +126,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="content_collab_filters.html">
-   Content-based and Collaborative Filtering
+   Content-based and Collaborative Filterings in a Nutshell
   </a>
  </li>
 </ul>
@@ -345,7 +345,8 @@ in this scenario we maximize precision – how many relevant items we put on top
 Thus, difference often occur in the first-level models. In ranking part it is quite similar.
 Now, let’s focus on recommendations.</p>
 <p><img alt="" src="../_images/2_architecture.png" /></p>
-<p>In addition, they can be divided into two main types: content-based and collaborative filtering.
+<p>First-level model can be divided into two main types: content-based and collaborative filtering.
+However, the hybrid scheme when we mix both types is used as well.
 <em>Content-based</em> systems use information about an item’s features and compare them to the features
 of items a customer has previously interacted with.
 For example, a in OKKO our service may use information about a film’s genre, actors,
@@ -389,7 +390,7 @@ candidates to get highest recall i.e. complete set of items that might be releva
 <li><p>Items which user has already interacted with - there is no need to recommend films or books again, but it is
 ok for groceries, for example;</p></li>
 </ul>
-<p>In the next section, we will define baseline for recommendation task based on heurist method and implement it.</p>
+<p>In the next section, we will define baseline for recommendation task based on heuristic method and implement it.</p>
 </section>
 
     <script type="text/x-thebe-config">

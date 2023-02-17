@@ -7,7 +7,7 @@ to start watching the title. Yet, in many other industries such as e-commerce, b
 recommending relevant products or helping to find necessary service signifficantly increase
 user satisfaction and/or sales.
 
-Basically, these two problems can be viewed as a ranking problem, right? In the first case,
+Basically, these two problems can be considered as a ranking problem. In the first case,
 we have to rank titles based on users' preference. In the second one, we have to rank the
 most similar to query and most likely to be clicked/watched. In this hand book, we will dive into
 these two topics and learn how to code it as well.
@@ -29,9 +29,9 @@ You can reach out to me via
 ## Motivation behind this handbook
 In most projects where I was involved classic ML models were used and there are so
 many guides and handbooks about them that is very easy to get started researching.
-However, recommendations and ranking problem take special position among other
+However, recommendations and ranking problem take special place among other
 problems because they face many difficulties in production-ready usage: custom
-backend architecture, data streaming, runtime SLA, heavy models for embeddings etc.
+backend architecture, data streaming, runtime latency, heavy models for embeddings etc.
 Unfortunately, I could not find a resource where all this knowledge would be up-to-date
 with overview of various algorithms explained in theory and backed up by code.
 Therefore, I decided to refresh everything I did and learn and structure into
