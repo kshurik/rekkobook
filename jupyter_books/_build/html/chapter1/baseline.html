@@ -504,7 +504,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="baseline">
-<h1>Baseline<a class="headerlink" href="#baseline" title="Permalink to this headline">#</a></h1>
+<span id="chapter1-part2"></span><h1>Baseline<a class="headerlink" href="#baseline" title="Permalink to this headline">#</a></h1>
 <p>Before we dive in some models, let’s define heuristic that must be beaten. It is not just the case for RecSys
 problem, but in all ML projects you better start with a definition of baseline to understand efficiency of your model.
 Sometimes it is the case that some heuristice-based algorithm will do the work and it is ok – the goal is your
@@ -968,8 +968,8 @@ Also, if we want to get recommendations based on some user groups we can easily 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [760, 3010, 25801, 77291, 759, 2721, 2755, 298...
-2    [31116, 43267, 26843, 56339, 27724, 31903, 289...
+1    [1788, 127728, 43267, 667, 1123, 1859, 2636, 7...
+2    [1572, 633, 241, 961, 632, 49280, 26422, 8199,...
 dtype: object
 </pre></div>
 </div>
@@ -1025,25 +1025,25 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1091,35 +1091,35 @@ for all users i.e. <em>base_recommendations</em></p>
       <td>1</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[760, 3010, 25801, 77291, 759, 2721, 2755, 298...</td>
+      <td>[1788, 127728, 43267, 667, 1123, 1859, 2636, 7...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[760, 3010, 25801, 77291, 759, 2721, 2755, 298...</td>
+      <td>[1572, 633, 241, 961, 632, 49280, 26422, 8199,...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[31116, 43267, 26843, 56339, 27724, 31903, 289...</td>
+      <td>[1788, 127728, 43267, 667, 1123, 1859, 2636, 7...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[760, 3010, 25801, 77291, 759, 2721, 2755, 298...</td>
+      <td>[1572, 633, 241, 961, 632, 49280, 26422, 8199,...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[31116, 43267, 26843, 56339, 27724, 31903, 289...</td>
+      <td>[1788, 127728, 43267, 667, 1123, 1859, 2636, 7...</td>
     </tr>
   </tbody>
 </table>
@@ -1191,8 +1191,8 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [760, 3010, 25801, 77291, 759, 2721, 2755, 298...
-2    [31116, 43267, 26843, 56339, 27724, 31903, 289...
+1    [1788, 127728, 43267, 667, 1123, 1859, 2636, 7...
+2    [1572, 633, 241, 961, 632, 49280, 26422, 8199,...
 dtype: object
 </pre></div>
 </div>
@@ -1273,25 +1273,25 @@ dtype: object
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1336,31 +1336,31 @@ dtype: object
       <th>0</th>
       <td>1</td>
       <td>1</td>
-      <td>[760, 3010, 25801, 77291, 759, 2721, 2755, 298...</td>
+      <td>[1788, 127728, 43267, 667, 1123, 1859, 2636, 7...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>1</td>
-      <td>[760, 3010, 25801, 77291, 759, 2721, 2755, 298...</td>
+      <td>2</td>
+      <td>[1572, 633, 241, 961, 632, 49280, 26422, 8199,...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
-      <td>[31116, 43267, 26843, 56339, 27724, 31903, 289...</td>
+      <td>1</td>
+      <td>[1788, 127728, 43267, 667, 1123, 1859, 2636, 7...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
-      <td>[760, 3010, 25801, 77291, 759, 2721, 2755, 298...</td>
+      <td>2</td>
+      <td>[1572, 633, 241, 961, 632, 49280, 26422, 8199,...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
-      <td>[31116, 43267, 26843, 56339, 27724, 31903, 289...</td>
+      <td>1</td>
+      <td>[1788, 127728, 43267, 667, 1123, 1859, 2636, 7...</td>
     </tr>
   </tbody>
 </table>
