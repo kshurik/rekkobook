@@ -212,7 +212,7 @@ First, let's define some paramters for Doc2Vec model
 ```{code-cell} ipython3
 VEC_SIZE = 50 # length of the vector for each movie
 ALPHA = .02 # model learning param
-MIN_ALPHA = .00025 model learning param
+MIN_ALPHA = .00025 # model learning param
 MIN_COUNT = 5 # min occurrence of a word in dictionary
 EPOCHS = 20 # number of trainings
 ```
@@ -278,7 +278,7 @@ output['title_name'] = output['model_index'].astype(int).map(name_mapper)
 output
 ```
 
-## Collaborative Filtering [WIP]
+## Collaborative Filtering
 Collaborative filtering is a powerful method for recommendation systems used to predict user preferences or
 interests. It is based on the notion that people who have similar tastes and preferences in one domain are likely
 to have similar tastes and preferences in a different domain. The collaborative filtering technique seeks to identify

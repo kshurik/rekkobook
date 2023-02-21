@@ -91,6 +91,10 @@ MOVIES_METADATA_URL = 'https://drive.google.com/file/d/19g6-apYbZb5D-wRj4L7aYKhx
 # In[2]:
 
 
+# just to make it available to download w/o SSL verification
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 import re
 import nltk
 import numpy as np
@@ -163,7 +167,7 @@ movies_metadata.dtypes
 # - Define `model_index` for model to match back with `id` column;
 # - Text cleaning: removing stopwords & punctuation, lemmatization for further tokenization and tagged document creatin required for gensim.Doc2Vec
 
-# In[ ]:
+# In[6]:
 
 
 # filter cols
@@ -171,7 +175,7 @@ sample = movies_metadata[['id', 'original_title', 'overview']].copy()
 sample.info()
 
 
-# In[ ]:
+# In[7]:
 
 
 # as you see from above, we have missing overview in some cases -- let's fill it with the original title
@@ -179,7 +183,7 @@ sample.loc[sample['overview'].isnull(), 'overview'] = sample.loc[sample['overvie
 sample.isnull().sum()
 
 
-# In[ ]:
+# In[8]:
 
 
 # define model_index and make it as string
@@ -187,14 +191,14 @@ sample = sample.reset_index().rename(columns = {'index': 'model_index'})
 sample['model_index'] = sample['model_index'].astype(str)
 
 
-# In[ ]:
+# In[9]:
 
 
 # create mapper with title and model_idnex to use it further in evaluation
 movies_inv_mapper = dict(zip(sample['original_title'].str.lower(), sample['model_index'].astype(int)))
 
 
-# In[ ]:
+# In[10]:
 
 
 # preprocess by removing non-character data, stopwords
@@ -206,7 +210,7 @@ tags_doc = [word_tokenize_clean(description, stop_words) for description in tags
 tags_corpus[:1]
 
 
-# In[ ]:
+# In[11]:
 
 
 # prepare data as model input for Word2Vec
@@ -214,7 +218,7 @@ tags_corpus[:1]
 tags_doc = [TaggedDocument(words = word_tokenize_clean(D, stop_words), tags = [str(i)]) for i, D in enumerate(tags_corpus)]
 
 
-# In[ ]:
+# In[12]:
 
 
 # let's check what do we have
@@ -226,17 +230,17 @@ tags_doc[1]
 # 
 # First, let's define some paramters for Doc2Vec model
 
-# In[ ]:
+# In[13]:
 
 
 VEC_SIZE = 50 # length of the vector for each movie
 ALPHA = .02 # model learning param
-MIN_ALPHA = .00025 model learning param
+MIN_ALPHA = .00025 # model learning param
 MIN_COUNT = 5 # min occurrence of a word in dictionary
 EPOCHS = 20 # number of trainings
 
 
-# In[ ]:
+# In[14]:
 
 
 # initialize the model
@@ -247,14 +251,14 @@ model = Doc2Vec(vector_size = VEC_SIZE,
                 dm = 0)
 
 
-# In[ ]:
+# In[15]:
 
 
 # generate vocab from all tag docs
 model.build_vocab(tags_doc)
 
 
-# In[ ]:
+# In[16]:
 
 
 # train model
@@ -271,7 +275,7 @@ model.train(tags_doc,
 # - Use built-in most_similar() method to get most relevant recommendations based on film embedding
 # - Finally, map title names for sense-check
 
-# In[ ]:
+# In[17]:
 
 
 # get id
@@ -279,20 +283,20 @@ movie_id = movies_inv_mapper['batman']
 movie_id
 
 
-# In[ ]:
+# In[18]:
 
 
 # load trained embeddings 
 movies_vectors = model.dv.vectors
 
 
-# In[ ]:
+# In[19]:
 
 
 movie_embeddings = movies_vectors[movie_id]
 
 
-# In[ ]:
+# In[20]:
 
 
 # get recommendations
@@ -301,14 +305,14 @@ output = pd.DataFrame(similars, columns = ['model_index', 'model_score'])
 output.head()
 
 
-# In[ ]:
+# In[21]:
 
 
 # reverse values and indices to map names in dataframe
 name_mapper = {v: k for k, v in movies_inv_mapper.items()}
 
 
-# In[ ]:
+# In[22]:
 
 
 output['title_name'] = output['model_index'].astype(int).map(name_mapper)
@@ -366,7 +370,7 @@ output
 # User A and User B. The PCC is calculated by taking the average of the product of the ratings for each movie.
 # So, let's get PCC for User A and User B:
 
-# In[ ]:
+# In[23]:
 
 
 import numpy as np
