@@ -94,6 +94,10 @@ MOVIES_METADATA_URL = 'https://drive.google.com/file/d/19g6-apYbZb5D-wRj4L7aYKhx
 
 #### 1. Modules and functions
 ```{code-cell} ipython3
+# just to make it available to download w/o SSL verification
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 import re
 import nltk
 import numpy as np
