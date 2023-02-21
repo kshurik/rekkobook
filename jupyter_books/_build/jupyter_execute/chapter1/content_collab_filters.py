@@ -319,7 +319,7 @@ output['title_name'] = output['model_index'].astype(int).map(name_mapper)
 output
 
 
-# ## Collaborative Filtering [WIP]
+# ## Collaborative Filtering
 # Collaborative filtering is a powerful method for recommendation systems used to predict user preferences or
 # interests. It is based on the notion that people who have similar tastes and preferences in one domain are likely
 # to have similar tastes and preferences in a different domain. The collaborative filtering technique seeks to identify
