@@ -72,8 +72,249 @@
 # Well explained logic of Word2Vec model you can find [here](https://israelg99.github.io/2017-03-23-Word2Vec-Explained/).
 # Here, we will not discuss details of implementation.
 # 
-# **TODO ADD PYTHON CODE FOR CONTENT BASED HERE**
+# ### gensim: example of content-based recommendations based on Doc2Vec approach
+# Now, we move on to implementation of content-based recommender using `gensim` library and Doc2Vec. It is almost
+# the same as Word2Vec with sligh modification, but idea remains the same.
 # 
+# #### 0. Configuration
+
+# In[1]:
+
+
+# links to shared data MovieLens
+# source on kaggle: https://www.kaggle.com/code/quangnhatbui/movie-recommender/data
+MOVIES_METADATA_URL = 'https://drive.google.com/file/d/19g6-apYbZb5D-wRj4L7aYKhxS-fDM4Fb/view?usp=share_link'
+
+
+# #### 1. Modules and functions
+
+# In[2]:
+
+
+import re
+import nltk
+import numpy as np
+import pandas as pd
+from tqdm import tqdm_notebook
+from ast import literal_eval
+from pymystem3 import Mystem
+from string import punctuation
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from gensim.models.doc2vec import Doc2Vec, TaggedDocument
+
+import warnings
+warnings.filterwarnings('ignore')
+
+# download stop words beforehand
+nltk.download('stopwords')
+
+
+# ##### 1.1. Helper functions to avoid copypaste
+
+# In[3]:
+
+
+def read_csv_from_gdrive(url):
+    """
+    gets csv data from a given url (taken from file -> share -> copy link)
+    :url: example https://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link
+    """
+    file_id = url.split('/')[-2]
+    file_path = 'https://drive.google.com/uc?export=download&id=' + file_id
+    data = pd.read_csv(file_path)
+
+    return data
+
+
+# In[4]:
+
+
+# init lemmatizer to avoid slow performance
+mystem = Mystem() 
+
+def word_tokenize_clean(doc: str, stop_words: list):
+    '''
+    tokenize from string to list of words
+    '''
+
+    # split into lower case word tokens \w lemmatization
+    tokens = list(set(mystem.lemmatize(doc.lower())))
+  
+    # remove tokens that are not alphabetic (including punctuation) and not a stop word
+    tokens = [word for word in tokens if word.isalpha() and not word in stop_words \
+              not in list(punctuation)]
+    return tokens
+
+
+# #### 2. Main
+# ##### 2.1. Data Preparation
+
+# In[5]:
+
+
+# read csv information about films etc
+movies_metadata = read_csv_from_gdrive(MOVIES_METADATA_URL)
+movies_metadata.dtypes
+
+
+# To get accurate results we need to preprocess text a bit. The pipeline will be as follows:
+# - Filter only necessary columns from movies_metadada : id, original_title, overview;
+# - Define `model_index` for model to match back with `id` column;
+# - Text cleaning: removing stopwords & punctuation, lemmatization for further tokenization and tagged document creatin required for gensim.Doc2Vec
+
+# In[ ]:
+
+
+# filter cols
+sample = movies_metadata[['id', 'original_title', 'overview']].copy()
+sample.info()
+
+
+# In[ ]:
+
+
+# as you see from above, we have missing overview in some cases -- let's fill it with the original title
+sample.loc[sample['overview'].isnull(), 'overview'] = sample.loc[sample['overview'].isnull(), 'original_title']
+sample.isnull().sum()
+
+
+# In[ ]:
+
+
+# define model_index and make it as string
+sample = sample.reset_index().rename(columns = {'index': 'model_index'})
+sample['model_index'] = sample['model_index'].astype(str)
+
+
+# In[ ]:
+
+
+# create mapper with title and model_idnex to use it further in evaluation
+movies_inv_mapper = dict(zip(sample['original_title'].str.lower(), sample['model_index'].astype(int)))
+
+
+# In[ ]:
+
+
+# preprocess by removing non-character data, stopwords
+tags_corpus = sample['overview'].values
+tags_corpus = [re.sub('-[!/()0-9]', '', x) for x in tags_corpus]
+stop_words = stopwords.words('english')
+
+tags_doc = [word_tokenize_clean(description, stop_words) for description in tags_corpus]
+tags_corpus[:1]
+
+
+# In[ ]:
+
+
+# prepare data as model input for Word2Vec
+## it takes some time to execute
+tags_doc = [TaggedDocument(words = word_tokenize_clean(D, stop_words), tags = [str(i)]) for i, D in enumerate(tags_corpus)]
+
+
+# In[ ]:
+
+
+# let's check what do we have
+## tag = movie index
+tags_doc[1]
+
+
+# #### 2.2. Model Training and Evaluation
+# 
+# First, let's define some paramters for Doc2Vec model
+
+# In[ ]:
+
+
+VEC_SIZE = 50 # length of the vector for each movie
+ALPHA = .02 # model learning param
+MIN_ALPHA = .00025 model learning param
+MIN_COUNT = 5 # min occurrence of a word in dictionary
+EPOCHS = 20 # number of trainings
+
+
+# In[ ]:
+
+
+# initialize the model
+model = Doc2Vec(vector_size = VEC_SIZE,
+                alpha = ALPHA, 
+                min_alpha = MIN_ALPHA,
+                min_count = MIN_COUNT,
+                dm = 0)
+
+
+# In[ ]:
+
+
+# generate vocab from all tag docs
+model.build_vocab(tags_doc)
+
+
+# In[ ]:
+
+
+# train model
+model.train(tags_doc,
+            total_examples = model.corpus_count,
+            epochs = EPOCHS)
+
+
+# Now, let's make some checks by defining parameters for model ourselves.
+# Assume that we watched movie `batman` and based on that generate recommendation similar to it's description.
+# To do that we need:
+# - To extract movie id from `movies_inv_mapper` we created to map back titles from model output
+# - Load embeddings from trained model
+# - Use built-in most_similar() method to get most relevant recommendations based on film embedding
+# - Finally, map title names for sense-check
+
+# In[ ]:
+
+
+# get id
+movie_id = movies_inv_mapper['batman']
+movie_id
+
+
+# In[ ]:
+
+
+# load trained embeddings 
+movies_vectors = model.dv.vectors
+
+
+# In[ ]:
+
+
+movie_embeddings = movies_vectors[movie_id]
+
+
+# In[ ]:
+
+
+# get recommendations
+similars = model.docvecs.most_similar(positive = [movie_embeddings], topn = 20)
+output = pd.DataFrame(similars, columns = ['model_index', 'model_score'])
+output.head()
+
+
+# In[ ]:
+
+
+# reverse values and indices to map names in dataframe
+name_mapper = {v: k for k, v in movies_inv_mapper.items()}
+
+
+# In[ ]:
+
+
+output['title_name'] = output['model_index'].astype(int).map(name_mapper)
+output
+
+
 # ## Collaborative Filtering [WIP]
 # Collaborative filtering is a powerful method for recommendation systems used to predict user preferences or
 # interests. It is based on the notion that people who have similar tastes and preferences in one domain are likely
@@ -125,7 +366,7 @@
 # User A and User B. The PCC is calculated by taking the average of the product of the ratings for each movie.
 # So, let's get PCC for User A and User B:
 
-# In[1]:
+# In[ ]:
 
 
 import numpy as np
