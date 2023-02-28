@@ -23,7 +23,7 @@ jobs:
         python-version: [3.9]
     steps:
     - uses: actions/checkout@v2
-    # Install CC
+    # Install python
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
@@ -32,11 +32,6 @@ jobs:
       run: |
         pip install poetry
         poetry install
-    # Use default CC
-#    - name: Cookiecutter no GHA
-#      run: |
-#        sudo apt-get install cookiecutter
-#        cookiecutter . --no-input include_ci=no
     # Build the example book
     - name: Build book
       run: |
