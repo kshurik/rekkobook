@@ -520,7 +520,7 @@ for baseline recommender.</p>
 <h2>0. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># links to shared data MovieLens</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># links to shared data MovieLens</span>
 <span class="n">RATINGS_SMALL_URL</span> <span class="o">=</span> <span class="s1">&#39;http://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link&#39;</span>
 <span class="n">MOVIES_METADATA_URL</span> <span class="o">=</span> <span class="s1">&#39;http://drive.google.com/file/d/19g6-apYbZb5D-wRj4L7aYKhxS-fDM4Fb/view?usp=share_link&#39;</span>
 </pre></div>
@@ -533,7 +533,7 @@ for baseline recommender.</p>
 <p>Now, let’s import some libraries</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># just to make it available to download w/o SSL verification</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># just to make it available to download w/o SSL verification</span>
 <span class="kn">import</span> <span class="nn">ssl</span>
 <span class="n">ssl</span><span class="o">.</span><span class="n">_create_default_https_context</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_unverified_context</span>
 
@@ -549,25 +549,11 @@ for baseline recommender.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">ssl</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_default_https_context</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_unverified_context</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>and define 2 useful functinons 1) read_csv_from_gdrive() to get data from provided url of a file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_csv_from_gdrive</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_csv_from_gdrive</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gets csv data from a given url (taken from file -&gt; share -&gt; copy link)</span>
 <span class="sd">    :url: example https://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link</span>
@@ -584,7 +570,7 @@ for baseline recommender.</p>
 <p>2nd one is compute_popularity() which calculates mean rating, sorts and returns top <em>K</em> required items</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_popularity</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_popularity</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    calculates mean rating to define popular titles</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -608,7 +594,7 @@ for baseline recommender.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># interactions data</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># interactions data</span>
 <span class="n">interactions</span> <span class="o">=</span> <span class="n">read_csv_from_gdrive</span><span class="p">(</span><span class="n">RATINGS_SMALL_URL</span><span class="p">)</span>
 <span class="n">interactions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -618,14 +604,14 @@ for baseline recommender.</p>
 <p>Let’s get some statistics and look at ratings’ distribution</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interactions</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interactions</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
 <span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ratings Distribtion&#39;</span><span class="p">);</span>
 </pre></div>
@@ -636,7 +622,7 @@ for baseline recommender.</p>
 Now, let’s move on to movies metadata</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># information about films etc</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># information about films etc</span>
 <span class="n">movies_metadata</span> <span class="o">=</span> <span class="n">read_csv_from_gdrive</span><span class="p">(</span><span class="n">MOVIES_METADATA_URL</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -645,7 +631,7 @@ Now, let’s move on to movies metadata</p>
 <p>Which columns / info we have and their types - namings are pretty straightforward</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_metadata</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movies_metadata</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -665,7 +651,7 @@ Now, let’s move on to movies metadata</p>
 Relationship between both datasets is set by movie id.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># align data in both dataframes to merge</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># align data in both dataframes to merge</span>
 <span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">movies_metadata</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;movieId&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -674,7 +660,7 @@ Relationship between both datasets is set by movie id.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># leave only those films that intersect with each other</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># leave only those films that intersect with each other</span>
 <span class="n">interactions_filtered</span> <span class="o">=</span> <span class="n">interactions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">])]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">interactions</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
@@ -683,7 +669,7 @@ Relationship between both datasets is set by movie id.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create users input</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create users input</span>
 <span class="n">users</span> <span class="o">=</span> <span class="n">interactions</span><span class="p">[[</span><span class="s1">&#39;userId&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -691,7 +677,7 @@ Relationship between both datasets is set by movie id.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create mapper for movieId and title names</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create mapper for movieId and title names</span>
 <span class="n">item_name_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">],</span> <span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;original_title&#39;</span><span class="p">]))</span>
 </pre></div>
 </div>
@@ -724,7 +710,7 @@ Relationship between both datasets is set by movie id.</p>
 <p>First, we define how many candidates we want to get</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_CANDIDATES</span> <span class="o">=</span> <span class="mi">20</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_CANDIDATES</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">ITEM_COLUMN</span> <span class="o">=</span> <span class="s1">&#39;movieId&#39;</span>
 <span class="n">USER_COLUMN</span> <span class="o">=</span> <span class="s1">&#39;userId&#39;</span>
 </pre></div>
@@ -734,7 +720,7 @@ Relationship between both datasets is set by movie id.</p>
 <p>Then, we extract top 20 movies by aggregating movies and averaging rating column across all users</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_recommendations</span> <span class="o">=</span> <span class="n">compute_popularity</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">,</span> <span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">MAX_CANDIDATES</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base_recommendations</span> <span class="o">=</span> <span class="n">compute_popularity</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">,</span> <span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">MAX_CANDIDATES</span><span class="p">)</span>
 <span class="n">base_recommendations</span>
 </pre></div>
 </div>
@@ -745,7 +731,7 @@ Now, as we discussed earlier, in movies recommendations there is no need to reco
 We get all interacted items for each user and save it in dictionary {‘userId’: [items list]}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">known_items</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">USER_COLUMN</span><span class="p">)[</span><span class="n">ITEM_COLUMN</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">known_items</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">USER_COLUMN</span><span class="p">)[</span><span class="n">ITEM_COLUMN</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of users with known items: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">known_items</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># let&#39;s check it for one userId = 1</span>
@@ -758,7 +744,7 @@ We get all interacted items for each user and save it in dictionary {‘userId�
 Also, if we want to get recommendations based on some user groups we can easily do the same with groupby() method and same approach</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets add artifical binary group to check BaselineRecommender</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets add artifical binary group to check BaselineRecommender</span>
 <span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_integers</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">))]</span>
 <span class="n">users</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
 </pre></div>
@@ -768,7 +754,7 @@ Also, if we want to get recommendations based on some user groups we can easily 
 <p>Here we merge it to get groupwise recommendations</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="n">USER_COLUMN</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="n">USER_COLUMN</span><span class="p">)</span>
 <span class="n">group_recommendations</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">compute_popularity</span><span class="p">,</span> <span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">MAX_CANDIDATES</span><span class="p">)</span>
 <span class="n">group_recommendations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -785,7 +771,7 @@ Thus, if we do not have groups to consider (a.k.a more granualar estimation), th
 for all users i.e. <em>base_recommendations</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">cycle</span><span class="p">([</span><span class="n">base_recommendations</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">])))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">recs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">cycle</span><span class="p">([</span><span class="n">base_recommendations</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">])))</span>
 <span class="n">users</span><span class="p">[</span><span class="s1">&#39;rekkos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recs</span>
 <span class="n">users</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -795,7 +781,7 @@ for all users i.e. <em>base_recommendations</em></p>
 <p>And let’s have an example with groups we created earlier</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_recommendations</span> <span class="o">=</span> <span class="n">group_recommendations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group_recommendations</span> <span class="o">=</span> <span class="n">group_recommendations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">group_rekkos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="n">group_recommendations</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
 <span class="n">group_rekkos</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;group_wise_rekkos&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">group_rekkos</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -821,7 +807,7 @@ Further, we will prettify our code and wrap it into functions</p>
 groupwise or not and return ids</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">item_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -847,7 +833,7 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check base recommendations</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check base recommendations</span>
 <span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">item_col</span><span class="o">=</span><span class="n">ITEM_COLUMN</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -855,7 +841,7 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check group-wise</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check group-wise</span>
 <span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">item_col</span><span class="o">=</span><span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -867,7 +853,7 @@ groupwise or not and return ids</p>
 <p>Here, we just use calculated recommendations from above method <code class="docutils literal notranslate"><span class="pre">fit()</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recommend</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recommend</span><span class="p">(</span>
     <span class="n">users</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">recommendations</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -895,7 +881,7 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check base recommendations</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check base recommendations</span>
 <span class="n">recs</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">item_col</span><span class="o">=</span><span class="n">ITEM_COLUMN</span><span class="p">)</span>
 <span class="n">check_recs</span> <span class="o">=</span> <span class="n">recommend</span><span class="p">(</span><span class="n">users</span><span class="p">[[</span><span class="s1">&#39;userId&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">]],</span> <span class="n">recs</span><span class="p">)</span>
 <span class="n">check_recs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -905,7 +891,7 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check group-wise</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check group-wise</span>
 <span class="n">recs</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">item_col</span><span class="o">=</span><span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span>
 <span class="n">check_recs</span> <span class="o">=</span> <span class="n">recommend</span><span class="p">(</span><span class="n">users</span><span class="p">[[</span><span class="s1">&#39;userId&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">]],</span> <span class="n">recs</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span>
 <span class="n">check_recs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>

@@ -567,7 +567,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 <h4>0. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># links to shared data MovieLens</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># links to shared data MovieLens</span>
 <span class="c1"># source on kaggle: https://www.kaggle.com/code/quangnhatbui/movie-recommender/data</span>
 <span class="n">MOVIES_METADATA_URL</span> <span class="o">=</span> <span class="s1">&#39;https://drive.google.com/file/d/19g6-apYbZb5D-wRj4L7aYKhxS-fDM4Fb/view?usp=share_link&#39;</span>
 </pre></div>
@@ -579,7 +579,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 <h4>1. Modules and functions<a class="headerlink" href="#modules-and-functions" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># just to make it available to download w/o SSL verification</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># just to make it available to download w/o SSL verification</span>
 <span class="kn">import</span> <span class="nn">ssl</span>
 <span class="n">ssl</span><span class="o">.</span><span class="n">_create_default_https_context</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_unverified_context</span>
 
@@ -603,26 +603,12 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_default_https_context</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_unverified_context</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">re</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">nltk</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;nltk&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <section id="helper-functions-to-avoid-copypaste">
 <h5>1.1. Helper functions to avoid copypaste<a class="headerlink" href="#helper-functions-to-avoid-copypaste" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_csv_from_gdrive</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_csv_from_gdrive</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gets csv data from a given url (taken from file -&gt; share -&gt; copy link)</span>
 <span class="sd">    :url: example https://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link</span>
@@ -638,7 +624,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># init lemmatizer to avoid slow performance</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># init lemmatizer to avoid slow performance</span>
 <span class="n">mystem</span> <span class="o">=</span> <span class="n">Mystem</span><span class="p">()</span> 
 
 <span class="k">def</span> <span class="nf">word_tokenize_clean</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">stop_words</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
@@ -665,7 +651,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 <h5>2.1. Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read csv information about films etc</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># read csv information about films etc</span>
 <span class="n">movies_metadata</span> <span class="o">=</span> <span class="n">read_csv_from_gdrive</span><span class="p">(</span><span class="n">MOVIES_METADATA_URL</span><span class="p">)</span>
 <span class="n">movies_metadata</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
@@ -680,7 +666,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter cols</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter cols</span>
 <span class="n">sample</span> <span class="o">=</span> <span class="n">movies_metadata</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;original_title&#39;</span><span class="p">,</span> <span class="s1">&#39;overview&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">sample</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
@@ -689,7 +675,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># as you see from above, we have missing overview in some cases -- let&#39;s fill it with the original title</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># as you see from above, we have missing overview in some cases -- let&#39;s fill it with the original title</span>
 <span class="n">sample</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sample</span><span class="p">[</span><span class="s1">&#39;overview&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="s1">&#39;overview&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sample</span><span class="p">[</span><span class="s1">&#39;overview&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="s1">&#39;original_title&#39;</span><span class="p">]</span>
 <span class="n">sample</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
@@ -698,7 +684,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define model_index and make it as string</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># define model_index and make it as string</span>
 <span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="s1">&#39;model_index&#39;</span><span class="p">})</span>
 <span class="n">sample</span><span class="p">[</span><span class="s1">&#39;model_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="s1">&#39;model_index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 </pre></div>
@@ -707,7 +693,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create mapper with title and model_idnex to use it further in evaluation</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create mapper with title and model_idnex to use it further in evaluation</span>
 <span class="n">movies_inv_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s1">&#39;original_title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">sample</span><span class="p">[</span><span class="s1">&#39;model_index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -715,7 +701,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># preprocess by removing non-character data, stopwords</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># preprocess by removing non-character data, stopwords</span>
 <span class="n">tags_corpus</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="s1">&#39;overview&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">tags_corpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;-[!/()0-9]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tags_corpus</span><span class="p">]</span>
 <span class="n">stop_words</span> <span class="o">=</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
@@ -728,7 +714,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare data as model input for Word2Vec</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare data as model input for Word2Vec</span>
 <span class="c1">## it takes some time to execute</span>
 <span class="n">tags_doc</span> <span class="o">=</span> <span class="p">[</span><span class="n">TaggedDocument</span><span class="p">(</span><span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize_clean</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">stop_words</span><span class="p">),</span> <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">D</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tags_corpus</span><span class="p">)]</span>
 </pre></div>
@@ -737,7 +723,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s check what do we have</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s check what do we have</span>
 <span class="c1">## tag = movie index</span>
 <span class="n">tags_doc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
@@ -751,7 +737,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 <p>First, let’s define some paramters for Doc2Vec model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VEC_SIZE</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># length of the vector for each movie</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VEC_SIZE</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># length of the vector for each movie</span>
 <span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">.02</span> <span class="c1"># model learning param</span>
 <span class="n">MIN_ALPHA</span> <span class="o">=</span> <span class="mf">.00025</span> <span class="c1"># model learning param</span>
 <span class="n">MIN_COUNT</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># min occurrence of a word in dictionary</span>
@@ -762,7 +748,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize the model</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize the model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Doc2Vec</span><span class="p">(</span><span class="n">vector_size</span> <span class="o">=</span> <span class="n">VEC_SIZE</span><span class="p">,</span>
                 <span class="n">alpha</span> <span class="o">=</span> <span class="n">ALPHA</span><span class="p">,</span> 
                 <span class="n">min_alpha</span> <span class="o">=</span> <span class="n">MIN_ALPHA</span><span class="p">,</span>
@@ -774,7 +760,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate vocab from all tag docs</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate vocab from all tag docs</span>
 <span class="n">model</span><span class="o">.</span><span class="n">build_vocab</span><span class="p">(</span><span class="n">tags_doc</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -782,7 +768,7 @@ the same as Word2Vec with sligh modification, but idea remains the same.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model</span>
 <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">tags_doc</span><span class="p">,</span>
             <span class="n">total_examples</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">corpus_count</span><span class="p">,</span>
             <span class="n">epochs</span> <span class="o">=</span> <span class="n">EPOCHS</span><span class="p">)</span>
@@ -801,7 +787,7 @@ To do that we need:</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get id</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># get id</span>
 <span class="n">movie_id</span> <span class="o">=</span> <span class="n">movies_inv_mapper</span><span class="p">[</span><span class="s1">&#39;batman&#39;</span><span class="p">]</span>
 <span class="n">movie_id</span>
 </pre></div>
@@ -810,7 +796,7 @@ To do that we need:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load trained embeddings </span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># load trained embeddings </span>
 <span class="n">movies_vectors</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dv</span><span class="o">.</span><span class="n">vectors</span>
 </pre></div>
 </div>
@@ -818,14 +804,14 @@ To do that we need:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movie_embeddings</span> <span class="o">=</span> <span class="n">movies_vectors</span><span class="p">[</span><span class="n">movie_id</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movie_embeddings</span> <span class="o">=</span> <span class="n">movies_vectors</span><span class="p">[</span><span class="n">movie_id</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get recommendations</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># get recommendations</span>
 <span class="n">similars</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie_embeddings</span><span class="p">],</span> <span class="n">topn</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">similars</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;model_index&#39;</span><span class="p">,</span> <span class="s1">&#39;model_score&#39;</span><span class="p">])</span>
 <span class="n">output</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -835,7 +821,7 @@ To do that we need:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reverse values and indices to map names in dataframe</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># reverse values and indices to map names in dataframe</span>
 <span class="n">name_mapper</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">movies_inv_mapper</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 </pre></div>
 </div>
@@ -843,7 +829,7 @@ To do that we need:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;title_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;model_index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">name_mapper</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;title_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;model_index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">name_mapper</span><span class="p">)</span>
 <span class="n">output</span>
 </pre></div>
 </div>
