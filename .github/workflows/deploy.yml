@@ -35,6 +35,7 @@ jobs:
     # Use default CC
     - name: Cookiecutter no GHA
       run: |
+        sudo apt-get install cookiecutter
         cookiecutter . --no-input include_ci=no
     # Build the example book
     - name: Build book
