@@ -15,7 +15,7 @@ on:
 
 jobs: 
   # This job deploys the example book
-  deploy-example-book:
+  deploy-rekko-book:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
