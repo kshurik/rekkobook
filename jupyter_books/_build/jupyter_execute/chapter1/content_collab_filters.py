@@ -406,7 +406,8 @@ print(f'Pearson Correlation for user A and B is: {np.corrcoef(user_a, user_b)[0,
 # for a user-item pair. Matrix factorization is typically performed using a technique called Singular Value Decomposition (SVD).
 # The example of how it is computed is showed below. Basically, we have interactions data where rows represent
 # users and columns their ratings/other interactions. Based on thatm we have find such matrices that would approximate
-# this relationship from our interactions data.
+# this relationship from our interactions data. It worth mentioning, that by SVD we only try to approximate rather
+# than being able to restore interactions matrix fully. Thus, we take *k* biggest singular values from sigma (middle) matrix
 # 
 # ![](img/svd_example.png)
 # *Toy example with SVD decomposition*
