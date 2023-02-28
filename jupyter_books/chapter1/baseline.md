@@ -10,6 +10,8 @@ kernelspec:
   name: python3
 ---
 
+(chapter1_part2)=
+
 # Baseline
 
 Before we dive in some models, let's define heuristic that must be beaten. It is not just the case for RecSys
