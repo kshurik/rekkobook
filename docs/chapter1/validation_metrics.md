@@ -48,7 +48,9 @@ to estimate model performance and *k-1* is used for training;
 *stratified k-fold* - it is similar to classic *k-fold* with a modification that overcomes imbalanced target.
 It samples data such that each fold have approximately the same number of distinct target values;
 
-*leave-p-out* - TBD;
+*leave-p-out* - we use *p* observations for test and *(n - p)* as train set. Once the training is done on
+*(n - p)*, *p* data points are used for validation.  All possible combinations of *p* are tested on the
+model so as to get the highest model performance
 
 All aforementioned approaches can be found in [scikit-learn library](https://scikit-learn.org/stable/modules/cross_validation.html)
 
