@@ -35,8 +35,7 @@ jobs:
     # Build the example book
     - name: Build book
       run: |
-        pip install jupyter-book
-        jupyter-book build ./docs
+        poetry run jupyter-book build ./docs
     # Deploy html to gh-pages
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.1
