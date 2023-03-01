@@ -1,48 +1,56 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Baseline &#8212; Rekko Handbook</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -50,56 +58,252 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1/baseline';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Content-based and Collaborative Filterings in a Nutshell" href="content_collab_filters.html" />
     <link rel="prev" title="Introduction to Recommendation Problem" href="intro_to_rekko.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+  
 
-    <div class="container-xl">
-      <div class="row">
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Rekko Handbook</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="intro_to_rekko.html">
+                        Introduction to Recommendation Problem
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Baseline Implementation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="content_collab_filters.html">
+                        Content-Based and Collaborative Filtering
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Rekko Handbook</h1>
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="intro_to_rekko.html">
+                        Introduction to Recommendation Problem
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Baseline Implementation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="content_collab_filters.html">
+                        Content-Based and Collaborative Filtering
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Rekko Handbook</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -108,403 +312,261 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  CHAPTER 1 - Overivew of Recommendation Systems
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_to_rekko.html">
-   Introduction to Recommendation Problem
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Baseline Implementation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="content_collab_filters.html">
-   Content-Based and Collaborative Filtering
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Baseline Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_collab_filters.html">Content-Based and Collaborative Filtering</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/kshurik/rekko_handbook/master?urlpath=tree/docs/chapter1/baseline.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
+  <ul class="dropdown-menu">
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/kshurik/rekko_handbook"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/kshurik/rekko_handbook" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="headerbtn__text-container">repository</span>
+<span class="btn__text-container">repository</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/kshurik/rekko_handbook/issues/new?title=Issue%20on%20page%20%2Fchapter1/baseline.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
+      <li><a href="https://github.com/kshurik/rekko_handbook/issues/new?title=Issue%20on%20page%20%2Fchapter1/baseline.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Open an issue"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
-<span class="headerbtn__text-container">open issue</span>
+<span class="btn__text-container">open issue</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/chapter1/baseline.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/chapter1/baseline.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download notebook file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-code"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="../_sources/chapter1/baseline.md"
-   class="headerbtn"
+      <li><a href="../_sources/chapter1/baseline.md" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="btn__text-container">.md</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#configuration">
-   0. Configuration
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modules-and-functions">
-   1. Modules and functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data">
-   2. Data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-and-describe">
-     2.1 Load and Describe
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-preparation">
-     2.2. Data Preparation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model">
-   3. Model
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fit">
-     3.1. Fit
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#recommend">
-     3.2. Recommend
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wrap-everything-into-pretty-functions">
-     3.3. Wrap everything into pretty functions
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fit-part">
-       3.3.1. Fit Part
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#recommend-part">
-       3.3.2. Recommend Part
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Baseline</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#configuration">
-   0. Configuration
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modules-and-functions">
-   1. Modules and functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data">
-   2. Data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-and-describe">
-     2.1 Load and Describe
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-preparation">
-     2.2. Data Preparation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model">
-   3. Model
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fit">
-     3.1. Fit
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#recommend">
-     3.2. Recommend
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wrap-everything-into-pretty-functions">
-     3.3. Wrap everything into pretty functions
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fit-part">
-       3.3.1. Fit Part
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#recommend-part">
-       3.3.2. Recommend Part
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Baseline</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   0. Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modules-and-functions">
+   1. Modules and functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   2. Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-and-describe">
+     2.1 Load and Describe
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-preparation">
+     2.2. Data Preparation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model">
+   3. Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit">
+     3.1. Fit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommend">
+     3.2. Recommend
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wrap-everything-into-pretty-functions">
+     3.3. Wrap everything into pretty functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-part">
+       3.3.1. Fit Part
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#recommend-part">
+       3.3.2. Recommend Part
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="baseline">
-<span id="chapter1-part2"></span><h1>Baseline<a class="headerlink" href="#baseline" title="Permalink to this headline">#</a></h1>
+<span id="chapter1-part2"></span><h1>Baseline<a class="headerlink" href="#baseline" title="Permalink to this heading">#</a></h1>
 <p>Before we dive in some models, let’s define heuristic that must be beaten. It is not just the case for RecSys
 problem, but in all ML projects you better start with a definition of baseline to understand efficiency of your model.
 Sometimes it is the case that some heuristice-based algorithm will do the work and it is ok – the goal is your
@@ -517,10 +579,10 @@ Here, we wil use mean rating as a proxy for popularity and recommendations</p>
 For convenience, I uploaded it to Google Drive for centralized access for anyone. Below, there are urls of main datasets that will be used
 for baseline recommender.</p>
 <section id="configuration">
-<h2>0. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
+<h2>0. Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># links to shared data MovieLens</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># links to shared data MovieLens</span>
 <span class="n">RATINGS_SMALL_URL</span> <span class="o">=</span> <span class="s1">&#39;http://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link&#39;</span>
 <span class="n">MOVIES_METADATA_URL</span> <span class="o">=</span> <span class="s1">&#39;http://drive.google.com/file/d/19g6-apYbZb5D-wRj4L7aYKhxS-fDM4Fb/view?usp=share_link&#39;</span>
 </pre></div>
@@ -529,11 +591,11 @@ for baseline recommender.</p>
 </div>
 </section>
 <section id="modules-and-functions">
-<h2>1. Modules and functions<a class="headerlink" href="#modules-and-functions" title="Permalink to this headline">#</a></h2>
+<h2>1. Modules and functions<a class="headerlink" href="#modules-and-functions" title="Permalink to this heading">#</a></h2>
 <p>Now, let’s import some libraries</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># just to make it available to download w/o SSL verification</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># just to make it available to download w/o SSL verification</span>
 <span class="kn">import</span> <span class="nn">ssl</span>
 <span class="n">ssl</span><span class="o">.</span><span class="n">_create_default_https_context</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_unverified_context</span>
 
@@ -553,7 +615,7 @@ for baseline recommender.</p>
 <p>and define 2 useful functinons 1) read_csv_from_gdrive() to get data from provided url of a file</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_csv_from_gdrive</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_csv_from_gdrive</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gets csv data from a given url (taken from file -&gt; share -&gt; copy link)</span>
 <span class="sd">    :url: example https://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link</span>
@@ -570,7 +632,7 @@ for baseline recommender.</p>
 <p>2nd one is compute_popularity() which calculates mean rating, sorts and returns top <em>K</em> required items</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_popularity</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_popularity</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_candidates</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    calculates mean rating to define popular titles</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -584,9 +646,9 @@ for baseline recommender.</p>
 </div>
 </section>
 <section id="data">
-<h2>2. Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h2>
+<h2>2. Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
 <section id="load-and-describe">
-<h3>2.1 Load and Describe<a class="headerlink" href="#load-and-describe" title="Permalink to this headline">#</a></h3>
+<h3>2.1 Load and Describe<a class="headerlink" href="#load-and-describe" title="Permalink to this heading">#</a></h3>
 <p>Here, we will use two datasets:</p>
 <ul class="simple">
 <li><p>interactions – refers to <code class="docutils literal notranslate"><span class="pre">RATINGS_SMALL_URL</span></code> where we have userId, movieId, timestamp and rating (our so-called target)</p></li>
@@ -594,35 +656,187 @@ for baseline recommender.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># interactions data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># interactions data</span>
 <span class="n">interactions</span> <span class="o">=</span> <span class="n">read_csv_from_gdrive</span><span class="p">(</span><span class="n">RATINGS_SMALL_URL</span><span class="p">)</span>
 <span class="n">interactions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>movieId</th>
+      <th>rating</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>31</td>
+      <td>2.50</td>
+      <td>1260759144</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1029</td>
+      <td>3.00</td>
+      <td>1260759179</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1061</td>
+      <td>3.00</td>
+      <td>1260759182</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1129</td>
+      <td>2.00</td>
+      <td>1260759185</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1172</td>
+      <td>4.00</td>
+      <td>1260759205</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Let’s get some statistics and look at ratings’ distribution</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interactions</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interactions</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>movieId</th>
+      <th>rating</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>100004.00</td>
+      <td>100004.00</td>
+      <td>100004.00</td>
+      <td>100004.00</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>347.01</td>
+      <td>12548.66</td>
+      <td>3.54</td>
+      <td>1129639086.94</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>195.16</td>
+      <td>26369.20</td>
+      <td>1.06</td>
+      <td>191685826.03</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>0.50</td>
+      <td>789652009.00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>182.00</td>
+      <td>1028.00</td>
+      <td>3.00</td>
+      <td>965847824.00</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>367.00</td>
+      <td>2406.50</td>
+      <td>4.00</td>
+      <td>1110421822.00</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>520.00</td>
+      <td>5418.00</td>
+      <td>4.00</td>
+      <td>1296192495.50</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>671.00</td>
+      <td>163949.00</td>
+      <td>5.00</td>
+      <td>1476640644.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
 <span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ratings Distribtion&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bbf7a47179a5771a74f05cf7f274393f59dd659d6bf5e22e4dd33741d3b92f76.png" src="../_images/bbf7a47179a5771a74f05cf7f274393f59dd659d6bf5e22e4dd33741d3b92f76.png" />
 </div>
 </div>
 <p>We see that in most cases we have 4 or 5 rating - right tail is fatter.
 Now, let’s move on to movies metadata</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># information about films etc</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># information about films etc</span>
 <span class="n">movies_metadata</span> <span class="o">=</span> <span class="n">read_csv_from_gdrive</span><span class="p">(</span><span class="n">MOVIES_METADATA_URL</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -631,14 +845,49 @@ Now, let’s move on to movies metadata</p>
 <p>Which columns / info we have and their types - namings are pretty straightforward</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movies_metadata</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_metadata</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 45466 entries, 0 to 45465
+Data columns (total 24 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   adult                  45466 non-null  object 
+ 1   belongs_to_collection  4494 non-null   object 
+ 2   budget                 45466 non-null  object 
+ 3   genres                 45466 non-null  object 
+ 4   homepage               7782 non-null   object 
+ 5   id                     45466 non-null  object 
+ 6   imdb_id                45449 non-null  object 
+ 7   original_language      45455 non-null  object 
+ 8   original_title         45466 non-null  object 
+ 9   overview               44512 non-null  object 
+ 10  popularity             45461 non-null  object 
+ 11  poster_path            45080 non-null  object 
+ 12  production_companies   45463 non-null  object 
+ 13  production_countries   45463 non-null  object 
+ 14  release_date           45379 non-null  object 
+ 15  revenue                45460 non-null  float64
+ 16  runtime                45203 non-null  float64
+ 17  spoken_languages       45460 non-null  object 
+ 18  status                 45379 non-null  object 
+ 19  tagline                20412 non-null  object 
+ 20  title                  45460 non-null  object 
+ 21  video                  45460 non-null  object 
+ 22  vote_average           45460 non-null  float64
+ 23  vote_count             45460 non-null  float64
+dtypes: float64(4), object(20)
+memory usage: 8.3+ MB
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="data-preparation">
-<h3>2.2. Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">#</a></h3>
+<h3>2.2. Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h3>
 <p>Here, we will</p>
 <ul class="simple">
 <li><p>preprocess column names;</p></li>
@@ -651,7 +900,7 @@ Now, let’s move on to movies metadata</p>
 Relationship between both datasets is set by movie id.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># align data in both dataframes to merge</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># align data in both dataframes to merge</span>
 <span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">movies_metadata</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;movieId&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -660,16 +909,21 @@ Relationship between both datasets is set by movie id.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># leave only those films that intersect with each other</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># leave only those films that intersect with each other</span>
 <span class="n">interactions_filtered</span> <span class="o">=</span> <span class="n">interactions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">])]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">interactions</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100004, 4) (44989, 4)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create users input</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create users input</span>
 <span class="n">users</span> <span class="o">=</span> <span class="n">interactions</span><span class="p">[[</span><span class="s1">&#39;userId&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -677,7 +931,7 @@ Relationship between both datasets is set by movie id.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create mapper for movieId and title names</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create mapper for movieId and title names</span>
 <span class="n">item_name_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">],</span> <span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;original_title&#39;</span><span class="p">]))</span>
 </pre></div>
 </div>
@@ -686,7 +940,7 @@ Relationship between both datasets is set by movie id.</p>
 </section>
 </section>
 <section id="model">
-<h2>3. Model<a class="headerlink" href="#model" title="Permalink to this headline">#</a></h2>
+<h2>3. Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
 <p>Let’s define our baseline popularity recommender BaselineRecommender - top rated titles based on average rating with possibility to get by any group(s)</p>
 <p>The pipeline will be similar to most python ML modules – it will have two methods in the end: fit() and recommend()</p>
 <p>The logic of <code class="docutils literal notranslate"><span class="pre">fit()</span></code> as follow:</p>
@@ -706,11 +960,11 @@ Relationship between both datasets is set by movie id.</p>
 <li><p>In case of category wise requirement – we get results of our fit</p></li>
 </ul>
 <section id="fit">
-<h3>3.1. Fit<a class="headerlink" href="#fit" title="Permalink to this headline">#</a></h3>
+<h3>3.1. Fit<a class="headerlink" href="#fit" title="Permalink to this heading">#</a></h3>
 <p>First, we define how many candidates we want to get</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_CANDIDATES</span> <span class="o">=</span> <span class="mi">20</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_CANDIDATES</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">ITEM_COLUMN</span> <span class="o">=</span> <span class="s1">&#39;movieId&#39;</span>
 <span class="n">USER_COLUMN</span> <span class="o">=</span> <span class="s1">&#39;userId&#39;</span>
 </pre></div>
@@ -720,8 +974,15 @@ Relationship between both datasets is set by movie id.</p>
 <p>Then, we extract top 20 movies by aggregating movies and averaging rating column across all users</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base_recommendations</span> <span class="o">=</span> <span class="n">compute_popularity</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">,</span> <span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">MAX_CANDIDATES</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_recommendations</span> <span class="o">=</span> <span class="n">compute_popularity</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">,</span> <span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">MAX_CANDIDATES</span><span class="p">)</span>
 <span class="n">base_recommendations</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;74727&#39;, &#39;128846&#39;, &#39;702&#39;, &#39;127728&#39;, &#39;65216&#39;, &#39;43267&#39;, &#39;8675&#39;,
+       &#39;80717&#39;, &#39;86817&#39;, &#39;8699&#39;, &#39;872&#39;, &#39;27724&#39;, &#39;26791&#39;, &#39;876&#39;, &#39;64278&#39;,
+       &#39;301&#39;, &#39;59392&#39;, &#39;3021&#39;, &#39;3112&#39;, &#39;1933&#39;], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -731,11 +992,18 @@ Now, as we discussed earlier, in movies recommendations there is no need to reco
 We get all interacted items for each user and save it in dictionary {‘userId’: [items list]}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">known_items</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">USER_COLUMN</span><span class="p">)[</span><span class="n">ITEM_COLUMN</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">known_items</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">USER_COLUMN</span><span class="p">)[</span><span class="n">ITEM_COLUMN</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of users with known items: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">known_items</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># let&#39;s check it for one userId = 1</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Example of known item ids for particaular user: </span><span class="si">{</span><span class="n">known_items</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of users with known items: 671 
+
+Example of known item ids for particaular user: [&#39;1371&#39;, &#39;1405&#39;, &#39;2105&#39;, &#39;2193&#39;, &#39;2294&#39;, &#39;2455&#39;]
 </pre></div>
 </div>
 </div>
@@ -744,7 +1012,7 @@ We get all interacted items for each user and save it in dictionary {‘userId�
 Also, if we want to get recommendations based on some user groups we can easily do the same with groupby() method and same approach</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets add artifical binary group to check BaselineRecommender</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets add artifical binary group to check BaselineRecommender</span>
 <span class="n">group</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_integers</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">))]</span>
 <span class="n">users</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
 </pre></div>
@@ -754,9 +1022,17 @@ Also, if we want to get recommendations based on some user groups we can easily 
 <p>Here we merge it to get groupwise recommendations</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="n">USER_COLUMN</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">,</span> <span class="n">users</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="n">USER_COLUMN</span><span class="p">)</span>
 <span class="n">group_recommendations</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">compute_popularity</span><span class="p">,</span> <span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">MAX_CANDIDATES</span><span class="p">)</span>
 <span class="n">group_recommendations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
+1    [26599, 845, 40226, 2086, 4380, 7096, 47721, 7...
+2    [3575, 3112, 26578, 559, 8699, 1933, 872, 2927...
+dtype: object
 </pre></div>
 </div>
 </div>
@@ -765,37 +1041,159 @@ Also, if we want to get recommendations based on some user groups we can easily 
 Next, we have to implement <code class="docutils literal notranslate"><span class="pre">recommned()</span></code> method which will use</p>
 </section>
 <section id="recommend">
-<h3>3.2. Recommend<a class="headerlink" href="#recommend" title="Permalink to this headline">#</a></h3>
+<h3>3.2. Recommend<a class="headerlink" href="#recommend" title="Permalink to this heading">#</a></h3>
 <p>Earlier, we discussed that we can take just average / median etc. of rating and use it as popularity metric to use as recommendations.
 Thus, if we do not have groups to consider (a.k.a more granualar estimation), then it means we give the same recommendations
 for all users i.e. <em>base_recommendations</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">recs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">cycle</span><span class="p">([</span><span class="n">base_recommendations</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">])))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">cycle</span><span class="p">([</span><span class="n">base_recommendations</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">])))</span>
 <span class="n">users</span><span class="p">[</span><span class="s1">&#39;rekkos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recs</span>
 <span class="n">users</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>group</th>
+      <th>rekkos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>And let’s have an example with groups we created earlier</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group_recommendations</span> <span class="o">=</span> <span class="n">group_recommendations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_recommendations</span> <span class="o">=</span> <span class="n">group_recommendations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">group_rekkos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="n">group_recommendations</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
 <span class="n">group_rekkos</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;group_wise_rekkos&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">group_rekkos</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>group</th>
+      <th>rekkos</th>
+      <th>group_wise_rekkos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+      <td>[3575, 3112, 26578, 559, 8699, 1933, 872, 2927...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+      <td>[3575, 3112, 26578, 559, 8699, 1933, 872, 2927...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>We got our groupwise recommendations from 3.1. part and just joined them by group of users are assigned to
 Further, we will prettify our code and wrap it into functions</p>
 </section>
 <section id="wrap-everything-into-pretty-functions">
-<h3>3.3. Wrap everything into pretty functions<a class="headerlink" href="#wrap-everything-into-pretty-functions" title="Permalink to this headline">#</a></h3>
+<h3>3.3. Wrap everything into pretty functions<a class="headerlink" href="#wrap-everything-into-pretty-functions" title="Permalink to this heading">#</a></h3>
 <section id="fit-part">
-<h4>3.3.1. Fit Part<a class="headerlink" href="#fit-part" title="Permalink to this headline">#</a></h4>
+<h4>3.3.1. Fit Part<a class="headerlink" href="#fit-part" title="Permalink to this heading">#</a></h4>
 <p>In this function, we need to support 4 main parameters</p>
 <ul class="simple">
 <li><p>data – it is going to be pandas classic DataFrame;</p></li>
@@ -807,7 +1205,7 @@ Further, we will prettify our code and wrap it into functions</p>
 groupwise or not and return ids</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">item_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -833,27 +1231,42 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check base recommendations</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check base recommendations</span>
 <span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">item_col</span><span class="o">=</span><span class="n">ITEM_COLUMN</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;74727&#39;, &#39;128846&#39;, &#39;702&#39;, &#39;127728&#39;, &#39;65216&#39;, &#39;43267&#39;, &#39;8675&#39;,
+       &#39;80717&#39;, &#39;86817&#39;, &#39;8699&#39;, &#39;872&#39;, &#39;27724&#39;, &#39;26791&#39;, &#39;876&#39;, &#39;64278&#39;,
+       &#39;301&#39;, &#39;59392&#39;, &#39;3021&#39;, &#39;3112&#39;, &#39;1933&#39;], dtype=object)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check group-wise</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check group-wise</span>
 <span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">item_col</span><span class="o">=</span><span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
+1    [26599, 845, 40226, 2086, 4380, 7096, 47721, 7...
+2    [3575, 3112, 26578, 559, 8699, 1933, 872, 2927...
+dtype: object
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="recommend-part">
-<h4>3.3.2. Recommend Part<a class="headerlink" href="#recommend-part" title="Permalink to this headline">#</a></h4>
+<h4>3.3.2. Recommend Part<a class="headerlink" href="#recommend-part" title="Permalink to this heading">#</a></h4>
 <p>Here, we just use calculated recommendations from above method <code class="docutils literal notranslate"><span class="pre">fit()</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recommend</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recommend</span><span class="p">(</span>
     <span class="n">users</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">recommendations</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -881,23 +1294,139 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check base recommendations</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check base recommendations</span>
 <span class="n">recs</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">item_col</span><span class="o">=</span><span class="n">ITEM_COLUMN</span><span class="p">)</span>
 <span class="n">check_recs</span> <span class="o">=</span> <span class="n">recommend</span><span class="p">(</span><span class="n">users</span><span class="p">[[</span><span class="s1">&#39;userId&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">]],</span> <span class="n">recs</span><span class="p">)</span>
 <span class="n">check_recs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>group</th>
+      <th>rekkos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2</td>
+      <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># check group-wise</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check group-wise</span>
 <span class="n">recs</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">item_col</span><span class="o">=</span><span class="n">ITEM_COLUMN</span><span class="p">,</span> <span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span>
 <span class="n">check_recs</span> <span class="o">=</span> <span class="n">recommend</span><span class="p">(</span><span class="n">users</span><span class="p">[[</span><span class="s1">&#39;userId&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">]],</span> <span class="n">recs</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span>
 <span class="n">check_recs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>group</th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>[3575, 3112, 26578, 559, 8699, 1933, 872, 2927...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2</td>
+      <td>[3575, 3112, 26578, 559, 8699, 1933, 872, 2927...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Congrats! Your first basic recommender system is ready!!</p>
 </section>
@@ -925,50 +1454,161 @@ groupwise or not and return ids</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="intro_to_rekko.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to Recommendation Problem</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="content_collab_filters.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Content-based and Collaborative Filterings in a Nutshell</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="intro_to_rekko.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Introduction to Recommendation Problem</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="content_collab_filters.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Content-based and Collaborative Filterings in a Nutshell</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By Shuhrat Khalilbekov<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   0. Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modules-and-functions">
+   1. Modules and functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   2. Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-and-describe">
+     2.1 Load and Describe
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-preparation">
+     2.2. Data Preparation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model">
+   3. Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit">
+     3.1. Fit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommend">
+     3.2. Recommend
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wrap-everything-into-pretty-functions">
+     3.3. Wrap everything into pretty functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-part">
+       3.3.1. Fit Part
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#recommend-part">
+       3.3.2. Recommend Part
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Shuhrat Khalilbekov
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>
