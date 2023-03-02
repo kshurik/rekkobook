@@ -12,14 +12,14 @@ kernelspec:
 
 (chapter1_part3)=
 
-# Content-based and Collaborative Filterings in a Nutshell
-In this section, we will go through 2 straightforward ways to generate candidates for recommendations.
-As we mentioned before, these are *content-based* and *collaborative* filterings. Yet,
-we will go through explanation of both methods with examples and finnally discuss various libraries
-to implement them. Before that we have to define and understand embeddings. As you might have noticed,
-we mentioned a lot "similar items", "similar users" etc and question arises -- how we define that similarity?
+# Content-based Filtering in a Nutshell
+In this section, we will go through a straightforward way to generate candidates for recommendations.
+As we mentioned before, one of the methods is *content-based* filtering. We will go through explanation of
+this method with an example and finnally discuss particular library to implement it.
+Before that we have to define and understand embeddings. As you might have noticed, we mentioned a lot
+"similar items", "similar users" etc and question arises -- how we define that similarity?
 Speaking of calculation of similarity it is pretty straightforward -- we calcualte cosine between two arrays.
-The intruging part is how do we get these arrays from our data.
+The intriguing part is how do we get these arrays from our data.
 
 ## Embeddings Explained
 The evolution of text processing started from one-hot encoding. When there was text data, Data Scientists
@@ -277,6 +277,3 @@ name_mapper = {v: k for k, v in movies_inv_mapper.items()}
 output['title_name'] = output['model_index'].astype(int).map(name_mapper)
 output
 ```
-
-## Collaborative Filtering
-To Be Done Later
