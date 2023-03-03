@@ -1,3 +1,17 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+(chapter1_part5)=
+
 # Collaborative Filtering
 
 Collaborative filtering is a powerful method for recommendation systems used to predict user preferences or
@@ -10,7 +24,7 @@ This is done by finding users who have similar tastes and preferences as the use
 those users’ ratings of items to make predictions about how the user would rate the same items.
 There are two main approaches to collaborative filtering: memory-based and model-based. 
 
-### Memory-based Collaborative Filtering
+## Memory-based Collaborative Filtering
 Memory-based collaborative filtering, also known as neighborhood-based collaborative filtering, is an approach
 that relies on finding similar users or items based on their behavior or preferences. The basic idea is to use
 the ratings or interactions of users with items to identify other users who have similar tastes, and then use
@@ -35,7 +49,7 @@ Let's consider an example with Pearson Correlation
 Say, we have a dataset that contains the ratings of four users on five movies. The data looks like this:
 
 |         | User A | User B | User C | User D |
-|-------- | -------- | ------- | ------- | --------     |
+|-------- | -------- | ------- | ------- | -------- |
 |Movie 1 | 5 | 4 | 2 | 3 | 
 |Movie 2 | 3 | 3 | 4 | 4 | 
 |Movie 3 | 4 | 4 | 5 | 5 |
@@ -74,7 +88,7 @@ between rows or columns of interaction matrix. In our example, we took columns a
 while we could take item-item similarities and use as recommendation.
 
 
-### Model-based Collaborative Filtering
+## Model-based Collaborative Filtering
 Model-based collaborative filtering is an approach that uses machine learning algorithms to learn a model from 
 the ratings or interactions of users with items. The model is then used to make predictions about the relevance of
 users for items that they have not yet interacted with. One common approach in model-based collaborative filtering
@@ -110,7 +124,7 @@ may be a limited amount of data available. In these cases, memory-based collabor
 
 **TODO ADD PYTHON CODE FOR COLLABORATIVE FILTERING HERE HERE**
 
-### Hybrid Approaches
+## Hybrid Approaches
 In practice, many recommender systems use a hybrid approach that combines both memory-based and model-based
 collaborative filtering. In a hybrid approach, the strengths of both approaches are leveraged to improve the
 accuracy and performance of the recommender system. One common approach in hybrid collaborative filtering is
