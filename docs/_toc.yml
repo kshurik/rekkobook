@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: index
 parts:
 - caption: CHAPTER 1 - Overivew of Recommendation Systems
   chapters:
@@ -10,5 +10,9 @@ parts:
     title: Introduction to Recommendation Problem
   - file: chapter1/baseline
     title: Baseline Implementation
-  - file: chapter1/content_collab_filters
-    title: Content-Based and Collaborative Filtering
+  - file: chapter1/content_filter
+    title: Content-Based Filtering
+  - file: chapter1/validation_metrics
+    title: Metrics & Validation
+  - file: chapter1/collab_filter
+    title: Collaborative Filtering
