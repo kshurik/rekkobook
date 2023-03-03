@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Content-based and Collaborative Filterings in a Nutshell &#8212; Rekko Handbook</title>
+    <title>Content-based Filtering in a Nutshell &#8212; Rekko Handbook</title>
   
   
   
@@ -58,9 +58,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1/content_collab_filters';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1/content_filter';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Validation and Metrics" href="validation_metrics.html" />
+    <link rel="prev" title="Baseline" href="baseline.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -147,8 +149,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="content_filter.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Content-Based Filtering
                       </a>
                     </li>
@@ -251,8 +253,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="content_filter.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Content-Based Filtering
                       </a>
                     </li>
@@ -339,10 +341,10 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="baseline.html">Baseline Implementation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_filter.html">Content-Based Filtering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Content-Based Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">Metrics &amp; Validation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="collab_filter.html">Collaborative Filtering</a></li>
 </ul>
@@ -430,7 +432,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/kshurik/rekko_handbook/issues/new?title=Issue%20on%20page%20%2Fchapter1/content_collab_filters.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/kshurik/rekko_handbook/issues/new?title=Issue%20on%20page%20%2Fchapter1/content_filter.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -455,7 +457,7 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/chapter1/content_collab_filters.ipynb" target="_blank"
+      <li><a href="../_sources/chapter1/content_filter.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -470,7 +472,7 @@ title="Download notebook file"
 </a>
 </a>
       
-      <li><a href="../_sources/chapter1/content_collab_filters.md" target="_blank"
+      <li><a href="../_sources/chapter1/content_filter.md" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -513,7 +515,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Content-based and Collaborative Filterings in a Nutshell</h1>
+    <h1>Content-based Filtering in a Nutshell</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -576,11 +578,6 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#collaborative-filtering">
-   Collaborative Filtering
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -590,15 +587,15 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="content-based-and-collaborative-filterings-in-a-nutshell">
-<span id="chapter1-part3"></span><h1>Content-based and Collaborative Filterings in a Nutshell<a class="headerlink" href="#content-based-and-collaborative-filterings-in-a-nutshell" title="Permalink to this heading">#</a></h1>
-<p>In this section, we will go through 2 straightforward ways to generate candidates for recommendations.
-As we mentioned before, these are <em>content-based</em> and <em>collaborative</em> filterings. Yet,
-we will go through explanation of both methods with examples and finnally discuss various libraries
-to implement them. Before that we have to define and understand embeddings. As you might have noticed,
-we mentioned a lot “similar items”, “similar users” etc and question arises – how we define that similarity?
+  <section class="tex2jax_ignore mathjax_ignore" id="content-based-filtering-in-a-nutshell">
+<span id="chapter1-part3"></span><h1>Content-based Filtering in a Nutshell<a class="headerlink" href="#content-based-filtering-in-a-nutshell" title="Permalink to this heading">#</a></h1>
+<p>In this section, we will go through a straightforward way to generate candidates for recommendations.
+As we mentioned before, one of the methods is <em>content-based</em> filtering. We will go through explanation of
+this method with an example and finnally discuss particular library to implement it.
+Before that we have to define and understand embeddings. As you might have noticed, we mentioned a lot
+“similar items”, “similar users” etc and question arises – how we define that similarity?
 Speaking of calculation of similarity it is pretty straightforward – we calcualte cosine between two arrays.
-The intruging part is how do we get these arrays from our data.</p>
+The intriguing part is how do we get these arrays from our data.</p>
 <section id="embeddings-explained">
 <h2>Embeddings Explained<a class="headerlink" href="#embeddings-explained" title="Permalink to this heading">#</a></h2>
 <p>The evolution of text processing started from one-hot encoding. When there was text data, Data Scientists
@@ -1212,10 +1209,6 @@ To do that we need:</p>
 </section>
 </section>
 </section>
-<section id="collaborative-filtering">
-<h2>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this heading">#</a></h2>
-<p>To Be Done Later</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1246,6 +1239,20 @@ To do that we need:</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="baseline.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Baseline</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="validation_metrics.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Validation and Metrics</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
             
@@ -1314,11 +1321,6 @@ To do that we need:</p>
     </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#collaborative-filtering">
-   Collaborative Filtering
-  </a>
  </li>
 </ul>
 

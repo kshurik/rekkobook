@@ -61,7 +61,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1/baseline';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Content-based and Collaborative Filterings in a Nutshell" href="content_collab_filters.html" />
+    <link rel="next" title="Content-based Filtering in a Nutshell" href="content_filter.html" />
     <link rel="prev" title="Introduction to Recommendation Problem" href="intro_to_rekko.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -106,7 +106,7 @@ const thebe_selector_output = ".output, .cell_output"
   
 
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../index.html">
 
   
   
@@ -150,8 +150,22 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="content_collab_filters.html">
-                        Content-Based and Collaborative Filtering
+                      <a class="nav-link nav-internal" href="content_filter.html">
+                        Content-Based Filtering
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="validation_metrics.html">
+                        Metrics & Validation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="collab_filter.html">
+                        Collaborative Filtering
                       </a>
                     </li>
                 
@@ -240,8 +254,22 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="content_collab_filters.html">
-                        Content-Based and Collaborative Filtering
+                      <a class="nav-link nav-internal" href="content_filter.html">
+                        Content-Based Filtering
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="validation_metrics.html">
+                        Metrics & Validation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="collab_filter.html">
+                        Collaborative Filtering
                       </a>
                     </li>
                 
@@ -279,7 +307,7 @@ const thebe_selector_output = ".output, .cell_output"
   
 
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../index.html">
 
   
   
@@ -307,8 +335,8 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Table of Contents
+                <a class="reference internal" href="../index.html">
+                    Welcome To The World Of Recommendations and Ranking
                 </a>
             </li>
         </ul>
@@ -316,7 +344,9 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Baseline Implementation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_collab_filters.html">Content-Based and Collaborative Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_filter.html">Content-Based Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">Metrics &amp; Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collab_filter.html">Collaborative Filtering</a></li>
 </ul>
 
     </div>
@@ -1030,8 +1060,8 @@ Also, if we want to get recommendations based on some user groups we can easily 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [26599, 845, 40226, 2086, 4380, 7096, 47721, 7...
-2    [3575, 3112, 26578, 559, 8699, 1933, 872, 2927...
+1    [1903, 559, 567, 8699, 6107, 4584, 2755, 8675,...
+2    [309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...
 dtype: object
 </pre></div>
 </div>
@@ -1093,13 +1123,13 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1153,35 +1183,35 @@ for all users i.e. <em>base_recommendations</em></p>
       <td>1</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[3575, 3112, 26578, 559, 8699, 1933, 872, 2927...</td>
+      <td>[309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+      <td>[1903, 559, 567, 8699, 6107, 4584, 2755, 8675,...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+      <td>[309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+      <td>[309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[3575, 3112, 26578, 559, 8699, 1933, 872, 2927...</td>
+      <td>[309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...</td>
     </tr>
   </tbody>
 </table>
@@ -1253,8 +1283,8 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [26599, 845, 40226, 2086, 4380, 7096, 47721, 7...
-2    [3575, 3112, 26578, 559, 8699, 1933, 872, 2927...
+1    [1903, 559, 567, 8699, 6107, 4584, 2755, 8675,...
+2    [309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...
 dtype: object
 </pre></div>
 </div>
@@ -1341,13 +1371,13 @@ dtype: object
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1398,31 +1428,31 @@ dtype: object
       <th>0</th>
       <td>1</td>
       <td>2</td>
-      <td>[3575, 3112, 26578, 559, 8699, 1933, 872, 2927...</td>
+      <td>[309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>1</td>
-      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+      <td>[1903, 559, 567, 8699, 6107, 4584, 2755, 8675,...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>1</td>
-      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+      <td>2</td>
+      <td>[309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
-      <td>[26599, 845, 40226, 2086, 4380, 7096, 47721, 7...</td>
+      <td>2</td>
+      <td>[309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
       <td>2</td>
-      <td>[3575, 3112, 26578, 559, 8699, 1933, 872, 2927...</td>
+      <td>[309, 146, 5473, 4201, 5071, 8208, 4930, 301, ...</td>
     </tr>
   </tbody>
 </table>
@@ -1469,10 +1499,10 @@ dtype: object
           <p class="prev-next-title">Introduction to Recommendation Problem</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="content_collab_filters.html" title="next page">
+  <a class='right-next' id="next-link" href="content_filter.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Content-based and Collaborative Filterings in a Nutshell</p>
+      <p class="prev-next-title">Content-based Filtering in a Nutshell</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
