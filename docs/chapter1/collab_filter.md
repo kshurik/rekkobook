@@ -104,12 +104,17 @@ than being able to restore interactions matrix fully. Thus, we take *k* biggest 
 ![](img/svd_example.png)
 *Toy example with SVD decomposition*
 
-However, SVD is computationally expensive and may not scale well to large datasets. Therefore, alternative techniques
-such as Alternating Least Squares (ALS) or modification for implicit target iALS, Stochastic Gradient Descent (SGD)
-are often used. Another common approach in model-based collaborative filtering is deep learning.
-In this approach, a neural network is used to learn a representation of users and items.
-The network takes as input the ratings or interactions of users with items and outputs a prediction of the rating for a
-user-item pair. Deep learning has the advantage of being able to capture complex patterns in the data and can be used
+Also, there are some peculiarities with SVD:
+- It is not that good to predict values to rank (if we consider as regression problem)
+- Quite good for generation of top-N candidates for further reranking:
+classically, for user and item embeddings we calcualte dot product and choose top-N by its value.
+However, SVD is computationally expensive and may not scale well to large datasets.
+Therefore, alternative techniques such as Alternating Least Squares (ALS) or modification for
+implicit target iALS, Stochastic Gradient Descent (SGD) are often used. Another common approach
+in model-based collaborative filtering is deep learning. In this approach, a neural network
+is used to learn a representation of users and items. The network takes as input the ratings
+or interactions of users with items and outputs a prediction of the rating for a user-item pair.
+Deep learning has the advantage of being able to capture complex patterns in the data and can be used
 to learn non-linear relationships between users and items. One of the popular examples is Extreeme Deep Factorization machines (xDeepFM).
 One advantage of model-based collaborative filtering is that it can handle the cold-start problem by using the
 learned model to make predictions about items that have not yet been rated by users. Additionally, model-based
@@ -121,6 +126,31 @@ model-based collaborative filtering can be computationally expensive and may req
 especially when using deep learning techniques. Another disadvantage of model-based collaborative filtering is that it
 requires a large amount of data to train the model effectively. This can be a challenge in some domains, where there
 may be a limited amount of data available. In these cases, memory-based collaborative filtering may be a better choice.
+However, there are several methods are available in python for faster computations. Below, you can see several libraries
+that deal with SVD 
+
+```{code-cell} ipython3
+from scipy.sparse.linalg import svds
+from sklearn.utils.extmath import randomized_svd
+from sklearn.decomposition import TruncatedSVD
+```
+
+## Other Python Implementations
+To conclude, I want to mention several methods to implementations before focusing on target `lightfm` library.
+One of the most popular is `implicit` that allows to build models based on implicit targets. In addition,
+it has several frequently used models:
+- Item-to-Item KNN. Sometimes it is hard to generate recommendations based on users interaction due to dynamic
+nature of their data (good real-time / near real-time data and model update is required). Thus, this method
+is a good kick-off point for candidates generation. KNN does not make any assumptions on the
+underlying data distribution but it relies on item feature similarity;
+- Logistic matrix factorization. It resembles classic logit model where collaborative filtering recommender try to
+learn probabilistic distribution whether user like recommendation;
+- implicit ALS. It is used when the amount of data is quite big and provides good performance by reducing
+the impact of missing data using confidence and preference metrics;
+- Bayesian Personalized Ranking. Its optimizitation relies on instance level - one item instead of item pairs. The
+primary goal of the method is to provide personalized list of recommendations directly
+
+Another one is the library we are going to use in the tutorial is `ligthfm`. 
 
 **TODO ADD PYTHON CODE FOR COLLABORATIVE FILTERING HERE HERE**
 
