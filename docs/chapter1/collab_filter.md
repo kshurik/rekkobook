@@ -150,7 +150,19 @@ the impact of missing data using confidence and preference metrics;
 - Bayesian Personalized Ranking. Its optimizitation relies on instance level - one item instead of item pairs. The
 primary goal of the method is to provide personalized list of recommendations directly
 
-Another one is the library we are going to use in the tutorial is `ligthfm`. 
+Another one is the library we are going to use in the tutorial is `ligthfm`. The main idea of the method
+is to generate feature vectors for both users and items by aggregating the values of features. The method assumes
+that the final `user embedding vector` is the sum of each of the user’s relevant side information
+vectors (which we called user features) and similarly `item embedding vector` is created.
+It is quite fast as developed in Cython. The model has several losses and optimizes parameters using Stochastic
+Gradient Descent (SGD) with options `adagrad` or `adadelta` - great explanation
+of the method can be found [here](https://code.themlsbook.com/chapter3/gradient_descent.html). The losses are:
+- Logistc;
+- Bayesian Personalized Ranking;
+- Weighted Approximate-Rank Pairwise (WARP);
+- k-os WARP
+
+Now, let's move on to python implementation
 
 **TODO ADD PYTHON CODE FOR COLLABORATIVE FILTERING HERE HERE**
 
