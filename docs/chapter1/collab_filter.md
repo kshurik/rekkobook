@@ -230,169 +230,109 @@ interactions_filtered = interactions.loc[interactions['movieId'].isin(movies_met
 print(interactions.shape, interactions_filtered.shape)
 ```
 
+#### 2.2 Data preparation
+To use implicit kNN method `fit` we need a sparse matrix in COOrdinate format. To achieve that we will use `scipy.sparse.coo_matrix` from scipy;
 
 ```{code-cell} ipython3
+def get_coo_matrix(
+        df: pd.DataFrame, 
+        user_col: str,
+        item_col: str, 
+        users_mapping: dict, 
+        movies_mapping: dict,
+        weight_col: str = None
+        ):
+    if weight_col is None:
+        weights = np.ones(len(df), dtype=np.float32)
+    else:
+        weights = df[weight_col].astype(np.float32)
+
+    interaction_matrix = sp.coo_matrix((
+        weights, 
+        (
+            df[user_col].map(users_mapping.get), 
+            df[item_col].map(movies_mapping.get)
+        )
+    ))
+    return interaction_matrix
 ```
 
-#### 2.2 Data preparation using LightFM Dataset
-To use this class we need the in the following format:
-- userId
-- movieId
-- user_features - user feature names
-- item_features - item feature names
-
-It has several methods:
-- build_interactions - definition of user / item interactions matrix using iterators on top of tuples:
-1. (userId, movieId);
-2. (userId, movieId, weight / rating)
-- build_user_features/build_item_features - defition of user/item features using iterators on top of tuples:
-1. (userId, [user_feature_name1, user_feature_name2, ...]);
-2. (userId, {user_feature_name1: weight});
-3. The same goes for item features
-
 ```{code-cell} ipython3
-# init class
-dataset = Dataset()
+# define users mapping
+users_inv_mapping = dict(enumerate(interactions_filtered['userId'].unique()))
+users_mapping = {v: k for k, v in users_inv_mapping.items()}
+len(users_mapping)
 ```
 
 ```{code-cell} ipython3
-# fit tuple of user and movie interactions
-dataset.fit(interactions['userId'].unique(), interactions['movieId'].unique())
-```
-We do not have users data in MovieLens dataset so let's skip part features generation, but in HW you will have to
-add movies' features
-
-```{code-cell} ipython3
-# now, we define lightfm mapper to use it later for checks
-lightfm_mapping = dataset.mapping()
-# lightfm_mapping
-```
-Here, we just create a convenient dict to use further in evaluation
-```{code-cell} ipython3
-lightfm_mapping = {
-    'users_mapping': lightfm_mapping[0],
-    'user_features_mapping': lightfm_mapping[1],
-    'items_mapping': lightfm_mapping[2],
-    'item_features_mapping': lightfm_mapping[3],
-}
-print('user mapper length - ', len(lightfm_mapping['users_mapping']))
-print('user features mapper length - ', len(lightfm_mapping['user_features_mapping']))
-print('movies mapper length - ', len(lightfm_mapping['items_mapping']))
-print('Users movie features mapper length - ', len(lightfm_mapping['item_features_mapping']))
-```
-As we do not have user / movie features their length coincide with unique number of observations
-
-```{code-cell} ipython3
-# here we create inverted mappers to check recommendations later
-lightfm_mapping['users_inv_mapping'] = {v: k for k, v in lightfm_mapping['users_mapping'].items()}
-lightfm_mapping['items_inv_mapping'] = {v: k for k, v in lightfm_mapping['items_mapping'].items()}
-```
-
-As we mentioned earlier, we need to create iterators to use in building training dataset
-
-```{code-cell} ipython3
-def df_to_tuple_iterator(df: pd.DataFrame):
-    '''
-    :df: pd.DataFrame, interactions dataframe
-    returs iterator
-    '''
-    return zip(*df.values.T)
-
-def concat_last_to_list(t):
-    return (t[0], list(t[1:])[0])
-
-def df_to_tuple_list_iterator(df):
-    return map(concat_last_to_list, zip(*df.values.T))
+# define movies mapping
+movies_inv_mapping = dict(enumerate(interactions_filtered['movieId'].unique()))
+movies_mapping = {v: k for k, v in movies_inv_mapping.items()}
+len(movies_mapping)
 ```
 
 ```{code-cell} ipython3
 # defining train set on the whole interactions dataset (as HW you will have to split into test and train for evaluation)
-train_mat, train_mat_weights = dataset.build_interactions(df_to_tuple_iterator(interactions_filtered[['userId', 'movieId']]))
+train_mat = get_coo_matrix(
+    interactions_filtered,
+    user_col = 'userId',
+    item_col = 'movieId',
+    users_mapping = users_mapping,
+    movies_mapping = movies_mapping
+    ).tocsr()
 ```
 
 ```{code-cell} ipython3
 train_mat
 ```
 
-```{code-cell} ipython3
-train_mat_weights
-```
-
 #### 2.3. Model Training & Evaluation
+In [`implicit`](https://pypi.org/project/implicit/), there are various models and can be groupped into:
+- Item-to-Item: KNN based on various similarities - CosineRecommender, BM25Recommender, TFIDFRecommender
+- implicit ALS;
+- Logistic Matrix Factorization;
+- Bayesian Personalized Ranking (BPR)
 ##### 2.3.1. Train Model
 
 ```{code-cell} ipython3
-# set default params
-NO_COMPONENTS = 64
-LEARNING_RATE = .03
-LOSS = 'warp'
-MAX_SAMPLED = 5
-RANDOM_STATE = 42
-EPOCHS = 20
-```
-
-```{code-cell} ipython3
-# init model
-lfm_model = LightFM(
-    no_components = NO_COMPONENTS,
-    learning_rate = LEARNING_RATE,
-    loss = LOSS,
-    max_sampled = MAX_SAMPLED,
-    random_state = RANDOM_STATE
+from implicit.nearest_neighbours import (
+    CosineRecommender,
+    BM25Recommender,
+    TFIDFRecommender
     )
 ```
-
+Note that in item-to-item models we need to provide matrix in the form of item-user by transposing initial COO matrix user-item
 ```{code-cell} ipython3
-# execute training
-for _ in tqdm_notebook(range(EPOCHS), total = EPOCHS):
-    lfm_model.fit_partial(
-        train_mat, 
-        num_threads = 4
-    )
+# fit the model
+cosine_model = CosineRecommender(K = 20)
+cosine_model.fit(train_mat.T)
 ```
-
 ##### 2.3.2. Evaluate the Model
 
 ```{code-cell} ipython3
 # let's make sense-check
 top_N = 10
-user_id = interactions['userId'][0]
-row_id = lightfm_mapping['users_mapping'][user_id]
+user_id = interactions_filtered['userId'].iloc[0]
+row_id = users_mapping[user_id]
 print(f'Rekko for user {user_id}, row number in matrix - {row_id}')
 ```
 
 ```{code-cell} ipython3
-all_cols = list(lightfm_mapping['items_mapping'].values())
-len(all_cols)
-```
-
-```{code-cell} ipython3
-# get predictions
-pred = lfm_model.predict(
-    row_id,
-    all_cols,
-    num_threads = 4)
-pred, pred.shape
-```
-Here, get indicices in matrix for top movie recommendations
-```{code-cell} ipython3
-top_cols = np.argpartition(pred, -np.arange(top_N))[-top_N:][::-1]
-top_cols
-```
-Next, we can look at their lfm scores
-```{code-cell} ipython3
-pred[top_cols]
-```
-Now, we move on to look at recommended movies for a given user
-```{code-cell} ipython3
 # crate mapper for movieId and title names
-item_name_mapper = dict(zip(movies_metadata['id'], movies_metadata['original_title']))
+movie_name_mapper = dict(zip(movies_metadata['id'], movies_metadata['original_title']))
 ```
 
 ```{code-cell} ipython3
-recs = pd.DataFrame({'col_id': top_cols})
-recs['movieId'] = recs['col_id'].map(lightfm_mapping['items_inv_mapping'].get).astype(str)
-recs['title'] = recs['movieId'].map(item_name_mapper)
+recs = cosine_model.recommend(
+    row_id,
+    train_mat,
+    N = top_N,
+    filter_already_liked_items = True
+    )
+recs = pd.DataFrame(recs).T.rename(columns = {0: 'col_id', 1: 'similarity'})
+recs['inv_movie_id'] = recs['col_id'].astype(int)
+recs['movieId'] = recs['inv_movie_id'].map(movies_inv_mapping.get)
+recs['title'] = recs['movieId'].map(movie_name_mapper)
 recs
 ```
 
