@@ -182,9 +182,6 @@ import pandas as pd
 
 from itertools import islice, cycle, product
 
-from lightfm.data import Dataset
-from lightfm import LightFM
-
 from tqdm import tqdm_notebook
 import warnings
 warnings.filterwarnings('ignore')
@@ -324,7 +321,7 @@ print(f'Rekko for user {user_id}, row number in matrix - {row_id}')
 ```
 
 ```{code-cell} ipython3
-# crate mapper for movieId and title names
+# create mapper for movieId and title names
 movie_name_mapper = dict(zip(movies_metadata['id'], movies_metadata['original_title']))
 ```
 
