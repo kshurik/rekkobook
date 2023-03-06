@@ -36,6 +36,7 @@ jobs:
     - name: Build book
       run: |
         poetry run jupyter-book build ./docs
+        echo rekkobook.com > ./docs/_build/html/CNAME
     # Deploy html to gh-pages
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.1
