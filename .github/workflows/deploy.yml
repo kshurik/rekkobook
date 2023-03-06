@@ -30,7 +30,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        pip wheel --use-pep517 "lightfm (==1.16)"
+        pip wheel --use-pep517 "lightfm (==1.15)"
         pip install poetry
         poetry install
     # Build the example book
