@@ -17,32 +17,40 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# just to make it available to download w/o SSL verification
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
-
-import numpy as np
-import pandas as pd
-
-from itertools import islice, cycle, product
-
-from lightfm.data import Dataset
-from lightfm import LightFM
-
-from tqdm import tqdm_notebook
-import warnings
-warnings.filterwarnings('ignore')
+# defining train set on the whole interactions dataset (as HW you will have to split into test and train for evaluation)
+train_mat = get_coo_matrix(
+    interactions_filtered,
+    user_col = 'userId',
+    item_col = 'movieId',
+    users_mapping = users_mapping,
+    movies_mapping = movies_mapping
+    ).tocsr()
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[4], line 10[0m
-[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
-[1;32m      8[0m [38;5;28;01mfrom[39;00m [38;5;21;01mitertools[39;00m [38;5;28;01mimport[39;00m islice, cycle, product
-[0;32m---> 10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mlightfm[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdata[39;00m [38;5;28;01mimport[39;00m Dataset
-[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01mlightfm[39;00m [38;5;28;01mimport[39;00m LightFM
-[1;32m     13[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtqdm[39;00m [38;5;28;01mimport[39;00m tqdm_notebook
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[13], line 2[0m
+[1;32m      1[0m [38;5;66;03m# defining train set on the whole interactions dataset (as HW you will have to split into test and train for evaluation)[39;00m
+[0;32m----> 2[0m train_mat [38;5;241m=[39m [43mget_coo_matrix[49m[43m([49m
+[1;32m      3[0m [43m    [49m[43minteractions_filtered[49m[43m,[49m
+[1;32m      4[0m [43m    [49m[43muser_col[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43muserId[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m      5[0m [43m    [49m[43mitem_col[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mmovieId[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m      6[0m [43m    [49m[43musers_mapping[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[43musers_mapping[49m[43m,[49m
+[1;32m      7[0m [43m    [49m[43mmovies_mapping[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[43mmovies_mapping[49m
+[1;32m      8[0m [43m    [49m[43m)[49m[38;5;241m.[39mtocsr()
 
-[0;31mModuleNotFoundError[0m: No module named 'lightfm'
-ModuleNotFoundError: No module named 'lightfm'
+Cell [0;32mIn[10], line 13[0m, in [0;36mget_coo_matrix[0;34m(df, user_col, item_col, users_mapping, movies_mapping, weight_col)[0m
+[1;32m     11[0m [38;5;28;01melse[39;00m:
+[1;32m     12[0m     weights [38;5;241m=[39m df[weight_col][38;5;241m.[39mastype(np[38;5;241m.[39mfloat32)
+[0;32m---> 13[0m interaction_matrix [38;5;241m=[39m [43msp[49m[38;5;241m.[39mcoo_matrix((
+[1;32m     14[0m     weights, 
+[1;32m     15[0m     (
+[1;32m     16[0m         df[user_col][38;5;241m.[39mmap(users_mapping[38;5;241m.[39mget), 
+[1;32m     17[0m         df[item_col][38;5;241m.[39mmap(movies_mapping[38;5;241m.[39mget)
+[1;32m     18[0m     )
+[1;32m     19[0m ))
+[1;32m     20[0m [38;5;28;01mreturn[39;00m interaction_matrix
+
+[0;31mNameError[0m: name 'sp' is not defined
+NameError: name 'sp' is not defined
 

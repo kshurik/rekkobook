@@ -834,26 +834,9 @@ of the method can be found <a class="reference external" href="https://code.them
 
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">product</span>
 
-<span class="kn">from</span> <span class="nn">lightfm.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
-<span class="kn">from</span> <span class="nn">lightfm</span> <span class="kn">import</span> <span class="n">LightFM</span>
-
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">product</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">lightfm.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">lightfm</span> <span class="kn">import</span> <span class="n">LightFM</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;lightfm&#39;
 </pre></div>
 </div>
 </div>
@@ -891,6 +874,70 @@ of the method can be found <a class="reference external" href="https://code.them
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userId</th>
+      <th>movieId</th>
+      <th>rating</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>31</td>
+      <td>2.5</td>
+      <td>1260759144</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1029</td>
+      <td>3.0</td>
+      <td>1260759179</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1061</td>
+      <td>3.0</td>
+      <td>1260759182</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1129</td>
+      <td>2.0</td>
+      <td>1260759185</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1172</td>
+      <td>4.0</td>
+      <td>1260759205</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">movies_metadata</span></code> dataset shows the list of movies existing on OKKO platform:</p>
 <div class="cell docutils container">
@@ -901,6 +948,125 @@ of the method can be found <a class="reference external" href="https://code.them
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>adult</th>
+      <th>belongs_to_collection</th>
+      <th>budget</th>
+      <th>genres</th>
+      <th>homepage</th>
+      <th>id</th>
+      <th>imdb_id</th>
+      <th>original_language</th>
+      <th>original_title</th>
+      <th>overview</th>
+      <th>...</th>
+      <th>release_date</th>
+      <th>revenue</th>
+      <th>runtime</th>
+      <th>spoken_languages</th>
+      <th>status</th>
+      <th>tagline</th>
+      <th>title</th>
+      <th>video</th>
+      <th>vote_average</th>
+      <th>vote_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>{'id': 10194, 'name': 'Toy Story Collection', ...</td>
+      <td>30000000</td>
+      <td>[{'id': 16, 'name': 'Animation'}, {'id': 35, '...</td>
+      <td>http://toystory.disney.com/toy-story</td>
+      <td>862</td>
+      <td>tt0114709</td>
+      <td>en</td>
+      <td>Toy Story</td>
+      <td>Led by Woody, Andy's toys live happily in his ...</td>
+      <td>...</td>
+      <td>1995-10-30</td>
+      <td>373554033.0</td>
+      <td>81.0</td>
+      <td>[{'iso_639_1': 'en', 'name': 'English'}]</td>
+      <td>Released</td>
+      <td>NaN</td>
+      <td>Toy Story</td>
+      <td>False</td>
+      <td>7.7</td>
+      <td>5415.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>NaN</td>
+      <td>65000000</td>
+      <td>[{'id': 12, 'name': 'Adventure'}, {'id': 14, '...</td>
+      <td>NaN</td>
+      <td>8844</td>
+      <td>tt0113497</td>
+      <td>en</td>
+      <td>Jumanji</td>
+      <td>When siblings Judy and Peter discover an encha...</td>
+      <td>...</td>
+      <td>1995-12-15</td>
+      <td>262797249.0</td>
+      <td>104.0</td>
+      <td>[{'iso_639_1': 'en', 'name': 'English'}, {'iso...</td>
+      <td>Released</td>
+      <td>Roll the dice and unleash the excitement!</td>
+      <td>Jumanji</td>
+      <td>False</td>
+      <td>6.9</td>
+      <td>2413.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>{'id': 119050, 'name': 'Grumpy Old Men Collect...</td>
+      <td>0</td>
+      <td>[{'id': 10749, 'name': 'Romance'}, {'id': 35, ...</td>
+      <td>NaN</td>
+      <td>15602</td>
+      <td>tt0113228</td>
+      <td>en</td>
+      <td>Grumpier Old Men</td>
+      <td>A family wedding reignites the ancient feud be...</td>
+      <td>...</td>
+      <td>1995-12-22</td>
+      <td>0.0</td>
+      <td>101.0</td>
+      <td>[{'iso_639_1': 'en', 'name': 'English'}]</td>
+      <td>Released</td>
+      <td>Still Yelling. Still Fighting. Still Ready for...</td>
+      <td>Grumpier Old Men</td>
+      <td>False</td>
+      <td>6.5</td>
+      <td>92.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 24 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -917,6 +1083,11 @@ of the method can be found <a class="reference external" href="https://code.them
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># leave only those films that intersect with each other</span>
 <span class="n">interactions_filtered</span> <span class="o">=</span> <span class="n">interactions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">interactions</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100004, 4) (44989, 4)
 </pre></div>
 </div>
 </div>
@@ -960,6 +1131,11 @@ of the method can be found <a class="reference external" href="https://code.them
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>671
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -967,6 +1143,11 @@ of the method can be found <a class="reference external" href="https://code.them
 <span class="n">movies_inv_mapping</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
 <span class="n">movies_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">movies_inv_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">movies_mapping</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2830
 </pre></div>
 </div>
 </div>
@@ -981,6 +1162,35 @@ of the method can be found <a class="reference external" href="https://code.them
     <span class="n">users_mapping</span> <span class="o">=</span> <span class="n">users_mapping</span><span class="p">,</span>
     <span class="n">movies_mapping</span> <span class="o">=</span> <span class="n">movies_mapping</span>
     <span class="p">)</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># defining train set on the whole interactions dataset (as HW you will have to split into test and train for evaluation)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">train_mat</span> <span class="o">=</span> <span class="n">get_coo_matrix</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">interactions_filtered</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">user_col</span> <span class="o">=</span> <span class="s1">&#39;userId&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">item_col</span> <span class="o">=</span> <span class="s1">&#39;movieId&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">users_mapping</span> <span class="o">=</span> <span class="n">users_mapping</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">movies_mapping</span> <span class="o">=</span> <span class="n">movies_mapping</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="p">)</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+
+<span class="nn">Cell In[10], line 13,</span> in <span class="ni">get_coo_matrix</span><span class="nt">(df, user_col, item_col, users_mapping, movies_mapping, weight_col)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">weights</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">weight_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">13</span> <span class="n">interaction_matrix</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">weights</span><span class="p">,</span> 
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>         <span class="n">df</span><span class="p">[</span><span class="n">user_col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">users_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">),</span> 
+<span class="g g-Whitespace">     </span><span class="mi">17</span>         <span class="n">df</span><span class="p">[</span><span class="n">item_col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">movies_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">return</span> <span class="n">interaction_matrix</span>
+
+<span class="ne">NameError</span>: name &#39;sp&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1041,7 +1251,7 @@ of the method can be found <a class="reference external" href="https://code.them
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># crate mapper for movieId and title names</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create mapper for movieId and title names</span>
 <span class="n">movie_name_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;original_title&#39;</span><span class="p">]))</span>
 </pre></div>
 </div>
