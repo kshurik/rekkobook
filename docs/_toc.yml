@@ -16,3 +16,4 @@ parts:
     title: Metrics & Validation
   - file: chapter1/collab_filter
     title: Collaborative Filtering
+    
