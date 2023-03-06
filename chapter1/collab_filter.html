@@ -831,6 +831,7 @@ of the method can be found <a class="reference external" href="https://code.them
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sp</span>
 
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">cycle</span><span class="p">,</span> <span class="n">product</span>
 
@@ -1165,39 +1166,16 @@ of the method can be found <a class="reference external" href="https://code.them
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># defining train set on the whole interactions dataset (as HW you will have to split into test and train for evaluation)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">train_mat</span> <span class="o">=</span> <span class="n">get_coo_matrix</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">interactions_filtered</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">user_col</span> <span class="o">=</span> <span class="s1">&#39;userId&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">item_col</span> <span class="o">=</span> <span class="s1">&#39;movieId&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">users_mapping</span> <span class="o">=</span> <span class="n">users_mapping</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">movies_mapping</span> <span class="o">=</span> <span class="n">movies_mapping</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="p">)</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
-
-<span class="nn">Cell In[10], line 13,</span> in <span class="ni">get_coo_matrix</span><span class="nt">(df, user_col, item_col, users_mapping, movies_mapping, weight_col)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">weights</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">weight_col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">13</span> <span class="n">interaction_matrix</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">weights</span><span class="p">,</span> 
-<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>         <span class="n">df</span><span class="p">[</span><span class="n">user_col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">users_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">),</span> 
-<span class="g g-Whitespace">     </span><span class="mi">17</span>         <span class="n">df</span><span class="p">[</span><span class="n">item_col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">movies_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">return</span> <span class="n">interaction_matrix</span>
-
-<span class="ne">NameError</span>: name &#39;sp&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_mat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;671x2830 sparse matrix of type &#39;&lt;class &#39;numpy.float32&#39;&gt;&#39;
+	with 44989 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -1234,6 +1212,17 @@ of the method can be found <a class="reference external" href="https://code.them
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/671 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 671/671 [00:00&lt;00:00, 67436.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="evaluate-the-model">
@@ -1245,6 +1234,11 @@ of the method can be found <a class="reference external" href="https://code.them
 <span class="n">user_id</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">row_id</span> <span class="o">=</span> <span class="n">users_mapping</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Rekko for user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s1">, row number in matrix - </span><span class="si">{</span><span class="n">row_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rekko for user 1, row number in matrix - 0
 </pre></div>
 </div>
 </div>
@@ -1273,6 +1267,116 @@ of the method can be found <a class="reference external" href="https://code.them
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col_id</th>
+      <th>similarity</th>
+      <th>inv_movie_id</th>
+      <th>movieId</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>653.0</td>
+      <td>0.861587</td>
+      <td>653</td>
+      <td>74458</td>
+      <td>Mere Brother Ki Dulhan</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>129.0</td>
+      <td>0.844531</td>
+      <td>129</td>
+      <td>1994</td>
+      <td>The Most Dangerous Game</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>606.0</td>
+      <td>0.654064</td>
+      <td>606</td>
+      <td>8011</td>
+      <td>Highlander III: The Sorcerer</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>294.0</td>
+      <td>0.625141</td>
+      <td>294</td>
+      <td>70</td>
+      <td>Million Dollar Baby</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>337.0</td>
+      <td>0.593856</td>
+      <td>337</td>
+      <td>170</td>
+      <td>28 Days Later</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>648.0</td>
+      <td>0.577499</td>
+      <td>648</td>
+      <td>68954</td>
+      <td>Longitude</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>579.0</td>
+      <td>0.571681</td>
+      <td>579</td>
+      <td>5956</td>
+      <td>Joshua</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>399.0</td>
+      <td>0.561442</td>
+      <td>399</td>
+      <td>1088</td>
+      <td>Whale Rider</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>278.0</td>
+      <td>0.561442</td>
+      <td>278</td>
+      <td>1584</td>
+      <td>School of Rock</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>150.0</td>
+      <td>0.557086</td>
+      <td>150</td>
+      <td>2100</td>
+      <td>The Last Castle</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
