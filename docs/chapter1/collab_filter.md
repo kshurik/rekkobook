@@ -163,8 +163,238 @@ of the method can be found [here](https://code.themlsbook.com/chapter3/gradient_
 - k-os WARP
 
 Now, let's move on to python implementation
+### 0. Configuration
+```{code-cell} ipython3
+# links to shared data MovieLens
+# source on kaggle: https://www.kaggle.com/code/quangnhatbui/movie-recommender/data
+RATINGS_SMALL_URL = 'https://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link'
+MOVIES_METADATA_URL = 'https://drive.google.com/file/d/19g6-apYbZb5D-wRj4L7aYKhxS-fDM4Fb/view?usp=share_link'
+```
+### 1. Modules and functions
+```{code-cell} ipython3
+# just to make it available to download w/o SSL verification
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
-**TODO ADD PYTHON CODE FOR COLLABORATIVE FILTERING HERE HERE**
+import numpy as np
+import pandas as pd
+
+from itertools import islice, cycle, product
+
+from lightfm.data import Dataset
+from lightfm import LightFM
+
+from tqdm import tqdm_notebook
+import warnings
+warnings.filterwarnings('ignore')
+```
+#### 1. 1. Helper functions to avoid copy paste
+```{code-cell} ipython3
+def read_csv_from_gdrive(url):
+    """
+    gets csv data from a given url (taken from file -> share -> copy link)
+    :url: example https://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link
+    """
+    file_id = url.split('/')[-2]
+    file_path = 'https://drive.google.com/uc?export=download&id=' + file_id
+    data = pd.read_csv(file_path)
+
+    return data
+```
+### 2. Main
+#### 2.1. Load Data
+`interactions` dataset shows list of movies that users watched, along with given ratings:
+
+```{code-cell} ipython3
+# interactions data
+interactions = read_csv_from_gdrive(RATINGS_SMALL_URL)
+interactions.head()
+```
+`movies_metadata` dataset shows the list of movies existing on OKKO platform:
+
+```{code-cell} ipython3
+# information about films etc
+movies_metadata = read_csv_from_gdrive(MOVIES_METADATA_URL)
+movies_metadata.head(3)
+```
+
+```{code-cell} ipython3
+# convert to the same data type ids to filter
+movies_metadata['id'] = movies_metadata['id'].astype(str)
+interactions['movieId'] = interactions['movieId'].astype(str)
+```
+Filter only intersection of available movies in both datasets
+```{code-cell} ipython3
+# leave only those films that intersect with each other
+interactions_filtered = interactions.loc[interactions['movieId'].isin(movies_metadata['id'])]
+print(interactions.shape, interactions_filtered.shape)
+```
+
+
+```{code-cell} ipython3
+```
+
+#### 2.2 Data preparation using LightFM Dataset
+To use this class we need the in the following format:
+- userId
+- movieId
+- user_features - user feature names
+- item_features - item feature names
+
+It has several methods:
+- build_interactions - definition of user / item interactions matrix using iterators on top of tuples:
+1. (userId, movieId);
+2. (userId, movieId, weight / rating)
+- build_user_features/build_item_features - defition of user/item features using iterators on top of tuples:
+1. (userId, [user_feature_name1, user_feature_name2, ...]);
+2. (userId, {user_feature_name1: weight});
+3. The same goes for item features
+
+```{code-cell} ipython3
+# init class
+dataset = Dataset()
+```
+
+```{code-cell} ipython3
+# fit tuple of user and movie interactions
+dataset.fit(interactions['userId'].unique(), interactions['movieId'].unique())
+```
+We do not have users data in MovieLens dataset so let's skip part features generation, but in HW you will have to
+add movies' features
+
+```{code-cell} ipython3
+# now, we define lightfm mapper to use it later for checks
+lightfm_mapping = dataset.mapping()
+# lightfm_mapping
+```
+Here, we just create a convenient dict to use further in evaluation
+```{code-cell} ipython3
+lightfm_mapping = {
+    'users_mapping': lightfm_mapping[0],
+    'user_features_mapping': lightfm_mapping[1],
+    'items_mapping': lightfm_mapping[2],
+    'item_features_mapping': lightfm_mapping[3],
+}
+print('user mapper length - ', len(lightfm_mapping['users_mapping']))
+print('user features mapper length - ', len(lightfm_mapping['user_features_mapping']))
+print('movies mapper length - ', len(lightfm_mapping['items_mapping']))
+print('Users movie features mapper length - ', len(lightfm_mapping['item_features_mapping']))
+```
+As we do not have user / movie features their length coincide with unique number of observations
+
+```{code-cell} ipython3
+# here we create inverted mappers to check recommendations later
+lightfm_mapping['users_inv_mapping'] = {v: k for k, v in lightfm_mapping['users_mapping'].items()}
+lightfm_mapping['items_inv_mapping'] = {v: k for k, v in lightfm_mapping['items_mapping'].items()}
+```
+
+As we mentioned earlier, we need to create iterators to use in building training dataset
+
+```{code-cell} ipython3
+def df_to_tuple_iterator(df: pd.DataFrame):
+    '''
+    :df: pd.DataFrame, interactions dataframe
+    returs iterator
+    '''
+    return zip(*df.values.T)
+
+def concat_last_to_list(t):
+    return (t[0], list(t[1:])[0])
+
+def df_to_tuple_list_iterator(df):
+    return map(concat_last_to_list, zip(*df.values.T))
+```
+
+```{code-cell} ipython3
+# defining train set on the whole interactions dataset (as HW you will have to split into test and train for evaluation)
+train_mat, train_mat_weights = dataset.build_interactions(df_to_tuple_iterator(interactions_filtered[['userId', 'movieId']]))
+```
+
+```{code-cell} ipython3
+train_mat
+```
+
+```{code-cell} ipython3
+train_mat_weights
+```
+
+#### 2.3. Model Training & Evaluation
+##### 2.3.1. Train Model
+
+```{code-cell} ipython3
+# set default params
+NO_COMPONENTS = 64
+LEARNING_RATE = .03
+LOSS = 'warp'
+MAX_SAMPLED = 5
+RANDOM_STATE = 42
+EPOCHS = 20
+```
+
+```{code-cell} ipython3
+# init model
+lfm_model = LightFM(
+    no_components = NO_COMPONENTS,
+    learning_rate = LEARNING_RATE,
+    loss = LOSS,
+    max_sampled = MAX_SAMPLED,
+    random_state = RANDOM_STATE
+    )
+```
+
+```{code-cell} ipython3
+# execute training
+for _ in tqdm_notebook(range(EPOCHS), total = EPOCHS):
+    lfm_model.fit_partial(
+        train_mat, 
+        num_threads = 4
+    )
+```
+
+##### 2.3.2. Evaluate the Model
+
+```{code-cell} ipython3
+# let's make sense-check
+top_N = 10
+user_id = interactions['userId'][0]
+row_id = lightfm_mapping['users_mapping'][user_id]
+print(f'Rekko for user {user_id}, row number in matrix - {row_id}')
+```
+
+```{code-cell} ipython3
+all_cols = list(lightfm_mapping['items_mapping'].values())
+len(all_cols)
+```
+
+```{code-cell} ipython3
+# get predictions
+pred = lfm_model.predict(
+    row_id,
+    all_cols,
+    num_threads = 4)
+pred, pred.shape
+```
+Here, get indicices in matrix for top movie recommendations
+```{code-cell} ipython3
+top_cols = np.argpartition(pred, -np.arange(top_N))[-top_N:][::-1]
+top_cols
+```
+Next, we can look at their lfm scores
+```{code-cell} ipython3
+pred[top_cols]
+```
+Now, we move on to look at recommended movies for a given user
+```{code-cell} ipython3
+# crate mapper for movieId and title names
+item_name_mapper = dict(zip(movies_metadata['id'], movies_metadata['original_title']))
+```
+
+```{code-cell} ipython3
+recs = pd.DataFrame({'col_id': top_cols})
+recs['movieId'] = recs['col_id'].map(lightfm_mapping['items_inv_mapping'].get).astype(str)
+recs['title'] = recs['movieId'].map(item_name_mapper)
+recs
+```
 
 ## Hybrid Approaches
 In practice, many recommender systems use a hybrid approach that combines both memory-based and model-based
