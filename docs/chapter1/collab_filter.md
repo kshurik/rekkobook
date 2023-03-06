@@ -179,6 +179,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 import numpy as np
 import pandas as pd
+import scipy.sparse as sp
 
 from itertools import islice, cycle, product
 
