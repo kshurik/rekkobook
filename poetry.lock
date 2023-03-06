@@ -354,6 +354,19 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
+name = "implicit"
+version = "0.6.2"
+description = "Collaborative Filtering for Implicit Feedback Datasets"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+numpy = "*"
+scipy = ">=0.16"
+tqdm = ">=4.27"
+
+[[package]]
 name = "importlib-metadata"
 version = "6.0.0"
 description = "Read metadata from Python packages"
@@ -628,20 +641,6 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [package.dependencies]
 six = ">=1.4.1"
-
-[[package]]
-name = "lightfm"
-version = "1.16"
-description = "LightFM recommendation model"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-numpy = "*"
-requests = "*"
-scikit-learn = "*"
-scipy = ">=0.17.0"
 
 [[package]]
 name = "linkify-it-py"
@@ -1734,7 +1733,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "flake8 (<5)", "pytest-co
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "f56017cb1040c171ce9e5b0077a13d33cad2f11f8a2b6b83d9edb06f622bd32f"
+content-hash = "68be8bb38062f0f784865bc85680acc11d82c1d08142c4847bb349ac47a58d61"
 
 [metadata.files]
 alabaster = [
@@ -2150,6 +2149,40 @@ imagesize = [
     {file = "imagesize-1.4.1-py2.py3-none-any.whl", hash = "sha256:0d8d18d08f840c19d0ee7ca1fd82490fdc3729b7ac93f49870406ddde8ef8d8b"},
     {file = "imagesize-1.4.1.tar.gz", hash = "sha256:69150444affb9cb0d5cc5a92b3676f0b2fb7cd9ae39e947a5e11a36b4497cd4a"},
 ]
+implicit = [
+    {file = "implicit-0.6.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:2a3035c64d94d629fad0a23e7d900c8a091ffceb1de99468cde000eed23c59b1"},
+    {file = "implicit-0.6.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:e5299c7ad09e2fbc8b86bf86d971b5ea17e64b3d68d87a659f41eecc96b7b356"},
+    {file = "implicit-0.6.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:57dfd0df04905c0362d271817135f698defe6b1504ab5690bab9c7f7de7a0b42"},
+    {file = "implicit-0.6.2-cp310-cp310-manylinux2014_aarch64.whl", hash = "sha256:a83e5b85e8db5839198745771f17936ecdf3124e9a79b3e15efaf35698b26b34"},
+    {file = "implicit-0.6.2-cp310-cp310-manylinux2014_x86_64.whl", hash = "sha256:6295e71a725f04e605a909b2ea139485eea2554b60d83a75abf756eaf706e104"},
+    {file = "implicit-0.6.2-cp310-cp310-win_amd64.whl", hash = "sha256:84a276e1b23408474e1c625f361f59b9b28e6bfe2394b33563b4e077abe5fd21"},
+    {file = "implicit-0.6.2-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:f6d4116b94c7edb79c9669c6d76d80f60d9603295f852273fd03ce579500e232"},
+    {file = "implicit-0.6.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:8f6833eea69f26a78c5cc19824d6492ceb6dda5dc096dfac26d072244fd926f6"},
+    {file = "implicit-0.6.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:151d18b024988cb579043abea8108e08aa3c449551623f824ed49f204c07ad87"},
+    {file = "implicit-0.6.2-cp311-cp311-manylinux2014_aarch64.whl", hash = "sha256:966a344f81e2c58d38c4cda8cc38456b9cb122dfbf524150021e57f4c3c2e944"},
+    {file = "implicit-0.6.2-cp311-cp311-manylinux2014_x86_64.whl", hash = "sha256:cc4979e7a99a37e242c786e6866b11849fdc26ffda59660a0e19a8971f175d5f"},
+    {file = "implicit-0.6.2-cp311-cp311-win_amd64.whl", hash = "sha256:777d8b2463e8edc5b28e427f36d4bd5fe56314372fb0cfd62910205abc2bcddf"},
+    {file = "implicit-0.6.2-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:830dd18ca571df3cc766772de19ffb9622fe020347e48227acbe2b75538dd5fc"},
+    {file = "implicit-0.6.2-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:db529bc956ef775f102490f7789e44dcf275099233f06c67ca4acbd6aeaabc8b"},
+    {file = "implicit-0.6.2-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:4c817ae3af9cea45c8ad957f543db1c15a55a80e539e0a33536c168f7b5e9ee7"},
+    {file = "implicit-0.6.2-cp36-cp36m-win_amd64.whl", hash = "sha256:dbf44992b508af52b1671dec395ea6a96654e935bbf97f21e1a3ead8b90124b8"},
+    {file = "implicit-0.6.2-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:e1ffb37071bd51d1ee5fb5a863c6ac1593ae191cf5f969deb255cd0250b0e133"},
+    {file = "implicit-0.6.2-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:f25e48fe184b7e1a4c3550b36bec826157d59db2e06f04998160910c58e912b0"},
+    {file = "implicit-0.6.2-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:5ba3d50e498b7e0f0faeba22d7fea943d30074dc782df647e8d003edb6777ac3"},
+    {file = "implicit-0.6.2-cp37-cp37m-win_amd64.whl", hash = "sha256:9dddb93cce3957ce8ee40854fb5c20f8a747777acaa18837cb68703dc675c3fc"},
+    {file = "implicit-0.6.2-cp38-cp38-macosx_10_9_universal2.whl", hash = "sha256:0516dfaddf352abfdb3d73648d347406ec17541b1e50c4add4812e93b900dd2a"},
+    {file = "implicit-0.6.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:7d6afc8f46609b145f1cd78b90aba18a732f722599dd96b46b8de8d293f9ed9d"},
+    {file = "implicit-0.6.2-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:196b7d1cdc3cc789fae6dcbd4744652317e68b7eb39278852cde63563c5d9696"},
+    {file = "implicit-0.6.2-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:1493e7e60f85a5f17f250f4d399c08fbe4c1833810fca4f96b5996162242fbb7"},
+    {file = "implicit-0.6.2-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:63cc9fa444d3676ddf8ec9fb6432976c1edb79ff00d943aa4f1a99771b67a36e"},
+    {file = "implicit-0.6.2-cp38-cp38-win_amd64.whl", hash = "sha256:4d311d90610f175fa7a70e044ba24d0bc0137074e4290a2a1826b30e57d8f0e0"},
+    {file = "implicit-0.6.2-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:4f9a61ab196203b4e969f046cf80158be7ce22557add3b2cb22e8a8c75a30479"},
+    {file = "implicit-0.6.2-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:5e23d57f854d2db7dfde36baff5b6019ae5d1e63e818f3146dda48cb88f64888"},
+    {file = "implicit-0.6.2-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:4dc129da1c1945a4465040f7414ce748e53c327a4ab751e632282cb6bd4354f9"},
+    {file = "implicit-0.6.2-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:e16fa156bb8bec26530ff530b60cff094270fa37ab0d00d2f5c67f82233417b6"},
+    {file = "implicit-0.6.2-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:3b2926121f961825ce32c5a0b5356548f10aa9f414ec20e860f85c59ca5025b2"},
+    {file = "implicit-0.6.2-cp39-cp39-win_amd64.whl", hash = "sha256:5aedeff30c4ad8149b216a881722ce87e99c0e8a613235ebb66f6c9e8f1061e2"},
+]
 importlib-metadata = [
     {file = "importlib_metadata-6.0.0-py3-none-any.whl", hash = "sha256:7efb448ec9a5e313a57655d35aa54cd3e01b7e1fbcf72dce1bf06119420f5bad"},
     {file = "importlib_metadata-6.0.0.tar.gz", hash = "sha256:e354bedeb60efa6affdcc8ae121b73544a7aa74156d047311948f6d711cd378d"},
@@ -2250,9 +2283,6 @@ kiwisolver = [
 latexcodec = [
     {file = "latexcodec-2.0.1-py2.py3-none-any.whl", hash = "sha256:c277a193638dc7683c4c30f6684e3db728a06efb0dc9cf346db8bd0aa6c5d271"},
     {file = "latexcodec-2.0.1.tar.gz", hash = "sha256:2aa2551c373261cefe2ad3a8953a6d6533e68238d180eb4bb91d7964adb3fe9a"},
-]
-lightfm = [
-    {file = "lightfm-1.16.tar.gz", hash = "sha256:41950fd8affde192c10b517148aa7f6d016ae2f75a2ec1187335f1c4d21876ac"},
 ]
 linkify-it-py = [
     {file = "linkify-it-py-2.0.0.tar.gz", hash = "sha256:476464480906bed8b2fa3813bf55566282e55214ad7e41b7d1c2b564666caf2f"},
