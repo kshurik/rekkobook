@@ -136,8 +136,8 @@ from sklearn.decomposition import TruncatedSVD
 ```
 
 ## Other Python Implementations
-To conclude, I want to mention several methods to implementations before focusing on target `implicit` library.
-First one, `implicit` that allows to build models based on implicit targets. In addition,
+To conclude, I want to mention several methods to implementations before focusing on target `lightfm` library.
+One of the most popular is `implicit` that allows to build models based on implicit targets. In addition,
 it has several frequently used models:
 - Item-to-Item KNN. Sometimes it is hard to generate recommendations based on users interaction due to dynamic
 nature of their data (good real-time / near real-time data and model update is required). Thus, this method
@@ -150,8 +150,7 @@ the impact of missing data using confidence and preference metrics;
 - Bayesian Personalized Ranking. Its optimizitation relies on instance level - one item instead of item pairs. The
 primary goal of the method is to provide personalized list of recommendations directly
 
-Another one is the library we were going to use in the tutorial - `ligthfm` (but in reality the maintanence of the
-library is not that good -- so I decided to switch to `implicit`). The main idea of the method
+Another one is the library we are going to use in the tutorial is `ligthfm`. The main idea of the method
 is to generate feature vectors for both users and items by aggregating the values of features. The method assumes
 that the final `user embedding vector` is the sum of each of the user’s relevant side information
 vectors (which we called user features) and similarly `item embedding vector` is created.
