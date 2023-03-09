@@ -21,6 +21,43 @@ Strictly speaking, $s = f(x)$, $s$ - stands for ranking model and for each
 input $x = (q, d)$ where $q$ is a query and $d$ is a document we predict *relevance scores*
 
 Depending on the context and business needs, prediction of relevance score can be considered as:
-- Binary classification - whether user will click on recommended movie;
-- Regression - prediction of watch time by a user for particular recommended movie;
-- Learning-to-rank
+- `Binary classification` - whether user will click on recommended movie;
+- `Regression` - prediction of watch time by a user for particular recommended movie;
+- `Learning-to-rank`
+
+Considering that the first two tasks are quite widespread, here we will focus in learning-to-rank
+class of models. So, why do we have distinct class of learning-to-rank models while it still?
+The main difference between learning to rank and classification/regression models is that
+classification/regression models predict a label or value for a single input,
+while learning to rank models predict a ranking for a list of inputs. Basically, you have a
+list of items and you can make pair comparison within this set and decide the order within that
+set. In case of regression / classification, you will not be able to do that.
+
+![](img/ranking_example_1.png)
+
+## Training learnig-to-rank models
+In learning-to-rank pipeline there are three approaches to train the model:
+- `Pointwise`: basically, it takes single item from a list and computes loss using
+only its information. It resembles the same as if classifier / regressor is trained;
+Some examples: cosine distance between embeddings, logistic regression based some 
+features with binary relevance target etc, BM25 (it is "advanced" version of tf-idf).
+
+- `Pairwise`: in this approach a pair of documents is used to minimize the loss.
+The idea is to minimize the number of swaps in final ordered list. Some of the most
+popular methods are [RankNet, LambdaRank and LambdaMART](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf);
+
+**RankNet**
+TBD
+
+**LambdaRank**
+TBD
+
+**LambdaRank**
+TBD
+
+- `Listwise`: as in the naming, it takes the whole list of candidates at once and tries to rank
+documents within optimally. Fot that it uses two approaches:
+1. Direct optimization of information retrievals (IR) metric such as NDCG via approximation
+with [SoftRank](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/SoftRankWsdm08Submitted.pdf) / [AdaRank](https://www.semanticscholar.org/paper/AdaRank%3A-a-boosting-algorithm-for-information-Xu-Li/a489d95fb930401c1f4b7d92bb139d271d49abbf);
+2. Minimization of the loss that is defined based on you domain knowledge of what you are trying to achieve.
+These are ListNet, ListMLE losses.
