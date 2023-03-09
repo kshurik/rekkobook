@@ -53,7 +53,7 @@ and further deployment & estimation of experiments. Thus, each section will cont
 - Theoretical explanation;
 - Python code with explanatino and outputs
 
-In this handbook, we will cover 3 chapter:
+In this handbook, we will cover 3 chapters:
 - In Chapter 1 we will discuss architecture of recommendation systems, models and various implementations;
 - Then, Chapter 2 is going to be all about deployment - building RecSys microservice using varois frameworks
 with explanation of those frameworks, pros & cons etc.;
