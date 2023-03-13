@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Ranking Problem &#8212; Rekko Handbook</title>
+    <title>Ranking Problem &#8212; RecSys Handbook</title>
   
   
   
@@ -65,9 +65,12 @@ const thebe_selector_output = ".output, .cell_output"
                 gtag('js', new Date());
                 gtag('config', 'G-1KXERRXYG5');
             </script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1/ranker';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Collaborative Filtering" href="collab_filter.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -123,7 +126,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-    <p class="title logo__title">Rekko Handbook</p>
+    <p class="title logo__title">RecSys Handbook</p>
   
 </a>
     
@@ -174,6 +177,21 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Ranking Problem in Machine Learning
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
     </ul>
 </nav>
       </div>
@@ -216,6 +234,10 @@ const thebe_selector_output = ".output, .cell_output"
     </div>
   
 
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
   
 
 </div>
@@ -274,6 +296,21 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Ranking Problem in Machine Learning
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
     </ul>
 </nav>
       </div>
@@ -320,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-    <p class="title logo__title">Rekko Handbook</p>
+    <p class="title logo__title">RecSys Handbook</p>
   
 </a>
     </div>
@@ -342,12 +379,14 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="baseline.html">Baseline Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content_filter.html">Content-Based Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">Metrics &amp; Validation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="collab_filter.html">Collaborative Filtering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ranking Problem</a></li>
+
 </ul>
 
     </div>
@@ -506,7 +545,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -519,6 +560,24 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Ranking Problem
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-learnig-to-rank-models">
+   Training learnig-to-rank models
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -527,6 +586,212 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="ranking-problem">
 <span id="chapter1-part6"></span><h1>Ranking Problem<a class="headerlink" href="#ranking-problem" title="Permalink to this heading">#</a></h1>
+<p>The ranking problem is a type of supervised or semi-supervised learning problem where the goal
+is to predict the relative order of a set of items. It is commonly used in search engines,
+recommender systems, and other applications where the order of the response is vital. Ranking
+models usually try to predict a relevance score and sorting is made based on these scores.
+Strictly speaking, <span class="math notranslate nohighlight">\(s = f(x)\)</span>, <span class="math notranslate nohighlight">\(s\)</span> - stands for ranking model and for each
+input <span class="math notranslate nohighlight">\(x = (q, d)\)</span> where <span class="math notranslate nohighlight">\(q\)</span> is a query and <span class="math notranslate nohighlight">\(d\)</span> is a document we predict <em>relevance scores</em></p>
+<p>Depending on the context and business needs, prediction of relevance score can be considered as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Binary</span> <span class="pre">classification</span></code> - whether user will click on recommended movie;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Regression</span></code> - prediction of watch time by a user for particular recommended movie;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Learning-to-rank</span></code></p></li>
+</ul>
+<p>Considering that the first two tasks are quite widespread, here we will focus in learning-to-rank
+class of models. So, why do we have distinct class of learning-to-rank models while it still?
+The main difference between learning to rank and classification/regression models is that
+classification/regression models predict a label or value for a single input,
+while learning to rank models predict a ranking for a list of inputs. Basically, you have a
+list of items and you can make pair comparison within this set and decide the order within that
+set. In case of regression / classification, you will not be able to do that.</p>
+<p><img alt="" src="../_images/ranking_example_1.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="training-learnig-to-rank-models">
+<h1>Training learnig-to-rank models<a class="headerlink" href="#training-learnig-to-rank-models" title="Permalink to this heading">#</a></h1>
+<p>In learning-to-rank pipeline there are three approaches to train the model:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Pointwise</span></code>: basically, it takes single item from a list and computes loss using
+only its information. It resembles the same as if classifier / regressor is trained;
+Some examples: cosine distance between embeddings, logistic regression based some
+features with binary relevance target etc, BM25 (it is “advanced” version of tf-idf).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pairwise</span></code>: in this approach a pair of documents is used to minimize the loss.
+The idea is to minimize the number of swaps in final ordered list. Some of the most
+popular methods are <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf">RankNet, LambdaRank and LambdaMART</a>;</p></li>
+</ul>
+<p>In this approach, there are three main methods to train the model - <code class="docutils literal notranslate"><span class="pre">RankNet</span></code>, <code class="docutils literal notranslate"><span class="pre">LambdaRank</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">LambdaMART</span></code>:</p>
+<p><strong>RankNet</strong></p>
+<p>This cost function tries to minimize the number of swaps in the final ordered list. Originally,
+it was developed for optimization parameters in neural nets, but in genral the underlying model
+can be set to any. The formula:</p>
+<p><span class="math notranslate nohighlight">\(P_{ij} \equiv P(U_{i}&gt;U_{j}) \equiv \frac{1}{1 + \exp^{-\sigma(s_{i} - s{j})}}\)</span></p>
+<p><strong>LambdaRank</strong></p>
+<p>It was derived after <code class="docutils literal notranslate"><span class="pre">RankNet</span></code>, researchers found that during the process you do not need values of costs,
+but only the gradients of the cost w.r.t model score. The formula that explains the idea
+with NDCG is the following:</p>
+<p><span class="math notranslate nohighlight">\(\lambda_{ij} = \frac{\partial C(s_{i} - s_{j})}{\partial s_{i}} = \frac{-\alpha}{1 + \exp^{\alpha(s_{i} - s_{j})}}|\Delta NDCG|\)</span>,
+where C is the cost function, <span class="math notranslate nohighlight">\(\delta NDCG\)</span> stands for how much NDCG will change if swap <em>i</em> and <em>j</em></p>
+<p><strong>LambdaMART</strong></p>
+<p>This approach combines <code class="docutils literal notranslate"><span class="pre">LambdaRank</span></code> &amp;  <code class="docutils literal notranslate"><span class="pre">Multiple</span> <span class="pre">Additive</span> <span class="pre">Regression</span> <span class="pre">Trees</span> <span class="pre">(MART)</span></code>. The approach is
+quite straightforward: we use gradient boosted trees for prediction task and incorporate <code class="docutils literal notranslate"><span class="pre">LambdaRank</span></code>
+cost function into the model to convert it to solve ranking problem. On experimental data, this
+method outperformed <code class="docutils literal notranslate"><span class="pre">RankNet</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">LambdaRank</span></code>. However, both Pointwise and Pairwise methods
+fail to determine the impact of the whole group (list of items). Here comes the next method</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Listwise</span></code>: as in the naming, it takes the whole list of candidates at once and tries to rank
+documents within optimally. Fot that it uses two approaches:</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Direct optimization of information retrievals (IR) metric such as NDCG via approximation
+with <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/SoftRankWsdm08Submitted.pdf">SoftRank</a> / <a class="reference external" href="https://www.semanticscholar.org/paper/AdaRank%3A-a-boosting-algorithm-for-information-Xu-Li/a489d95fb930401c1f4b7d92bb139d271d49abbf">AdaRank</a>;</p></li>
+<li><p>Minimization of the loss that is defined based on you domain knowledge of what you are trying to achieve.
+These are ListNet, ListMLE losses.</p></li>
+</ol>
+<p>There are two methods in listwise approach - <code class="docutils literal notranslate"><span class="pre">ListNet</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">ListMLE</span></code>. These are two most popular ones.
+In this task, each item has a set of features that describe its properties and relevance to the query.
+The goal is to learn a ranking function that maps these features to a ranking order.</p>
+<p><strong>ListNet</strong></p>
+<p>It is a listwise version of aforementioned <code class="docutils literal notranslate"><span class="pre">RankNet</span></code>. It usses cross-entropy loss function along
+with gradient descent to optimize parameters for neural net. In cases when we have only two items
+in a list the result of the <code class="docutils literal notranslate"><span class="pre">ListNet</span></code> coincides with <code class="docutils literal notranslate"><span class="pre">RankNet</span></code>. The idea behind ListNet is to learn
+a probability distribution over the permutations of the items in the list, such that the more
+relevant items appear at the top of the list with higher probability. The training objective
+of ListNet is to maximize the likelihood of the ground-truth permutation, which is the permutation
+that corresponds to the actual relevance of the items. This is done by minimizing the cross-entropy
+loss between the predicted and ground-truth probability distributions.
+So, how do we get probabilities in the first place and how permutations are involved? Let’s go step-by-step.</p>
+<p>Let’s assume, we have three movies to rank <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">Godfather</span></code>, <code class="docutils literal notranslate"><span class="pre">Avatar</span></code>, &amp; <code class="docutils literal notranslate"><span class="pre">Ozark</span></code>
+What are all possible permutations for these three objetcs?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+
+<span class="n">movies_to_rank</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;The Godfather&#39;</span><span class="p">,</span> <span class="s1">&#39;Avatar&#39;</span><span class="p">,</span> <span class="s1">&#39;Ozark&#39;</span><span class="p">}</span>
+<span class="n">permutations_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">permutations</span><span class="p">(</span><span class="n">movies_to_rank</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Ozark&#39;, &#39;The Godfather&#39;, &#39;Avatar&#39;)
+(&#39;Ozark&#39;, &#39;Avatar&#39;, &#39;The Godfather&#39;)
+(&#39;The Godfather&#39;, &#39;Ozark&#39;, &#39;Avatar&#39;)
+(&#39;The Godfather&#39;, &#39;Avatar&#39;, &#39;Ozark&#39;)
+(&#39;Avatar&#39;, &#39;Ozark&#39;, &#39;The Godfather&#39;)
+(&#39;Avatar&#39;, &#39;The Godfather&#39;, &#39;Ozark&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we have all possible permutations for this object and, say, we predicted some scores that can be
+used to rank these objects. Next, we are interested in how we can use these scores to determine
+which permutation of all combinations are more relevant then other? Here is the how it proposed in the
+<a class="reference external" href="http://times.cs.uiuc.edu/course/598f14/l2r.pdf">paper</a></p>
+<p><span class="math notranslate nohighlight">\(P_{s}(\pi) = \prod^n_{j = 1} \frac {\phi(s_{\pi(j)})} {\sum^n_{k = j} \phi(s_{\pi(k)})}\)</span></p>
+<p>Wow, that’s a big formula. Let’s break it down:</p>
+<ul class="simple">
+<li><p>We calculate the probability for a particular permutation <span class="math notranslate nohighlight">\(\pi\)</span> given some predicted scores <span class="math notranslate nohighlight">\(s\)</span>;</p></li>
+<li><p>Big <span class="math notranslate nohighlight">\(\prod\)</span> stands for calculation of the product of <span class="math notranslate nohighlight">\(n\)</span> terms (permutations);</p></li>
+<li><p>Next, <span class="math notranslate nohighlight">\(\phi\)</span> is transformation function with a required property - <code class="docutils literal notranslate"><span class="pre">an</span> <span class="pre">increasing</span> <span class="pre">and</span> <span class="pre">strictly</span> <span class="pre">positive</span> <span class="pre">function</span></code>
+i.e. the higer predicted score <span class="math notranslate nohighlight">\(s\)</span> the higher value of the function</p></li>
+</ul>
+<p>Considering our example, we can continue by generating some random score as our predictions and pick one
+of the permutations randomly</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">scores_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">movies_to_rank</span><span class="p">}</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">scores_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Ozark&#39;: 0.4967141530112327, &#39;The Godfather&#39;: -0.13826430117118466, &#39;Avatar&#39;: 0.6476885381006925}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">pi</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">permutations_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># unpack pi and assign movies to scores</span>
+<span class="n">score_movie_pos_1</span><span class="p">,</span> <span class="n">score_movie_pos_2</span><span class="p">,</span> <span class="n">score_movie_pos_3</span> <span class="o">=</span> <span class="n">scores_dict</span><span class="p">[</span><span class="n">pi</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">scores_dict</span><span class="p">[</span><span class="n">pi</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">scores_dict</span><span class="p">[</span><span class="n">pi</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;The Godfather&#39;, &#39;Ozark&#39;, &#39;Avatar&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can move to use our aforementioned formula using these numbers. There are going to be three
+terms with combinrations: The Godfather vs The Godfather  + Avatar + Ozark, Avatar vs Avatar + Ozark
+and finally Ozark vs Ozark</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_term</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_2</span><span class="p">)</span>\
+                                         <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_3</span><span class="p">))</span>
+
+<span class="n">second_term</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_3</span><span class="p">))</span>
+
+<span class="n">third_term</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_3</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">score_movie_pos_3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;First term is: </span><span class="si">{</span><span class="n">first_term</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Second term is: </span><span class="si">{</span><span class="n">second_term</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Third term is: </span><span class="si">{</span><span class="n">third_term</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First term is: 0.19679312100689936
+Second term is: 0.46232793234416375
+Third term is: 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>What we have done so far? <span class="math notranslate nohighlight">\(P_{s}(&lt;The Godfather, Avatar, Ozark&gt;) = \prod^3_{j = 1} \frac {\phi(s_{\pi(j)})} {\sum^3_{k = j} \phi(s_{\pi(k)})}\)</span> which is equal to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">permutation_proba</span> <span class="o">=</span> <span class="n">first_term</span> <span class="o">*</span> <span class="n">second_term</span> <span class="o">*</span> <span class="n">third_term</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Permutation probability is: </span><span class="si">{</span><span class="n">permutation_proba</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Permutation probability is: 0.0909829567346746
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this manner, we can calculate permutation probability for each set in our list of all permutations.
+Thus, the final probabilities will sum up to 1 and we can sort using this probabilities! Now,
+we know how to get probability distributions of permutations. So far, we used some random numbers
+to calculate this, but how do we really get these scores in real life? To get scores
+Neural Network model is used. We define any architecture and feed <code class="docutils literal notranslate"><span class="pre">query</span> <span class="pre">-</span> <span class="pre">document</span></code> features
+and use cross-entropy / KL-divergence to train the model. Thanks to this <a class="reference external" href="https://embracingtherandom.com/machine-learning/tensorflow/ranking/deep-learning/learning-to-rank-part-2/">source</a>, all futher details can be find there.
+Finally, it worth mentioning that calculating all permutations are too computationally expensive
+and authors propose <code class="docutils literal notranslate"><span class="pre">Top</span> <span class="pre">One</span> <span class="pre">Probability</span></code> method to avoid calculation of all permutations.</p>
+<p><strong>ListMLE</strong></p>
+<p>ListMLE is another learning to rank method that uses a maximum likelihood estimation (MLE)
+framework to learn the ranking function. The idea behind ListMLE is to directly model the
+likelihood of the ground-truth permutation, rather than the probability distribution.
+The training objective of ListMLE is to maximize the log-likelihood of the ground-truth
+permutation under the Mallows model. This is done by minimizing the negative log-likelihood,
+which is equivalent to minimizing the Kendall tau distance between the predicted
+and ground-truth permutations.</p>
+<p>More detailed explanation of these three approaches in learning-to-rank tast are explained
+here.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -557,12 +822,45 @@ title="Print to PDF"
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="collab_filter.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Collaborative Filtering</p>
+      </div>
+  </a>
 </div>
             </footer>
             
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Ranking Problem
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-learnig-to-rank-models">
+   Training learnig-to-rank models
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>

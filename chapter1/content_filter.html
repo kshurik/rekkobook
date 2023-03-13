@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Content-based Filtering in a Nutshell &#8212; Rekko Handbook</title>
+    <title>Content-based Filtering in a Nutshell &#8212; RecSys Handbook</title>
   
   
   
@@ -125,7 +125,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-    <p class="title logo__title">Rekko Handbook</p>
+    <p class="title logo__title">RecSys Handbook</p>
   
 </a>
     
@@ -176,6 +176,21 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ranker.html">
+                        Ranking Problem in Machine Learning
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
     </ul>
 </nav>
       </div>
@@ -280,6 +295,21 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ranker.html">
+                        Ranking Problem in Machine Learning
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
     </ul>
 </nav>
       </div>
@@ -326,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-    <p class="title logo__title">Rekko Handbook</p>
+    <p class="title logo__title">RecSys Handbook</p>
   
 </a>
     </div>
@@ -354,6 +384,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Content-Based Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">Metrics &amp; Validation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="collab_filter.html">Collaborative Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
+
 </ul>
 
     </div>
@@ -898,7 +930,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;enchanted&#39;, &#39;siblings&#39;, &#39;creatures&#39;, &#39;adult&#39;, &#39;three&#39;, &#39;discover&#39;, &#39;giant&#39;, &#39;trapped&#39;, &#39;finish&#39;, &#39;door&#39;, &#39;find&#39;, &#39;peter&#39;, &#39;game&#39;, &#39;opens&#39;, &#39;living&#39;, &#39;running&#39;, &#39;inside&#39;, &#39;years&#39;, &#39;invite&#39;, &#39;evil&#39;, &#39;alan&#39;, &#39;hope&#39;, &#39;monkeys&#39;, &#39;unwittingly&#39;, &#39;proves&#39;, &#39;board&#39;, &#39;rhinoceroses&#39;, &#39;world&#39;, &#39;risky&#39;, &#39;room&#39;, &#39;freedom&#39;, &#39;terrifying&#39;, &#39;magical&#39;, &#39;judy&#39;], tags=[&#39;1&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;terrifying&#39;, &#39;discover&#39;, &#39;enchanted&#39;, &#39;peter&#39;, &#39;unwittingly&#39;, &#39;adult&#39;, &#39;room&#39;, &#39;giant&#39;, &#39;freedom&#39;, &#39;alan&#39;, &#39;three&#39;, &#39;board&#39;, &#39;evil&#39;, &#39;proves&#39;, &#39;monkeys&#39;, &#39;find&#39;, &#39;siblings&#39;, &#39;hope&#39;, &#39;magical&#39;, &#39;trapped&#39;, &#39;creatures&#39;, &#39;judy&#39;, &#39;game&#39;, &#39;world&#39;, &#39;door&#39;, &#39;finish&#39;, &#39;opens&#39;, &#39;rhinoceroses&#39;, &#39;invite&#39;, &#39;inside&#39;, &#39;years&#39;, &#39;running&#39;, &#39;risky&#39;, &#39;living&#39;], tags=[&#39;1&#39;])
 </pre></div>
 </div>
 </div>
@@ -1027,23 +1059,23 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>43165</td>
-      <td>0.957680</td>
+      <td>5713</td>
+      <td>0.960101</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>5713</td>
-      <td>0.957579</td>
+      <td>7772</td>
+      <td>0.958809</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>13835</td>
-      <td>0.952647</td>
+      <td>29872</td>
+      <td>0.953039</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>19227</td>
-      <td>0.950984</td>
+      <td>13835</td>
+      <td>0.952500</td>
     </tr>
   </tbody>
 </table>
@@ -1097,117 +1129,117 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>43165</td>
-      <td>0.957680</td>
-      <td>the zookeeper's wife</td>
-    </tr>
-    <tr>
-      <th>2</th>
       <td>5713</td>
-      <td>0.957579</td>
+      <td>0.960101</td>
       <td>rollover</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>13835</td>
-      <td>0.952647</td>
-      <td>k2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>19227</td>
-      <td>0.950984</td>
-      <td>carbon nation</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>43461</td>
-      <td>0.948594</td>
-      <td>megafault</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>25184</td>
-      <td>0.947987</td>
-      <td>penguins of madagascar</td>
-    </tr>
-    <tr>
-      <th>7</th>
+      <th>2</th>
       <td>7772</td>
-      <td>0.947709</td>
+      <td>0.958809</td>
       <td>this island earth</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>25601</td>
-      <td>0.946318</td>
-      <td>destination gobi</td>
-    </tr>
-    <tr>
-      <th>9</th>
+      <th>3</th>
       <td>29872</td>
-      <td>0.945636</td>
+      <td>0.953039</td>
       <td>angels die hard</td>
     </tr>
     <tr>
+      <th>4</th>
+      <td>13835</td>
+      <td>0.952500</td>
+      <td>k2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2551</td>
+      <td>0.951780</td>
+      <td>it conquered the world</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>43165</td>
+      <td>0.948607</td>
+      <td>the zookeeper's wife</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>19227</td>
+      <td>0.946661</td>
+      <td>carbon nation</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>43009</td>
+      <td>0.946265</td>
+      <td>ultimate avengers 2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>43461</td>
+      <td>0.945124</td>
+      <td>megafault</td>
+    </tr>
+    <tr>
       <th>10</th>
-      <td>12555</td>
-      <td>0.945234</td>
-      <td>where in the world is osama bin laden?</td>
+      <td>37792</td>
+      <td>0.943818</td>
+      <td>creature</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>27658</td>
-      <td>0.944535</td>
-      <td>giperboloid inzhenera garina</td>
+      <td>18661</td>
+      <td>0.943792</td>
+      <td>le spie vengono dal semifreddo</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>1045</td>
-      <td>0.944530</td>
-      <td>sleeper</td>
+      <td>35181</td>
+      <td>0.943741</td>
+      <td>конек-горбунок</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>44339</td>
-      <td>0.943704</td>
-      <td>the underground world</td>
+      <td>3536</td>
+      <td>0.943205</td>
+      <td>quatermass and the pit</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>40695</td>
-      <td>0.943146</td>
-      <td>krakh inzhenera garina</td>
+      <td>39972</td>
+      <td>0.942948</td>
+      <td>invaders from the deep</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>30711</td>
-      <td>0.942934</td>
-      <td>a la legión le gustan las mujeres... y a las m...</td>
+      <td>2175</td>
+      <td>0.941758</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>37877</td>
-      <td>0.941732</td>
-      <td>bowery battalion</td>
+      <td>30110</td>
+      <td>0.941312</td>
+      <td>the mutations</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>28191</td>
-      <td>0.941681</td>
-      <td>jönssonligan dyker upp igen</td>
+      <td>24433</td>
+      <td>0.940222</td>
+      <td>the creeping terror</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>40183</td>
-      <td>0.941552</td>
-      <td>break blade 1: kakusei no toki</td>
+      <td>30134</td>
+      <td>0.939965</td>
+      <td>spy</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>28001</td>
-      <td>0.941340</td>
-      <td>reach me</td>
+      <td>1045</td>
+      <td>0.939750</td>
+      <td>sleeper</td>
     </tr>
   </tbody>
 </table>

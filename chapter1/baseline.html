@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Baseline &#8212; Rekko Handbook</title>
+    <title>Baseline &#8212; RecSys Handbook</title>
   
   
   
@@ -125,7 +125,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-    <p class="title logo__title">Rekko Handbook</p>
+    <p class="title logo__title">RecSys Handbook</p>
   
 </a>
     
@@ -176,6 +176,21 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ranker.html">
+                        Ranking Problem in Machine Learning
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
     </ul>
 </nav>
       </div>
@@ -280,6 +295,21 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ranker.html">
+                        Ranking Problem in Machine Learning
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
     </ul>
 </nav>
       </div>
@@ -326,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-    <p class="title logo__title">Rekko Handbook</p>
+    <p class="title logo__title">RecSys Handbook</p>
   
 </a>
     </div>
@@ -354,6 +384,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="content_filter.html">Content-Based Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">Metrics &amp; Validation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="collab_filter.html">Collaborative Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
+
 </ul>
 
     </div>
@@ -1067,8 +1099,8 @@ Also, if we want to get recommendations based on some user groups we can easily 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [3575, 4201, 26791, 2649, 64499, 26422, 64501,...
-2    [702, 4584, 9010, 77291, 90061, 59, 59392, 319...
+1    [26422, 1406, 2981, 8933, 4789, 4822, 1730, 49...
+2    [3021, 54256, 36527, 26599, 40226, 559, 3112, ...
 dtype: object
 </pre></div>
 </div>
@@ -1118,7 +1150,7 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1130,19 +1162,19 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1188,37 +1220,37 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[3575, 4201, 26791, 2649, 64499, 26422, 64501,...</td>
+      <td>[3021, 54256, 36527, 26599, 40226, 559, 3112, ...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[702, 4584, 9010, 77291, 90061, 59, 59392, 319...</td>
+      <td>[3021, 54256, 36527, 26599, 40226, 559, 3112, ...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[702, 4584, 9010, 77291, 90061, 59, 59392, 319...</td>
+      <td>[26422, 1406, 2981, 8933, 4789, 4822, 1730, 49...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[3575, 4201, 26791, 2649, 64499, 26422, 64501,...</td>
+      <td>[3021, 54256, 36527, 26599, 40226, 559, 3112, ...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[702, 4584, 9010, 77291, 90061, 59, 59392, 319...</td>
+      <td>[26422, 1406, 2981, 8933, 4789, 4822, 1730, 49...</td>
     </tr>
   </tbody>
 </table>
@@ -1290,8 +1322,8 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [3575, 4201, 26791, 2649, 64499, 26422, 64501,...
-2    [702, 4584, 9010, 77291, 90061, 59, 59392, 319...
+1    [26422, 1406, 2981, 8933, 4789, 4822, 1730, 49...
+2    [3021, 54256, 36527, 26599, 40226, 559, 3112, ...
 dtype: object
 </pre></div>
 </div>
@@ -1366,7 +1398,7 @@ dtype: object
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1378,19 +1410,19 @@ dtype: object
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1434,32 +1466,32 @@ dtype: object
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>1</td>
-      <td>[3575, 4201, 26791, 2649, 64499, 26422, 64501,...</td>
+      <td>2</td>
+      <td>[3021, 54256, 36527, 26599, 40226, 559, 3112, ...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
-      <td>[702, 4584, 9010, 77291, 90061, 59, 59392, 319...</td>
+      <td>[3021, 54256, 36527, 26599, 40226, 559, 3112, ...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
-      <td>[702, 4584, 9010, 77291, 90061, 59, 59392, 319...</td>
+      <td>1</td>
+      <td>[26422, 1406, 2981, 8933, 4789, 4822, 1730, 49...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
-      <td>[3575, 4201, 26791, 2649, 64499, 26422, 64501,...</td>
+      <td>2</td>
+      <td>[3021, 54256, 36527, 26599, 40226, 559, 3112, ...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
-      <td>[702, 4584, 9010, 77291, 90061, 59, 59392, 319...</td>
+      <td>1</td>
+      <td>[26422, 1406, 2981, 8933, 4789, 4822, 1730, 49...</td>
     </tr>
   </tbody>
 </table>
