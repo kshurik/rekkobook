@@ -23,6 +23,7 @@ I got my masters at [International School of Economics and Finance](https://www.
 (Higher School of Economics) and before that BSc in Economics minoring in Data Science
 
 You can reach out to me via
+- Telegram: @kshurik
 - Email: khalilbekov92@gmail.com
 - LinkedIn: linkedin.com/in/skhalilbekov
 
