@@ -46,6 +46,8 @@ features with binary relevance target etc, BM25 (it is "advanced" version of tf-
 The idea is to minimize the number of swaps in final ordered list. Some of the most
 popular methods are [RankNet, LambdaRank and LambdaMART](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf);
 
+In this approach, there are three main methods to train the model - `RankNet`, `LambdaRank` & `LambdaMART`:
+
 **RankNet**
 
 This cost function tries to minimize the number of swaps in the final ordered list. Originally,
@@ -77,12 +79,30 @@ with [SoftRank](https://www.microsoft.com/en-us/research/wp-content/uploads/2016
 2. Minimization of the loss that is defined based on you domain knowledge of what you are trying to achieve.
 These are ListNet, ListMLE losses.
 
+There are two methods in listwies approach - `ListNet` & `ListMLE`. These are two most popular ones.
+In this task, each item has a set of features that describe its properties and relevance to the query.
+The goal is to learn a ranking function that maps these features to a ranking order.
+
+
 **ListNet**
 
 It is a listwise version of aforementioned `RankNet`. It usses cross-entropy loss function along
 with gradient descent to optimize parameters for neural net. In cases when we have only two items
-in a list the result of the `ListNet` coincides with `RankNet`.
+in a list the result of the `ListNet` coincides with `RankNet`. The idea behind ListNet is to learn
+a probability distribution over the permutations of the items in the list, such that the more
+relevant items appear at the top of the list with higher probability. The training objective 
+of ListNet is to maximize the likelihood of the ground-truth permutation, which is the permutation
+that corresponds to the actual relevance of the items. This is done by minimizing the cross-entropy
+loss between the predicted and ground-truth probability distributions
 
 **ListMLE**
 
-TBD
+ListMLE is another learning to rank method that uses a maximum likelihood estimation (MLE)
+framework to learn the ranking function. The idea behind ListMLE is to directly model the
+likelihood of the ground-truth permutation, rather than the probability distribution.
+The training objective of ListMLE is to maximize the log-likelihood of the ground-truth
+permutation under the Mallows model. This is done by minimizing the negative log-likelihood,
+which is equivalent to minimizing the Kendall tau distance between the predicted
+and ground-truth permutations.
+
+
