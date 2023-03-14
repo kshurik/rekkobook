@@ -56,6 +56,13 @@ can be set to any. The formula:
 
 $P_{ij} \equiv P(U_{i}>U_{j}) \equiv \frac{1}{1 + \exp^{-\sigma(s_{i} - s{j})}}$
 
+Instead of directly predicting the score of each item one by one, RankNet proposed
+to model the target probabilities between any two items. For instance, 
+taket 3 movies: `movie 1`, `movie 2` and `movie 3` with scores 0, 5, 3 respectively.
+The 3 distinct combinations give us `P(movie 1 & movie 2) = 0`, `P(movie 1 & movie 3) = 0`
+and `P(movie 2 & movie 3) = 1` - this is considered as one training sample and model tries
+to model this distribution. 
+
 **LambdaRank**
 
 It was derived after `RankNet`, researchers found that during the process you do not need values of costs,
