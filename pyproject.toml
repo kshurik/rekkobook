@@ -20,8 +20,6 @@ cookiecutter = "2.1.1"
 scipy = "1.9.3"
 implicit = "0.6.2"
 torch = "^1.13.1"
-more-itertools = "^9.1.0"
-shap = "^0.41.0"
 
 [build-system]
 requires = ["poetry-core>=1.1.0"]
