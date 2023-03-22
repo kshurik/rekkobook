@@ -89,6 +89,8 @@ test_set = df.loc[(df['date_time'] > TRAIN_MAX_DATE) \
                   & (df['date_time'] <= (TEST_MAX_DATE))].reset_index(drop = True)
 ```
 
+![](img/validation_scheme.png)
+
 Also, we should consider `cold \ warm start` problems:
 - Cold Start - we do not have any interactions in train and test sets;
 - Warm Start - we did not have anything in train set, but interactions appear during test set
