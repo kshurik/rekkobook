@@ -138,6 +138,33 @@ from sklearn.utils.extmath import randomized_svd
 from sklearn.decomposition import TruncatedSVD
 ```
 
+Besides, `SVD` we other matrix factorization techniques that use loss optimization. These are
+Alternating Least Squares (`ALS`) and implicit Alternating least squares  (`iALS`).
+
+
+`ALS` is an optimization algorithm used in collaborative filtering and designed to factorize a user-item
+interaction matrix into two lower-dimensional matrices, one representing users and the other representing
+items, while minimizing the reconstruction error. The algorithm works by alternating between fixing one
+matrix and optimizing the other. The loss function to train the model is the following:
+
+$\begin{align}
+L_{explicit} = \sum\limits_{u,i \in S}( r_{ui} - x_{u} y_{i}^{T} )^{2} + \lambda \big( \sum\limits_{u} \left \Vert x_{u} \right \Vert^{2} + \sum\limits_{i} \left \Vert y_{i} \right \Vert^{2} \big)
+\end{align}$
+
+Where:
+- $r_{ui}$ is the true rating given by user $u$ to the item $i$;
+- $x_u$ and $y_i$ are user u's and item i's latent factors, both are $1×d$ dimensional, where $d$ the number of latent factors that the user can specify;
+- $S$ was the set of all user-item ratings;
+- $\lambda$ controls the regularization strength that prevents overfitting the user and item vectors
+
+As an example, let's say we have a user-item matrix where each row represents a user and each column represents an item.
+The entries in the matrix correspond to user-item interactions, such as ratings or watch history. To factorize
+this matrix using ALS, we first initialize the user and item matrices with random values. We then fix the item matrix and optimize the user matrix by minimizing the reconstruction error. We repeat this process by fixing the user matrix
+and optimizing the item matrix until the reconstruction error converges to a minimum.
+
+
+`iALS` is a modification of `ALS` that is designed to handle implicit feedback data, such as user click. In this case, the user-item interaction matrix only contains binary values indicating whether a user has interacted with an item or not. The algorithm works by incorporating a confidence weighting scheme that assigns higher weights to items that have been interacted with more frequently. As in the previous example, we repeat almost the same steps. However, in the process we calculate the confidence weights for each item based on its interaction count. Then, we go on with minimizing the reconstruction error while taking into account the confidence weights.
+
 ## Other Python Implementations
 To conclude, I want to mention several methods to implementations before focusing on target `implicit` library.
 First one, `implicit` that allows to build models based on implicit targets. In addition,
@@ -161,8 +188,8 @@ vectors (which we called user features) and similarly `item embedding vector` is
 It is quite fast as developed in Cython. The model has several losses and optimizes parameters using Stochastic
 Gradient Descent (SGD) with options `adagrad` or `adadelta` - great explanation
 of the method can be found [here](https://code.themlsbook.com/chapter3/gradient_descent.html). The losses are:
-- Logistc;
-- Bayesian Personalized Ranking;
+- Logistic;
+- Bayesian Personalized Ranking (BRP);
 - Weighted Approximate-Rank Pairwise (WARP);
 - k-os WARP
 
