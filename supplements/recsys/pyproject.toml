@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "rekko_handbook"
+version = "0.1.0"
+description = "Rekko Handbook Dependencies"
+authors = ["Shuhrat Khalilbekov <khalilbekov92@gmail.com>"]
+license = "CCBY-4.0"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pip = ">=20.0.2"
+numpy = "1.23.3"
+jupyter-book = "^0.14.0"
+pandas = "1.5.1"
+scikit-learn = "1.2.1"
+nltk = "3.6.5"
+catboost = "1.1"
+pymystem3 = "0.2.0"
+gensim = "4.1.2"
+cookiecutter = "2.1.1"
+scipy = "1.9.3"
+implicit = "0.6.2"
+torch = "^1.13.1"
+shap = "^0.41.0"
+lightfm = "^1.17"
+dill = "^0.3.6"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.17.1"
+flake8 = "^6.0.0"
+black = "^23.1.0"
+isort = "^5.12.0"
+
+
+[build-system]
+requires = ["poetry-core>=1.1.0"]
+build-backend = "poetry.core.masonry.api"
