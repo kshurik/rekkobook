@@ -67,7 +67,6 @@ def prepare_ranker_input(
     user_features: Dict[int, Any],
     ranker_features_order,
 ):
-
     ranker_input = []
     for k in item_features.keys():
         item_features[k].update(user_features)

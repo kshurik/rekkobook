@@ -2,6 +2,8 @@
 from models.lfm import LFMModel
 from models.ranker import Ranker
 
+from configs.config import settings
+
 from data_prep.prepare_ranker_data import (
     get_user_features,
     get_items_features,
@@ -23,7 +25,7 @@ def get_recommendations(user_id: int):
 #    candidates = lfm_model.infer(user_id = user_id) #FIXME: remove comment when feaature collection is done
 
     logging.info('getting features...')
-#    user_features = get_user_features(user_id, user_cols=settings.USER_FEATURES) # FIXME - add configs later
+#    user_features = get_user_features(user_id, user_cols=settings.USER_FEATURES)
 #    item_features = get_items_features(list(candidates.keys()), item_ids = candidates)
 
     #TODO - TMP hardcode, need to use the output of the 36-37 lines
