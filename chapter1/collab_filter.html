@@ -65,6 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
                 gtag('js', new Date());
                 gtag('config', 'G-1KXERRXYG5');
             </script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1/collab_filter';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -777,28 +779,28 @@ than being able to restore interactions matrix fully. Thus, we take <em>k</em> b
 <ul class="simple">
 <li><p>It is not that good to predict values to rank (if we consider as regression problem)</p></li>
 <li><p>Quite good for generation of top-N candidates for further reranking:
-classically, for user and item embeddings we calcualte dot product and choose top-N by its value.
-However, SVD is computationally expensive and may not scale well to large datasets.
+classically, for user and item embeddings we calcualte dot product and choose top-N by its value.</p></li>
+</ul>
+<p>However, SVD is computationally expensive and may not scale well to large datasets.
 Therefore, alternative techniques such as Alternating Least Squares (ALS) or modification for
 implicit target iALS, Stochastic Gradient Descent (SGD) are often used. Another common approach
 in model-based collaborative filtering is deep learning. In this approach, a neural network
 is used to learn a representation of users and items. The network takes as input the ratings
 or interactions of users with items and outputs a prediction of the rating for a user-item pair.
 Deep learning has the advantage of being able to capture complex patterns in the data and can be used
-to learn non-linear relationships between users and items. One of the popular examples is Extreeme Deep Factorization machines (xDeepFM).
-One advantage of model-based collaborative filtering is that it can handle the cold-start problem by using the
+to learn non-linear relationships between users and items. One of the popular examples is Extreeme Deep Factorization machines (xDeepFM).</p>
+<p>One advantage of model-based collaborative filtering is that it can handle the cold-start problem by using the
 learned model to make predictions about items that have not yet been rated by users. Additionally, model-based
 collaborative filtering can be more accurate than memory-based collaborative filtering, especially when there are
-a large number of users and items. Obviously, if we have enough data we can generate more accurate predictions minimizing our loss function
-However, model-based collaborative filtering also has some disadvantages. One major limitation is that it can be
+a large number of users and items. Obviously, if we have enough data we can generate more accurate predictions minimizing our loss function</p>
+<p>However, model-based collaborative filtering also has some disadvantages. One major limitation is that it can be
 difficult to interpret the learned model and understand why certain recommendations are being made. Additionally,
 model-based collaborative filtering can be computationally expensive and may require a lot  of computational resources,
 especially when using deep learning techniques. Another disadvantage of model-based collaborative filtering is that it
 requires a large amount of data to train the model effectively. This can be a challenge in some domains, where there
 may be a limited amount of data available. In these cases, memory-based collaborative filtering may be a better choice.
 However, there are several methods are available in python for faster computations. Below, you can see several libraries
-that deal with SVD</p></li>
-</ul>
+that deal with SVD</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">svds</span>
@@ -808,6 +810,27 @@ that deal with SVD</p></li>
 </div>
 </div>
 </div>
+<p>Besides, <code class="docutils literal notranslate"><span class="pre">SVD</span></code> we other matrix factorization techniques that use loss optimization. These are
+Alternating Least Squares (<code class="docutils literal notranslate"><span class="pre">ALS</span></code>) and implicit Alternating least squares  (<code class="docutils literal notranslate"><span class="pre">iALS</span></code>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">ALS</span></code> is an optimization algorithm used in collaborative filtering and designed to factorize a user-item
+interaction matrix into two lower-dimensional matrices, one representing users and the other representing
+items, while minimizing the reconstruction error. The algorithm works by alternating between fixing one
+matrix and optimizing the other. The loss function to train the model is the following:</p>
+<p><span class="math notranslate nohighlight">\(\begin{align}
+L_{explicit} = \sum\limits_{u,i \in S}( r_{ui} - x_{u} y_{i}^{T} )^{2} + \lambda \big( \sum\limits_{u} \left \Vert x_{u} \right \Vert^{2} + \sum\limits_{i} \left \Vert y_{i} \right \Vert^{2} \big)
+\end{align}\)</span></p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r_{ui}\)</span> is the true rating given by user <span class="math notranslate nohighlight">\(u\)</span> to the item <span class="math notranslate nohighlight">\(i\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_u\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span> are user u’s and item i’s latent factors, both are <span class="math notranslate nohighlight">\(1×d\)</span> dimensional, where <span class="math notranslate nohighlight">\(d\)</span> the number of latent factors that the user can specify;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> was the set of all user-item ratings;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> controls the regularization strength that prevents overfitting the user and item vectors</p></li>
+</ul>
+<p>As an example, let’s say we have a user-item matrix where each row represents a user and each column represents an item.
+The entries in the matrix correspond to user-item interactions, such as ratings or watch history. To factorize
+this matrix using ALS, we first initialize the user and item matrices with random values. We then fix the item matrix and optimize the user matrix by minimizing the reconstruction error. We repeat this process by fixing the user matrix
+and optimizing the item matrix until the reconstruction error converges to a minimum.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iALS</span></code> is a modification of <code class="docutils literal notranslate"><span class="pre">ALS</span></code> that is designed to handle implicit feedback data, such as user click. In this case, the user-item interaction matrix only contains binary values indicating whether a user has interacted with an item or not. The algorithm works by incorporating a confidence weighting scheme that assigns higher weights to items that have been interacted with more frequently. As in the previous example, we repeat almost the same steps. However, in the process we calculate the confidence weights for each item based on its interaction count. Then, we go on with minimizing the reconstruction error while taking into account the confidence weights.</p>
 </section>
 <section id="other-python-implementations">
 <h2>Other Python Implementations<a class="headerlink" href="#other-python-implementations" title="Permalink to this heading">#</a></h2>
@@ -835,8 +858,8 @@ It is quite fast as developed in Cython. The model has several losses and optimi
 Gradient Descent (SGD) with options <code class="docutils literal notranslate"><span class="pre">adagrad</span></code> or <code class="docutils literal notranslate"><span class="pre">adadelta</span></code> - great explanation
 of the method can be found <a class="reference external" href="https://code.themlsbook.com/chapter3/gradient_descent.html">here</a>. The losses are:</p>
 <ul class="simple">
-<li><p>Logistc;</p></li>
-<li><p>Bayesian Personalized Ranking;</p></li>
+<li><p>Logistic;</p></li>
+<li><p>Bayesian Personalized Ranking (BRP);</p></li>
 <li><p>Weighted Approximate-Rank Pairwise (WARP);</p></li>
 <li><p>k-os WARP</p></li>
 </ul>
@@ -1249,7 +1272,7 @@ of the method can be found <a class="reference external" href="https://code.them
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/671 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 671/671 [00:00&lt;00:00, 51540.66it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 671/671 [00:00&lt;00:00, 48970.40it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>

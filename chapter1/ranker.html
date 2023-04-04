@@ -625,6 +625,12 @@ popular methods are <a class="reference external" href="https://www.microsoft.co
 it was developed for optimization parameters in neural nets, but in genral the underlying model
 can be set to any. The formula:</p>
 <p><span class="math notranslate nohighlight">\(P_{ij} \equiv P(U_{i}&gt;U_{j}) \equiv \frac{1}{1 + \exp^{-\sigma(s_{i} - s{j})}}\)</span></p>
+<p>Instead of directly predicting the score of each item one by one, RankNet proposed
+to model the target probabilities between any two items. For instance,
+taket 3 movies: <code class="docutils literal notranslate"><span class="pre">movie</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">movie</span> <span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">movie</span> <span class="pre">3</span></code> with scores 0, 5, 3 respectively.
+The 3 distinct combinations give us <code class="docutils literal notranslate"><span class="pre">P(movie</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">movie</span> <span class="pre">2)</span> <span class="pre">=</span> <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">P(movie</span> <span class="pre">1</span> <span class="pre">&amp;</span> <span class="pre">movie</span> <span class="pre">3)</span> <span class="pre">=</span> <span class="pre">0</span></code>
+and <code class="docutils literal notranslate"><span class="pre">P(movie</span> <span class="pre">2</span> <span class="pre">&amp;</span> <span class="pre">movie</span> <span class="pre">3)</span> <span class="pre">=</span> <span class="pre">1</span></code> - this is considered as one training sample and model tries
+to model this distribution.</p>
 <p><strong>LambdaRank</strong></p>
 <p>It was derived after <code class="docutils literal notranslate"><span class="pre">RankNet</span></code>, researchers found that during the process you do not need values of costs,
 but only the gradients of the cost w.r.t model score. The formula that explains the idea
@@ -675,12 +681,12 @@ What are all possible permutations for these three objetcs?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Ozark&#39;, &#39;The Godfather&#39;, &#39;Avatar&#39;)
-(&#39;Ozark&#39;, &#39;Avatar&#39;, &#39;The Godfather&#39;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;The Godfather&#39;, &#39;Avatar&#39;, &#39;Ozark&#39;)
 (&#39;The Godfather&#39;, &#39;Ozark&#39;, &#39;Avatar&#39;)
-(&#39;The Godfather&#39;, &#39;Avatar&#39;, &#39;Ozark&#39;)
-(&#39;Avatar&#39;, &#39;Ozark&#39;, &#39;The Godfather&#39;)
 (&#39;Avatar&#39;, &#39;The Godfather&#39;, &#39;Ozark&#39;)
+(&#39;Avatar&#39;, &#39;Ozark&#39;, &#39;The Godfather&#39;)
+(&#39;Ozark&#39;, &#39;The Godfather&#39;, &#39;Avatar&#39;)
+(&#39;Ozark&#39;, &#39;Avatar&#39;, &#39;The Godfather&#39;)
 </pre></div>
 </div>
 </div>
@@ -710,7 +716,7 @@ of the permutations randomly</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Ozark&#39;: 0.4967141530112327, &#39;The Godfather&#39;: -0.13826430117118466, &#39;Avatar&#39;: 0.6476885381006925}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;The Godfather&#39;: 0.4967141530112327, &#39;Avatar&#39;: -0.13826430117118466, &#39;Ozark&#39;: 0.6476885381006925}
 </pre></div>
 </div>
 </div>
@@ -728,7 +734,7 @@ of the permutations randomly</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;The Godfather&#39;, &#39;Ozark&#39;, &#39;Avatar&#39;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Ozark&#39;, &#39;Avatar&#39;, &#39;The Godfather&#39;)
 </pre></div>
 </div>
 </div>
@@ -752,8 +758,8 @@ and finally Ozark vs Ozark</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First term is: 0.19679312100689936
-Second term is: 0.46232793234416375
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First term is: 0.4318619033836114
+Second term is: 0.3463825470936087
 Third term is: 1.0
 </pre></div>
 </div>
@@ -769,7 +775,7 @@ Third term is: 1.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Permutation probability is: 0.0909829567346746
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Permutation probability is: 0.14958942608670928
 </pre></div>
 </div>
 </div>

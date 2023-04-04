@@ -72,7 +72,19 @@ system. Validation helps to detect any potential bias in the data, which can the
 adjusting the model parameters or using a different data set.
 So, what's the appropiate way for recommender systems? The answer is -- time-based split.
 We define time interval for test set and use all data up to the test set start date.
+However, it is for the firs-level models. In practice, taking into account re-ranker,
+We have more complicated split. Here are the steps:
+1. Create global train and test by time splitting;
+2. Use global train and split again by time -- let's call it local_train and local_test;
+3. Use local_train to train first-level model to generate candidates and predict on local_test;
+4. Use local_test and `split by users` into ranker_train, ranker_test to train ranker on ranker_train
+and validate on ranker_test;
+5. Finally, make predictions for global test using first-level from step 3 and reranker from step 4
+The scheme is defined below
 
+![](img/validation_scheme.png)
+
+The code below imitates splitting into global train and test by date
 ```{code-cell} ipython3
 import pandas as pd
 import datetime as dt
@@ -84,8 +96,8 @@ TEST_MAX_DATE = TRAIN_MAX_DATE + dt.timedelta(days = TEST_INTERVAL_DAYS)
 # create artificial df
 df = pd.DataFrame({'date_time': [], 'values': []})
 
-train_set = df.loc[df['date_time'] <= TRAIN_MAX_DATE].reset_index(drop = True)
-test_set = df.loc[(df['date_time'] > TRAIN_MAX_DATE) \
+global_train = df.loc[df['date_time'] <= TRAIN_MAX_DATE].reset_index(drop = True)
+global_test = df.loc[(df['date_time'] > TRAIN_MAX_DATE) \
                   & (df['date_time'] <= (TEST_MAX_DATE))].reset_index(drop = True)
 ```
 

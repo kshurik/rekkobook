@@ -656,7 +656,20 @@ reflect user preferences accurately, leading to an inaccurate and potentially un
 system. Validation helps to detect any potential bias in the data, which can then be addressed by
 adjusting the model parameters or using a different data set.
 So, what’s the appropiate way for recommender systems? The answer is – time-based split.
-We define time interval for test set and use all data up to the test set start date.</p>
+We define time interval for test set and use all data up to the test set start date.
+However, it is for the firs-level models. In practice, taking into account re-ranker,
+We have more complicated split. Here are the steps:</p>
+<ol class="arabic simple">
+<li><p>Create global train and test by time splitting;</p></li>
+<li><p>Use global train and split again by time – let’s call it local_train and local_test;</p></li>
+<li><p>Use local_train to train first-level model to generate candidates and predict on local_test;</p></li>
+<li><p>Use local_test and <code class="docutils literal notranslate"><span class="pre">split</span> <span class="pre">by</span> <span class="pre">users</span></code> into ranker_train, ranker_test to train ranker on ranker_train
+and validate on ranker_test;</p></li>
+<li><p>Finally, make predictions for global test using first-level from step 3 and reranker from step 4
+The scheme is defined below</p></li>
+</ol>
+<p><img alt="" src="../_images/validation_scheme.png" /></p>
+<p>The code below imitates splitting into global train and test by date</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -669,8 +682,8 @@ We define time interval for test set and use all data up to the test set start d
 <span class="c1"># create artificial df</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;date_time&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="p">[]})</span>
 
-<span class="n">train_set</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">TRAIN_MAX_DATE</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">test_set</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">TRAIN_MAX_DATE</span><span class="p">)</span> \
+<span class="n">global_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">TRAIN_MAX_DATE</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">global_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">TRAIN_MAX_DATE</span><span class="p">)</span> \
                   <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">TEST_MAX_DATE</span><span class="p">))]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
