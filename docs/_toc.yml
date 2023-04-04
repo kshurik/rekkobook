@@ -7,14 +7,14 @@ parts:
 - caption: CHAPTER 1 - Overivew of Recommendation Systems
   chapters:
   - file: chapter1/intro_to_rekko
-    title: Introduction to Recommendation Problem
+    title: 1.0. Introduction to Recommendation Problem
   - file: chapter1/baseline
-    title: Baseline Implementation
-  - file: chapter1/content_filter
-    title: Content-Based Filtering
+    title: 1.1. Baseline Implementation
   - file: chapter1/validation_metrics
-    title: Metrics & Validation
+    title: 1.2. Metrics & Validation
+  - file: chapter1/content_filter
+    title: 1.3. Content-Based Filtering
   - file: chapter1/collab_filter
-    title: Collaborative Filtering
+    title: 1.4. Collaborative Filtering
   - file: chapter1/ranker
-    title: Ranking Problem in Machine Learning
+    title: 1.5. Ranking Problem in Machine Learning
