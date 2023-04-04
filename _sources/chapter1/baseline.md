@@ -323,4 +323,5 @@ check_recs = recommend(users[['userId', 'group']], recs, ['group'])
 check_recs.head()
 ```
 
-Congrats! Your first basic recommender system is ready!!
+Congrats! Your first basic recommender system is ready!! In the next section, we will
+dive into how to evaluate our model
