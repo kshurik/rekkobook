@@ -52,7 +52,12 @@ of items a customer has previously interacted with.
 For example, a in OKKO our service may use information about a film's genre, actors,
 and other meta information to determine how similar it is to films user has previously watched.
 
-![](img/content_based.png)
+```{image} ./img/content_based.png
+:alt: fishy
+:class: bg-primary mb-1
+:width: 400px
+:align: center
+```
 
 *Collaborative filtering* systems use data from other users to make predictions.
 This type of system looks for patterns in the data from a group of users and
@@ -60,7 +65,12 @@ uses them to make recommendations for individual users. For instance,
 if a group of users all watcheed the same film, a collaborative filtering system
 may recommend that film to other users who have similar watched titles.
 
-![](img/collab_filter.png)
+```{image} ./img/collab_filter.png
+:alt: fishy
+:class: bg-primary mb-1
+:width: 400px
+:align: center
+```
 
 Furthemore, recommender systems have been successfully used in a variety of industries.
 Amazon is a popular example of a company that has used these systems to recommend items
