@@ -78,7 +78,7 @@ as recommendations with explanation seems to be really personalized from the use
 
 In conclusion, content-based filtering is a type of recommender system that recommends items to users based on their
 past preferences and behaviors. Next, we jump to coding part and create simple Word2Vec model via [`gensim`](https://pypi.org/project/gensim/) library.
-Well explained logic of Word2Vec model you can find [here](https://israelg99.github.io/2017-03-23-Word2Vec-Explained/).
+Well explained logic of Word2Vec model you can find [here](https://jalammar.github.io/illustrated-word2vec/).
 Here, we will not discuss details of implementation.
 
 ### gensim: example of content-based recommendations based on Doc2Vec approach

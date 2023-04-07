@@ -52,11 +52,11 @@ in recommendation and ranking with practical examples in jupyter notebooks.
 This book aims to provide overview of theoretical part for RecSys methods, its implementation
 and further deployment & estimation of experiments. Thus, each section will contain:
 - Theoretical explanation;
-- Python code with explanatino and outputs
+- Python code with explanation and outputs
 
 In this handbook, we will cover 3 chapters:
 - In Chapter 1 we will discuss architecture of recommendation systems, models and various implementations;
-- Then, Chapter 2 is going to be all about deployment - building RecSys microservice using varois frameworks
+- Then, Chapter 2 is going to be all about deployment - building RecSys microservice using various frameworks
 with explanation of those frameworks, pros & cons etc.;
 - Finally, we are going dive into product part - estimation of experiments for our models, metrics to consider
-and other cool stuff that allows us to understand whether we bring value to business by developing various models
+and other cool stuff that allows us to understand whether we bring value to business by developing different models
