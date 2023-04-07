@@ -53,8 +53,9 @@ This book aims to provide overview of theoretical part for RecSys methods, its i
 and further deployment & estimation of experiments. Thus, each section will contain:
 - Theoretical explanation;
 - Python code with explanation and outputs
-In the [repository](https://github.com/kshurik/rekkobook) you will find notebooks and poetry.lock
-with necessary dependencies to replicate the pipeline
+In the book's [repository](https://github.com/kshurik/rekkobook) you will find notebooks and poetry.lock
+with necessary dependencies to replicate the pipeline without copypasting from the book
+
 
 In this handbook, we will cover 3 chapters:
 - In Chapter 1 we will discuss architecture of recommendation systems, models and various implementations;
