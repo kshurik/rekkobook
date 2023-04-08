@@ -64,5 +64,5 @@ def get_recommendations(user_id: int):
 
     return output
 
-if __name__ == '__main__':
-    print(get_recommendations(646903))
+# if __name__ == '__main__':
+#     print(get_recommendations(646903))
