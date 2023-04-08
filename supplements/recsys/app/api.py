@@ -14,4 +14,4 @@ def access_param():
 
 appFlask.run(debug=True, port=5000)
 
-# http://127.0.0.1:5000/with_parameters?name=Se&age=20
+# http://127.0.0.1:5000/index?id=646321
