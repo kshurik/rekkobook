@@ -14,20 +14,19 @@ kernelspec:
 
 # Baseline
 
-Before we dive in some models, let's define heuristic that must be beaten. It is not just the case for RecSys
-problem, but in all ML projects you better start with a definition of baseline to understand efficiency of your model.
-Sometimes it is the case that some heuristice-based algorithm will do the work and it is ok -- the goal is your
-users and business value and the having exceptional ML model is not the goal at all.
+Before we dive into some models, let's define the heuristic that must be beaten. It is not just the case for RecSys
+the problem, but in all ML projects you better start with a definition of baseline to understand the efficiency of your model.
+Sometimes it is the case that some heuristics-based algorithm will do the work and it is ok -- the goal is your
+users and business value and having an exceptional ML model is not the goal at all.
 
 There are various ways to generate baseline recommendations. One of them is to recommend popular items
-based on some metrics like rating, counters (watch times, number of purchases, clicks etc.). Also,
-we can use groupping based on user segments to make more accurate and relevant recommendations (to some extent, of course :)).
-Here, we wil use mean rating as a proxy for popularity and recommendations
+based on some metrics like rating, and counters (watch times, number of purchases, clicks, etc.). Also,
+we can use grouping based on user segments to make more accurate and relevant recommendations (to some extent, of course :)).
+Here, we will use mean rating as a proxy for popularity and recommendations
 
 In this chapter, I will walk through baseline recommender using [MovieLens Data](https://www.kaggle.com/code/quangnhatbui/movie-recommender/data)
-For convenience, I uploaded it to Google Drive for centralized access for anyone. Below, there are urls of main datasets that will be used
-for baseline recommender.
-
+For convenience, I uploaded it to Google Drive for centralized access for anyone. Below, there are the URLs of the main datasets that will be used
+for the baseline recommender.
 
 ## 0. Configuration
 ```{code-cell} ipython3
@@ -108,7 +107,7 @@ plt.title('Ratings Distribtion');
 
 ```
 
-We see that in most cases we have 4 or 5 rating - right tail is fatter.
+We see that in most cases we have a 4 or 5 rating - the right tail is fatter.
 Now, let's move on to movies metadata
 
 ```{code-cell} ipython3
@@ -130,8 +129,8 @@ Here, we will
 - create users dataset for recommendatinos;
 - movies name and movie mapper for convenience
 
-First, we need to merge two dataframes and for that it is necessary to make appropiate typing and column name for convenience.
-Relationship between both datasets is set by movie id.
+First, we need to merge two dataframes and for that, it is necessary to make appropriate typing and column names for convenience.
+The relationship between both datasets is set by movie id.
 
 ```{code-cell} ipython3
 # align data in both dataframes to merge
@@ -156,20 +155,20 @@ item_name_mapper = dict(zip(movies_metadata['movieId'], movies_metadata['origina
 ```
 
 ## 3. Model
-Let's define our baseline popularity recommender BaselineRecommender - top rated titles based on average rating with possibility to get by any group(s)
+Let's define our baseline popularity recommender BaselineRecommender - top-rated titles based on average rating with a possibility to get by any group(s)
 
 The pipeline will be similar to most python ML modules -- it will have two methods in the end: fit() and recommend()
 
 The logic of `fit()` as follow:
-- Initiate recommendation based on median rating from all observations recomm_common;
-- Prepare list of interacted items by users
+- Initiate recommendation based on a median rating from all observations recomm_common;
+- Prepare a list of interacted items by users
 - If we set groups - we get recommendations i.e. calculate movie ratings by groups:
-    - If we get NaN, we fill with base recommendations 
-    - If we get less than required number of candidates, we populate from base recommendations
+    - If we get NaN, we fill it with base recommendations 
+    - If we get less than the required number of candidates, we populate from base recommendations
 
 The logic of `recommend()`:
 - Return base recommendations if users data is not set;
-- In case of category wise requirement -- we get results of our fit
+- In the case of category wise requirements -- we get results of our fit
 
 ### 3.1. Fit
 First, we define how many candidates we want to get
@@ -183,9 +182,9 @@ Then, we extract top 20 movies by aggregating movies and averaging rating column
 base_recommendations = compute_popularity(interactions_filtered, ITEM_COLUMN, MAX_CANDIDATES)
 base_recommendations
 ```
-Thus, we got 20 films with highest average rating
-Now, as we discussed earlier, in movies recommendations there is no need to recommend the same film which user has already watched. Let's implement it as well
-We get all interacted items for each user and save it in dictionary {'userId': [items list]}
+Thus, we got 20 films with the highest average rating
+Now, as we discussed earlier, in movie recommendations there is no need to recommend the same film which the user has already watched. Let's implement it as well
+We get all interacted items for each user and save them in dictionary {'userId': [items list]}
 
 ```{code-cell} ipython3
 known_items = interactions_filtered.groupby(USER_COLUMN)[ITEM_COLUMN].apply(list).to_dict()
@@ -194,8 +193,8 @@ print(f"Number of users with known items: {len(known_items)} \n")
 # let's check it for one userId = 1
 print(f"Example of known item ids for particaular user: {known_items[1]}")
 ```
-Now we have all necessary components: base recommendations without groups with possibility to filter already watched items
-Also, if we want to get recommendations based on some user groups we can easily do the same with groupby() method and same approach
+Now we have all the necessary components: base recommendations without groups with the possibility to filter already watched items
+Also, if we want to get recommendations based on some user groups we can easily do the same with groupby() method and the same approach
 
 ```{code-cell} ipython3
 # lets add artifical binary group to check BaselineRecommender
@@ -209,13 +208,13 @@ group_recommendations = data.groupby('group').apply(compute_popularity, ITEM_COL
 group_recommendations.head()
 ```
 
-In the output we have two rows with a list of film ids for each binary group 
-Next, we have to implement `recommned()` method which will use 
+In the output, we have two rows with a list of film ids for each binary group 
+Next, we have to implement `recommend()` method which will use 
 
 
 ### 3.2. Recommend
-Earlier, we discussed that we can take just average / median etc. of rating and use it as popularity metric to use as recommendations.
-Thus, if we do not have groups to consider (a.k.a more granualar estimation), then it means we give the same recommendations
+Earlier, we discussed that we can take just the average/median, etc. of rating and use it as a popularity metric to use as recommendations.
+Thus, if we do not have groups to consider (a.k.a more granular estimation), then it means we give the same recommendations
 for all users i.e. *base_recommendations*
 
 ```{code-cell} ipython3
@@ -231,7 +230,7 @@ group_rekkos = pd.merge(users, group_recommendations, how = 'left', on = 'group'
 group_rekkos.rename(columns = {0: 'group_wise_rekkos'}, inplace = True)
 group_rekkos.head()
 ```
-We got our groupwise recommendations from 3.1. part and just joined them by group of users are assigned to
+We got our groupwise recommendations from 3.1. part and just joined them by a group of users assigned to
 Further, we will prettify our code and wrap it into functions
 
 ### 3.3. Wrap everything into pretty functions
@@ -239,11 +238,11 @@ Further, we will prettify our code and wrap it into functions
 
 In this function, we need to support 4 main parameters
 - data -- it is going to be pandas classic DataFrame;
-- item_col -- name of the item id column so we can apply on any dataset;
+- item_col -- the name of the item id column so we can apply it on any dataset;
 - groups -- if we need groupwise recommendations;
-- max_candidates -- number of recommendations to return
+- max_candidates -- the number of recommendations to return
 
-Thus, our function will get pandas data frame with necessary data, calculate popularity for a given type -
+Thus, our function will get a pandas data frame with necessary data, calculate popularity for a given type -
 groupwise or not and return ids
 
 ```{code-cell} ipython3
@@ -281,7 +280,7 @@ fit(data, item_col=ITEM_COLUMN, groups=['group'])
 
 
 #### 3.3.2. Recommend Part
-Here, we just use calculated recommendations from above method `fit()`
+Here, we just use calculated recommendations from the above method `fit()`
 
 ```{code-cell} ipython3
 def recommend(

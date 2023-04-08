@@ -629,25 +629,25 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="content-based-filtering-in-a-nutshell">
 <span id="chapter1-part3"></span><h1>Content-based Filtering in a Nutshell<a class="headerlink" href="#content-based-filtering-in-a-nutshell" title="Permalink to this heading">#</a></h1>
 <p>In this section, we will go through a straightforward way to generate candidates for recommendations.
-As we mentioned before, one of the methods is <em>content-based</em> filtering. We will go through explanation of
-this method with an example and finnally discuss particular library to implement it.
-Before that we have to define and understand embeddings. As you might have noticed, we mentioned a lot
-“similar items”, “similar users” etc and question arises – how we define that similarity?
-Speaking of calculation of similarity it is pretty straightforward – we calcualte cosine between two arrays.
-The intriguing part is how do we get these arrays from our data.</p>
+As we mentioned before, one of the methods is <em>content-based</em> filtering. We will go through an explanation of
+this method with an example and finally discuss a particular library to implement it.
+Before that, we have to define and understand embeddings. As you might have noticed, we mentioned a lot
+“similar items”, “similar users” etc and the question arises – how do we define that similarity?
+Speaking of the calculation of similarity it is pretty straightforward – we calculate cosine between two arrays.
+The intriguing part is how we get these arrays from our data.</p>
 <section id="embeddings-explained">
 <h2>Embeddings Explained<a class="headerlink" href="#embeddings-explained" title="Permalink to this heading">#</a></h2>
 <p>The evolution of text processing started from one-hot encoding. When there was text data, Data Scientists
-would preprocess them (lower case, remove symbols etc.) and then create one-hot representations of words or
+would preprocess them (lower case, remove symbols, etc.) and then create one-hot representations of words or
 n-grams (when we split words/text into 2-3-…-n parts by characters). Finally, use some ML model on top of it.
 Notwithstanding the fact of easiness and interpretability of this approach, human language is sophisticated
-and various words can mean different meanings depending on the context and such techinique fails in most cases.</p>
-<p>Therefore, embeddings have become a next stage in text processing pipeline. It is type of word representation
-that allows words with similar meaning to have a similar representation. Unlike methods such as one-hot encoding,
+and various words can mean different meanings depending on the context and such a technique fails in most cases.</p>
+<p>Therefore, embeddings have become the next stage in the text processing pipeline. It is the type of word representation
+that allows words with similar meanings to have a similar representation. Unlike methods such as one-hot encoding,
 word embeddings provide a way to represent words in a more meaningful way, by mapping them to a vector of real
 numbers in a continuous vector space. The idea behind word embedding is to use a neural network to learn
 relationships between words in a dataset. The neural network is trained to assign a numeric vector to each word
-in the dataset. The vector is typically of fixed length and the goal is to find a vector that accurately
+in the dataset. Typically, the vector is of fixed length and the goal is to find a vector that accurately
 represents the meaning of the word, in the context of the dataset. This allows for words in similar contexts
 to have similar vector representations.</p>
 <p>For example, imagine a dataset of movie reviews. Let’s say that the neural network has been trained to assign
@@ -664,8 +664,8 @@ similar vectors to these words. This allows the neural network to accurately cla
 a two-dimensional space, it is possible to see how words are related. This can be a useful tool for understanding
 the relationships between words in a given dataset. In summary, word embeddings are a powerful tool
 for representing words in a meaningful way. They can be used to identify relationships between words,
-sclassify documents, and visualize data.</p>
-<p>Now, let’s consider <em>content-based filttering</em> and use simple Word2Vec/Doc2Vec
+classify documents, and visualize data.</p>
+<p>Now, let’s consider <em>content-based filtering</em> and use simple Word2Vec/Doc2Vec
 model to get such recommendations.</p>
 </section>
 <section id="content-based-filtering">
@@ -683,16 +683,16 @@ To generate recommendations, the system first identifies the attributes of the i
 interacted with. It then identifies other items that have similar attributes and recommends them to the user.
 For example, if a user has previously listened to Taylor Swift songs, the system will identify other Taylor Swift
 songs as well as songs with similar attributes, such as a similar genre or artist. In industry, this type of
-recommendations is showed with “Similar to …”. It is additional nudge to increase interest of a user
-as recommendations with explanation seems to be really personalized from the user’s point of view.</p>
+recommendation is shown with “Similar to …”. It is an additional nudge to increase the interest of a user
+as recommendations with explanations seem to be personalized from the user’s point of view.</p>
 <p>In conclusion, content-based filtering is a type of recommender system that recommends items to users based on their
-past preferences and behaviors. Next, we jump to coding part and create simple Word2Vec model via <a class="reference external" href="https://pypi.org/project/gensim/"><code class="docutils literal notranslate"><span class="pre">gensim</span></code></a> library.
-Well explained logic of Word2Vec model you can find <a class="reference external" href="https://jalammar.github.io/illustrated-word2vec/">here</a>.
-Here, we will not discuss details of implementation.</p>
+past preferences and behaviors. Next, we jump to the coding part and create a simple Word2Vec model via <a class="reference external" href="https://pypi.org/project/gensim/"><code class="docutils literal notranslate"><span class="pre">gensim</span></code></a> library.
+Well-explained the logic of the Word2Vec model you can find <a class="reference external" href="https://jalammar.github.io/illustrated-word2vec/">here</a>.
+Here, we will not discuss the details of implementation.</p>
 <section id="gensim-example-of-content-based-recommendations-based-on-doc2vec-approach">
 <h3>gensim: example of content-based recommendations based on Doc2Vec approach<a class="headerlink" href="#gensim-example-of-content-based-recommendations-based-on-doc2vec-approach" title="Permalink to this heading">#</a></h3>
-<p>Now, we move on to implementation of content-based recommender using <code class="docutils literal notranslate"><span class="pre">gensim</span></code> library and Doc2Vec. It is almost
-the same as Word2Vec with sligh modification, but idea remains the same.</p>
+<p>Now, we move on to the implementation of a content-based recommender using <code class="docutils literal notranslate"><span class="pre">gensim</span></code> library and Doc2Vec. It is almost
+the same as Word2Vec with slight modifications, but the idea remains the same.</p>
 <section id="configuration">
 <h4>0. Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
@@ -831,11 +831,11 @@ dtype: object
 </div>
 </div>
 </div>
-<p>To get accurate results we need to preprocess text a bit. The pipeline will be as follows:</p>
+<p>To get accurate results we need to preprocess the text a bit. The pipeline will be as follows:</p>
 <ul class="simple">
 <li><p>Filter only necessary columns from movies_metadada : id, original_title, overview;</p></li>
-<li><p>Define <code class="docutils literal notranslate"><span class="pre">model_index</span></code> for model to match back with <code class="docutils literal notranslate"><span class="pre">id</span></code> column;</p></li>
-<li><p>Text cleaning: removing stopwords &amp; punctuation, lemmatization for further tokenization and tagged document creatin required for gensim.Doc2Vec</p></li>
+<li><p>Define <code class="docutils literal notranslate"><span class="pre">model_index</span></code> for the model to match back with <code class="docutils literal notranslate"><span class="pre">id</span></code> column;</p></li>
+<li><p>Text cleaning: removing stopwords &amp; punctuation, lemmatization for further tokenization, and tagged document creation required for gensim.Doc2Vec</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -930,7 +930,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;game&#39;, &#39;proves&#39;, &#39;inside&#39;, &#39;years&#39;, &#39;door&#39;, &#39;world&#39;, &#39;opens&#39;, &#39;giant&#39;, &#39;three&#39;, &#39;rhinoceroses&#39;, &#39;peter&#39;, &#39;board&#39;, &#39;living&#39;, &#39;magical&#39;, &#39;alan&#39;, &#39;finish&#39;, &#39;running&#39;, &#39;discover&#39;, &#39;monkeys&#39;, &#39;trapped&#39;, &#39;room&#39;, &#39;risky&#39;, &#39;adult&#39;, &#39;terrifying&#39;, &#39;find&#39;, &#39;hope&#39;, &#39;enchanted&#39;, &#39;siblings&#39;, &#39;freedom&#39;, &#39;unwittingly&#39;, &#39;evil&#39;, &#39;invite&#39;, &#39;judy&#39;, &#39;creatures&#39;], tags=[&#39;1&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;evil&#39;, &#39;giant&#39;, &#39;freedom&#39;, &#39;discover&#39;, &#39;rhinoceroses&#39;, &#39;years&#39;, &#39;creatures&#39;, &#39;find&#39;, &#39;inside&#39;, &#39;peter&#39;, &#39;game&#39;, &#39;running&#39;, &#39;risky&#39;, &#39;trapped&#39;, &#39;hope&#39;, &#39;enchanted&#39;, &#39;judy&#39;, &#39;world&#39;, &#39;living&#39;, &#39;unwittingly&#39;, &#39;monkeys&#39;, &#39;board&#39;, &#39;adult&#39;, &#39;door&#39;, &#39;finish&#39;, &#39;invite&#39;, &#39;room&#39;, &#39;siblings&#39;, &#39;magical&#39;, &#39;three&#39;, &#39;proves&#39;, &#39;alan&#39;, &#39;terrifying&#39;, &#39;opens&#39;], tags=[&#39;1&#39;])
 </pre></div>
 </div>
 </div>
@@ -981,13 +981,13 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>Now, let’s make some checks by defining parameters for model ourselves.
-Assume that we watched movie <code class="docutils literal notranslate"><span class="pre">batman</span></code> and based on that generate recommendation similar to it’s description.
+<p>Now, let’s make some checks by defining parameters for the model ourselves.
+Assume that we watched the movie <code class="docutils literal notranslate"><span class="pre">batman</span></code> and based on that generate recommendations similar to its description.
 To do that we need:</p>
 <ul class="simple">
-<li><p>To extract movie id from <code class="docutils literal notranslate"><span class="pre">movies_inv_mapper</span></code> we created to map back titles from model output</p></li>
-<li><p>Load embeddings from trained model</p></li>
-<li><p>Use built-in most_similar() method to get most relevant recommendations based on film embedding</p></li>
+<li><p>To extract movie id from <code class="docutils literal notranslate"><span class="pre">movies_inv_mapper</span></code> we created to map back titles from the model output</p></li>
+<li><p>Load embeddings from the trained model</p></li>
+<li><p>Use the built-in most_similar() method to get the most relevant recommendations based on film embedding</p></li>
 <li><p>Finally, map title names for sense-check</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1059,23 +1059,23 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>7772</td>
-      <td>0.960244</td>
+      <td>43165</td>
+      <td>0.964629</td>
     </tr>
     <tr>
       <th>2</th>
       <td>13835</td>
-      <td>0.958007</td>
+      <td>0.956823</td>
     </tr>
     <tr>
       <th>3</th>
       <td>5713</td>
-      <td>0.957228</td>
+      <td>0.954003</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>18468</td>
-      <td>0.956848</td>
+      <td>28001</td>
+      <td>0.952630</td>
     </tr>
   </tbody>
 </table>
@@ -1129,117 +1129,117 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>7772</td>
-      <td>0.960244</td>
-      <td>this island earth</td>
+      <td>43165</td>
+      <td>0.964629</td>
+      <td>the zookeeper's wife</td>
     </tr>
     <tr>
       <th>2</th>
       <td>13835</td>
-      <td>0.958007</td>
+      <td>0.956823</td>
       <td>k2</td>
     </tr>
     <tr>
       <th>3</th>
       <td>5713</td>
-      <td>0.957228</td>
+      <td>0.954003</td>
       <td>rollover</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>18468</td>
-      <td>0.956848</td>
-      <td>the incredible petrified world</td>
+      <td>28001</td>
+      <td>0.952630</td>
+      <td>reach me</td>
     </tr>
     <tr>
       <th>5</th>
       <td>29872</td>
-      <td>0.949771</td>
+      <td>0.951231</td>
       <td>angels die hard</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>26340</td>
-      <td>0.946402</td>
-      <td>the siege of firebase gloria</td>
-    </tr>
-    <tr>
-      <th>7</th>
       <td>44339</td>
-      <td>0.945498</td>
+      <td>0.950353</td>
       <td>the underground world</td>
     </tr>
     <tr>
+      <th>7</th>
+      <td>6816</td>
+      <td>0.950123</td>
+      <td>death machine</td>
+    </tr>
+    <tr>
       <th>8</th>
-      <td>27658</td>
-      <td>0.943779</td>
-      <td>giperboloid inzhenera garina</td>
+      <td>18468</td>
+      <td>0.949588</td>
+      <td>the incredible petrified world</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>43009</td>
-      <td>0.943584</td>
-      <td>ultimate avengers 2</td>
+      <td>19227</td>
+      <td>0.948234</td>
+      <td>carbon nation</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>40695</td>
-      <td>0.943214</td>
-      <td>krakh inzhenera garina</td>
+      <td>42040</td>
+      <td>0.947368</td>
+      <td>equalizer 2000</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>14178</td>
-      <td>0.943049</td>
-      <td>battle for terra</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>9883</td>
-      <td>0.941377</td>
-      <td>kaijū daisensō</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>30846</td>
-      <td>0.940967</td>
-      <td>scooby-doo! and the cyber chase</td>
-    </tr>
-    <tr>
-      <th>14</th>
       <td>43461</td>
-      <td>0.940383</td>
+      <td>0.946666</td>
       <td>megafault</td>
     </tr>
     <tr>
+      <th>12</th>
+      <td>18776</td>
+      <td>0.946018</td>
+      <td>saving face</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>40183</td>
+      <td>0.944770</td>
+      <td>break blade 1: kakusei no toki</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15894</td>
+      <td>0.944104</td>
+      <td>devil</td>
+    </tr>
+    <tr>
       <th>15</th>
-      <td>43165</td>
-      <td>0.940173</td>
-      <td>the zookeeper's wife</td>
+      <td>2551</td>
+      <td>0.944036</td>
+      <td>it conquered the world</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>27681</td>
-      <td>0.939384</td>
-      <td>l'umanoide</td>
+      <td>8916</td>
+      <td>0.943448</td>
+      <td>killer klowns from outer space</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>12196</td>
-      <td>0.939323</td>
-      <td>5ive girls</td>
+      <td>7772</td>
+      <td>0.942965</td>
+      <td>this island earth</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>19869</td>
-      <td>0.938772</td>
-      <td>the lost missile</td>
+      <td>11256</td>
+      <td>0.942748</td>
+      <td>sun faa sau si</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>44262</td>
-      <td>0.938741</td>
-      <td>quest of the delta knights</td>
+      <td>12093</td>
+      <td>0.942644</td>
+      <td>elizabeth: the golden age</td>
     </tr>
   </tbody>
 </table>

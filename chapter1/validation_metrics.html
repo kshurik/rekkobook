@@ -604,48 +604,48 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="validation-and-metrics">
 <span id="chapter1-part4"></span><h1>Validation and Metrics<a class="headerlink" href="#validation-and-metrics" title="Permalink to this heading">#</a></h1>
-<p>In this chapter we will go thorough validation and evaluation of ML models in general and move
+<p>In this chapter, we will go through the validation and evaluation of ML models in general and move
 on to specific metrics related to recommendation systems. First, we will define validation,
-why we need it and what types are frequently used. Then, we will define some metrics with examples
+why we need it, and what types are frequently used. Then, we will define some metrics with examples
 of calculation so it is convenient for everyone.</p>
 <section id="validation-methods">
 <h2>Validation Methods<a class="headerlink" href="#validation-methods" title="Permalink to this heading">#</a></h2>
 <p>Training a recommendation system is a complex process, requiring careful consideration
-of a number of different aspects. One of the key steps in the recommendation system
+of several different aspects. One of the key steps in the recommendation system
 training pipeline is the validation process too. This process is essential for ensuring
-that the data used to train the model is accurate, and that the model is performing as expected.</p>
-<p>Basically, validation is a process which assesses the performance of the model and can help
-to detect any issues or bias in the data that could impact the performance of the model in
+that the data used to train the model is accurate and that the model is performing as expected.</p>
+<p>Validation is a process that assesses the performance of the model and can help
+to detect any issues or biases in the data that could impact the performance of the model in
 production. Without validation, it is impossible to know whether the model is correctly
 capturing user preferences and providing accurate recommendations. The validation process
 also helps to detect any potential problems that could arise during the training process
-such as overfitting or under-fitting of the data, some erorrs in data collection etc.</p>
-<p>In general, validation process typically involves splitting the data into train and
+such as overfitting or under-fitting of the data, some errors in data collection, etc.</p>
+<p>In general, the validation process typically involves splitting the data into train and
 test sets. The train set is used to build and train the model, while the test set is
 used to measure the performance of the model and detect any issues in the data.
-The results of the validation process provide an indication of how well the model
-is able to capture general patterns and provide accurate predictions.</p>
-<p>Validation can be carried out using a number of different methods such as <code class="docutils literal notranslate"><span class="pre">holdout</span> <span class="pre">method</span></code>,
-<code class="docutils literal notranslate"><span class="pre">k-fold</span></code>, <code class="docutils literal notranslate"><span class="pre">stratified</span> <span class="pre">k-fold</span></code>, <code class="docutils literal notranslate"><span class="pre">leave-p-out</span></code>, <code class="docutils literal notranslate"><span class="pre">time-based</span></code>. These methods are popular methods of
+The results of the validation process indicate how well the model
+can capture general patterns and provide accurate predictions.</p>
+<p>Validation can be carried out using many different methods such as the <code class="docutils literal notranslate"><span class="pre">holdout</span> <span class="pre">method</span></code>,
+<code class="docutils literal notranslate"><span class="pre">k-fold</span></code>, <code class="docutils literal notranslate"><span class="pre">stratified</span> <span class="pre">k-fold</span></code>, <code class="docutils literal notranslate"><span class="pre">leave-p-out</span></code>, and <code class="docutils literal notranslate"><span class="pre">time-based</span></code>. These methods are popular methods of
 validation in which the data is divided into multiple subsets which are then used in multiple
 rounds of training and testing.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">holdout</span> <span class="pre">method</span></code> - we just divide our data in three parts: train, test and validation. Train will
-be used for model training, test for performance estimation and validation as a finall check on unseen data;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">k-fold</span></code> - we divide data into two sets: train and test. Then, we train the model using only train. K-fold
-allows us to divide train set into <em>k</em> subsets. Then we iterate over each subset and leave it as hold out set
+<li><p><code class="docutils literal notranslate"><span class="pre">holdout</span> <span class="pre">method</span></code> - we just divide our data into three parts: train, test, and validation. Train will
+be used for model training, test for performance estimation, and validation as a final check on unseen data;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">k-fold</span></code> - we divide data into two sets: train and test. Then, we train the model using the only train. K-fold
+allows us to divide the train set into <em>k</em> subsets. Then we iterate over each subset and leave it as hold out set
 to estimate model performance and <em>k-1</em> is used for training;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">stratified</span> <span class="pre">k-fold</span></code> - it is similar to classic <em>k-fold</em> with a modification that overcomes imbalanced target.
+<li><p><code class="docutils literal notranslate"><span class="pre">stratified</span> <span class="pre">k-fold</span></code> - it is similar to the classic <em>k-fold</em> with a modification that overcomes imbalanced targets.
 It samples data such that each fold have approximately the same number of distinct target values;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">leave-p-out</span></code> - we use <em>p</em> observations for test and <em>(n - p)</em> as train set. Once the training is done on
 <em>(n - p)</em>, <em>p</em> data points are used for validation.  All possible combinations of <em>p</em> are tested on the
-model so as to get the highest model performance</p></li>
+model to get the highest model performance</p></li>
 </ul>
 <p>All aforementioned approaches can be found in <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">scikit-learn library</a>.
-Moreover, Machine Learning Simplified book provides great overview of the methods <a class="reference external" href="https://code.themlsbook.com/chapter5/validation_methods.html">here</a></p>
+Moreover, Machine Learning Simplified book provides a great overview of the methods <a class="reference external" href="https://code.themlsbook.com/chapter5/validation_methods.html">here</a></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">time-based</span></code> - we need it more in time series problems. Intuitively, we define training window and
-test window. Then, we go through our data with slidiging window - compute loss at each step - average in the end.
+<li><p><code class="docutils literal notranslate"><span class="pre">time-based</span></code> - we need it more in time series problems. Intuitively, we define the training window and
+test window. Then, we go through our data with a sliding window - compute loss at each step - average in the end.
 Example of implementation is <a class="reference external" href="https://towardsdatascience.com/time-based-cross-validation-d259b13d42b8">here</a> and
 another implementation with cumulative approach in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html">scikit-learn</a></p></li>
 </ul>
@@ -655,17 +655,17 @@ services to users. If the data used to train the model is biased, the model’s 
 reflect user preferences accurately, leading to an inaccurate and potentially unfair recommendation
 system. Validation helps to detect any potential bias in the data, which can then be addressed by
 adjusting the model parameters or using a different data set.
-So, what’s the appropiate way for recommender systems? The answer is – time-based split.
-We define time interval for test set and use all data up to the test set start date.
-However, it is for the firs-level models. In practice, taking into account re-ranker,
-We have more complicated split. Here are the steps:</p>
+So, what’s the appropriate way for recommender systems? The answer is – time-based split.
+We define a time interval for the test set and use all data up to the test set start date.
+However, it is for the first-level models. In practice, taking into account re-ranker,
+We have a more complicated split. Here are the steps:</p>
 <ol class="arabic simple">
 <li><p>Create global train and test by time splitting;</p></li>
-<li><p>Use global train and split again by time – let’s call it local_train and local_test;</p></li>
-<li><p>Use local_train to train first-level model to generate candidates and predict on local_test;</p></li>
+<li><p>Use the global train and split again by time – let’s call it local_train and local_test;</p></li>
+<li><p>Use local_train to train the first-level model to generate candidates and predict on local_test;</p></li>
 <li><p>Use local_test and <code class="docutils literal notranslate"><span class="pre">split</span> <span class="pre">by</span> <span class="pre">users</span></code> into ranker_train, ranker_test to train ranker on ranker_train
 and validate on ranker_test;</p></li>
-<li><p>Finally, make predictions for global test using first-level from step 3 and reranker from step 4
+<li><p>Finally, make predictions for the global test using the first-level from step 3 and reranker from step 4
 The scheme is defined below</p></li>
 </ol>
 <p><img alt="" src="../_images/validation_scheme.png" /></p>
@@ -692,13 +692,13 @@ The scheme is defined below</p></li>
 <p>Also, we should consider <code class="docutils literal notranslate"><span class="pre">cold</span> <span class="pre">\</span> <span class="pre">warm</span> <span class="pre">start</span></code> problems:</p>
 <ul class="simple">
 <li><p>Cold Start - we do not have any interactions in train and test sets;</p></li>
-<li><p>Warm Start - we did not have anything in train set, but interactions appear during test set</p></li>
+<li><p>Warm Start - we did not have anything in the train set, but interactions appear during the test set</p></li>
 </ul>
 </section>
 <section id="metrics">
 <h2>Metrics<a class="headerlink" href="#metrics" title="Permalink to this heading">#</a></h2>
 <p>When developing machine learning models, evaluation metrics are an essential part of the process.
-There are a variety of metrics that can be used, each with their own benefits and drawbacks, and
+There are a variety of metrics that can be used, each with its own benefits and drawbacks, and
 understanding them is key to creating successful models.</p>
 <p>Firstly, evaluation metrics allow us to measure the performance of our models. Without these metrics,
 we would not be able to gauge the success of our models, as there would be no objective way to
@@ -719,10 +719,10 @@ on data that has not been seen before.</p>
 </section>
 <section id="classification-confusion-matrix">
 <h3>Classification (Confusion Matrix)<a class="headerlink" href="#classification-confusion-matrix" title="Permalink to this heading">#</a></h3>
-<p>From classification tasks we can use standard metrics that are widely used. Below, there is
-well-known confusion matrix. Based on that matrix we can calculate various matrix like Precision
-and Recall. Their formulae and definition we will discuss later, but for now let’s elaborate on
-what each of the events mean in terms of recommendations.</p>
+<p>From classification tasks, we can use standard metrics that are widely used. Below, there is
+a well-known confusion matrix. Based on that matrix we can calculate various metrics like Precision
+and Recall. Their formulae and definition we will discuss later, but for now, let’s elaborate on
+what each of the events means in terms of recommendations.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -747,11 +747,11 @@ what each of the events mean in terms of recommendations.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">FN</span></code> - we did not recommend an item, but user interacted with it;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">TN</span></code> - we did not recommend an item and user did not interact</p></li>
 </ul>
-<p>Now, let’s define most popular metrics for recommendations based on classification metrics - Precision&#64;K &amp; Recall&amp;K.
+<p>Now, let’s define the most popular metrics for recommendations based on classification metrics - Precision&#64;K &amp; Recall&amp;K.
 First, you need to understand what <code class="docutils literal notranslate"><span class="pre">&#64;K</span></code> stands for. In recommendations, we return some list of items in a given order.
 Thus, we want to know, how many interactions we got from that list and therefore some threshold must be set to cut the
-list length. For example, we recommended 100 movies, but usually users does not scroll more thant 20 of them and we want
-to estimate our metric only on subset of recommendations - top-20 positions and that would be Precision&#64;20 &amp; Recall&#64;20.</p>
+list length. For example, we recommended 100 movies, but usually, users do not scroll more than 20 of them and we want
+to estimate our metric only on a subset of recommendations - top-20 positions and that would be Precision&#64;20 &amp; Recall&#64;20.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Precision&#64;K</span></code> - share of relevant items in a list. Formula is <span class="math notranslate nohighlight">\(\frac{TP}{TP + FP}\)</span>.
 Also, <span class="math notranslate nohighlight">\(TP + FP\)</span> is <em>K</em> - total number of items and the formula simplifies to <span class="math notranslate nohighlight">\(\frac{TP}{K}\)</span></p></li>
@@ -805,11 +805,11 @@ where <span class="math notranslate nohighlight">\(TP + FN\)</span> is number of
 </section>
 <section id="ranking">
 <h3>Ranking<a class="headerlink" href="#ranking" title="Permalink to this heading">#</a></h3>
-<p>Using regression or classification metrics we evaluate predicted values of the model, but not real relevance.
-In recommendations, we need both positive interaction and relevant item to be as high as possible. This is not
+<p>Using regression or classification metrics we evaluate the predicted values of the model, but not real relevance.
+In recommendations, we need both positive interaction and relevant items to be as high as possible. This is not
 possible using those metrics. Thus, ranking metrics have been incorporated for such tasks. In general,
-they consider both positive interaction with higher weights for those items that are higher in order.
-Most popular ones are <code class="docutils literal notranslate"><span class="pre">Mean</span> <span class="pre">Reciprocal</span> <span class="pre">Rank</span></code>, <code class="docutils literal notranslate"><span class="pre">Mean</span> <span class="pre">Average</span> <span class="pre">Precision</span></code>, <code class="docutils literal notranslate"><span class="pre">Normalized</span> <span class="pre">Discounted</span> <span class="pre">Cumulative</span> <span class="pre">Gain</span></code>.</p>
+they consider both positive interactions with higher weights for those items that are higher in order.
+The most popular ones are <code class="docutils literal notranslate"><span class="pre">Mean</span> <span class="pre">Reciprocal</span> <span class="pre">Rank</span></code>, <code class="docutils literal notranslate"><span class="pre">Mean</span> <span class="pre">Average</span> <span class="pre">Precision</span></code>, and <code class="docutils literal notranslate"><span class="pre">Normalized</span> <span class="pre">Discounted</span> <span class="pre">Cumulative</span> <span class="pre">Gain</span></code>.</p>
 <ul class="simple">
 <li><p>Mean Reciprocal Rank (<code class="docutils literal notranslate"><span class="pre">MRR</span></code>) is an average inverse rank. Formula is <span class="math notranslate nohighlight">\(\frac{1}{N} \sum_{i=1}^{N}\frac{1}{rank_i}\)</span></p></li>
 </ul>
@@ -908,30 +908,30 @@ where <span class="math notranslate nohighlight">\(K\)</span> - number of recomm
 </table>
 <p>AP&#64;6 = <span class="math notranslate nohighlight">\(\frac{1}{2} * (\frac{1}{1} * 1 + \frac{1}{2} * 0 + \frac{1}{3} * 0 + \frac{2}{4} * 1 + \frac{2}{5} * 0 + \frac{2}{6} * 0)\)</span> = 0.75
 The total number of relevant items for a user is 2, therefore we multiply by 1/2.
-Looking at the first rank, we see that user interacted with our recommendation and
-according to our formula we get 1/1 and multiply by relevance 1. Then, in the following
-one we do not have interaction, our Precision&#64;2 is 1/2 and multiplying by relevance 0
-we get 0. Further we do the same logic and come the resulting 0.75 MAP&#64;6 (because we have only 1 user in example).
+Looking at the first rank, we see that the user interacted with our recommendation and
+according to our formula, we get 1/1 and multiply by relevance 1. Then, in the following
+one we do not have interaction, our Precision&#64;2 is 1/2, and multiplying by relevance 0
+we get 0. Further, we do the same logic and come to the resulting 0.75 MAP&#64;6 (because we have only 1 user in the example).
 The code relies on <code class="docutils literal notranslate"><span class="pre">Precision&#64;K</span></code> from the above, but if you want – you can add it yourself.</p>
 <p>Now, what is MAP&#64;3? :)</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Normalized</span> <span class="pre">Discounted</span> <span class="pre">Cumulative</span> <span class="pre">Gain</span> <span class="pre">(NDCG)</span></code> - averaged accuracy by users where only rank is needed to
 determine the metric. The formula is complex and looks like <span class="math notranslate nohighlight">\(\mathrm{nDCG&#64;K} = \frac{DCG_{k}}{IDCG_{k}}\)</span>.
 Now, let’s dive into numerator and denominator to understand the logic</p></li>
-<li><p>Cumulative Gain (<code class="docutils literal notranslate"><span class="pre">CG</span></code>) is the sum of the graded relevance values of all results in a ranke result list.
+<li><p>Cumulative Gain (<code class="docutils literal notranslate"><span class="pre">CG</span></code>) is the sum of the graded relevance values of all results in a ranked result list.
 The value computed with the <code class="docutils literal notranslate"><span class="pre">CG</span></code> function is unaffected by changes in the ordering of ranked results. Thus,
 moving relevant item higher than irrelevant item does not change <code class="docutils literal notranslate"><span class="pre">CG</span></code> value
 Formula is <span class="math notranslate nohighlight">\(\mathrm{CG_{k}} = \sum_{i=1}^{k} rel_{i}\)</span>;
-As you can see, if we have binary relevance label then it is exactly equalt to Precision.</p></li>
-<li><p>Discounted Cumulative Gain (<code class="docutils literal notranslate"><span class="pre">DCG</span></code>) - premise of <code class="docutils literal notranslate"><span class="pre">DCG</span></code> is that relevant items that appear lower in a recommendation
+As you can see, if we have a binary relevance label then it is exactly equal to Precision.</p></li>
+<li><p>Discounted Cumulative Gain (<code class="docutils literal notranslate"><span class="pre">DCG</span></code>) - the premise of <code class="docutils literal notranslate"><span class="pre">DCG</span></code> is those relevant items that appear lower in a recommendation
 list result list should be penalized as the graded relevance value is reduced logarithmically proportional to the position of the result.
-Formula is <span class="math notranslate nohighlight">\(\mathrm{DCG_{k}} = \sum_{i=1}^{k} \frac{ 2^{rel_{i}} - 1 }{ \log_{2}(i+1)}\)</span>. This alredy gives a lot of information,
+Formula is <span class="math notranslate nohighlight">\(\mathrm{DCG_{k}} = \sum_{i=1}^{k} \frac{ 2^{rel_{i}} - 1 }{ \log_{2}(i+1)}\)</span>. This already gives a lot of information,
 but how do we know which value is good? To achieve that, we need to calculate what would be the best value
-for a given set of data. For that, Ideal DCG have been introduced</p></li>
+for a given set of data. For that, Ideal DCG has been introduced</p></li>
 <li><p>Ideal DCG (<code class="docutils literal notranslate"><span class="pre">IDCG</span></code>) is calculated as follows <span class="math notranslate nohighlight">\(\mathrm{IDCG&#64;K} = \sum_{i=1}^{|REL_k|} \frac{ rel_{i} }{ \log_{2}(i+1)}\)</span></p></li>
 </ul>
 <p>Let’s consider an example, where we recommended 6 movies with relevance scores defined as [3, 2, 3, 0, 1, 2]. In the
-table, the calculation using above formula is shown to get CG&#64;6, DCG&#64;6, IDCG&#64;6 and finally NDCG&#64;6.</p>
+table, the calculation using the above formula is shown to get CG&#64;6, DCG&#64;6, IDCG&#64;6, and finally NDCG&#64;6.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(i\)</span></p></th>
