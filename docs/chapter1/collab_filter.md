@@ -18,7 +18,7 @@ Collaborative filtering is a powerful method for recommendation systems used to 
 interests. It is based on the notion that people who have similar tastes and preferences in one domain are likely
 to have similar tastes and preferences in a different domain. The collaborative filtering technique seeks to identify
 users who have similar tastes and preferences, based on their past interactions, and then use those users'
-interactions of items to predict relevance of similar items for the user. The goal of collaborative filtering is
+interactions of items to predict the relevance of similar items for the user. The goal of collaborative filtering is
 to use the opinions of other people to make predictions about a user’s preferences and interests.
 This is done by finding users who have similar tastes and preferences as the user in question, and then using
 those users’ ratings of items to make predictions about how the user would rate the same items.
@@ -36,7 +36,7 @@ identify the most similar users to the target user. Once the most similar users 
 for items are used to generate recommendations for the target user. Item-based collaborative filtering is another
 common approach in memory-based collaborative filtering. In this approach, the similarity between items is calculated
 based on the ratings of users who have rated both items. The similarity scores are then used to identify items that
-are similar to the items that the target user has already rated highly. Once the similar items are identified,
+are similar to the items that the target user has already rated highly. Once similar items are identified,
 they are recommended to the target user. One advantage of memory-based collaborative filtering is that it is easy
 to implement and interpret. The algorithm is relatively simple and does not require a lot of computational resources.
 Additionally, memory-based collaborative filtering can be effective when there is a lot of data available and the
@@ -77,15 +77,15 @@ It indicates that `User A` and `User B` have a strong positive correlation in th
 To find recommendations for `User A`, we can first identify the users who are most similar to `User A`.
 In this example, that would be `User B` and `User C` (check it out by calculating other pairs).
 Next, we can take the weighted average of the ratings from those users for the movies that `User A`
-has not yet rated. For example, let’s assume that `User A` has not yet rated Movie 4. We can then take
+has not yet been rated. For example, let’s assume that `User A` has not yet rated Movie 4. We can then take
 the weighted average of the ratings for Movie 4 from `User B` and `User C`.  `User B` rated Movie 4 a 2,
 and `User C` rated it a 1. We can then take the weighted average of those ratings, giving more weight 
 to `User B` since they are more similar to `User A`. In this case, the weighted average would be around 2.
 Therefore, based on the ratings from other users, it is likely that `User A` would rate Movie 4 a 2.
 
-To wrap up, we can say that memory-based collaborative filtering as about calculating similarity
-between rows or columns of interaction matrix. In our example, we took columns a.k.a user similarities
-while we could take item-item similarities and use as recommendation.
+To wrap up, we can say that memory-based collaborative filtering is about calculating the similarity
+between rows or columns of the interaction matrix. In our example, we took columns a.k.a user similarities
+while we could take item-item similarities and use them as recommendation.
 
 
 ## Model-based Collaborative Filtering
@@ -96,18 +96,18 @@ is matrix factorization. In this approach, the user-item matrix is decomposed in
 a user matrix and an item matrix. The user matrix represents the latent preferences of users, and the item matrix
 represents the latent attributes of items. The dot product of the user and item matrices gives the predicted relevance
 for a user-item pair. Matrix factorization is typically performed using a technique called Singular Value Decomposition (SVD).
-The example of how it is computed is showed below. Basically, we have interactions data where rows represent
-users and columns their ratings/other interactions. Based on thatm we have find such matrices that would approximate
-this relationship from our interactions data. It worth mentioning, that by SVD we only try to approximate rather
-than being able to restore interactions matrix fully. Thus, we take *k* biggest singular values from sigma (middle) matrix
+An example of how it is computed is shown below. We have interactions data where rows represent
+users and columns their ratings/other interactions. Based on that we have found such matrices that would approximate
+this relationship from our interactions data. It is worth mentioning, that by SVD we only try to approximate rather
+than being able to restore the interactions matrix fully. Thus, we take *k* biggest singular values from the sigma (middle) matrix
 
 ![](img/svd_example.png)
 *Toy example with SVD decomposition*
 
 Also, there are some peculiarities with SVD:
-- It is not that good to predict values to rank (if we consider as regression problem)
-- Quite good for generation of top-N candidates for further reranking:
-classically, for user and item embeddings we calcualte dot product and choose top-N by its value.
+- It is not that good to predict values to rank (if we consider it a regression problem)
+- Quite good for the generation of top-N candidates for further reranking:
+classically, for user and item embeddings we calculate the dot product and choose top-N by its value.
 
 However, SVD is computationally expensive and may not scale well to large datasets.
 Therefore, alternative techniques such as Alternating Least Squares (ALS) or modification for
@@ -116,20 +116,20 @@ in model-based collaborative filtering is deep learning. In this approach, a neu
 is used to learn a representation of users and items. The network takes as input the ratings
 or interactions of users with items and outputs a prediction of the rating for a user-item pair.
 Deep learning has the advantage of being able to capture complex patterns in the data and can be used
-to learn non-linear relationships between users and items. One of the popular examples is Extreeme Deep Factorization machines (xDeepFM).
+to learn non-linear relationships between users and items. One of the popular examples is Extreme Deep Factorization machines (xDeepFM).
 
 One advantage of model-based collaborative filtering is that it can handle the cold-start problem by using the
 learned model to make predictions about items that have not yet been rated by users. Additionally, model-based
 collaborative filtering can be more accurate than memory-based collaborative filtering, especially when there are
-a large number of users and items. Obviously, if we have enough data we can generate more accurate predictions minimizing our loss function
+a large number of users and items. If we have enough data we can generate more accurate predictions minimizing our loss function
 
 However, model-based collaborative filtering also has some disadvantages. One major limitation is that it can be
 difficult to interpret the learned model and understand why certain recommendations are being made. Additionally,
-model-based collaborative filtering can be computationally expensive and may require a lot  of computational resources,
+model-based collaborative filtering can be computationally expensive and may require a lot of computational resources,
 especially when using deep learning techniques. Another disadvantage of model-based collaborative filtering is that it
 requires a large amount of data to train the model effectively. This can be a challenge in some domains, where there
 may be a limited amount of data available. In these cases, memory-based collaborative filtering may be a better choice.
-However, there are several methods are available in python for faster computations. Below, you can see several libraries
+However, there are several methods are available in Python for faster computations. Below, you can see several libraries
 that deal with SVD 
 
 ```{code-cell} ipython3
@@ -163,24 +163,24 @@ this matrix using ALS, we first initialize the user and item matrices with rando
 and optimizing the item matrix until the reconstruction error converges to a minimum.
 
 
-`iALS` is a modification of `ALS` that is designed to handle implicit feedback data, such as user click. In this case, the user-item interaction matrix only contains binary values indicating whether a user has interacted with an item or not. The algorithm works by incorporating a confidence weighting scheme that assigns higher weights to items that have been interacted with more frequently. As in the previous example, we repeat almost the same steps. However, in the process we calculate the confidence weights for each item based on its interaction count. Then, we go on with minimizing the reconstruction error while taking into account the confidence weights.
+`iALS` is a modification of `ALS` that is designed to handle implicit feedback data, such as user clicks. In this case, the user-item interaction matrix only contains binary values indicating whether a user has interacted with an item or not. The algorithm works by incorporating a confidence weighting scheme that assigns higher weights to items that have been interacted with more frequently. As in the previous example, we repeat almost the same steps. However, in the process, we calculate the confidence weights for each item based on its interaction count. Then, we go on with minimizing the reconstruction error while taking into account the confidence weights.
 
 ## Other Python Implementations
-To conclude, I want to mention several methods to implementations before focusing on target `implicit` library.
-First one, `implicit` that allows to build models based on implicit targets. In addition,
+To conclude, I want to mention several methods for implementation before focusing on the target `implicit` library.
+The first one is `implicit` which allows building models based on implicit targets. In addition,
 it has several frequently used models:
-- Item-to-Item KNN. Sometimes it is hard to generate recommendations based on users interaction due to dynamic
-nature of their data (good real-time / near real-time data and model update is required). Thus, this method
-is a good kick-off point for candidates generation. KNN does not make any assumptions on the
+- Item-to-Item KNN. Sometimes it is hard to generate recommendations based on user interaction due to the dynamic
+nature of their data (good real-time/near real-time data and model update is required). Thus, this method
+is a good kick-off point for candidate generation. KNN does not make any assumptions on the
 underlying data distribution but it relies on item feature similarity;
-- Logistic matrix factorization. It resembles classic logit model where collaborative filtering recommender try to
-learn probabilistic distribution whether user like recommendation;
+- Logistic matrix factorization. It resembles the classic logit model where the collaborative filtering recommender tries to
+learn probabilistic distribution whether the user like recommendations;
 - implicit ALS. It is used when the amount of data is quite big and provides good performance by reducing
 the impact of missing data using confidence and preference metrics;
-- Bayesian Personalized Ranking. Its optimizitation relies on instance level - one item instead of item pairs. The
-primary goal of the method is to provide personalized list of recommendations directly
+- Bayesian Personalized Ranking. Its optimization relies on instance level - one item instead of item pairs. The
+the primary goal of the method is to provide a personalized list of recommendations directly
 
-Another one is the library we were going to use in the tutorial - `ligthfm` (but in reality the maintanence of the
+Another one is the library we were going to use in the tutorial - `lightfm` (but in reality the maintenance of the
 library is not that good -- so I decided to switch to `implicit`). The main idea of the method
 is to generate feature vectors for both users and items by aggregating the values of features. The method assumes
 that the final `user embedding vector` is the sum of each of the user’s relevant side information
@@ -193,7 +193,7 @@ of the method can be found [here](https://code.themlsbook.com/chapter3/gradient_
 - Weighted Approximate-Rank Pairwise (WARP);
 - k-os WARP
 
-Now, let's move on to python implementation
+Now, let's move on to Python implementation
 ### 0. Configuration
 ```{code-cell} ipython3
 # links to shared data MovieLens
@@ -257,10 +257,6 @@ Filter only intersection of available movies in both datasets
 # leave only those films that intersect with each other
 interactions_filtered = interactions.loc[interactions['movieId'].isin(movies_metadata['id'])]
 print(interactions.shape, interactions_filtered.shape)
-```
-
-
-```{code-cell} ipython3
 ```
 
 #### 2.2 Data preparation
