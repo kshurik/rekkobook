@@ -14,26 +14,26 @@ kernelspec:
 
 # Content-based Filtering in a Nutshell
 In this section, we will go through a straightforward way to generate candidates for recommendations.
-As we mentioned before, one of the methods is *content-based* filtering. We will go through explanation of
-this method with an example and finnally discuss particular library to implement it.
-Before that we have to define and understand embeddings. As you might have noticed, we mentioned a lot
-"similar items", "similar users" etc and question arises -- how we define that similarity?
-Speaking of calculation of similarity it is pretty straightforward -- we calcualte cosine between two arrays.
-The intriguing part is how do we get these arrays from our data.
+As we mentioned before, one of the methods is *content-based* filtering. We will go through an explanation of
+this method with an example and finally discuss a particular library to implement it.
+Before that, we have to define and understand embeddings. As you might have noticed, we mentioned a lot
+"similar items", "similar users" etc and the question arises -- how do we define that similarity?
+Speaking of the calculation of similarity it is pretty straightforward -- we calculate cosine between two arrays.
+The intriguing part is how we get these arrays from our data.
 
 ## Embeddings Explained
 The evolution of text processing started from one-hot encoding. When there was text data, Data Scientists
-would preprocess them (lower case, remove symbols etc.) and then create one-hot representations of words or
+would preprocess them (lower case, remove symbols, etc.) and then create one-hot representations of words or
 n-grams (when we split words/text into 2-3-...-n parts by characters). Finally, use some ML model on top of it.
 Notwithstanding the fact of easiness and interpretability of this approach, human language is sophisticated
-and various words can mean different meanings depending on the context and such techinique fails in most cases.
+and various words can mean different meanings depending on the context and such a technique fails in most cases.
 
-Therefore, embeddings have become a next stage in text processing pipeline. It is type of word representation
-that allows words with similar meaning to have a similar representation. Unlike methods such as one-hot encoding,
+Therefore, embeddings have become the next stage in the text processing pipeline. It is the type of word representation
+that allows words with similar meanings to have a similar representation. Unlike methods such as one-hot encoding,
 word embeddings provide a way to represent words in a more meaningful way, by mapping them to a vector of real
 numbers in a continuous vector space. The idea behind word embedding is to use a neural network to learn
 relationships between words in a dataset. The neural network is trained to assign a numeric vector to each word
-in the dataset. The vector is typically of fixed length and the goal is to find a vector that accurately
+in the dataset. Typically, the vector is of fixed length and the goal is to find a vector that accurately
 represents the meaning of the word, in the context of the dataset. This allows for words in similar contexts
 to have similar vector representations. 
 
@@ -52,9 +52,9 @@ Finally, word embeddings can be used for data visualization. By plotting the vec
 a two-dimensional space, it is possible to see how words are related. This can be a useful tool for understanding
 the relationships between words in a given dataset. In summary, word embeddings are a powerful tool
 for representing words in a meaningful way. They can be used to identify relationships between words,
-sclassify documents, and visualize data. 
+classify documents, and visualize data. 
 
-Now, let's consider *content-based filttering* and use simple Word2Vec/Doc2Vec
+Now, let's consider *content-based filtering* and use simple Word2Vec/Doc2Vec
 model to get such recommendations.
 
 ## Content-based Filtering
@@ -73,17 +73,17 @@ To generate recommendations, the system first identifies the attributes of the i
 interacted with. It then identifies other items that have similar attributes and recommends them to the user.
 For example, if a user has previously listened to Taylor Swift songs, the system will identify other Taylor Swift
 songs as well as songs with similar attributes, such as a similar genre or artist. In industry, this type of
-recommendations is showed with "Similar to ...". It is additional nudge to increase interest of a user
-as recommendations with explanation seems to be really personalized from the user's point of view.
+recommendation is shown with "Similar to ...". It is an additional nudge to increase the interest of a user
+as recommendations with explanations seem to be personalized from the user's point of view.
 
 In conclusion, content-based filtering is a type of recommender system that recommends items to users based on their
-past preferences and behaviors. Next, we jump to coding part and create simple Word2Vec model via [`gensim`](https://pypi.org/project/gensim/) library.
-Well explained logic of Word2Vec model you can find [here](https://jalammar.github.io/illustrated-word2vec/).
-Here, we will not discuss details of implementation.
+past preferences and behaviors. Next, we jump to the coding part and create a simple Word2Vec model via [`gensim`](https://pypi.org/project/gensim/) library.
+Well-explained the logic of the Word2Vec model you can find [here](https://jalammar.github.io/illustrated-word2vec/).
+Here, we will not discuss the details of implementation.
 
 ### gensim: example of content-based recommendations based on Doc2Vec approach
-Now, we move on to implementation of content-based recommender using `gensim` library and Doc2Vec. It is almost
-the same as Word2Vec with sligh modification, but idea remains the same.
+Now, we move on to the implementation of a content-based recommender using `gensim` library and Doc2Vec. It is almost
+the same as Word2Vec with slight modifications, but the idea remains the same.
 
 #### 0. Configuration
 ```{code-cell} ipython3
@@ -157,10 +157,10 @@ movies_metadata = read_csv_from_gdrive(MOVIES_METADATA_URL)
 movies_metadata.dtypes
 ```
 
-To get accurate results we need to preprocess text a bit. The pipeline will be as follows:
+To get accurate results we need to preprocess the text a bit. The pipeline will be as follows:
 - Filter only necessary columns from movies_metadada : id, original_title, overview;
-- Define `model_index` for model to match back with `id` column;
-- Text cleaning: removing stopwords & punctuation, lemmatization for further tokenization and tagged document creatin required for gensim.Doc2Vec
+- Define `model_index` for the model to match back with `id` column;
+- Text cleaning: removing stopwords & punctuation, lemmatization for further tokenization, and tagged document creation required for gensim.Doc2Vec
 
 ```{code-cell} ipython3
 # filter cols
@@ -238,12 +238,12 @@ model.train(tags_doc,
             epochs = EPOCHS)
 ```
 
-Now, let's make some checks by defining parameters for model ourselves.
-Assume that we watched movie `batman` and based on that generate recommendation similar to it's description.
+Now, let's make some checks by defining parameters for the model ourselves.
+Assume that we watched the movie `batman` and based on that generate recommendations similar to its description.
 To do that we need:
-- To extract movie id from `movies_inv_mapper` we created to map back titles from model output
-- Load embeddings from trained model
-- Use built-in most_similar() method to get most relevant recommendations based on film embedding
+- To extract movie id from `movies_inv_mapper` we created to map back titles from the model output
+- Load embeddings from the trained model
+- Use the built-in most_similar() method to get the most relevant recommendations based on film embedding
 - Finally, map title names for sense-check
 
 ```{code-cell} ipython3
