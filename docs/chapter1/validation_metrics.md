@@ -13,54 +13,54 @@ kernelspec:
 (chapter1_part4)=
 
 # Validation and Metrics
-In this chapter we will go thorough validation and evaluation of ML models in general and move
+In this chapter, we will go through the validation and evaluation of ML models in general and move
 on to specific metrics related to recommendation systems. First, we will define validation,
-why we need it and what types are frequently used. Then, we will define some metrics with examples
+why we need it, and what types are frequently used. Then, we will define some metrics with examples
 of calculation so it is convenient for everyone.
 
 ## Validation Methods
 Training a recommendation system is a complex process, requiring careful consideration
-of a number of different aspects. One of the key steps in the recommendation system
+of several different aspects. One of the key steps in the recommendation system
 training pipeline is the validation process too. This process is essential for ensuring
-that the data used to train the model is accurate, and that the model is performing as expected.
+that the data used to train the model is accurate and that the model is performing as expected.
 
-Basically, validation is a process which assesses the performance of the model and can help
-to detect any issues or bias in the data that could impact the performance of the model in
+Validation is a process that assesses the performance of the model and can help
+to detect any issues or biases in the data that could impact the performance of the model in
 production. Without validation, it is impossible to know whether the model is correctly
 capturing user preferences and providing accurate recommendations. The validation process
 also helps to detect any potential problems that could arise during the training process
-such as overfitting or under-fitting of the data, some erorrs in data collection etc.
+such as overfitting or under-fitting of the data, some errors in data collection, etc.
 
-In general, validation process typically involves splitting the data into train and
+In general, the validation process typically involves splitting the data into train and
 test sets. The train set is used to build and train the model, while the test set is
 used to measure the performance of the model and detect any issues in the data.
-The results of the validation process provide an indication of how well the model
-is able to capture general patterns and provide accurate predictions.
+The results of the validation process indicate how well the model
+can capture general patterns and provide accurate predictions.
 
-Validation can be carried out using a number of different methods such as `holdout method`,
-`k-fold`, `stratified k-fold`, `leave-p-out`, `time-based`. These methods are popular methods of
+Validation can be carried out using many different methods such as the `holdout method`,
+`k-fold`, `stratified k-fold`, `leave-p-out`, and `time-based`. These methods are popular methods of
 validation in which the data is divided into multiple subsets which are then used in multiple
 rounds of training and testing.
 
-- `holdout method` - we just divide our data in three parts: train, test and validation. Train will
-be used for model training, test for performance estimation and validation as a finall check on unseen data;
+- `holdout method` - we just divide our data into three parts: train, test, and validation. Train will
+be used for model training, test for performance estimation, and validation as a final check on unseen data;
 
-- `k-fold` - we divide data into two sets: train and test. Then, we train the model using only train. K-fold
-allows us to divide train set into *k* subsets. Then we iterate over each subset and leave it as hold out set
+- `k-fold` - we divide data into two sets: train and test. Then, we train the model using the only train. K-fold
+allows us to divide the train set into *k* subsets. Then we iterate over each subset and leave it as hold out set
 to estimate model performance and *k-1* is used for training;
 
-- `stratified k-fold` - it is similar to classic *k-fold* with a modification that overcomes imbalanced target.
+- `stratified k-fold` - it is similar to the classic *k-fold* with a modification that overcomes imbalanced targets.
 It samples data such that each fold have approximately the same number of distinct target values;
 
 - `leave-p-out` - we use *p* observations for test and *(n - p)* as train set. Once the training is done on
 *(n - p)*, *p* data points are used for validation.  All possible combinations of *p* are tested on the
-model so as to get the highest model performance
+model to get the highest model performance
 
 All aforementioned approaches can be found in [scikit-learn library](https://scikit-learn.org/stable/modules/cross_validation.html).
-Moreover, Machine Learning Simplified book provides great overview of the methods [here](https://code.themlsbook.com/chapter5/validation_methods.html)
+Moreover, Machine Learning Simplified book provides a great overview of the methods [here](https://code.themlsbook.com/chapter5/validation_methods.html)
 
-- `time-based` - we need it more in time series problems. Intuitively, we define training window and 
-test window. Then, we go through our data with slidiging window - compute loss at each step - average in the end.
+- `time-based` - we need it more in time series problems. Intuitively, we define the training window and 
+test window. Then, we go through our data with a sliding window - compute loss at each step - average in the end.
 Example of implementation is [here](https://towardsdatascience.com/time-based-cross-validation-d259b13d42b8) and
 another implementation with cumulative approach in [scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html)
 
@@ -70,16 +70,16 @@ services to users. If the data used to train the model is biased, the model’s 
 reflect user preferences accurately, leading to an inaccurate and potentially unfair recommendation
 system. Validation helps to detect any potential bias in the data, which can then be addressed by
 adjusting the model parameters or using a different data set.
-So, what's the appropiate way for recommender systems? The answer is -- time-based split.
-We define time interval for test set and use all data up to the test set start date.
-However, it is for the firs-level models. In practice, taking into account re-ranker,
-We have more complicated split. Here are the steps:
+So, what's the appropriate way for recommender systems? The answer is -- time-based split.
+We define a time interval for the test set and use all data up to the test set start date.
+However, it is for the first-level models. In practice, taking into account re-ranker,
+We have a more complicated split. Here are the steps:
 1. Create global train and test by time splitting;
-2. Use global train and split again by time -- let's call it local_train and local_test;
-3. Use local_train to train first-level model to generate candidates and predict on local_test;
+2. Use the global train and split again by time -- let's call it local_train and local_test;
+3. Use local_train to train the first-level model to generate candidates and predict on local_test;
 4. Use local_test and `split by users` into ranker_train, ranker_test to train ranker on ranker_train
 and validate on ranker_test;
-5. Finally, make predictions for global test using first-level from step 3 and reranker from step 4
+5. Finally, make predictions for the global test using the first-level from step 3 and reranker from step 4
 The scheme is defined below
 
 ![](img/validation_scheme.png)
@@ -103,11 +103,11 @@ global_test = df.loc[(df['date_time'] > TRAIN_MAX_DATE) \
 
 Also, we should consider `cold \ warm start` problems:
 - Cold Start - we do not have any interactions in train and test sets;
-- Warm Start - we did not have anything in train set, but interactions appear during test set
+- Warm Start - we did not have anything in the train set, but interactions appear during the test set
 
 ## Metrics
 When developing machine learning models, evaluation metrics are an essential part of the process.
-There are a variety of metrics that can be used, each with their own benefits and drawbacks, and
+There are a variety of metrics that can be used, each with its own benefits and drawbacks, and
 understanding them is key to creating successful models.
 
 Firstly, evaluation metrics allow us to measure the performance of our models. Without these metrics,
@@ -132,10 +132,10 @@ Mean Squared Error (`MSE`) = $\frac{1}{N} \sum_{i=1}^{D}(x_i-y_i)^2$
 What is their baseline by the way? :)
 
 ### Classification (Confusion Matrix)
-From classification tasks we can use standard metrics that are widely used. Below, there is
-well-known confusion matrix. Based on that matrix we can calculate various matrix like Precision
-and Recall. Their formulae and definition we will discuss later, but for now let's elaborate on
-what each of the events mean in terms of recommendations.
+From classification tasks, we can use standard metrics that are widely used. Below, there is
+a well-known confusion matrix. Based on that matrix we can calculate various metrics like Precision
+and Recall. Their formulae and definition we will discuss later, but for now, let's elaborate on
+what each of the events means in terms of recommendations.
 
 |  |  Positive | Negative |
 |---|---|---|
@@ -147,11 +147,11 @@ Negative | False Negative `(FN)` | True Negative `(TN)` |
 - `FN` - we did not recommend an item, but user interacted with it;
 - `TN` - we did not recommend an item and user did not interact
 
-Now, let's define most popular metrics for recommendations based on classification metrics - Precision@K & Recall&K.
+Now, let's define the most popular metrics for recommendations based on classification metrics - Precision@K & Recall&K.
 First, you need to understand what `@K` stands for. In recommendations, we return some list of items in a given order.
 Thus, we want to know, how many interactions we got from that list and therefore some threshold must be set to cut the
-list length. For example, we recommended 100 movies, but usually users does not scroll more thant 20 of them and we want
-to estimate our metric only on subset of recommendations - top-20 positions and that would be Precision@20 & Recall@20.
+list length. For example, we recommended 100 movies, but usually, users do not scroll more than 20 of them and we want
+to estimate our metric only on a subset of recommendations - top-20 positions and that would be Precision@20 & Recall@20.
 
 - `Precision@K` - share of relevant items in a list. Formula is $\frac{TP}{TP + FP}$.
 Also, $TP + FP$ is *K* - total number of items and the formula simplifies to $\frac{TP}{K}$
@@ -192,11 +192,11 @@ where $TP + FN$ is number of known interactions (relevant items).
 ```
 
 ### Ranking
-Using regression or classification metrics we evaluate predicted values of the model, but not real relevance.
-In recommendations, we need both positive interaction and relevant item to be as high as possible. This is not
+Using regression or classification metrics we evaluate the predicted values of the model, but not real relevance.
+In recommendations, we need both positive interaction and relevant items to be as high as possible. This is not
 possible using those metrics. Thus, ranking metrics have been incorporated for such tasks. In general,
-they consider both positive interaction with higher weights for those items that are higher in order.
-Most popular ones are `Mean Reciprocal Rank`, `Mean Average Precision`, `Normalized Discounted Cumulative Gain`.
+they consider both positive interactions with higher weights for those items that are higher in order.
+The most popular ones are `Mean Reciprocal Rank`, `Mean Average Precision`, and `Normalized Discounted Cumulative Gain`.
 
 - Mean Reciprocal Rank (`MRR`) is an average inverse rank. Formula is $\frac{1}{N} \sum_{i=1}^{N}\frac{1}{rank_i}$
 
@@ -237,10 +237,10 @@ where $K$ - number of recommendations,  $r_user$ - number of releveant items for
 
 AP@6 = $\frac{1}{2} * (\frac{1}{1} * 1 + \frac{1}{2} * 0 + \frac{1}{3} * 0 + \frac{2}{4} * 1 + \frac{2}{5} * 0 + \frac{2}{6} * 0)$ = 0.75
 The total number of relevant items for a user is 2, therefore we multiply by 1/2.
-Looking at the first rank, we see that user interacted with our recommendation and
-according to our formula we get 1/1 and multiply by relevance 1. Then, in the following
-one we do not have interaction, our Precision@2 is 1/2 and multiplying by relevance 0
-we get 0. Further we do the same logic and come the resulting 0.75 MAP@6 (because we have only 1 user in example).
+Looking at the first rank, we see that the user interacted with our recommendation and
+according to our formula, we get 1/1 and multiply by relevance 1. Then, in the following
+one we do not have interaction, our Precision@2 is 1/2, and multiplying by relevance 0
+we get 0. Further, we do the same logic and come to the resulting 0.75 MAP@6 (because we have only 1 user in the example).
 The code relies on `Precision@K` from the above, but if you want -- you can add it yourself.
 
 Now, what is MAP@3? :)
@@ -248,20 +248,20 @@ Now, what is MAP@3? :)
 - `Normalized Discounted Cumulative Gain (NDCG)` - averaged accuracy by users where only rank is needed to 
 determine the metric. The formula is complex and looks like $\mathrm{nDCG@K} = \frac{DCG_{k}}{IDCG_{k}}$.
 Now, let's dive into numerator and denominator to understand the logic
-- Cumulative Gain (`CG`) is the sum of the graded relevance values of all results in a ranke result list.
+- Cumulative Gain (`CG`) is the sum of the graded relevance values of all results in a ranked result list.
 The value computed with the `CG` function is unaffected by changes in the ordering of ranked results. Thus,
 moving relevant item higher than irrelevant item does not change `CG` value
 Formula is $\mathrm{CG_{k}} = \sum_{i=1}^{k} rel_{i}$;
-As you can see, if we have binary relevance label then it is exactly equalt to Precision.
-- Discounted Cumulative Gain (`DCG`) - premise of `DCG` is that relevant items that appear lower in a recommendation
+As you can see, if we have a binary relevance label then it is exactly equal to Precision.
+- Discounted Cumulative Gain (`DCG`) - the premise of `DCG` is those relevant items that appear lower in a recommendation
 list result list should be penalized as the graded relevance value is reduced logarithmically proportional to the position of the result.
-Formula is $\mathrm{DCG_{k}} = \sum_{i=1}^{k} \frac{ 2^{rel_{i}} - 1 }{ \log_{2}(i+1)}$. This alredy gives a lot of information,
+Formula is $\mathrm{DCG_{k}} = \sum_{i=1}^{k} \frac{ 2^{rel_{i}} - 1 }{ \log_{2}(i+1)}$. This already gives a lot of information,
 but how do we know which value is good? To achieve that, we need to calculate what would be the best value
-for a given set of data. For that, Ideal DCG have been introduced
+for a given set of data. For that, Ideal DCG has been introduced
 - Ideal DCG (`IDCG`) is calculated as follows $\mathrm{IDCG@K} = \sum_{i=1}^{|REL_k|} \frac{ rel_{i} }{ \log_{2}(i+1)}$
 
 Let's consider an example, where we recommended 6 movies with relevance scores defined as [3, 2, 3, 0, 1, 2]. In the
-table, the calculation using above formula is shown to get CG@6, DCG@6, IDCG@6 and finally NDCG@6.
+table, the calculation using the above formula is shown to get CG@6, DCG@6, IDCG@6, and finally NDCG@6.
 | $i$ | movie | $rel_{i}$ | $\log_{2}(i+1)$ | $\frac{ 2^{rel_{i}} - 1 }{ \log_{2}(i+1)}$ |
 |---|---|---|---|---|
 | 1 | ozark | 3 | 1 | 7 |
