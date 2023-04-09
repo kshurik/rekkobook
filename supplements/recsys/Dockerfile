@@ -20,16 +20,14 @@ ENV POETRY_VERSION 1.4.1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONBUFFERED 1
 ENV PIP_NO_CACHE_DIR 1
+ENV PYTHONPATH /home
+ENV HOME /home
 
 RUN apt-get update && apt-get install -y \
     gcc
 
-RUN pip install "poetry==${POETRY_VERSION}"
-
-ENV VIRTUAL_ENV /opt/venv
-ENV HOME /home
-
 WORKDIR ${HOME}
 COPY . .
+RUN pip3 install -r requirements.txt
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT python3 app/api.py
