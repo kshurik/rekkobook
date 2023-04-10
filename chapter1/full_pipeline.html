@@ -240,6 +240,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -395,7 +399,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="collab_filter.html">1.4. Collaborative Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">WIP. 1.6. Full Pipeline of the Two-level RecSys</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Full Pipeline of the Two-level Recommender System</a></li>
+
+
+
+
 </ul>
 
     </div>
@@ -554,7 +562,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -567,6 +577,87 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Full Pipeline of the Two-level Recommender System
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   0. Configuration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modules-and-functions">
+   1. Modules and functions
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#helper-functions-to-avoid-copy-paste">
+     1. 1. Helper functions to avoid copy paste
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main">
+   2. Main
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-and-preprocess-data">
+     2.1. Load and preprocess data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-test-split">
+       2.1.2. Train / Test split
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lightfm-dataset-setup">
+       2.1.2 LightFM Dataset setup
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-the-model">
+     2.2. Fit the model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#catboostclassifier-reranker">
+     2.3. CatBoostClassifier (ReRanker)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-preparation">
+       2.3.1. Data preparation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-the-model">
+       2.3.2 Train the model
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source-further-recommendations">
+   Source &amp; further recommendations
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -585,6 +676,22 @@ title="Print to PDF"
 <p>First, let’s recall what we discussed in <a class="reference external" href="https://rekkobook.com/chapter1/validation_metrics.html"><code class="docutils literal notranslate"><span class="pre">Metrics</span> <span class="pre">&amp;</span> <span class="pre">Validation</span></code></a>
 In recommender systems we have special data split to validate our model - we split data by time for candidates
 and by users for reranker. Now, we move on to coding.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="configuration">
+<h1>0. Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># KION DATA</span>
+<span class="n">INTERACTIONS_PATH</span> <span class="o">=</span> <span class="s1">&#39;https://drive.google.com/file/d/1MomVjEwY2tPJ845zuHeTPt1l53GX2UKd/view?usp=share_link&#39;</span>
+<span class="n">ITEMS_METADATA_PATH</span> <span class="o">=</span> <span class="s1">&#39;https://drive.google.com/file/d/1XGLUhHpwr0NxU7T4vYNRyaqwSK5HU3N4/view?usp=share_link&#39;</span>
+<span class="n">USERS_DATA_PATH</span> <span class="o">=</span> <span class="s1">&#39;https://drive.google.com/file/d/1MCTl6hlhFYer1BTwjzIBfdBZdDS_mK8e/view?usp=share_link&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modules-and-functions">
+<h1>1. Modules and functions<a class="headerlink" href="#modules-and-functions" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># just to make it available to download w/o SSL verification</span>
@@ -629,6 +736,1052 @@ and by users for reranker. Now, we move on to coding.</p>
 </div>
 </div>
 </div>
+<section id="helper-functions-to-avoid-copy-paste">
+<h2>1. 1. Helper functions to avoid copy paste<a class="headerlink" href="#helper-functions-to-avoid-copy-paste" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_parquet_from_gdrive</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">engine</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;pyarrow&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    gets csv data from a given url (taken from file -&gt; share -&gt; copy link)</span>
+<span class="sd">    :url: example https://drive.google.com/file/d/1BlZfCLLs5A13tbNSJZ1GPkHLWQOnPlE4/view?usp=share_link</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_id</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;https://drive.google.com/uc?export=download&amp;id=&#39;</span> <span class="o">+</span> <span class="n">file_id</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="main">
+<h1>2. Main<a class="headerlink" href="#main" title="Permalink to this heading">#</a></h1>
+<section id="load-and-preprocess-data">
+<h2>2.1. Load and preprocess data<a class="headerlink" href="#load-and-preprocess-data" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">interactions</span></code> dataset shows list of movies that users watched, along with given <code class="docutils literal notranslate"><span class="pre">total_dur</span></code> in seconds and <code class="docutils literal notranslate"><span class="pre">watched_pct</span></code> proportion</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># interactions data</span>
+<span class="n">interactions</span> <span class="o">=</span> <span class="n">read_parquet_from_gdrive</span><span class="p">(</span><span class="n">INTERACTIONS_PATH</span><span class="p">)</span>
+<span class="n">interactions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user_id</th>
+      <th>item_id</th>
+      <th>last_watch_dt</th>
+      <th>total_dur</th>
+      <th>watched_pct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>176549</td>
+      <td>9506</td>
+      <td>2021-05-11</td>
+      <td>4250</td>
+      <td>72.000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>699317</td>
+      <td>1659</td>
+      <td>2021-05-29</td>
+      <td>8317</td>
+      <td>100.000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>656683</td>
+      <td>7107</td>
+      <td>2021-05-09</td>
+      <td>10</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>864613</td>
+      <td>7638</td>
+      <td>2021-07-05</td>
+      <td>14483</td>
+      <td>100.000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>964868</td>
+      <td>9506</td>
+      <td>2021-04-30</td>
+      <td>6725</td>
+      <td>100.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">movies_metadata</span></code> dataset shows the list of movies existing on OKKO platform</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># information about films etc</span>
+<span class="n">movies_metadata</span> <span class="o">=</span> <span class="n">read_parquet_from_gdrive</span><span class="p">(</span><span class="n">ITEMS_METADATA_PATH</span><span class="p">)</span>
+<span class="n">movies_metadata</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>item_id</th>
+      <th>content_type</th>
+      <th>title</th>
+      <th>title_orig</th>
+      <th>release_year</th>
+      <th>genres</th>
+      <th>countries</th>
+      <th>for_kids</th>
+      <th>age_rating</th>
+      <th>studios</th>
+      <th>directors</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>keywords</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10711</td>
+      <td>film</td>
+      <td>Поговори с ней</td>
+      <td>Hable con ella</td>
+      <td>2002.000</td>
+      <td>драмы, зарубежные, детективы, мелодрамы</td>
+      <td>Испания</td>
+      <td>NaN</td>
+      <td>16.000</td>
+      <td>None</td>
+      <td>Педро Альмодовар</td>
+      <td>Адольфо Фернандес, Ана Фернандес, Дарио Гранди...</td>
+      <td>Мелодрама легендарного Педро Альмодовара «Пого...</td>
+      <td>Поговори, ней, 2002, Испания, друзья, любовь, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2508</td>
+      <td>film</td>
+      <td>Голые перцы</td>
+      <td>Search Party</td>
+      <td>2014.000</td>
+      <td>зарубежные, приключения, комедии</td>
+      <td>США</td>
+      <td>NaN</td>
+      <td>16.000</td>
+      <td>None</td>
+      <td>Скот Армстронг</td>
+      <td>Адам Палли, Брайан Хаски, Дж.Б. Смув, Джейсон ...</td>
+      <td>Уморительная современная комедия на популярную...</td>
+      <td>Голые, перцы, 2014, США, друзья, свадьбы, прео...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10716</td>
+      <td>film</td>
+      <td>Тактическая сила</td>
+      <td>Tactical Force</td>
+      <td>2011.000</td>
+      <td>криминал, зарубежные, триллеры, боевики, комедии</td>
+      <td>Канада</td>
+      <td>NaN</td>
+      <td>16.000</td>
+      <td>None</td>
+      <td>Адам П. Калтраро</td>
+      <td>Адриан Холмс, Даррен Шалави, Джерри Вассерман,...</td>
+      <td>Профессиональный рестлер Стив Остин («Все или ...</td>
+      <td>Тактическая, сила, 2011, Канада, бандиты, ганг...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">users_data</span></code> contains basic info like gender, age group, income group and kids flag</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users_data</span> <span class="o">=</span> <span class="n">read_parquet_from_gdrive</span><span class="p">(</span><span class="n">USERS_DATA_PATH</span><span class="p">)</span>
+<span class="n">users_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user_id</th>
+      <th>age</th>
+      <th>income</th>
+      <th>sex</th>
+      <th>kids_flg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>973171</td>
+      <td>age_25_34</td>
+      <td>income_60_90</td>
+      <td>М</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>962099</td>
+      <td>age_18_24</td>
+      <td>income_20_40</td>
+      <td>М</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1047345</td>
+      <td>age_45_54</td>
+      <td>income_40_60</td>
+      <td>Ж</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>721985</td>
+      <td>age_45_54</td>
+      <td>income_20_40</td>
+      <td>Ж</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>704055</td>
+      <td>age_35_44</td>
+      <td>income_60_90</td>
+      <td>Ж</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, a bit of preprocessing to avoid noisy data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove redundant data points</span>
+<span class="n">interactions_filtered</span> <span class="o">=</span> <span class="n">interactions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">interactions</span><span class="p">[</span><span class="s1">&#39;total_dur&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">interactions</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5476251, 5) (4195689, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to datetime</span>
+<span class="n">interactions_filtered</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">interactions_filtered</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="train-test-split">
+<h3>2.1.2. Train / Test split<a class="headerlink" href="#train-test-split" title="Permalink to this heading">#</a></h3>
+<p>As we dicussed in Validation and metrics [chapter], we need time based split for candidates generation
+to avoid look-ahead bias. Therefor, let’s set date thresholds</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set dates params for filter</span>
+<span class="n">MAX_DATE</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">MIN_DATE</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">TEST_INTERVAL_DAYS</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">TEST_MAX_DATE</span> <span class="o">=</span> <span class="n">MAX_DATE</span> <span class="o">-</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="n">TEST_INTERVAL_DAYS</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;min date in filtered interactions: </span><span class="si">{</span><span class="n">MAX_DATE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;max date in filtered interactions:: </span><span class="si">{</span><span class="n">MIN_DATE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;test max date to split:: </span><span class="si">{</span><span class="n">TEST_MAX_DATE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>min date in filtered interactions: 2021-08-22 00:00:00
+max date in filtered interactions:: 2021-03-13 00:00:00
+test max date to split:: 2021-08-08 00:00:00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define global train and test</span>
+<span class="n">global_train</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">interactions_filtered</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">TEST_MAX_DATE</span><span class="p">]</span>
+<span class="n">global_test</span> <span class="o">=</span> <span class="n">interactions_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">interactions_filtered</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">TEST_MAX_DATE</span><span class="p">]</span>
+
+<span class="n">global_train</span> <span class="o">=</span> <span class="n">global_train</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">global_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">global_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3530223, 5) (665015, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we define “local” train and test to use some part of the global train for ranker</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_train_thresh</span> <span class="o">=</span> <span class="n">global_train</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span> <span class="o">=</span> <span class="mf">.7</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">local_train_thresh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-07-11 00:00:00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_train</span> <span class="o">=</span> <span class="n">global_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">global_train</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">local_train_thresh</span><span class="p">]</span>
+<span class="n">local_test</span> <span class="o">=</span> <span class="n">global_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">global_train</span><span class="p">[</span><span class="s1">&#39;last_watch_dt&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">local_train_thresh</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">local_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">local_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2451040, 5) (1079183, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Final filter, we will focus on warm start – remove cold start users</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_test</span> <span class="o">=</span> <span class="n">local_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">local_test</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">local_train</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">local_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(579382, 5)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lightfm-dataset-setup">
+<h3>2.1.2 LightFM Dataset setup<a class="headerlink" href="#lightfm-dataset-setup" title="Permalink to this heading">#</a></h3>
+<p>LightFM provides built-in Dataset class to work with and use in fitting the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># init class</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">()</span>
+
+<span class="c1"># fit tuple of user and movie interactions</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">local_train</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">local_train</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we will need mappers as usual, but with lightfm everything is easier and can be
+extracted from initiated data class <code class="docutils literal notranslate"><span class="pre">dataset</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now, we define lightfm mapper to use it later for checks</span>
+<span class="n">lightfm_mapping</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">mapping</span><span class="p">()</span>
+<span class="n">lightfm_mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;users_mapping&#39;</span><span class="p">:</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">&#39;user_features_mapping&#39;</span><span class="p">:</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;items_mapping&#39;</span><span class="p">:</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+    <span class="s1">&#39;item_features_mapping&#39;</span><span class="p">:</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;user mapper length - &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;users_mapping&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;user features mapper length - &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;user_features_mapping&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;movies mapper length - &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;items_mapping&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Users movie features mapper length - &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;item_features_mapping&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>user mapper length -  539173
+user features mapper length -  539173
+movies mapper length -  13006
+Users movie features mapper length -  13006
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inverted mappers to check recommendations</span>
+<span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;users_inv_mapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;users_mapping&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;items_inv_mapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;items_mapping&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># crate mapper for movie_id and title names</span>
+<span class="n">item_name_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">],</span> <span class="n">movies_metadata</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># special iterator to use with lightfm</span>
+<span class="k">def</span> <span class="nf">df_to_tuple_iterator</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    :df: pd.DataFrame, interactions dataframe</span>
+<span class="sd">    returs iterator</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, built dataset using <code class="docutils literal notranslate"><span class="pre">user_id</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">item_id</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># defining train set on the whole interactions dataset (as HW you will have to split into test and train for evaluation)</span>
+<span class="n">train_mat</span><span class="p">,</span> <span class="n">train_mat_weights</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">build_interactions</span><span class="p">(</span><span class="n">df_to_tuple_iterator</span><span class="p">(</span><span class="n">local_train</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;item_id&#39;</span><span class="p">]]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_mat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;539173x13006 sparse matrix of type &#39;&lt;class &#39;numpy.int32&#39;&gt;&#39;
+	with 2451040 stored elements in COOrdinate format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_mat_weights</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;539173x13006 sparse matrix of type &#39;&lt;class &#39;numpy.float32&#39;&gt;&#39;
+	with 2451040 stored elements in COOrdinate format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fit-the-model">
+<h2>2.2. Fit the model<a class="headerlink" href="#fit-the-model" title="Permalink to this heading">#</a></h2>
+<p>Set some default parameters for the model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set params</span>
+<span class="n">NO_COMPONENTS</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">LEARNING_RATE</span> <span class="o">=</span> <span class="mf">.03</span>
+<span class="n">LOSS</span> <span class="o">=</span> <span class="s1">&#39;warp&#39;</span>
+<span class="n">MAX_SAMPLED</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># init model</span>
+<span class="n">lfm_model</span> <span class="o">=</span> <span class="n">LightFM</span><span class="p">(</span>
+    <span class="n">no_components</span> <span class="o">=</span> <span class="n">NO_COMPONENTS</span><span class="p">,</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">LEARNING_RATE</span><span class="p">,</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">LOSS</span><span class="p">,</span>
+    <span class="n">max_sampled</span> <span class="o">=</span> <span class="n">MAX_SAMPLED</span><span class="p">,</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">RANDOM_STATE</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run training pipeline</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># execute training</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">EPOCHS</span><span class="p">),</span> <span class="n">total</span> <span class="o">=</span> <span class="n">EPOCHS</span><span class="p">):</span>
+    <span class="n">lfm_model</span><span class="o">.</span><span class="n">fit_partial</span><span class="p">(</span>
+        <span class="n">train_mat</span><span class="p">,</span>
+        <span class="n">num_threads</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/20 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▌         | 1/20 [00:03&lt;01:01,  3.22s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 2/20 [00:05&lt;00:45,  2.53s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|█▌        | 3/20 [00:07&lt;00:38,  2.25s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 4/20 [00:09&lt;00:33,  2.09s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▌       | 5/20 [00:10&lt;00:29,  1.98s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 6/20 [00:12&lt;00:26,  1.92s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▌      | 7/20 [00:14&lt;00:24,  1.87s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 8/20 [00:16&lt;00:21,  1.83s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 45%|████▌     | 9/20 [00:17&lt;00:19,  1.78s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 10/20 [00:19&lt;00:17,  1.75s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▌    | 11/20 [00:21&lt;00:15,  1.72s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 12/20 [00:22&lt;00:13,  1.69s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 13/20 [00:24&lt;00:11,  1.67s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 14/20 [00:25&lt;00:09,  1.65s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 15/20 [00:27&lt;00:08,  1.64s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 16/20 [00:29&lt;00:06,  1.62s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 17/20 [00:30&lt;00:04,  1.62s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 18/20 [00:32&lt;00:03,  1.61s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|█████████▌| 19/20 [00:33&lt;00:01,  1.61s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:35&lt;00:00,  1.60s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:35&lt;00:00,  1.78s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s make sense-check on the output model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">user_id</span> <span class="o">=</span> <span class="n">local_train</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">][</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">row_id</span> <span class="o">=</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;users_mapping&#39;</span><span class="p">][</span><span class="n">user_id</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Rekko for user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s1">, row number in matrix - </span><span class="si">{</span><span class="n">row_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rekko for user 713676, row number in matrix - 62
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># item indices</span>
+<span class="n">all_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;items_mapping&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">all_cols</span><span class="p">)</span>
+
+<span class="c1"># predictions</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">lfm_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">row_id</span><span class="p">,</span>
+    <span class="n">all_cols</span><span class="p">,</span>
+    <span class="n">num_threads</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">pred</span><span class="p">,</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="c1"># sort and final postprocessing</span>
+<span class="n">top_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">top_N</span><span class="p">))[</span><span class="o">-</span><span class="n">top_N</span><span class="p">:][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">top_cols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 87,   5, 435, 298, 132, 168, 675,  55,  20, 379])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pandas dataframe for convenience</span>
+<span class="n">recs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;col_id&#39;</span><span class="p">:</span> <span class="n">top_cols</span><span class="p">})</span>
+<span class="n">recs</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recs</span><span class="p">[</span><span class="s1">&#39;col_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;items_inv_mapping&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+<span class="n">recs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recs</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">item_name_mapper</span><span class="p">)</span>
+<span class="n">recs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col_id</th>
+      <th>item_id</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>87</td>
+      <td>16166</td>
+      <td>Зверополис</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+      <td>7571</td>
+      <td>100% волк</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>435</td>
+      <td>13018</td>
+      <td>Король лев (2019)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>298</td>
+      <td>13915</td>
+      <td>Вперёд</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>132</td>
+      <td>11985</td>
+      <td>История игрушек 4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>168</td>
+      <td>3182</td>
+      <td>Ральф против Интернета</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>675</td>
+      <td>13159</td>
+      <td>Рататуй</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>55</td>
+      <td>15719</td>
+      <td>Семейка Бигфутов</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>20</td>
+      <td>7626</td>
+      <td>Мстители: Война бесконечности</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>379</td>
+      <td>4718</td>
+      <td>Вверх</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In the end, we need to make predictions on all <code class="docutils literal notranslate"><span class="pre">local_test</span></code> users to use this sample to train reranker model.
+As I have mentioned earlier, in reranker we split randomly by users.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make predictions for all users in test</span>
+<span class="n">local_test_preds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">local_test</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="p">})</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">test_preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># make predictions for all users in test</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">local_test_preds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">local_test</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="p">})</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_preds</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;test_preds&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_lightfm_recs_mapper</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+        <span class="n">item_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+        <span class="n">known_items</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">user_features</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+        <span class="n">item_features</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+        <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">user_mapping</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">item_inv_mapping</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">num_threads</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_recs_mapper</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">user_mapping</span><span class="p">[</span><span class="n">user</span><span class="p">]</span>
+        <span class="n">recs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+            <span class="n">user_id</span><span class="p">,</span>
+            <span class="n">item_ids</span><span class="p">,</span>
+            <span class="n">user_features</span> <span class="o">=</span> <span class="n">user_features</span><span class="p">,</span>
+            <span class="n">item_features</span> <span class="o">=</span> <span class="n">item_features</span><span class="p">,</span>
+            <span class="n">num_threads</span> <span class="o">=</span> <span class="n">num_threads</span><span class="p">)</span>
+        
+        <span class="n">additional_N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">known_items</span><span class="p">[</span><span class="n">user_id</span><span class="p">])</span> <span class="k">if</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="n">known_items</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">total_N</span> <span class="o">=</span> <span class="n">N</span> <span class="o">+</span> <span class="n">additional_N</span>
+        <span class="n">top_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">recs</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">total_N</span><span class="p">))[</span><span class="o">-</span><span class="n">total_N</span><span class="p">:][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="n">final_recs</span> <span class="o">=</span> <span class="p">[</span><span class="n">item_inv_mapping</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_cols</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">additional_N</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">filter_items</span> <span class="o">=</span> <span class="n">known_items</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span>
+            <span class="n">final_recs</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">final_recs</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">filter_items</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">final_recs</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">_recs_mapper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># init mapper to get predictions</span>
+<span class="n">mapper</span> <span class="o">=</span> <span class="n">generate_lightfm_recs_mapper</span><span class="p">(</span>
+    <span class="n">lfm_model</span><span class="p">,</span> 
+    <span class="n">item_ids</span> <span class="o">=</span> <span class="n">all_cols</span><span class="p">,</span> 
+    <span class="n">known_items</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(),</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">top_N</span><span class="p">,</span>
+    <span class="n">user_features</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+    <span class="n">item_features</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+    <span class="n">user_mapping</span> <span class="o">=</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;users_mapping&#39;</span><span class="p">],</span>
+    <span class="n">item_inv_mapping</span> <span class="o">=</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;items_inv_mapping&#39;</span><span class="p">],</span>
+    <span class="n">num_threads</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get predictions</span>
+<span class="n">local_test_preds</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_test_preds</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Prettify predictions to use in catboost - make list to rows and add rank</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_test_preds</span> <span class="o">=</span> <span class="n">local_test_preds</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s1">&#39;item_id&#39;</span><span class="p">)</span>
+<span class="n">local_test_preds</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_test_preds</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cumcount</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> 
+<span class="n">local_test_preds</span><span class="p">[</span><span class="s1">&#39;item_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_test_preds</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">item_name_mapper</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Data shape</span><span class="si">{</span><span class="n">local_test_preds</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">test_preds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sense check for diversity of recommendations</span>
+<span class="n">test_preds</span><span class="o">.</span><span class="n">item_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="catboostclassifier-reranker">
+<h2>2.3. CatBoostClassifier (ReRanker)<a class="headerlink" href="#catboostclassifier-reranker" title="Permalink to this heading">#</a></h2>
+<section id="data-preparation">
+<h3>2.3.1. Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h3>
+<p>We need to creat 0/1 as indication of interaction:</p>
+<ul class="simple">
+<li><p>positive event – 1, if watch_pct is not null;</p></li>
+<li><p>negative venet – 0 otherwise</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">positive_preds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">test_preds</span><span class="p">,</span> <span class="n">local_test</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;item_id&#39;</span><span class="p">])</span>
+<span class="n">positive_preds</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">positive_preds</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">negative_preds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">test_preds</span><span class="p">,</span> <span class="n">local_test</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;item_id&#39;</span><span class="p">])</span>
+<span class="n">negative_preds</span> <span class="o">=</span> <span class="n">negative_preds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">negative_preds</span><span class="p">[</span><span class="s1">&#39;watched_pct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span> <span class="o">=</span> <span class="mf">.2</span><span class="p">)</span>
+<span class="n">negative_preds</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">negative_preds</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Random split by users to train reranker</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_users</span><span class="p">,</span> <span class="n">test_users</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">local_test</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+    <span class="n">test_size</span> <span class="o">=</span> <span class="mf">.2</span><span class="p">,</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="mi">13</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Set up train/test set and shuffle samples</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_train_set</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">positive_preds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">positive_preds</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">train_users</span><span class="p">)],</span>
+    <span class="n">negative_preds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">negative_preds</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">train_users</span><span class="p">)]]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_test_set</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">positive_preds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">positive_preds</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">test_users</span><span class="p">)],</span>
+    <span class="n">negative_preds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">negative_preds</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">test_users</span><span class="p">)]]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;TRAIN: </span><span class="si">{</span><span class="n">cbm_train_set</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">, TEST: </span><span class="si">{</span><span class="n">cbm_test_set</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># in this tutorial, I will not do any feature aggregation - use default ones from data</span>
+<span class="n">USER_FEATURES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;kids_flg&#39;</span><span class="p">]</span>
+<span class="n">ITEM_FEATURES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="s1">&#39;release_year&#39;</span><span class="p">,</span> <span class="s1">&#39;for_kids&#39;</span><span class="p">,</span> <span class="s1">&#39;age_rating&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Prepare final datasets - joins user and item features</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_train_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cbm_train_set</span><span class="p">,</span> <span class="n">users_data</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">USER_FEATURES</span><span class="p">],</span>
+                         <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+<span class="n">cbm_test_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cbm_test_set</span><span class="p">,</span> <span class="n">users_data</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">USER_FEATURES</span><span class="p">],</span>
+                        <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># joins item features</span>
+<span class="n">cbm_train_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cbm_train_set</span><span class="p">,</span> <span class="n">movies_metadata</span><span class="p">[[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ITEM_FEATURES</span><span class="p">],</span>
+                         <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">])</span>
+<span class="n">cbm_test_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cbm_test_set</span><span class="p">,</span> <span class="n">movies_metadata</span><span class="p">[[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ITEM_FEATURES</span><span class="p">],</span>
+                        <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cbm_train_set</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">cbm_test_set</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_train_set</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Set necessary cols to filter out sample</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ID_COLS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;item_id&#39;</span><span class="p">]</span>
+<span class="n">TARGET</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+<span class="n">CATEGORICAL_COLS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;content_type&#39;</span><span class="p">]</span>
+<span class="n">DROP_COLS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;item_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_watch_dt&#39;</span><span class="p">,</span> <span class="s1">&#39;watched_pct&#39;</span><span class="p">,</span> <span class="s1">&#39;total_dur&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">cbm_train_set</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ID_COLS</span> <span class="o">+</span> <span class="n">DROP_COLS</span> <span class="o">+</span> <span class="n">TARGET</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cbm_train_set</span><span class="p">[</span><span class="n">TARGET</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cbm_test_set</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ID_COLS</span> <span class="o">+</span> <span class="n">DROP_COLS</span> <span class="o">+</span> <span class="n">TARGET</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cbm_test_set</span><span class="p">[</span><span class="n">TARGET</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fill missing values with mode - just in case by default</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="train-the-model">
+<h3>2.3.2 Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_classifier</span> <span class="o">=</span> <span class="n">CatBoostClassifier</span><span class="p">(</span>
+    <span class="n">loss_function</span> <span class="o">=</span> <span class="s1">&#39;CrossEntropy&#39;</span><span class="p">,</span>
+    <span class="n">iterations</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">.1</span><span class="p">,</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">,</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">eval_set</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span>
+    <span class="n">early_stopping_rounds</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="c1"># to avoid overfitting,</span>
+    <span class="n">cat_features</span> <span class="o">=</span> <span class="n">CATEGORICAL_COLS</span> 
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="source-further-recommendations">
+<h1>Source &amp; further recommendations<a class="headerlink" href="#source-further-recommendations" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/code/sharthz23/implicit-lightfm/notebook">Kaggle Notebook for LightFM</a>;</p></li>
+<li><p><a class="reference external" href="https://ods.ai/tracks/mts-recsys-df2020">Recommended course from MTS RecSys team on ods.ai</a></p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -672,6 +1825,95 @@ and by users for reranker. Now, we move on to coding.</p>
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Full Pipeline of the Two-level Recommender System
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   0. Configuration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modules-and-functions">
+   1. Modules and functions
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#helper-functions-to-avoid-copy-paste">
+     1. 1. Helper functions to avoid copy paste
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main">
+   2. Main
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-and-preprocess-data">
+     2.1. Load and preprocess data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-test-split">
+       2.1.2. Train / Test split
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lightfm-dataset-setup">
+       2.1.2 LightFM Dataset setup
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-the-model">
+     2.2. Fit the model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#catboostclassifier-reranker">
+     2.3. CatBoostClassifier (ReRanker)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-preparation">
+       2.3.1. Data preparation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-the-model">
+       2.3.2 Train the model
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source-further-recommendations">
+   Source &amp; further recommendations
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>

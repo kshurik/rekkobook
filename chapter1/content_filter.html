@@ -400,7 +400,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="collab_filter.html">1.4. Collaborative Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="full_pipeline.html">WIP. 1.6. Full Pipeline of the Two-level RecSys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="full_pipeline.html">Full Pipeline of the Two-level Recommender System</a></li>
+
+
+
+
 </ul>
 
     </div>
@@ -945,7 +949,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;giant&#39;, &#39;living&#39;, &#39;invite&#39;, &#39;magical&#39;, &#39;risky&#39;, &#39;door&#39;, &#39;three&#39;, &#39;peter&#39;, &#39;siblings&#39;, &#39;rhinoceroses&#39;, &#39;judy&#39;, &#39;enchanted&#39;, &#39;game&#39;, &#39;creatures&#39;, &#39;inside&#39;, &#39;proves&#39;, &#39;years&#39;, &#39;monkeys&#39;, &#39;room&#39;, &#39;discover&#39;, &#39;adult&#39;, &#39;terrifying&#39;, &#39;world&#39;, &#39;find&#39;, &#39;hope&#39;, &#39;opens&#39;, &#39;running&#39;, &#39;finish&#39;, &#39;alan&#39;, &#39;trapped&#39;, &#39;freedom&#39;, &#39;unwittingly&#39;, &#39;board&#39;, &#39;evil&#39;], tags=[&#39;1&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;three&#39;, &#39;discover&#39;, &#39;find&#39;, &#39;enchanted&#39;, &#39;board&#39;, &#39;living&#39;, &#39;risky&#39;, &#39;adult&#39;, &#39;invite&#39;, &#39;room&#39;, &#39;rhinoceroses&#39;, &#39;years&#39;, &#39;proves&#39;, &#39;monkeys&#39;, &#39;alan&#39;, &#39;giant&#39;, &#39;inside&#39;, &#39;siblings&#39;, &#39;running&#39;, &#39;evil&#39;, &#39;door&#39;, &#39;magical&#39;, &#39;world&#39;, &#39;trapped&#39;, &#39;freedom&#39;, &#39;creatures&#39;, &#39;opens&#39;, &#39;peter&#39;, &#39;unwittingly&#39;, &#39;game&#39;, &#39;judy&#39;, &#39;hope&#39;, &#39;finish&#39;, &#39;terrifying&#39;], tags=[&#39;1&#39;])
 </pre></div>
 </div>
 </div>
@@ -1074,23 +1078,23 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>5713</td>
-      <td>0.963406</td>
+      <td>43165</td>
+      <td>0.959736</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>13835</td>
-      <td>0.957008</td>
+      <td>29872</td>
+      <td>0.957642</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>44339</td>
-      <td>0.956118</td>
+      <td>13835</td>
+      <td>0.957388</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>43461</td>
-      <td>0.955735</td>
+      <td>5713</td>
+      <td>0.956606</td>
     </tr>
   </tbody>
 </table>
@@ -1144,117 +1148,117 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>5713</td>
-      <td>0.963406</td>
-      <td>rollover</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>13835</td>
-      <td>0.957008</td>
-      <td>k2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>44339</td>
-      <td>0.956118</td>
-      <td>the underground world</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>43461</td>
-      <td>0.955735</td>
-      <td>megafault</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>7772</td>
-      <td>0.952907</td>
-      <td>this island earth</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>19227</td>
-      <td>0.952716</td>
-      <td>carbon nation</td>
-    </tr>
-    <tr>
-      <th>7</th>
       <td>43165</td>
-      <td>0.951210</td>
+      <td>0.959736</td>
       <td>the zookeeper's wife</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>29872</td>
+      <td>0.957642</td>
+      <td>angels die hard</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13835</td>
+      <td>0.957388</td>
+      <td>k2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5713</td>
+      <td>0.956606</td>
+      <td>rollover</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>19227</td>
+      <td>0.955793</td>
+      <td>carbon nation</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>18468</td>
+      <td>0.954896</td>
+      <td>the incredible petrified world</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8916</td>
+      <td>0.952117</td>
+      <td>killer klowns from outer space</td>
+    </tr>
+    <tr>
       <th>8</th>
-      <td>14178</td>
-      <td>0.949982</td>
-      <td>battle for terra</td>
+      <td>1045</td>
+      <td>0.950134</td>
+      <td>sleeper</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>34460</td>
-      <td>0.949624</td>
-      <td>maciste e la regina di samar</td>
+      <td>14178</td>
+      <td>0.950088</td>
+      <td>battle for terra</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>14741</td>
-      <td>0.948284</td>
-      <td>air force</td>
+      <td>7772</td>
+      <td>0.949606</td>
+      <td>this island earth</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>23094</td>
-      <td>0.946620</td>
-      <td>bloodrayne ii: deliverance</td>
+      <td>37792</td>
+      <td>0.948315</td>
+      <td>creature</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>2053</td>
-      <td>0.946133</td>
-      <td>the neverending story ii: the next chapter</td>
+      <td>43461</td>
+      <td>0.947665</td>
+      <td>megafault</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>2551</td>
-      <td>0.945419</td>
-      <td>it conquered the world</td>
+      <td>33298</td>
+      <td>0.946808</td>
+      <td>necessary evil</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>35181</td>
-      <td>0.945399</td>
-      <td>конек-горбунок</td>
+      <td>40600</td>
+      <td>0.946686</td>
+      <td>terminal invasion</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>18407</td>
-      <td>0.944574</td>
-      <td>the nazis - a warning from history</td>
+      <td>39131</td>
+      <td>0.946575</td>
+      <td>andron</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>4199</td>
-      <td>0.944270</td>
-      <td>NaN</td>
+      <td>43009</td>
+      <td>0.945972</td>
+      <td>ultimate avengers 2</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>24433</td>
-      <td>0.943359</td>
-      <td>the creeping terror</td>
+      <td>27111</td>
+      <td>0.945541</td>
+      <td>the threat</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>28001</td>
-      <td>0.943217</td>
-      <td>reach me</td>
+      <td>44339</td>
+      <td>0.945410</td>
+      <td>the underground world</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>29872</td>
-      <td>0.943103</td>
-      <td>angels die hard</td>
+      <td>12330</td>
+      <td>0.945403</td>
+      <td>the detonator</td>
     </tr>
   </tbody>
 </table>
