@@ -503,10 +503,13 @@ shap_values = explainer.shap_values(X_train)
 shap.summary_plot(shap_values, X_train, show = False, color_bar = False)
 ```
 
-
-
+Let's see performance of the classifier 
 ```{code-cell} ipython3
+# predictions on test
+from sklearn.metrics import roc_auc_score
+y_test_pred = cbm_classifier.predict_proba(X_test)
 
+print(f"ROC AUC score = {roc_auc_score(y_test, y_test_pred[:, 1]):.2f}")
 ```
 
 
