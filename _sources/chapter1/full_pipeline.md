@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-(chapter1_part6)=
+(chapter1_part7)=
 
 # Full Pipeline of the Two-level Recommender System
 
@@ -43,7 +43,7 @@ from lightfm import LightFM
 
 from catboost import CatBoostClassifier
 
-from tqdm import tqdm_notebook
+from tqdm import tqdm
 import warnings
 warnings.filterwarnings('ignore')
 
