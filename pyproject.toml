@@ -20,6 +20,7 @@ scipy = "1.9.3"
 implicit = "0.6.2"
 torch = "^1.13.1"
 shap = "^0.41.0"
+pyarrow = "^11.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.1.0"]

@@ -19,4 +19,4 @@ parts:
   - file: chapter1/ranker
     title: 1.5. Ranking Problem in Machine Learning
   - file: chapter1/full_pipeline
-    title: 1.6. Full Pipeline of the Two-level RecSys
+    title: [WIP]: 1.6. Full Pipeline of the Two-level RecSys
