@@ -435,6 +435,16 @@ const thebe_selector_output = ".output, .cell_output"
         </label>
     </div>
     <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="btn btn-sm"
   data-toggle="tooltip"
@@ -496,6 +506,21 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
+      <li><a href="../_sources/chapter1/full_pipeline.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
       <li><a href="../_sources/chapter1/full_pipeline.md" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
@@ -549,7 +574,7 @@ title="Print to PDF"
             <article class="bd-article" role="main">
               
   <section class="tex2jax_ignore mathjax_ignore" id="full-pipeline-of-the-two-level-recommender-system">
-<h1>Full Pipeline of the Two-level Recommender System<a class="headerlink" href="#full-pipeline-of-the-two-level-recommender-system" title="Permalink to this heading">#</a></h1>
+<span id="chapter1-part6"></span><h1>Full Pipeline of the Two-level Recommender System<a class="headerlink" href="#full-pipeline-of-the-two-level-recommender-system" title="Permalink to this heading">#</a></h1>
 <p>In this chapter, we will wrap up all steps from 1.2 to 1.5:</p>
 <ul class="simple">
 <li><p>Preprocess data with proper two-level validation;</p></li>
@@ -560,6 +585,50 @@ title="Print to PDF"
 <p>First, let’s recall what we discussed in <a class="reference external" href="https://rekkobook.com/chapter1/validation_metrics.html"><code class="docutils literal notranslate"><span class="pre">Metrics</span> <span class="pre">&amp;</span> <span class="pre">Validation</span></code></a>
 In recommender systems we have special data split to validate our model - we split data by time for candidates
 and by users for reranker. Now, we move on to coding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># just to make it available to download w/o SSL verification</span>
+<span class="kn">import</span> <span class="nn">ssl</span>
+<span class="n">ssl</span><span class="o">.</span><span class="n">_create_default_https_context</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_unverified_context</span>
+
+<span class="kn">import</span> <span class="nn">shap</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">lightfm.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">lightfm</span> <span class="kn">import</span> <span class="n">LightFM</span>
+
+<span class="kn">from</span> <span class="nn">catboost</span> <span class="kn">import</span> <span class="n">CatBoostClassifier</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.float_format&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/.cache/pypoetry/virtualenvs/rekko-handbook-y_Nwlfrq-py3.9/lib/python3.9/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+&quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+&quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+&quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+&quot;is not&quot; with a literal. Did you mean &quot;!=&quot;?
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;is not&quot; with a literal. Did you mean &quot;!=&quot;?
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

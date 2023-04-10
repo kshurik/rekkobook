@@ -1,3 +1,17 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+(chapter1_part6)=
+
 # Full Pipeline of the Two-level Recommender System
 
 In this chapter, we will wrap up all steps from 1.2 to 1.5:
