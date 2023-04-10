@@ -289,9 +289,9 @@ As I have mentioned earlier, in reranker we split randomly by users.
 ```{code-cell} ipython3
 # make predictions for all users in test
 local_test_preds = pd.DataFrame({
-    'user_id': local_test['user_id'].unique()
+    'user_id': local_test_preds['user_id'].unique()
 })
-len(test_preds)
+len(local_test_preds)
 ```
 
 ```{code-cell} ipython3
@@ -491,11 +491,16 @@ cbm_classifier.fit(
 )
 ```
 
-
-
+### 2.3.3. Model Evaluation
+Let's make basic shapley plot to investigate feature importance. We expect that `rank` - predicted
+order from LightFM - must be on top
+```{code-cell} ipython3
+explainer = shap.TreeExplainer(cbm_classifier)
+shap_values = explainer.shap_values(X_train)
+```
 
 ```{code-cell} ipython3
-
+shap.summary_plot(shap_values, X_train, show = False, color_bar = False)
 ```
 
 
