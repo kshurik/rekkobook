@@ -487,7 +487,8 @@ cbm_classifier.fit(
     X_train, y_train,
     eval_set=(X_test, y_test),
     early_stopping_rounds = 100, # to avoid overfitting,
-    cat_features = CATEGORICAL_COLS 
+    cat_features = CATEGORICAL_COLS,
+    verbose = False
 )
 ```
 
