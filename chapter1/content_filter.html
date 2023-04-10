@@ -188,6 +188,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="full_pipeline.html">
+                        1.6. Full Pipeline of the Two-level RecSys
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -307,6 +314,13 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="full_pipeline.html">
+                        1.6. Full Pipeline of the Two-level RecSys
+                      </a>
+                    </li>
+                
                 </div>
             </div>
             
@@ -386,6 +400,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="collab_filter.html">1.4. Collaborative Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="full_pipeline.html">1.6. Full Pipeline of the Two-level RecSys</a></li>
 </ul>
 
     </div>
@@ -930,7 +945,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;finish&#39;, &#39;peter&#39;, &#39;door&#39;, &#39;room&#39;, &#39;adult&#39;, &#39;world&#39;, &#39;judy&#39;, &#39;alan&#39;, &#39;board&#39;, &#39;opens&#39;, &#39;discover&#39;, &#39;years&#39;, &#39;enchanted&#39;, &#39;living&#39;, &#39;siblings&#39;, &#39;three&#39;, &#39;running&#39;, &#39;monkeys&#39;, &#39;creatures&#39;, &#39;game&#39;, &#39;risky&#39;, &#39;magical&#39;, &#39;trapped&#39;, &#39;proves&#39;, &#39;find&#39;, &#39;freedom&#39;, &#39;unwittingly&#39;, &#39;inside&#39;, &#39;giant&#39;, &#39;hope&#39;, &#39;rhinoceroses&#39;, &#39;evil&#39;, &#39;terrifying&#39;, &#39;invite&#39;], tags=[&#39;1&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;door&#39;, &#39;adult&#39;, &#39;terrifying&#39;, &#39;finish&#39;, &#39;freedom&#39;, &#39;game&#39;, &#39;inside&#39;, &#39;living&#39;, &#39;board&#39;, &#39;trapped&#39;, &#39;world&#39;, &#39;risky&#39;, &#39;invite&#39;, &#39;room&#39;, &#39;monkeys&#39;, &#39;proves&#39;, &#39;enchanted&#39;, &#39;running&#39;, &#39;evil&#39;, &#39;peter&#39;, &#39;three&#39;, &#39;rhinoceroses&#39;, &#39;magical&#39;, &#39;alan&#39;, &#39;find&#39;, &#39;hope&#39;, &#39;discover&#39;, &#39;unwittingly&#39;, &#39;years&#39;, &#39;opens&#39;, &#39;judy&#39;, &#39;giant&#39;, &#39;creatures&#39;, &#39;siblings&#39;], tags=[&#39;1&#39;])
 </pre></div>
 </div>
 </div>
@@ -1059,23 +1074,23 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>7772</td>
-      <td>0.955803</td>
+      <td>13835</td>
+      <td>0.962759</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>5713</td>
-      <td>0.951638</td>
+      <td>43009</td>
+      <td>0.957987</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>29872</td>
-      <td>0.949803</td>
+      <td>7772</td>
+      <td>0.957410</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1045</td>
-      <td>0.949130</td>
+      <td>42168</td>
+      <td>0.952733</td>
     </tr>
   </tbody>
 </table>
@@ -1129,117 +1144,117 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>7772</td>
-      <td>0.955803</td>
-      <td>this island earth</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>5713</td>
-      <td>0.951638</td>
-      <td>rollover</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>29872</td>
-      <td>0.949803</td>
-      <td>angels die hard</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1045</td>
-      <td>0.949130</td>
-      <td>sleeper</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>18468</td>
-      <td>0.945646</td>
-      <td>the incredible petrified world</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>28148</td>
-      <td>0.945040</td>
-      <td>speed cross</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>43461</td>
-      <td>0.944212</td>
-      <td>megafault</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>35181</td>
-      <td>0.942912</td>
-      <td>конек-горбунок</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>15627</td>
-      <td>0.942516</td>
-      <td>crossworlds</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>42040</td>
-      <td>0.941475</td>
-      <td>equalizer 2000</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2551</td>
-      <td>0.940723</td>
-      <td>it conquered the world</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>16179</td>
-      <td>0.939673</td>
-      <td>dishonored</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>43165</td>
-      <td>0.939566</td>
-      <td>the zookeeper's wife</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>33057</td>
-      <td>0.938959</td>
-      <td>carmen</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>38015</td>
-      <td>0.938162</td>
-      <td>trailin' west</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>20830</td>
-      <td>0.938100</td>
-      <td>iron man 3</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>27658</td>
-      <td>0.937458</td>
-      <td>giperboloid inzhenera garina</td>
-    </tr>
-    <tr>
-      <th>18</th>
       <td>13835</td>
-      <td>0.937433</td>
+      <td>0.962759</td>
       <td>k2</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>43009</td>
+      <td>0.957987</td>
+      <td>ultimate avengers 2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7772</td>
+      <td>0.957410</td>
+      <td>this island earth</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>42168</td>
+      <td>0.952733</td>
+      <td>john wick: chapter 2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>14741</td>
+      <td>0.951953</td>
+      <td>air force</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>5713</td>
+      <td>0.951116</td>
+      <td>rollover</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>38015</td>
+      <td>0.950084</td>
+      <td>trailin' west</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>29872</td>
+      <td>0.949344</td>
+      <td>angels die hard</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>19227</td>
+      <td>0.949032</td>
+      <td>carbon nation</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>25184</td>
+      <td>0.949003</td>
+      <td>penguins of madagascar</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>18468</td>
+      <td>0.948512</td>
+      <td>the incredible petrified world</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>15738</td>
+      <td>0.948484</td>
+      <td>tarzan's magic fountain</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>3536</td>
+      <td>0.948434</td>
+      <td>quatermass and the pit</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>33298</td>
+      <td>0.947874</td>
+      <td>necessary evil</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>37792</td>
+      <td>0.947767</td>
+      <td>creature</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>42860</td>
+      <td>0.947362</td>
+      <td>don't kill it</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>14178</td>
+      <td>0.947099</td>
+      <td>battle for terra</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>28864</td>
+      <td>0.946161</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
       <th>19</th>
-      <td>26857</td>
-      <td>0.935932</td>
-      <td>snow in august</td>
+      <td>28191</td>
+      <td>0.945674</td>
+      <td>jönssonligan dyker upp igen</td>
     </tr>
   </tbody>
 </table>
