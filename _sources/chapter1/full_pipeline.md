@@ -1,11 +1,17 @@
 # Full Pipeline of the Two-level Recommender System
 
 In this chapter, we will wrap up all steps from 1.2 to 1.5:
+- Preprocess data with proper two-level validation;
 - Develop candidate generation model with implicit library;
-- Then, move to Catboost and get our reranker - second level model
+- Then, move to Catboost and get our reranker - second level model;
 - Finally, evaluate our models: implicit vs implicit + reranker
 
-```
+First, let's recall what we discussed in [`Metrics & Validation`](https://rekkobook.com/chapter1/validation_metrics.html)
+In recommender systems we have special data split to validate our model - we split data by time for candidates
+and by users for reranker. Now, we move on to coding.
+
+
+```{code-cell} ipython3
 # just to make it available to download w/o SSL verification
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
