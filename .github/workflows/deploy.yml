@@ -32,6 +32,7 @@ jobs:
       run: |
         pip install poetry
         poetry install
+        poetry run pip install lightfm==1.17 --no-use-pep517
     # Build the example book
     - name: Build book
       run: |
