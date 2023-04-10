@@ -25,7 +25,7 @@ I got my masters at [International School of Economics and Finance](https://www.
 You can reach out to me via
 - Telegram: @kshurik
 - Email: khalilbekov92@gmail.com
-- LinkedIn: linkedin.com/in/skhalilbekov
+- [LinkedIn](https://www.linkedin.com/in/shkhalilbekov/)
 
 ## Motivation behind this handbook
 In most projects where I was involved classic ML models were used and there are so

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "rekko_handbook"
+name = "recsys"
 version = "0.1.0"
 description = "Rekko Handbook Dependencies"
 authors = ["Shuhrat Khalilbekov <khalilbekov92@gmail.com>"]
