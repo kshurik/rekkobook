@@ -18,7 +18,7 @@ parts:
     title: Collaborative Filtering
   - file: chapter1/ranker
     title: Ranking Problem in Machine Learning
-  - file: chapter2/full_pipeline
+  - file: chapter1/full_pipeline
     title: Full Pipeline of the Two-level RecSys
 - caption: CHAPTER 2 - PRODUCTION CODE & DEPLOYMENT
   chapters:
