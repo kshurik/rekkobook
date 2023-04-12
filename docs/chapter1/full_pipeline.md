@@ -354,12 +354,12 @@ local_test_preds = local_test_preds.explode('item_id')
 local_test_preds['rank'] = local_test_preds.groupby('user_id').cumcount() + 1 
 local_test_preds['item_name'] = local_test_preds['item_id'].map(item_name_mapper)
 print(f'Data shape{local_test_preds.shape}')
-test_preds.head()
+local_test_preds.head()
 ```
 
 ```{code-cell} ipython3
 # sense check for diversity of recommendations
-test_preds.item_id.nunique()
+local_test_preds.item_id.nunique()
 ```
 
 
@@ -376,13 +376,13 @@ We need to creat 0/1 as indication of interaction:
 - negative venet -- 0 otherwise
 
 ```{code-cell} ipython3
-positive_preds = pd.merge(test_preds, local_test, how = 'inner', on = ['user_id', 'item_id'])
+positive_preds = pd.merge(local_test_preds, local_test, how = 'inner', on = ['user_id', 'item_id'])
 positive_preds['target'] = 1
 positive_preds.shape
 ```
 
 ```{code-cell} ipython3
-negative_preds = pd.merge(test_preds, local_test, how = 'left', on = ['user_id', 'item_id'])
+negative_preds = pd.merge(local_test_preds, local_test, how = 'left', on = ['user_id', 'item_id'])
 negative_preds = negative_preds.loc[negative_preds['watched_pct'].isnull()].sample(frac = .2)
 negative_preds['target'] = 0
 negative_preds.shape
