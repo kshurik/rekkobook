@@ -35,6 +35,7 @@ that used in development today.
 
 
 # Developement tools
+## Poetry
 The first tool to use when creating production service or even any ML project to have full reproducibility
 of the results is library version control. Previously, `requirements.txt` was very popular amid developers
 and Data Scientists. It is pretty straightforward in usage -- add name and version of the library with a new line
@@ -46,3 +47,25 @@ etc.
 ```
 However, more advanced config management has been discovered [`poetry`](https://python-poetry.org/) which allows
 to use it for dependencies management and configuration file for popular devtools (we will discuss it later).
+The main features are:
+- Dependecies management - resolves all dependencies for each library in the correct order. When using requirements.txt,
+developers have to manually manage the installation and updating of dependencies. This can be time-consuming
+and error-prone, especially when dealing with complex projects that have multiple dependencies. In contrast,
+Poetry automates most of the dependency management process, making it easier to install, update, and remove dependencies.;
+- Isolated virtualenv - automatically creates virtual environment for reproducibility with given Python version
+and libraries (no need to execute by hand, just one line of command in CLI);
+- CLI interaction to manage configuration file - intuitive commands to add / remove / install dependencies;
+- BONUS: some paramters for `pylint` styling guide, etc. can be set within the same config!
+
+
+Now, let's discuss details about how to use it
+
+
+## Styling guide and code quality
+TBD
+
+
+## Makefile
+TBD
+
+
