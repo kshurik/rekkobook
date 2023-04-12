@@ -392,12 +392,16 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">1.0. Introduction to Recommendation Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="baseline.html">1.1. Baseline Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">1.2. Metrics &amp; Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_filter.html">1.3. Content-Based Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collab_filter.html">1.4. Collaborative Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_filter.html">Content-based Filtering in a Nutshell</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="collab_filter.html">Collaborative Filtering</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
+
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Full Pipeline of the Two-level Recommender System</a></li>
 
@@ -649,6 +653,11 @@ title="Print to PDF"
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#model-evaluation">
        2.3.3. Model Evaluation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#evaluation-on-global-test">
+       2.4. Evaluation on global test
       </a>
      </li>
     </ul>
@@ -1290,67 +1299,67 @@ Users movie features mapper length -  13006
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/20 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▌         | 1/20 [00:02&lt;00:56,  2.97s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▌         | 1/20 [00:03&lt;01:11,  3.76s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 2/20 [00:05&lt;00:43,  2.43s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 2/20 [00:06&lt;00:53,  2.96s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|█▌        | 3/20 [00:06&lt;00:37,  2.19s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|█▌        | 3/20 [00:08&lt;00:44,  2.63s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 4/20 [00:08&lt;00:32,  2.05s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 4/20 [00:10&lt;00:38,  2.43s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▌       | 5/20 [00:10&lt;00:29,  1.95s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▌       | 5/20 [00:12&lt;00:35,  2.34s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 6/20 [00:12&lt;00:26,  1.91s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 6/20 [00:14&lt;00:31,  2.27s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▌      | 7/20 [00:14&lt;00:24,  1.86s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▌      | 7/20 [00:16&lt;00:28,  2.21s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 8/20 [00:15&lt;00:21,  1.83s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 8/20 [00:18&lt;00:25,  2.16s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 45%|████▌     | 9/20 [00:17&lt;00:19,  1.78s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 45%|████▌     | 9/20 [00:20&lt;00:23,  2.10s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 10/20 [00:19&lt;00:17,  1.76s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 10/20 [00:22&lt;00:20,  2.04s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▌    | 11/20 [00:20&lt;00:15,  1.72s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▌    | 11/20 [00:24&lt;00:17,  1.99s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 12/20 [00:22&lt;00:13,  1.71s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 12/20 [00:26&lt;00:15,  1.96s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 13/20 [00:24&lt;00:11,  1.67s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 13/20 [00:28&lt;00:13,  1.93s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 14/20 [00:25&lt;00:10,  1.68s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 14/20 [00:30&lt;00:11,  1.91s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 15/20 [00:27&lt;00:08,  1.65s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 15/20 [00:32&lt;00:09,  1.88s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 16/20 [00:29&lt;00:06,  1.64s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 16/20 [00:33&lt;00:07,  1.87s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 17/20 [00:30&lt;00:04,  1.62s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 17/20 [00:35&lt;00:05,  1.85s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 18/20 [00:32&lt;00:03,  1.61s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 18/20 [00:37&lt;00:03,  1.83s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|█████████▌| 19/20 [00:33&lt;00:01,  1.59s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|█████████▌| 19/20 [00:39&lt;00:01,  1.81s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:35&lt;00:00,  1.59s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:41&lt;00:00,  1.80s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:35&lt;00:00,  1.77s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:41&lt;00:00,  2.06s/it]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1394,7 +1403,7 @@ Users movie features mapper length -  13006
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  5, 168,  20,  87, 435, 302, 298, 506,  55, 530])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([435,   5,  20, 177, 298, 225, 302, 575,  87, 146])
 </pre></div>
 </div>
 </div>
@@ -1436,15 +1445,15 @@ Users movie features mapper length -  13006
   <tbody>
     <tr>
       <th>0</th>
-      <td>5</td>
-      <td>7571</td>
-      <td>100% волк</td>
+      <td>435</td>
+      <td>13018</td>
+      <td>Король лев (2019)</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>168</td>
-      <td>3182</td>
-      <td>Ральф против Интернета</td>
+      <td>5</td>
+      <td>7571</td>
+      <td>100% волк</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1454,45 +1463,45 @@ Users movie features mapper length -  13006
     </tr>
     <tr>
       <th>3</th>
-      <td>87</td>
-      <td>16166</td>
-      <td>Зверополис</td>
+      <td>177</td>
+      <td>4475</td>
+      <td>Тачки</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>435</td>
-      <td>13018</td>
-      <td>Король лев (2019)</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>302</td>
-      <td>12173</td>
-      <td>Мстители: Финал</td>
-    </tr>
-    <tr>
-      <th>6</th>
       <td>298</td>
       <td>13915</td>
       <td>Вперёд</td>
     </tr>
     <tr>
+      <th>5</th>
+      <td>225</td>
+      <td>10942</td>
+      <td>Мстители</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>302</td>
+      <td>12173</td>
+      <td>Мстители: Финал</td>
+    </tr>
+    <tr>
       <th>7</th>
-      <td>506</td>
-      <td>10761</td>
-      <td>Моана</td>
+      <td>575</td>
+      <td>2956</td>
+      <td>Король Лев</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>55</td>
-      <td>15719</td>
-      <td>Семейка Бигфутов</td>
+      <td>87</td>
+      <td>16166</td>
+      <td>Зверополис</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>530</td>
-      <td>5411</td>
-      <td>Монстры на каникулах 3: Море зовёт</td>
+      <td>146</td>
+      <td>11310</td>
+      <td>Аладдин</td>
     </tr>
   </tbody>
 </table>
@@ -1772,7 +1781,8 @@ As I have mentioned earlier, in reranker we split randomly by users.</p>
     <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
     <span class="n">eval_set</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span>
     <span class="n">early_stopping_rounds</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="c1"># to avoid overfitting,</span>
-    <span class="n">cat_features</span> <span class="o">=</span> <span class="n">CATEGORICAL_COLS</span> 
+    <span class="n">cat_features</span> <span class="o">=</span> <span class="n">CATEGORICAL_COLS</span><span class="p">,</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1798,6 +1808,178 @@ order from LightFM - must be on top</p>
 </div>
 </div>
 </div>
+<p>Let’s see performance of the classifier</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># predictions on test</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">cbm_classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ROC AUC score = </span><span class="si">{</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test_pred</span><span class="p">[:,</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evaluation-on-global-test">
+<h3>2.4. Evaluation on global test<a class="headerlink" href="#evaluation-on-global-test" title="Permalink to this heading">#</a></h3>
+<p>Here, compare predictions of two models - LightFM vs LightFM + CatBoost.
+First, let’s calculate predictions from both models - here we generate candidates via LightFM.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">global_test_predictions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">global_test</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+<span class="c1"># filter out cold start users</span>
+<span class="n">global_test_predictions</span> <span class="o">=</span> <span class="n">global_test_predictions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">global_test_predictions</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">local_train</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set param for number of candidates</span>
+<span class="n">top_k</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># generate list of watched titles to filter</span>
+<span class="n">watched_movies</span> <span class="o">=</span> <span class="n">local_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="n">mapper</span> <span class="o">=</span> <span class="n">generate_lightfm_recs_mapper</span><span class="p">(</span>
+    <span class="n">lfm_model</span><span class="p">,</span> 
+    <span class="n">item_ids</span> <span class="o">=</span> <span class="n">all_cols</span><span class="p">,</span> 
+    <span class="n">known_items</span> <span class="o">=</span> <span class="n">watched_movies</span><span class="p">,</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">top_k</span><span class="p">,</span>
+    <span class="n">user_features</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+    <span class="n">item_features</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+    <span class="n">user_mapping</span> <span class="o">=</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;users_mapping&#39;</span><span class="p">],</span>
+    <span class="n">item_inv_mapping</span> <span class="o">=</span> <span class="n">lightfm_mapping</span><span class="p">[</span><span class="s1">&#39;items_inv_mapping&#39;</span><span class="p">],</span>
+    <span class="n">num_threads</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="p">)</span>
+
+<span class="n">global_test_predictions</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_test_predictions</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">)</span>
+<span class="n">global_test_predictions</span> <span class="o">=</span> <span class="n">global_test_predictions</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s1">&#39;item_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">global_test_predictions</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_test_predictions</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cumcount</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can move to reranker to make predictions and make new order.
+Beforehand, we need to prepare data for reranker</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_global_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">global_test_predictions</span><span class="p">,</span> <span class="n">users_data</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">USER_FEATURES</span><span class="p">],</span>
+                         <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+
+<span class="n">cbm_global_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cbm_global_test</span><span class="p">,</span> <span class="n">movies_metadata</span><span class="p">[[</span><span class="s1">&#39;item_id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ITEM_FEATURES</span><span class="p">],</span>
+                         <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">])</span>
+<span class="n">cbm_global_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fill missing values with the most frequent values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_global_test</span> <span class="o">=</span> <span class="n">cbm_global_test</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">cbm_global_test</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Predict scores to get ranks</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbm_global_test</span><span class="p">[</span><span class="s1">&#39;cbm_preds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cbm_classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">cbm_global_test</span><span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">])[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">cbm_global_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define cbm rank</span>
+<span class="n">cbm_global_test</span> <span class="o">=</span> <span class="n">cbm_global_test</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;cbm_preds&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+<span class="n">cbm_global_test</span><span class="p">[</span><span class="s1">&#39;cbm_rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cbm_global_test</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cumcount</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">cbm_global_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, let’s move on to comparison</p>
+<ul class="simple">
+<li><p>define function to calculate matrix-based metrics;</p></li>
+<li><p>create table of metrics for both models</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_metrics</span><span class="p">(</span><span class="n">df_true</span><span class="p">,</span> <span class="n">df_pred</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">target_col</span> <span class="o">=</span> <span class="s1">&#39;rank&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculates confusion matrix based metrics</span>
+<span class="sd">    :df_true: pd.DataFrame</span>
+<span class="sd">    :df_pred: pd.DataFrame</span>
+<span class="sd">    :k: int, </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># prepare dataset</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_true</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;item_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_pred</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;item_id&#39;</span><span class="p">]))</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">target_col</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;users_watch_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span> <span class="o">=</span> <span class="s1">&#39;user_id&#39;</span><span class="p">)[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cumulative_rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span> <span class="o">=</span> <span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cumcount</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cumulative_rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cumulative_rank&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>
+    
+    <span class="c1"># params to calculate metrics</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">num_of_users</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+
+    <span class="c1"># calc metrics</span>
+    <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;hit@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">k</span>
+    <span class="n">output</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Precision@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;hit@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">num_of_users</span>
+    <span class="n">output</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Recall@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;hit@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;users_watch_count&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">num_of_users</span>
+    <span class="n">output</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;MAP@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cumulative_rank&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;users_watch_count&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">num_of_users</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Calculated metrics for top </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first-level only - LightFM</span>
+<span class="n">lfm_metrics</span> <span class="o">=</span> <span class="n">calc_metrics</span><span class="p">(</span><span class="n">global_test</span><span class="p">,</span> <span class="n">global_test_predictions</span><span class="p">)</span>
+<span class="n">lfm_metrics</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LightFM + ReRanker</span>
+<span class="n">full_pipeline_metrics</span> <span class="o">=</span> <span class="n">calc_metrics</span><span class="p">(</span><span class="n">global_test</span><span class="p">,</span> <span class="n">cbm_global_test</span><span class="p">,</span> <span class="n">target_col</span> <span class="o">=</span> <span class="s1">&#39;cbm_rank&#39;</span><span class="p">)</span>
+<span class="n">full_pipeline_metrics</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Prettify both metrics calculation results for convenience</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">lfm_metrics</span><span class="p">]),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">full_pipeline_metrics</span><span class="p">])],</span>
+    <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">metrics_table</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LightFM&#39;</span><span class="p">,</span> <span class="s1">&#39;FullPipeline&#39;</span><span class="p">]</span>
+
+<span class="c1"># calc relative diff</span>
+<span class="n">metrics_table</span> <span class="o">=</span> <span class="n">metrics_table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metrics_table</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;lift_by_ranker, %&#39;</span><span class="p">))</span>
+
+<span class="n">metrics_table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, with a few number of features we could signifficantly improve our metrics using reranker.
+Just imagine how it can be improved if we add more features and fine tune the model</p>
 </section>
 </section>
 </section>
@@ -1927,6 +2109,11 @@ order from LightFM - must be on top</p>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#model-evaluation">
        2.3.3. Model Evaluation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#evaluation-on-global-test">
+       2.4. Evaluation on global test
       </a>
      </li>
     </ul>

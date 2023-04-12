@@ -395,12 +395,16 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">1.0. Introduction to Recommendation Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="baseline.html">1.1. Baseline Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">1.2. Metrics &amp; Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_filter.html">1.3. Content-Based Filtering</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.4. Collaborative Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_filter.html">Content-based Filtering in a Nutshell</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Collaborative Filtering</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
+
 
 <li class="toctree-l1"><a class="reference internal" href="full_pipeline.html">Full Pipeline of the Two-level Recommender System</a></li>
 
@@ -585,77 +589,89 @@ title="Print to PDF"
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#memory-based-collaborative-filtering">
-   Memory-based Collaborative Filtering
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Collaborative Filtering
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-based-collaborative-filtering">
-   Model-based Collaborative Filtering
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-python-implementations">
-   Other Python Implementations
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configuration">
-     0. Configuration
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memory-based-collaborative-filtering">
+     Memory-based Collaborative Filtering
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modules-and-functions">
-     1. Modules and functions
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-based-collaborative-filtering">
+     Model-based Collaborative Filtering
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#helper-functions-to-avoid-copy-paste">
-       1. 1. Helper functions to avoid copy paste
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#main">
-     2. Main
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-python-implementations">
+     Other Python Implementations
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#load-data">
-       2.1. Load Data
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#configuration">
+       0. Configuration
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#data-preparation">
-       2.2 Data preparation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-training-evaluation">
-       2.3. Model Training &amp; Evaluation
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modules-and-functions">
+       1. Modules and functions
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#train-model">
-         2.3.1. Train Model
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#helper-functions-to-avoid-copy-paste">
+         1. 1. Helper functions to avoid copy paste
         </a>
        </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#evaluate-the-model">
-         2.3.2. Evaluate the Model
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#main">
+       2. Main
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#load-data">
+         2.1. Load Data
         </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#data-preparation">
+         2.2 Data preparation
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#model-training-evaluation">
+         2.3. Model Training &amp; Evaluation
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#train-model">
+           2.3.1. Train Model
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#evaluate-the-model">
+           2.3.2. Evaluate the Model
+          </a>
+         </li>
+        </ul>
        </li>
       </ul>
      </li>
     </ul>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hybrid-approaches">
+     Hybrid Approaches
+    </a>
+   </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hybrid-approaches">
-   Hybrid Approaches
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source-further-recommendations">
+   Source &amp; further recommendations
   </a>
  </li>
 </ul>
@@ -1291,7 +1307,7 @@ of the method can be found <a class="reference external" href="https://code.them
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/671 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 671/671 [00:00&lt;00:00, 66376.84it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 671/671 [00:00&lt;00:00, 63281.42it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1470,6 +1486,14 @@ recommendations using a memory-based approach. This approach can be effective in
 matrix is very sparse and a model-based approach is needed to make accurate predictions.</p>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="source-further-recommendations">
+<h1>Source &amp; further recommendations<a class="headerlink" href="#source-further-recommendations" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developers.google.com/machine-learning/recommendation/collaborative/basics">Easy intro to Collaborative Filtering by Google</a></p></li>
+<li><p>Series of articles on Medium: <a class="reference external" href="https://towardsdatascience.com/collaborative-filtering-and-embeddings-part-1-63b00b9739ce">Part 1</a>,
+<a class="reference external" href="https://towardsdatascience.com/collaborative-filtering-and-embeddings-part-2-919da17ecefb">Part 2</a></p></li>
+</ul>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1529,77 +1553,89 @@ matrix is very sparse and a model-based approach is needed to make accurate pred
 </div>
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#memory-based-collaborative-filtering">
-   Memory-based Collaborative Filtering
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Collaborative Filtering
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-based-collaborative-filtering">
-   Model-based Collaborative Filtering
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-python-implementations">
-   Other Python Implementations
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configuration">
-     0. Configuration
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memory-based-collaborative-filtering">
+     Memory-based Collaborative Filtering
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modules-and-functions">
-     1. Modules and functions
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-based-collaborative-filtering">
+     Model-based Collaborative Filtering
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#helper-functions-to-avoid-copy-paste">
-       1. 1. Helper functions to avoid copy paste
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#main">
-     2. Main
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-python-implementations">
+     Other Python Implementations
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#load-data">
-       2.1. Load Data
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#configuration">
+       0. Configuration
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#data-preparation">
-       2.2 Data preparation
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-training-evaluation">
-       2.3. Model Training &amp; Evaluation
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modules-and-functions">
+       1. Modules and functions
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#train-model">
-         2.3.1. Train Model
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#helper-functions-to-avoid-copy-paste">
+         1. 1. Helper functions to avoid copy paste
         </a>
        </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#evaluate-the-model">
-         2.3.2. Evaluate the Model
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#main">
+       2. Main
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#load-data">
+         2.1. Load Data
         </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#data-preparation">
+         2.2 Data preparation
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#model-training-evaluation">
+         2.3. Model Training &amp; Evaluation
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#train-model">
+           2.3.1. Train Model
+          </a>
+         </li>
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#evaluate-the-model">
+           2.3.2. Evaluate the Model
+          </a>
+         </li>
+        </ul>
        </li>
       </ul>
      </li>
     </ul>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hybrid-approaches">
+     Hybrid Approaches
+    </a>
+   </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hybrid-approaches">
-   Hybrid Approaches
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source-further-recommendations">
+   Source &amp; further recommendations
   </a>
  </li>
 </ul>

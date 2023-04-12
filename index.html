@@ -392,12 +392,16 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapter1/intro_to_rekko.html">1.0. Introduction to Recommendation Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter1/intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="chapter1/baseline.html">1.1. Baseline Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter1/validation_metrics.html">1.2. Metrics &amp; Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter1/content_filter.html">1.3. Content-Based Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter1/collab_filter.html">1.4. Collaborative Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter1/content_filter.html">Content-based Filtering in a Nutshell</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="chapter1/collab_filter.html">Collaborative Filtering</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="chapter1/ranker.html">Ranking Problem</a></li>
+
 
 <li class="toctree-l1"><a class="reference internal" href="chapter1/full_pipeline.html">Full Pipeline of the Two-level Recommender System</a></li>
 
@@ -572,6 +576,11 @@ title="Print to PDF"
    Few words about the structure
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feedback">
+   Feedback
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -603,7 +612,7 @@ finally – online streaming platform OKKO.</p>
 (Higher School of Economics) and before that BSc in Economics minoring in Data Science</p>
 <p>You can reach out to me via</p>
 <ul class="simple">
-<li><p>Telegram: &#64;kshurik</p></li>
+<li><p>Telegram/IG: &#64;kshurik</p></li>
 <li><p>Email: <a class="reference external" href="mailto:khalilbekov92&#37;&#52;&#48;gmail&#46;com">khalilbekov92<span>&#64;</span>gmail<span>&#46;</span>com</a></p></li>
 <li><p><a class="reference external" href="https://www.linkedin.com/in/shkhalilbekov/">LinkedIn</a></p></li>
 </ul>
@@ -617,7 +626,7 @@ problems because they face many difficulties in production-ready usage: custom
 backend architecture, data streaming, runtime latency, heavy models for embeddings, etc.
 Unfortunately, I could not find a resource where all this knowledge would be up-to-date
 with an overview of various algorithms explained in theory and backed up by code.
-Therefore, I decided to refresh everything I did and learn and structure it into
+Therefore, I decided to refresh everything I did and learnt and structure it into
 a useful handbook. First of all, it will help me to understand and memorize most stuff
 efficiently. Also, it may help many of you to get to know this field
 in ML and even allow you to develop good-performing models in production.</p>
@@ -625,7 +634,10 @@ in ML and even allow you to develop good-performing models in production.</p>
 to process the content. Well, I am not a math and tech guy myself as you can see
 from my degrees :) (even though math in our uni was hell!)</p>
 <p>Thus, in this handbook, you will find an understandable overview of the most popular topics
-in recommendation and ranking with practical examples in jupyter notebooks.</p>
+in recommendation and ranking with practical examples in jupyter notebooks.
+Finally, I would like to thank all course creators where I learnt and used materials</p>
+<p>Oh, and by the way, checkout my collaborator’s book about classic ML -
+<a class="reference external" href="https://themlsbook.com/">The Machine Learning Simplified</a>. Great intro to ML with code as well.</p>
 </section>
 <section id="few-words-about-the-structure">
 <h2>Few words about the structure<a class="headerlink" href="#few-words-about-the-structure" title="Permalink to this heading">#</a></h2>
@@ -640,10 +652,18 @@ with necessary dependencies to replicate the pipeline without copypasting from t
 <ul class="simple">
 <li><p>In Chapter 1 we will discuss the architecture of recommendation systems, models, and various implementations;</p></li>
 <li><p>Then, Chapter 2 is going to be all about deployment - building RecSys microservice using various frameworks
-with an explanation of those frameworks, pros &amp; cons, etc.;</p></li>
+with an explanation of those frameworks, pros &amp; cons, etc.. This chapter mostly about coding;</p></li>
 <li><p>Finally, we are going dive into the product part - estimation of experiments for our models, metrics to consider
-and other cool stuff that allows us to understand whether we bring value to business by developing different models</p></li>
+and other cool stuff that allows us to understand whether we bring value to business by developing different models.
+In this module more theory and coding is expected.</p></li>
 </ul>
+</section>
+<section id="feedback">
+<h2>Feedback<a class="headerlink" href="#feedback" title="Permalink to this heading">#</a></h2>
+<p>This is my first time writting a handbook and something this important for me.
+I would be glad to get your feedback to improve content / mistakes and further work.
+You can reach out to me in DM via contacts mentioned above or open issues in github
+on upper-right of each jupyter-book page</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -713,6 +733,11 @@ and other cool stuff that allows us to understand whether we bring value to busi
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#few-words-about-the-structure">
    Few words about the structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feedback">
+   Feedback
   </a>
  </li>
 </ul>

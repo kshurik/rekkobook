@@ -393,12 +393,16 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">1.0. Introduction to Recommendation Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="baseline.html">1.1. Baseline Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">1.2. Metrics &amp; Validation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.3. Content-Based Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collab_filter.html">1.4. Collaborative Filtering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Content-based Filtering in a Nutshell</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="collab_filter.html">Collaborative Filtering</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
+
 
 <li class="toctree-l1"><a class="reference internal" href="full_pipeline.html">Full Pipeline of the Two-level Recommender System</a></li>
 
@@ -583,58 +587,70 @@ title="Print to PDF"
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#embeddings-explained">
-   Embeddings Explained
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Content-based Filtering in a Nutshell
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#content-based-filtering">
-   Content-based Filtering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gensim-example-of-content-based-recommendations-based-on-doc2vec-approach">
-     gensim: example of content-based recommendations based on Doc2Vec approach
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embeddings-explained">
+     Embeddings Explained
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-based-filtering">
+     Content-based Filtering
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#configuration">
-       0. Configuration
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#modules-and-functions">
-       1. Modules and functions
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gensim-example-of-content-based-recommendations-based-on-doc2vec-approach">
+       gensim: example of content-based recommendations based on Doc2Vec approach
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#helper-functions-to-avoid-copypaste">
-         1.1. Helper functions to avoid copypaste
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#configuration">
+         0. Configuration
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#modules-and-functions">
+         1. Modules and functions
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#helper-functions-to-avoid-copypaste">
+           1.1. Helper functions to avoid copypaste
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#main">
+         2. Main
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#data-preparation">
+           2.1. Data Preparation
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#model-training-and-evaluation">
+         2.2. Model Training and Evaluation
         </a>
        </li>
       </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#main">
-       2. Main
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#data-preparation">
-         2.1. Data Preparation
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-training-and-evaluation">
-       2.2. Model Training and Evaluation
-      </a>
      </li>
     </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source-further-recommendations">
+   Source &amp; further recommendations
+  </a>
  </li>
 </ul>
 
@@ -949,7 +965,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;find&#39;, &#39;peter&#39;, &#39;adult&#39;, &#39;risky&#39;, &#39;monkeys&#39;, &#39;running&#39;, &#39;judy&#39;, &#39;proves&#39;, &#39;game&#39;, &#39;discover&#39;, &#39;unwittingly&#39;, &#39;freedom&#39;, &#39;terrifying&#39;, &#39;rhinoceroses&#39;, &#39;evil&#39;, &#39;years&#39;, &#39;finish&#39;, &#39;inside&#39;, &#39;alan&#39;, &#39;door&#39;, &#39;three&#39;, &#39;creatures&#39;, &#39;enchanted&#39;, &#39;living&#39;, &#39;board&#39;, &#39;opens&#39;, &#39;world&#39;, &#39;room&#39;, &#39;siblings&#39;, &#39;trapped&#39;, &#39;invite&#39;, &#39;giant&#39;, &#39;magical&#39;, &#39;hope&#39;], tags=[&#39;1&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;game&#39;, &#39;creatures&#39;, &#39;freedom&#39;, &#39;discover&#39;, &#39;find&#39;, &#39;risky&#39;, &#39;giant&#39;, &#39;enchanted&#39;, &#39;magical&#39;, &#39;rhinoceroses&#39;, &#39;door&#39;, &#39;alan&#39;, &#39;running&#39;, &#39;opens&#39;, &#39;invite&#39;, &#39;three&#39;, &#39;evil&#39;, &#39;siblings&#39;, &#39;adult&#39;, &#39;years&#39;, &#39;monkeys&#39;, &#39;finish&#39;, &#39;hope&#39;, &#39;world&#39;, &#39;board&#39;, &#39;trapped&#39;, &#39;inside&#39;, &#39;terrifying&#39;, &#39;unwittingly&#39;, &#39;room&#39;, &#39;peter&#39;, &#39;proves&#39;, &#39;judy&#39;, &#39;living&#39;], tags=[&#39;1&#39;])
 </pre></div>
 </div>
 </div>
@@ -1078,23 +1094,23 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>13835</td>
-      <td>0.959818</td>
+      <td>19227</td>
+      <td>0.952458</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>8916</td>
-      <td>0.958697</td>
+      <td>2551</td>
+      <td>0.952333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>44339</td>
-      <td>0.957311</td>
+      <td>29872</td>
+      <td>0.950133</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5713</td>
-      <td>0.955818</td>
+      <td>0.947769</td>
     </tr>
   </tbody>
 </table>
@@ -1148,117 +1164,117 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>13835</td>
-      <td>0.959818</td>
-      <td>k2</td>
+      <td>19227</td>
+      <td>0.952458</td>
+      <td>carbon nation</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>8916</td>
-      <td>0.958697</td>
-      <td>killer klowns from outer space</td>
+      <td>2551</td>
+      <td>0.952333</td>
+      <td>it conquered the world</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>44339</td>
-      <td>0.957311</td>
-      <td>the underground world</td>
+      <td>29872</td>
+      <td>0.950133</td>
+      <td>angels die hard</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5713</td>
-      <td>0.955818</td>
+      <td>0.947769</td>
       <td>rollover</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>43165</td>
-      <td>0.955552</td>
-      <td>the zookeeper's wife</td>
+      <td>33808</td>
+      <td>0.947333</td>
+      <td>gong fu chu shen</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>29872</td>
-      <td>0.953289</td>
-      <td>angels die hard</td>
+      <td>11256</td>
+      <td>0.946314</td>
+      <td>sun faa sau si</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>37792</td>
-      <td>0.952815</td>
-      <td>creature</td>
+      <td>13835</td>
+      <td>0.945232</td>
+      <td>k2</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>19227</td>
-      <td>0.951459</td>
-      <td>carbon nation</td>
+      <td>19641</td>
+      <td>0.945218</td>
+      <td>astérix &amp; obélix - au service de sa majesté</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>6816</td>
-      <td>0.948683</td>
-      <td>death machine</td>
+      <td>7772</td>
+      <td>0.945208</td>
+      <td>this island earth</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>42040</td>
-      <td>0.948074</td>
-      <td>equalizer 2000</td>
+      <td>24433</td>
+      <td>0.944307</td>
+      <td>the creeping terror</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>2175</td>
-      <td>0.946959</td>
-      <td>NaN</td>
+      <td>35181</td>
+      <td>0.943675</td>
+      <td>конек-горбунок</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>3824</td>
-      <td>0.946878</td>
-      <td>requiem for a dream</td>
+      <td>27658</td>
+      <td>0.943637</td>
+      <td>giperboloid inzhenera garina</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>7772</td>
-      <td>0.946626</td>
-      <td>this island earth</td>
+      <td>43009</td>
+      <td>0.942227</td>
+      <td>ultimate avengers 2</td>
     </tr>
     <tr>
       <th>14</th>
       <td>40695</td>
-      <td>0.945576</td>
+      <td>0.942082</td>
       <td>krakh inzhenera garina</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>43461</td>
-      <td>0.945535</td>
-      <td>megafault</td>
+      <td>15627</td>
+      <td>0.941938</td>
+      <td>crossworlds</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>1045</td>
-      <td>0.945365</td>
-      <td>sleeper</td>
+      <td>2175</td>
+      <td>0.941849</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>5373</td>
-      <td>0.943571</td>
-      <td>xxx</td>
+      <td>28001</td>
+      <td>0.941620</td>
+      <td>reach me</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>12555</td>
-      <td>0.943553</td>
-      <td>where in the world is osama bin laden?</td>
+      <td>40432</td>
+      <td>0.941391</td>
+      <td>mostly ghostly 3: one night in doom house</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>28191</td>
-      <td>0.943413</td>
-      <td>jönssonligan dyker upp igen</td>
+      <td>37792</td>
+      <td>0.940110</td>
+      <td>creature</td>
     </tr>
   </tbody>
 </table>
@@ -1267,6 +1283,12 @@ To do that we need:</p>
 </section>
 </section>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="source-further-recommendations">
+<h1>Source &amp; further recommendations<a class="headerlink" href="#source-further-recommendations" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jalammar.github.io/illustrated-word2vec/">Deep explanation of Word2Vec and embeddings</a></p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1327,58 +1349,70 @@ To do that we need:</p>
 </div>
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#embeddings-explained">
-   Embeddings Explained
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Content-based Filtering in a Nutshell
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#content-based-filtering">
-   Content-based Filtering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gensim-example-of-content-based-recommendations-based-on-doc2vec-approach">
-     gensim: example of content-based recommendations based on Doc2Vec approach
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embeddings-explained">
+     Embeddings Explained
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-based-filtering">
+     Content-based Filtering
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#configuration">
-       0. Configuration
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#modules-and-functions">
-       1. Modules and functions
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gensim-example-of-content-based-recommendations-based-on-doc2vec-approach">
+       gensim: example of content-based recommendations based on Doc2Vec approach
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#helper-functions-to-avoid-copypaste">
-         1.1. Helper functions to avoid copypaste
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#configuration">
+         0. Configuration
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#modules-and-functions">
+         1. Modules and functions
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#helper-functions-to-avoid-copypaste">
+           1.1. Helper functions to avoid copypaste
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#main">
+         2. Main
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h5 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#data-preparation">
+           2.1. Data Preparation
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#model-training-and-evaluation">
+         2.2. Model Training and Evaluation
         </a>
        </li>
       </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#main">
-       2. Main
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#data-preparation">
-         2.1. Data Preparation
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-training-and-evaluation">
-       2.2. Model Training and Evaluation
-      </a>
      </li>
     </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source-further-recommendations">
+   Source &amp; further recommendations
+  </a>
  </li>
 </ul>
 

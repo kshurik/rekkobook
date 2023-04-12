@@ -376,3 +376,8 @@ a model effectively but there is enough data to identify similar users or items 
 Another approach is to use a model-based approach to generate initial recommendations and then refine the
 recommendations using a memory-based approach. This approach can be effective in situations where the user-item
 matrix is very sparse and a model-based approach is needed to make accurate predictions.
+
+# Source & further recommendations
+- [Easy intro to Collaborative Filtering by Google](https://developers.google.com/machine-learning/recommendation/collaborative/basics)
+- Series of articles on Medium: [Part 1](https://towardsdatascience.com/collaborative-filtering-and-embeddings-part-1-63b00b9739ce),
+[Part 2](https://towardsdatascience.com/collaborative-filtering-and-embeddings-part-2-919da17ecefb)

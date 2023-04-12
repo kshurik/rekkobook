@@ -241,6 +241,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -389,12 +393,16 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.0. Introduction to Recommendation Problem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Recommendation Problem</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="baseline.html">1.1. Baseline Implementation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_metrics.html">1.2. Metrics &amp; Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_filter.html">1.3. Content-Based Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collab_filter.html">1.4. Collaborative Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_filter.html">Content-based Filtering in a Nutshell</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="collab_filter.html">Collaborative Filtering</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
+
 
 <li class="toctree-l1"><a class="reference internal" href="full_pipeline.html">Full Pipeline of the Two-level Recommender System</a></li>
 
@@ -534,7 +542,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -547,6 +557,24 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction to Recommendation Problem
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source-further-recommendations">
+   Source &amp; further recommendations
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -637,6 +665,12 @@ ok for groceries, for example;</p></li>
 </ul>
 <p>In the next section, we will define a baseline for recommendation tasks based on the heuristic method and implement it.</p>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="source-further-recommendations">
+<h1>Source &amp; further recommendations<a class="headerlink" href="#source-further-recommendations" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://towardsdatascience.com/deep-dive-into-netflixs-recommender-system-341806ae3b48">Deep dive into Netflix’s RecSys</a></p></li>
+</ul>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -686,6 +720,32 @@ ok for groceries, for example;</p></li>
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction to Recommendation Problem
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#source-further-recommendations">
+   Source &amp; further recommendations
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>
