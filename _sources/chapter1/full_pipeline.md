@@ -362,11 +362,6 @@ local_test_preds.head()
 local_test_preds.item_id.nunique()
 ```
 
-
-```{code-cell} ipython3
-
-```
-
 ## 2.3. CatBoostClassifier (ReRanker)
 ### 2.3.1. Data preparation
 
@@ -514,7 +509,7 @@ print(f"ROC AUC score = {roc_auc_score(y_test, y_test_pred[:, 1]):.2f}")
 ```
 
 ### 2.4. Evaluation on global test
-Here, compare predictions of two models - LightFM vs LightFM + CatBoost.
+Here, we compare predictions of two models - LightFM vs LightFM + CatBoost.
 First, let's calculate predictions from both models - here we generate candidates via LightFM.
 ```{code-cell} ipython3
 global_test_predictions = pd.DataFrame({
@@ -640,8 +635,8 @@ metrics_table = metrics_table.append(metrics_table.pct_change().iloc[-1].mul(100
 metrics_table
 ```
 
-Thus, with a few number of features we could signifficantly improve our metrics using reranker.
-Just imagine how it can be improved if we add more features and fine tune the model
+Thus, with a few number of features we could improve our metrics using reranker.
+Further, imagine how it can be improved if we add more features and fine tune the reranker
 
 # Source & further recommendations
 - [Kaggle Notebook for LightFM](https://www.kaggle.com/code/sharthz23/implicit-lightfm/notebook);
