@@ -68,6 +68,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1/full_pipeline';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="What comes after ML model development?" href="../chapter2/intro_to_deployment.html" />
+    <link rel="prev" title="Ranking Problem" href="ranker.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -187,6 +189,13 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Full Pipeline of the Two-level RecSys
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter2/intro_to_deployment.html">
                         Introduction to Production Code & Deployment
@@ -196,7 +205,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
-                        Introduction to Product Analytics
+                        INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
                     </li>
                 
@@ -320,6 +329,13 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Full Pipeline of the Two-level RecSys
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter2/intro_to_deployment.html">
                         Introduction to Production Code & Deployment
@@ -329,7 +345,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
-                        Introduction to Product Analytics
+                        INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
                     </li>
                 
@@ -403,8 +419,8 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
-<ul class="nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - OVERVIEW OF RECOMMENDATION SYSTEMS</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="baseline.html">Baseline Implementation</a></li>
@@ -416,14 +432,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
 
 
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Full Pipeline of the Two-level Recommender System</a></li>
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 2 - Production code &amp; Deployment</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 2 - PRODUCTION CODE &amp; DEPLOYMENT</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../chapter2/intro_to_deployment.html">Introduction to Production Code &amp; Deployment</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 3 - Estimation of RecSys and other ML models in real world</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../chapter3/intro_to_analytics.html">Introduction to Product Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter3/intro_to_analytics.html">INTRODUCTION TO PRODUCT ANALYTCS</a></li>
 </ul>
 
     </div>
@@ -1315,67 +1336,67 @@ Users movie features mapper length -  13006
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/20 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▌         | 1/20 [00:02&lt;00:53,  2.81s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▌         | 1/20 [00:04&lt;01:28,  4.67s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 2/20 [00:04&lt;00:41,  2.29s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 2/20 [00:07&lt;01:06,  3.68s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|█▌        | 3/20 [00:06&lt;00:35,  2.08s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|█▌        | 3/20 [00:10&lt;00:55,  3.25s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 4/20 [00:08&lt;00:31,  1.96s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 4/20 [00:12&lt;00:47,  2.98s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▌       | 5/20 [00:10&lt;00:28,  1.88s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▌       | 5/20 [00:15&lt;00:42,  2.83s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 6/20 [00:11&lt;00:25,  1.82s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 6/20 [00:18&lt;00:38,  2.74s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▌      | 7/20 [00:13&lt;00:23,  1.77s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▌      | 7/20 [00:20&lt;00:33,  2.61s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 8/20 [00:15&lt;00:20,  1.73s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 8/20 [00:22&lt;00:30,  2.51s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 45%|████▌     | 9/20 [00:16&lt;00:18,  1.71s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 45%|████▌     | 9/20 [00:25&lt;00:27,  2.49s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 10/20 [00:18&lt;00:16,  1.69s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 10/20 [00:27&lt;00:24,  2.44s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▌    | 11/20 [00:20&lt;00:14,  1.66s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▌    | 11/20 [00:29&lt;00:21,  2.36s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 12/20 [00:21&lt;00:13,  1.65s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 12/20 [00:31&lt;00:18,  2.30s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 13/20 [00:23&lt;00:11,  1.64s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 13/20 [00:33&lt;00:15,  2.24s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 14/20 [00:24&lt;00:09,  1.62s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 14/20 [00:36&lt;00:13,  2.21s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 15/20 [00:26&lt;00:08,  1.61s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 15/20 [00:38&lt;00:10,  2.17s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 16/20 [00:27&lt;00:06,  1.60s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 16/20 [00:40&lt;00:08,  2.14s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 17/20 [00:29&lt;00:04,  1.59s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 17/20 [00:42&lt;00:06,  2.11s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 18/20 [00:31&lt;00:03,  1.57s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 18/20 [00:44&lt;00:04,  2.09s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|█████████▌| 19/20 [00:32&lt;00:01,  1.57s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|█████████▌| 19/20 [00:46&lt;00:02,  2.07s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:34&lt;00:00,  1.56s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:48&lt;00:00,  2.06s/it]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:34&lt;00:00,  1.71s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 20/20 [00:48&lt;00:00,  2.42s/it]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1419,7 +1440,7 @@ Users movie features mapper length -  13006
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  5,  87, 168, 506, 302,  20, 435, 146, 487, 294])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([298, 168,  87, 294, 933,   5, 435,  20,  55, 560])
 </pre></div>
 </div>
 </div>
@@ -1461,39 +1482,39 @@ Users movie features mapper length -  13006
   <tbody>
     <tr>
       <th>0</th>
-      <td>5</td>
-      <td>7571</td>
-      <td>100% волк</td>
+      <td>298</td>
+      <td>13915</td>
+      <td>Вперёд</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>87</td>
-      <td>16166</td>
-      <td>Зверополис</td>
-    </tr>
-    <tr>
-      <th>2</th>
       <td>168</td>
       <td>3182</td>
       <td>Ральф против Интернета</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>87</td>
+      <td>16166</td>
+      <td>Зверополис</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>506</td>
-      <td>10761</td>
-      <td>Моана</td>
+      <td>294</td>
+      <td>9164</td>
+      <td>ВАЛЛ-И</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>302</td>
-      <td>12173</td>
-      <td>Мстители: Финал</td>
+      <td>933</td>
+      <td>13243</td>
+      <td>Головоломка</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>20</td>
-      <td>7626</td>
-      <td>Мстители: Война бесконечности</td>
+      <td>5</td>
+      <td>7571</td>
+      <td>100% волк</td>
     </tr>
     <tr>
       <th>6</th>
@@ -1503,21 +1524,21 @@ Users movie features mapper length -  13006
     </tr>
     <tr>
       <th>7</th>
-      <td>146</td>
-      <td>11310</td>
-      <td>Аладдин</td>
+      <td>20</td>
+      <td>7626</td>
+      <td>Мстители: Война бесконечности</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>487</td>
-      <td>11749</td>
-      <td>Суперсемейка 2</td>
+      <td>55</td>
+      <td>15719</td>
+      <td>Семейка Бигфутов</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>294</td>
-      <td>9164</td>
-      <td>ВАЛЛ-И</td>
+      <td>560</td>
+      <td>13935</td>
+      <td>Гравити Фолз</td>
     </tr>
   </tbody>
 </table>
@@ -2035,6 +2056,20 @@ Just imagine how it can be improved if we add more features and fine tune the mo
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="ranker.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Ranking Problem</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../chapter2/intro_to_deployment.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">What comes after ML model development?</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
             

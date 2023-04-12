@@ -190,6 +190,13 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="full_pipeline.html">
+                        Full Pipeline of the Two-level RecSys
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter2/intro_to_deployment.html">
                         Introduction to Production Code & Deployment
                       </a>
@@ -198,7 +205,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
-                        Introduction to Product Analytics
+                        INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
                     </li>
                 
@@ -323,6 +330,13 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="full_pipeline.html">
+                        Full Pipeline of the Two-level RecSys
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter2/intro_to_deployment.html">
                         Introduction to Production Code & Deployment
                       </a>
@@ -331,7 +345,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
-                        Introduction to Product Analytics
+                        INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
                     </li>
                 
@@ -405,7 +419,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - Overivew of Recommendation Systems</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 1 - OVERVIEW OF RECOMMENDATION SYSTEMS</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_to_rekko.html">Introduction to Recommendation Problem</a></li>
 
@@ -418,14 +432,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ranker.html">Ranking Problem</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="full_pipeline.html">Full Pipeline of the Two-level Recommender System</a></li>
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 2 - Production code &amp; Deployment</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 2 - PRODUCTION CODE &amp; DEPLOYMENT</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../chapter2/intro_to_deployment.html">Introduction to Production Code &amp; Deployment</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 3 - Estimation of RecSys and other ML models in real world</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../chapter3/intro_to_analytics.html">Introduction to Product Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter3/intro_to_analytics.html">INTRODUCTION TO PRODUCT ANALYTCS</a></li>
 </ul>
 
     </div>
@@ -982,7 +1001,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;discover&#39;, &#39;alan&#39;, &#39;three&#39;, &#39;judy&#39;, &#39;trapped&#39;, &#39;evil&#39;, &#39;terrifying&#39;, &#39;creatures&#39;, &#39;siblings&#39;, &#39;board&#39;, &#39;enchanted&#39;, &#39;freedom&#39;, &#39;years&#39;, &#39;hope&#39;, &#39;proves&#39;, &#39;game&#39;, &#39;finish&#39;, &#39;giant&#39;, &#39;risky&#39;, &#39;adult&#39;, &#39;magical&#39;, &#39;world&#39;, &#39;rhinoceroses&#39;, &#39;peter&#39;, &#39;invite&#39;, &#39;living&#39;, &#39;room&#39;, &#39;unwittingly&#39;, &#39;find&#39;, &#39;door&#39;, &#39;monkeys&#39;, &#39;opens&#39;, &#39;running&#39;, &#39;inside&#39;], tags=[&#39;1&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;peter&#39;, &#39;game&#39;, &#39;years&#39;, &#39;creatures&#39;, &#39;inside&#39;, &#39;opens&#39;, &#39;room&#39;, &#39;find&#39;, &#39;unwittingly&#39;, &#39;world&#39;, &#39;siblings&#39;, &#39;three&#39;, &#39;hope&#39;, &#39;discover&#39;, &#39;evil&#39;, &#39;enchanted&#39;, &#39;risky&#39;, &#39;trapped&#39;, &#39;terrifying&#39;, &#39;alan&#39;, &#39;adult&#39;, &#39;running&#39;, &#39;living&#39;, &#39;judy&#39;, &#39;giant&#39;, &#39;invite&#39;, &#39;finish&#39;, &#39;monkeys&#39;, &#39;magical&#39;, &#39;proves&#39;, &#39;board&#39;, &#39;freedom&#39;, &#39;rhinoceroses&#39;, &#39;door&#39;], tags=[&#39;1&#39;])
 </pre></div>
 </div>
 </div>
@@ -1112,22 +1131,22 @@ To do that we need:</p>
     <tr>
       <th>1</th>
       <td>13835</td>
-      <td>0.956644</td>
+      <td>0.960298</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>5713</td>
-      <td>0.954642</td>
+      <td>19227</td>
+      <td>0.956606</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>7772</td>
-      <td>0.951227</td>
+      <td>37792</td>
+      <td>0.950359</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>44339</td>
-      <td>0.951051</td>
+      <td>7772</td>
+      <td>0.950153</td>
     </tr>
   </tbody>
 </table>
@@ -1182,116 +1201,116 @@ To do that we need:</p>
     <tr>
       <th>1</th>
       <td>13835</td>
-      <td>0.956644</td>
+      <td>0.960298</td>
       <td>k2</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>5713</td>
-      <td>0.954642</td>
-      <td>rollover</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>7772</td>
-      <td>0.951227</td>
-      <td>this island earth</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>44339</td>
-      <td>0.951051</td>
-      <td>the underground world</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>43165</td>
-      <td>0.949924</td>
-      <td>the zookeeper's wife</td>
-    </tr>
-    <tr>
-      <th>6</th>
       <td>19227</td>
-      <td>0.947654</td>
+      <td>0.956606</td>
       <td>carbon nation</td>
     </tr>
     <tr>
+      <th>3</th>
+      <td>37792</td>
+      <td>0.950359</td>
+      <td>creature</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7772</td>
+      <td>0.950153</td>
+      <td>this island earth</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5713</td>
+      <td>0.949181</td>
+      <td>rollover</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>43165</td>
+      <td>0.948865</td>
+      <td>the zookeeper's wife</td>
+    </tr>
+    <tr>
       <th>7</th>
-      <td>8916</td>
-      <td>0.946982</td>
-      <td>killer klowns from outer space</td>
+      <td>42042</td>
+      <td>0.947283</td>
+      <td>wheels of fire</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>10227</td>
-      <td>0.945293</td>
-      <td>stealth</td>
+      <td>5760</td>
+      <td>0.946747</td>
+      <td>the sword and the sorcerer</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>9883</td>
-      <td>0.944129</td>
-      <td>kaijū daisensō</td>
+      <td>24116</td>
+      <td>0.945747</td>
+      <td>the groundstar conspiracy</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>43009</td>
-      <td>0.943910</td>
-      <td>ultimate avengers 2</td>
+      <td>1045</td>
+      <td>0.945150</td>
+      <td>sleeper</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>43461</td>
-      <td>0.942494</td>
-      <td>megafault</td>
+      <td>34460</td>
+      <td>0.944873</td>
+      <td>maciste e la regina di samar</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>27681</td>
-      <td>0.942027</td>
-      <td>l'umanoide</td>
+      <td>2175</td>
+      <td>0.944626</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>18468</td>
-      <td>0.941903</td>
-      <td>the incredible petrified world</td>
-    </tr>
-    <tr>
-      <th>14</th>
       <td>29872</td>
-      <td>0.941565</td>
+      <td>0.944279</td>
       <td>angels die hard</td>
     </tr>
     <tr>
+      <th>14</th>
+      <td>4590</td>
+      <td>0.944006</td>
+      <td>osmosis jones</td>
+    </tr>
+    <tr>
       <th>15</th>
-      <td>2551</td>
-      <td>0.940778</td>
-      <td>it conquered the world</td>
+      <td>6507</td>
+      <td>0.943361</td>
+      <td>attack of the puppet people</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>10406</td>
-      <td>0.940679</td>
-      <td>francesco, giullare di dio</td>
+      <td>11256</td>
+      <td>0.942847</td>
+      <td>sun faa sau si</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>33823</td>
-      <td>0.940611</td>
-      <td>brave hearts 海猿</td>
+      <td>8916</td>
+      <td>0.942139</td>
+      <td>killer klowns from outer space</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>14791</td>
-      <td>0.940342</td>
-      <td>わが青春のアルカディア</td>
+      <td>11817</td>
+      <td>0.941919</td>
+      <td>delta farce</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>44366</td>
-      <td>0.939651</td>
-      <td>abraxas, guardian of the universe</td>
+      <td>33298</td>
+      <td>0.941502</td>
+      <td>necessary evil</td>
     </tr>
   </tbody>
 </table>
