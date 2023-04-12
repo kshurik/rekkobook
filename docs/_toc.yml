@@ -4,7 +4,7 @@
 format: jb-book
 root: index
 parts:
-- caption: CHAPTER 1 - Overivew of Recommendation Systems
+- caption: CHAPTER 1 - OVERVIEW OF RECOMMENDATION SYSTEMS
   chapters:
   - file: chapter1/intro_to_rekko
     title: Introduction to Recommendation Problem
@@ -20,11 +20,11 @@ parts:
     title: Ranking Problem in Machine Learning
   - file: chapter2/full_pipeline
     title: Full Pipeline of the Two-level RecSys
-- caption: CHAPTER 2 - Production code & Deployment
+- caption: CHAPTER 2 - PRODUCTION CODE & DEPLOYMENT
   chapters:
   - file: chapter2/intro_to_deployment
     title: Introduction to Production Code & Deployment
 - caption: CHAPTER 3 - Estimation of RecSys and other ML models in real world
   chapters:
   - file: chapter3/intro_to_analytics
-    title: Introduction to Product Analytics
+    title: INTRODUCTION TO PRODUCT ANALYTCS
