@@ -362,11 +362,6 @@ local_test_preds.head()
 local_test_preds.item_id.nunique()
 ```
 
-
-```{code-cell} ipython3
-
-```
-
 ## 2.3. CatBoostClassifier (ReRanker)
 ### 2.3.1. Data preparation
 
