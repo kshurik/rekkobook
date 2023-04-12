@@ -23,7 +23,7 @@ I got my masters at [International School of Economics and Finance](https://www.
 (Higher School of Economics) and before that BSc in Economics minoring in Data Science
 
 You can reach out to me via
-- Telegram: @kshurik
+- Telegram/IG: @kshurik
 - Email: khalilbekov92@gmail.com
 - [LinkedIn](https://www.linkedin.com/in/shkhalilbekov/)
 
@@ -35,7 +35,7 @@ problems because they face many difficulties in production-ready usage: custom
 backend architecture, data streaming, runtime latency, heavy models for embeddings, etc.
 Unfortunately, I could not find a resource where all this knowledge would be up-to-date
 with an overview of various algorithms explained in theory and backed up by code.
-Therefore, I decided to refresh everything I did and learn and structure it into
+Therefore, I decided to refresh everything I did and learnt and structure it into
 a useful handbook. First of all, it will help me to understand and memorize most stuff
 efficiently. Also, it may help many of you to get to know this field
 in ML and even allow you to develop good-performing models in production.
@@ -46,6 +46,10 @@ from my degrees :) (even though math in our uni was hell!)
 
 Thus, in this handbook, you will find an understandable overview of the most popular topics
 in recommendation and ranking with practical examples in jupyter notebooks.
+Finally, I would like to thank all course creators where I learnt and used materials
+
+Oh, and by the way, checkout my collaborator's book about classic ML -
+[The Machine Learning Simplified](https://themlsbook.com/). Great intro to ML with code as well.
 
 
 ## Few words about the structure
@@ -59,6 +63,15 @@ with necessary dependencies to replicate the pipeline without copypasting from t
 In this handbook, we will cover 3 chapters:
 - In Chapter 1 we will discuss the architecture of recommendation systems, models, and various implementations;
 - Then, Chapter 2 is going to be all about deployment - building RecSys microservice using various frameworks
-with an explanation of those frameworks, pros & cons, etc.;
+with an explanation of those frameworks, pros & cons, etc.. This chapter mostly about coding;
 - Finally, we are going dive into the product part - estimation of experiments for our models, metrics to consider
-and other cool stuff that allows us to understand whether we bring value to business by developing different models
+and other cool stuff that allows us to understand whether we bring value to business by developing different models.
+In this module more theory and coding is expected.
+
+
+
+## Feedback
+This is my first time writting a handbook and something this important for me.
+I would be glad to get your feedback to improve content / mistakes and further work.
+You can reach out to me in DM via contacts mentioned above or open issues in github
+on upper-right of each jupyter-book page
