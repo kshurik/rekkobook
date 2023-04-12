@@ -194,3 +194,8 @@ and ground-truth permutations.
 
 A more detailed explanation of these three approaches in learning-to-rank tasks are explained
 [here](http://icml2008.cs.helsinki.fi/papers/167.pdf).
+
+
+# Source & further recommendations
+- [Catboost Documentation](https://catboost.ai/)
+- [Learning-to-rank explained](https://embracingtherandom.com/machine-learning/tensorflow/ranking/deep-learning/learning-to-rank-part-2/)
