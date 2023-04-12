@@ -106,3 +106,6 @@ Finally, in recommendations we should consider special cases that require thorou
 ok for groceries, for example;
 
 In the next section, we will define a baseline for recommendation tasks based on the heuristic method and implement it.
+
+# Source & further recommendations
+- [Deep dive into Netflix's RecSys](https://towardsdatascience.com/deep-dive-into-netflixs-recommender-system-341806ae3b48)
