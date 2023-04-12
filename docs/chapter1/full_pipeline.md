@@ -289,7 +289,7 @@ As I have mentioned earlier, in reranker we split randomly by users.
 ```{code-cell} ipython3
 # make predictions for all users in test
 local_test_preds = pd.DataFrame({
-    'user_id': local_test_preds['user_id'].unique()
+    'user_id': local_test['user_id'].unique()
 })
 len(local_test_preds)
 ```
