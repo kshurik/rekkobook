@@ -6,7 +6,7 @@ Finally, we will define architecture of our production microservice of RecSys we
 
 In any Machine Learning you will come across writing a production procedure. What is that?
 Production code refers to the code that is used to run a machine learning model in a real-world environment.
-This code is often written in a programming language such as Python or Java and is executed on a server
+This code is often written in a programming language such as Python and is executed on a server
 or virtual machine that is accessible to end-users. Thus, to get our model from notebook to users
 we need to write production code to use it in production environment.
 
@@ -68,7 +68,7 @@ Then, we can initialize poetry config by executing (assuming we want to create d
 poetry init
 ```
 After we run, several optional questions will be asked to create the `pyproject.toml` file -- main configuration file.
-You can either fill it (for instacem set python version) or just press enter to use suggested default values.
+You can either fill it (for instance set python version) or just press enter to use suggested default values.
 
 Next, we add package names as following
 ```
@@ -88,7 +88,7 @@ Also, you can set various parameters by utilizing full power of TOML extensions.
 a full poetry set up generated for the illustration purpose.
 
 - `[tool.poetry]` - meta information about the project
-- `[[tool.poetry.dependencies]]` - main dependencies used in production
+- `[tool.poetry.dependencies]` - main dependencies used in production
 - `[tool.poetry.group.dev.dependencies]` - development packages only needed for test and code style guides
 - `[build-system]` - poetry system parameters
 - `[tool.isort], [tool.black], [tool.pylint]` - parameters to set up custom code style and checks.
@@ -161,13 +161,168 @@ disable = [
 ```
 
 Overall, poetry provides easy and efficient way to reproduce development environment,
-resolve dependencies and gives opportunity to use customizaation in some devtools.
+resolve dependencies and gives opportunity to use customization in some devtools.
 
 ## Styling guide and code quality
-TBD
+As we have mentioned earlier, production code must be robust, scalable & reliable. Tracking
+the quality of the code by reviews only is exhaustive and almost impossible to achieve -- we
+are prone to errors too. However, most common mistakes like typos and convieniet bugs can
+be checked automatically and fixed. Here, we will describe main Python tools to achieve that
+- `[pylint](https://pypi.org/project/pylint/)` - code analyzer which does not run your code.
+It checks for errors, coding standard, makes clear sugesstions on how to improve it
+and even grade it on the scale of 0 to 10;
 
+```{image} ./img/pylint.png
+:alt: fishy
+:class: bg-primary mb-1
+:width: 400px
+:align: center
+```
+
+- `[black](https://pypi.org/project/black/)` - in Python community there is well-known
+PEP-8 standard to follow. This library is a code formatter which is PEP 8 compliant
+opinionated formatter. It formats all code in given directory / files inplace fast and efficiently;
+
+Before formatting with black
+```
+import pandas as pd
+import numpy as np
+
+def some_kaif_function(input_df: pd.DataFrame, param_1: int, param_2: str, path: str):
+    """
+    some example function
+    """
+    input_df['check_bool'] = input_df.loc[(input_df[param_2] >= param_1) & (input_df[param_2] < param_1 - 1)]
+
+    return input_df
+```
+
+After formatting with black
+```
+import pandas as pd
+import numpy as np
+
+def some_kaif_function(input_df: pd.DataFrame, param_1: int, param_2: str, path: str):
+    """
+    some example function
+    """
+    input_df["check_bool"] = input_df.loc[
+        (input_df[param_2] >= param_1) & (input_df[param_2] < param_1 - 1)
+    ]
+    
+    return input_df
+
+``
+
+- `[isort](https://pycqa.github.io/isort/)` - a library to make appropiate imports:
+alphabetical order and group by types to sections. Below is the example from official homepage
+
+Before the isort
+```
+from my_lib import Object
+
+import os
+
+from my_lib import Object3
+
+from my_lib import Object2
+
+import sys
+
+from third_party import lib15, lib1, lib2, lib3, lib4, lib5, lib6, lib7, lib8, lib9, lib10, lib11, lib12, lib13, lib14
+
+import sys
+
+from __future__ import absolute_import
+
+from third_party import lib3
+
+print("Hey")
+print("yo")
+```
+
+After isort
+```
+from __future__ import absolute_import
+
+import os
+import sys
+
+from third_party import (lib1, lib2, lib3, lib4, lib5, lib6, lib7, lib8,
+                         lib9, lib10, lib11, lib12, lib13, lib14, lib15)
+
+from my_lib import Object, Object2, Object3
+
+print("Hey")
+print("yo")
+``
 
 ## Makefile
+Makefiles are important tools for managing and automating the building and
+deployment of software projects. In Python development, Makefiles are especially
+useful in managing the compilation, packaging, and testing of code. A Makefile
+is essentially a script that defines a set of rules and actions to be performed
+when certain conditions are met. These rules can be used to automate repetitive
+tasks, such as compiling code, running tests, and generating documentation.
+
+They are particularly useful for large projects with many files and dependencies,
+as they allow developers to quickly and easily build, test, and deploy their code
+without having to manually type in commands for each step.
+
+For example, let's say you have a Python project with multiple modules, each with
+their own dependencies. You would need to install these dependencies and set up
+the environment in order to run the project. With a Makefile, you can automate this
+process by defining targets for each step of the build,
+such as "install dependencies", "set up environment", "run tests", etc. 
+
+Here's an example Makefile for a Python project:
+
+```
+# install dependencies
+install:
+    pip install -r requirements.txt
+
+# set up environment
+setup:
+    virtualenv env
+    source env/bin/activate
+
+# run tests
+test:
+    python -m unittest discover -s tests
+
+# clean up environment
+clean:
+    rm -rf env/
+    @find . | grep __pycache__ | xargs rm -rf
+
+# let's add formatiing stuff here as well
+
+pylint:
+	pylint app config tests # folder names
+
+isort:
+	isort app config tests --jobs=0
+
+black:
+	black app config tests
+
+fmt: isort black
+```
+
+This Makefile defines four targets: `install`, `setup`, `test`, and `clean`.
+- `make install` will install all the dependencies listed in `requirements.txt`;
+- `make setup` will create a virtual environment and activate it;
+- `make test` will run all the tests in the `tests` directory;
+- `make clean` will remove the virtual environment and any cached Python files;
+- `make pylint` will run code formatting check;
+- `make isort` will do proper import of modules;
+- `make black` will run formatting inplace;
+- `make fmt` will call `make isort` & `make black` for full formatting
+
+Overall, Makefiles are important for Python development because they automate
+the many routine processes, making it easier and faster for developers
+to build, test, and deploy their code.
+
+# Architecture for our RecSys Project
 TBD
-
-
