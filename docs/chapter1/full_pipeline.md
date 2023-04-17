@@ -289,7 +289,7 @@ As I have mentioned earlier, in reranker we split randomly by users.
 ```{code-cell} ipython3
 # make predictions for all users in test
 local_test_preds = pd.DataFrame({
-    'user_id': local_test_preds['user_id'].unique()
+    'user_id': local_test['user_id'].unique()
 })
 len(local_test_preds)
 ```
@@ -354,17 +354,12 @@ local_test_preds = local_test_preds.explode('item_id')
 local_test_preds['rank'] = local_test_preds.groupby('user_id').cumcount() + 1 
 local_test_preds['item_name'] = local_test_preds['item_id'].map(item_name_mapper)
 print(f'Data shape{local_test_preds.shape}')
-test_preds.head()
+local_test_preds.head()
 ```
 
 ```{code-cell} ipython3
 # sense check for diversity of recommendations
-test_preds.item_id.nunique()
-```
-
-
-```{code-cell} ipython3
-
+local_test_preds.item_id.nunique()
 ```
 
 ## 2.3. CatBoostClassifier (ReRanker)
@@ -376,13 +371,13 @@ We need to creat 0/1 as indication of interaction:
 - negative venet -- 0 otherwise
 
 ```{code-cell} ipython3
-positive_preds = pd.merge(test_preds, local_test, how = 'inner', on = ['user_id', 'item_id'])
+positive_preds = pd.merge(local_test_preds, local_test, how = 'inner', on = ['user_id', 'item_id'])
 positive_preds['target'] = 1
 positive_preds.shape
 ```
 
 ```{code-cell} ipython3
-negative_preds = pd.merge(test_preds, local_test, how = 'left', on = ['user_id', 'item_id'])
+negative_preds = pd.merge(local_test_preds, local_test, how = 'left', on = ['user_id', 'item_id'])
 negative_preds = negative_preds.loc[negative_preds['watched_pct'].isnull()].sample(frac = .2)
 negative_preds['target'] = 0
 negative_preds.shape
@@ -487,7 +482,8 @@ cbm_classifier.fit(
     X_train, y_train,
     eval_set=(X_test, y_test),
     early_stopping_rounds = 100, # to avoid overfitting,
-    cat_features = CATEGORICAL_COLS 
+    cat_features = CATEGORICAL_COLS,
+    verbose = False
 )
 ```
 
@@ -503,25 +499,144 @@ shap_values = explainer.shap_values(X_train)
 shap.summary_plot(shap_values, X_train, show = False, color_bar = False)
 ```
 
-
-
+Let's see performance of the classifier 
 ```{code-cell} ipython3
+# predictions on test
+from sklearn.metrics import roc_auc_score
+y_test_pred = cbm_classifier.predict_proba(X_test)
 
+print(f"ROC AUC score = {roc_auc_score(y_test, y_test_pred[:, 1]):.2f}")
+```
+
+### 2.4. Evaluation on global test
+Here, we compare predictions of two models - LightFM vs LightFM + CatBoost.
+First, let's calculate predictions from both models - here we generate candidates via LightFM.
+```{code-cell} ipython3
+global_test_predictions = pd.DataFrame({
+    'user_id': global_test['user_id'].unique()
+        }
+    )
+
+# filter out cold start users
+global_test_predictions = global_test_predictions.loc[global_test_predictions['user_id'].isin(local_train.user_id.unique())]
 ```
 
 
+```{code-cell} ipython3
+# set param for number of candidates
+top_k = 100
 
+# generate list of watched titles to filter
+watched_movies = local_train.groupby('user_id')['item_id'].apply(list).to_dict()
+
+mapper = generate_lightfm_recs_mapper(
+    lfm_model, 
+    item_ids = all_cols, 
+    known_items = watched_movies,
+    N = top_k,
+    user_features = None, 
+    item_features = None, 
+    user_mapping = lightfm_mapping['users_mapping'],
+    item_inv_mapping = lightfm_mapping['items_inv_mapping'],
+    num_threads = 10
+)
+
+global_test_predictions['item_id'] = global_test_predictions['user_id'].map(mapper)
+global_test_predictions = global_test_predictions.explode('item_id').reset_index(drop=True)
+global_test_predictions['rank'] = global_test_predictions.groupby('user_id').cumcount() + 1 
+```
+
+Now, we can move to reranker to make predictions and make new order.
+Beforehand, we need to prepare data for reranker
+```{code-cell} ipython3
+cbm_global_test = pd.merge(global_test_predictions, users_data[['user_id'] + USER_FEATURES],
+                         how = 'left', on = ['user_id'])
+
+cbm_global_test = pd.merge(cbm_global_test, movies_metadata[['item_id'] + ITEM_FEATURES],
+                         how = 'left', on = ['item_id'])
+cbm_global_test.head()
+```
+
+Fill missing values with the most frequent values
+```{code-cell} ipython3
+cbm_global_test = cbm_global_test.fillna(cbm_global_test.mode().iloc[0])
+```
+
+Predict scores to get ranks
+```{code-cell}
+cbm_global_test['cbm_preds'] = cbm_classifier.predict_proba(cbm_global_test[X_train.columns])[:, 1]
+cbm_global_test.head()
+```
 
 ```{code-cell} ipython3
+# define cbm rank
+cbm_global_test = cbm_global_test.sort_values(by = ['user_id', 'cbm_preds'], ascending = [True, False])
+cbm_global_test['cbm_rank'] = cbm_global_test.groupby('user_id').cumcount() + 1
+cbm_global_test.head()
+```
 
+Finally, let's move on to comparison
+- define function to calculate matrix-based metrics;
+- create table of metrics for both models
+
+```{code-cell} ipython3
+def calc_metrics(df_true, df_pred, k: int = 10, target_col = 'rank'):
+    """
+    calculates confusion matrix based metrics
+    :df_true: pd.DataFrame
+    :df_pred: pd.DataFrame
+    :k: int, 
+    """
+    # prepare dataset
+    df = df_true.set_index(['user_id', 'item_id']).join(df_pred.set_index(['user_id', 'item_id']))
+    df = df.sort_values(by = ['user_id', target_col])
+    df['users_watch_count'] = df.groupby(level = 'user_id')[target_col].transform(np.size)
+    df['cumulative_rank'] = df.groupby(level = 'user_id').cumcount() + 1
+    df['cumulative_rank'] = df['cumulative_rank'] / df[target_col]
+    
+    # params to calculate metrics
+    output = {}
+    num_of_users = df.index.get_level_values('user_id').nunique()
+
+    # calc metrics
+    df[f'hit@{k}'] = df[target_col] <= k
+    output[f'Precision@{k}'] = (df[f'hit@{k}'] / k).sum() / num_of_users
+    output[f'Recall@{k}'] = (df[f'hit@{k}'] / df['users_watch_count']).sum() / num_of_users
+    output[f'MAP@{k}'] = (df["cumulative_rank"] / df["users_watch_count"]).sum() / num_of_users
+    print(f'Calculated metrics for top {k}')
+    return output
+```
+
+```{code-cell} ipython3
+# first-level only - LightFM
+lfm_metrics = calc_metrics(global_test, global_test_predictions)
+lfm_metrics
 ```
 
 
-
 ```{code-cell} ipython3
-
+# LightFM + ReRanker
+full_pipeline_metrics = calc_metrics(global_test, cbm_global_test, target_col = 'cbm_rank')
+full_pipeline_metrics
 ```
 
+Prettify both metrics calculation results for convenience
+```{code-cell} ipython3
+metrics_table = pd.concat(
+    [pd.DataFrame([lfm_metrics]),
+    pd.DataFrame([full_pipeline_metrics])],
+    ignore_index = True
+)
+metrics_table.index = ['LightFM', 'FullPipeline']
+
+# calc relative diff
+metrics_table = metrics_table.append(metrics_table.pct_change().iloc[-1].mul(100).rename('lift_by_ranker, %'))
+
+metrics_table
+```
+
+Thus, with a few number of features we could improve our metrics using reranker.
+Further, imagine how it can be improved if we add more features and fine tune the reranker
 
 # Source & further recommendations
 - [Kaggle Notebook for LightFM](https://www.kaggle.com/code/sharthz23/implicit-lightfm/notebook);

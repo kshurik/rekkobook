@@ -277,3 +277,6 @@ name_mapper = {v: k for k, v in movies_inv_mapper.items()}
 output['title_name'] = output['model_index'].astype(int).map(name_mapper)
 output
 ```
+
+# Source & further recommendations
+- [Deep explanation of Word2Vec and embeddings](https://jalammar.github.io/illustrated-word2vec/)

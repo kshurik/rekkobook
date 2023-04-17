@@ -4,19 +4,27 @@
 format: jb-book
 root: index
 parts:
-- caption: CHAPTER 1 - Overivew of Recommendation Systems
+- caption: CHAPTER 1 - OVERVIEW OF RECOMMENDATION SYSTEMS
   chapters:
   - file: chapter1/intro_to_rekko
-    title: 1.0. Introduction to Recommendation Problem
+    title: Introduction to Recommendation Problem
   - file: chapter1/baseline
-    title: 1.1. Baseline Implementation
+    title: Baseline Implementation
   - file: chapter1/validation_metrics
-    title: 1.2. Metrics & Validation
+    title: Metrics & Validation
   - file: chapter1/content_filter
-    title: 1.3. Content-Based Filtering
+    title: Content-Based Filtering
   - file: chapter1/collab_filter
-    title: 1.4. Collaborative Filtering
+    title: Collaborative Filtering
   - file: chapter1/ranker
-    title: 1.5. Ranking Problem in Machine Learning
+    title: Ranking Problem in Machine Learning
   - file: chapter1/full_pipeline
-    title: WIP. 1.6. Full Pipeline of the Two-level RecSys
+    title: Full Pipeline of the Two-level RecSys
+- caption: CHAPTER 2 - PRODUCTION CODE & DEPLOYMENT
+  chapters:
+  - file: chapter2/intro_to_deployment
+    title: Introduction to Production Code & Deployment
+- caption: CHAPTER 3 - Estimation of RecSys and other ML models in real world
+  chapters:
+  - file: chapter3/intro_to_analytics
+    title: INTRODUCTION TO PRODUCT ANALYTCS
