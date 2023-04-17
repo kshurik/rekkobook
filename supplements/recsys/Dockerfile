@@ -1,6 +1,7 @@
 FROM python:3.9-slim-bullseye
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
+# ENTRYPOINT ["python3", "app/api.py"]
 
 
 
