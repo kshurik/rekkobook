@@ -1,12 +1,11 @@
 # TODO
 # WRITE PIPELINE FOR DATA PREPARATION IN HERE TO USE FOR RANKER TRAININIG PIPELINE
 from typing import Any, Dict, List
-from utils.utils import read_parquet_from_gdrive
+from utils.utils import read_parquet_from_gdrive, generate_lightfm_recs_mapper
 from configs.config import settings
 
 
-
-def prepare_data_for_train(paths_config: Dict[str, str]):
+def prepare_data_for_train():
     """
     function to prepare data to train catboost classifier.
     Basically, you have to wrap up code from full_recsys_pipeline.ipynb
