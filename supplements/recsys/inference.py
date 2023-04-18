@@ -22,7 +22,7 @@ def get_recommendations(user_id: int):
     ranker = Ranker()
 
     logging.info('getting 1st level candidates')
-#    candidates = lfm_model.infer(user_id = user_id) #FIXME: remove comment when feaature collection is done
+    candidates = lfm_model.infer(user_id = user_id)
 
     logging.info('getting features...')
 #    user_features = get_user_features(user_id, user_cols=settings.USER_FEATURES)
