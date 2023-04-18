@@ -184,7 +184,7 @@ PEP-8 standard to follow. This library is a code formatter which is PEP 8 compli
 opinionated formatter. It formats all code in given directory / files inplace fast and efficiently;
 
 Before formatting with black
-```
+```{code-cell} ipython3
 import pandas as pd
 import numpy as np
 
@@ -198,7 +198,7 @@ def some_kaif_function(input_df: pd.DataFrame, param_1: int, param_2: str, path:
 ```
 
 After formatting with black
-```
+```{code-cell} ipython3
 import pandas as pd
 import numpy as np
 
@@ -212,13 +212,13 @@ def some_kaif_function(input_df: pd.DataFrame, param_1: int, param_2: str, path:
     
     return input_df
 
-``
+```
 
 - `[isort](https://pycqa.github.io/isort/)` - a library to make appropiate imports:
 alphabetical order and group by types to sections. Below is the example from official homepage
 
 Before the isort
-```
+```{code-cell} ipython3
 from my_lib import Object
 
 import os
@@ -242,7 +242,7 @@ print("yo")
 ```
 
 After isort
-```
+```{code-cell} ipython3
 from __future__ import absolute_import
 
 import os
@@ -255,7 +255,7 @@ from my_lib import Object, Object2, Object3
 
 print("Hey")
 print("yo")
-``
+```
 
 ## Makefile
 Makefiles are important tools for managing and automating the building and
