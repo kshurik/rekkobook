@@ -1,6 +1,9 @@
 # TODO
 # WRITE PIPELINE FOR DATA PREPARATION IN HERE TO USE FOR RANKER TRAININIG PIPELINE
 from typing import Any, Dict, List
+from utils.utils import read_parquet_from_gdrive
+from configs.config import settings
+
 
 
 def prepare_data_for_train(paths_config: Dict[str, str]):
@@ -40,7 +43,16 @@ def get_items_features(item_ids: List[int], item_cols: List[str]) -> Dict[int, A
     }
 
     """
-    pass
+    item_features = read_parquet_from_gdrive('https://drive.google.com/file/d/1XGLUhHpwr0NxU7T4vYNRyaqwSK5HU3N4/view?usp=share_link')
+    item_features = item_features.set_index('item_id')
+    item_features = item_features.to_dict('index')
+
+    # collect all items
+    output = {}
+    for id in item_ids:
+        output[id] = {k: v for k, v in item_features.get(id).items() if k in item_cols}
+
+    return output
 
 
 def get_user_features(user_id: int, user_cols: List[str]) -> Dict[str, Any]:
@@ -58,8 +70,10 @@ def get_user_features(user_id: int, user_cols: List[str]) -> Dict[str, Any]:
         'kids_flg': None
     }
     """
-    pass
-
+    users = read_parquet_from_gdrive('https://drive.google.com/file/d/1MCTl6hlhFYer1BTwjzIBfdBZdDS_mK8e/view?usp=share_link')
+    users = users.set_index('user_id')
+    users_dict = users.to_dict('index')
+    return {k: v for k, v in users_dict.get(user_id).items() if k in user_cols}
 
 def prepare_ranker_input(
     candidates: Dict[int, int],
