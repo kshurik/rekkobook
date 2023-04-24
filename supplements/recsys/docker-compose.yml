@@ -2,11 +2,8 @@ version: '3.10'
 services:
     rekko-app:
       build: .
-        # environment:
-        #     - DOCKER_USER_HOME=/home
-        #     - LOAD_EX=n
-        #     - EXECUTOR=Local
       ports:
           - "5000:5000"
       volumes:
           - ./:/home
+      container_name: rekko_app
