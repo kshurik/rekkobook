@@ -1,16 +1,24 @@
 import logging
 from typing import Any, Dict
 
-import dill
 import numpy as np
 import pandas as pd
 from lightfm import LightFM
 from lightfm.data import Dataset
 
+from configs.config import settings
+from utils.utils import load_model, save_model
+
 
 class LFMModel:
-    def __init__(self):
-        pass
+    def __init__(self, is_infer=True):
+        if is_infer:
+            logging.info("loading candidates model")
+            self.lfm_model = load_model(settings.LFM_TRAIN_PARAMS.MODEL_PATH)
+            self.mapper = load_model(settings.LFM_TRAIN_PARAMS.MAPPER_PATH).mapping()
+
+        else:
+            pass
 
     @staticmethod
     def df_to_tuple_iterator(data: pd.DataFrame):
@@ -21,13 +29,7 @@ class LFMModel:
         """
         return zip(*data.values.T)
 
-    def fit(
-        self,
-        data: pd.DataFrame,
-        user_col: str,
-        item_col: str,
-        model_params: Dict[str, Any],
-    ) -> None:
+    def fit(self, data: pd.DataFrame, user_col: str, item_col: str) -> None:
         """
         Trains and saves model with mapper for further inference
         """
@@ -43,17 +45,16 @@ class LFMModel:
         )
 
         # save mappers
-        with open(f"./artefacts/lfm_mapper.dill", "wb") as mapper_file:
-            dill.dump(dataset, mapper_file)
+        save_model(dataset, settings.LFM_TRAIN_PARAMS.MAPPER_PATH)
 
         # init model
-        epochs = model_params.get("epochs", 10)
+        epochs = settings.LFM_TRAIN_PARAMS.EPOCHS
         lfm_model = LightFM(
-            no_components=model_params.get("no_components", 10),
-            learning_rate=model_params.get("learning_rate", 0.05),
-            loss=model_params.get("loss", "logistic"),
-            max_sampled=model_params.get("max_sampled", 10),
-            random_state=model_params.get("random_state", 42),
+            no_components=settings.LFM_TRAIN_PARAMS.NO_COMPONENTS,
+            learning_rate=settings.LFM_TRAIN_PARAMS.LEARNING_RATE,
+            loss=settings.LFM_TRAIN_PARAMS.LOSS,
+            max_sampled=settings.LFM_TRAIN_PARAMS.MAX_SAMPLED,
+            random_state=settings.LFM_TRAIN_PARAMS.RANDOM_STATE,
         )
 
         # execute training
@@ -62,36 +63,24 @@ class LFMModel:
             lfm_model.fit_partial(train_mat, num_threads=4)
 
         # save model
-        with open(
-            f"{model_params.get('model_path', './artefacts/lfm_model.dill')}", "wb"
-        ) as model_file:
-            dill.dump(lfm_model, model_file)
+        save_model(lfm_model, settings.LFM_TRAIN_PARAMS.MODEL_PATH)
 
-    @staticmethod
-    def infer(
-        user_id: int, top_n: int = 20, model_path: str = "./artefacts/lfm_model.dill"
-    ) -> Dict[str, int]:
+    def infer(self, user_id: int, top_k: int = 20) -> Dict[str, int]:
         """
         method to make recommendations for a single user id
         :user_id: str, user id
         :model_path: str, relative path for the model
         """
-        with open(model_path, "rb") as model_file:
-            lfm_model = dill.load(model_file)
-
-        with open("./artefacts/lfm_mapper.dill", "rb") as mapper_file:
-            dataset = dill.load(mapper_file)
-        mapper = dataset.mapping()
 
         # set params
-        user_row_id = mapper[0][user_id]
-        all_items_list = list(mapper[2].values())
+        user_row_id = self.mapper[0][user_id]
+        all_items_list = list(self.mapper[2].values())
 
-        preds = lfm_model.predict(user_row_id, all_items_list)
+        preds = self.lfm_model.predict(user_row_id, all_items_list)
 
         # make final predictions
-        item_inv_mapper = {v: k for k, v in mapper[2].items()}
-        top_preds = np.argpartition(preds, -np.arange(top_n))[-top_n:][::-1]
+        item_inv_mapper = {v: k for k, v in self.mapper[2].items()}
+        top_preds = np.argpartition(preds, -np.arange(top_k))[-top_k:][::-1]
         item_pred_ids = []
         for item in top_preds:
             item_pred_ids.append(item_inv_mapper[item])

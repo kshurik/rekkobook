@@ -1,0 +1,4 @@
+USER_FEATURES = ["age", "income", "sex", "kids_flg"]
+ITEM_FEATURES = ["content_type", "release_year", "for_kids", "age_rating"]
+TARGET = ["target"]
+CATEGORICAL_COLS = ["age", "income", "sex", "content_type"]

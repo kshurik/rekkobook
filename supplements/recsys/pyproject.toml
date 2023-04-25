@@ -15,6 +15,10 @@ catboost = "1.1"
 scipy = "1.9.3"
 lightfm = "^1.17"
 dill = "^0.3.6"
+fire = "^0.5.0"
+dynaconf = "^3.1.12"
+fastparquet = "^2023.2.0"
+pyarrow = "^11.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^2.17.1"

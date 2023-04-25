@@ -1,0 +1,21 @@
+[LFM_TRAIN_PARAMS]
+EPOCHS = 10
+NO_COMPONENTS = 10
+LEARNING_RATE = 0.05
+LOSS = "logistic"
+MAX_SAMPLED = 10
+RANDOM_STATE = 42
+MODEL_PATH = "artefacts/lfm_model.dill"
+MAPPER_PATH = "artefacts/lfm_mapper.dill"
+
+[LFM_PREDS_PARAMS]
+TOP_K = 30
+
+[CBM_TRAIN_PARAMS]
+LOSS_FUNCTION = 'CrossEntropy'
+ITERATIONS = 5000
+LEARNING_RATE = 0.1
+DEPTH = 6
+RANDOM_STATE = 1234
+VERBOSE = '@bool True'
+MODEL_PATH = "artefacts/catboost_clf.cbm"

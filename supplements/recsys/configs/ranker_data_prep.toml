@@ -1,2 +1,10 @@
-LFM_MODEL_PATH = ""
-LFM_MAPPER_PATH = ""
+[RANKER_DATA]
+NEG_FRAC = 0.1
+RANDOM_STATE = 42
+USERS_DATA_PATH = "https://drive.google.com/file/d/1MCTl6hlhFYer1BTwjzIBfdBZdDS_mK8e/view?usp=share_link"
+MOVIES_DATA_PATH = "https://drive.google.com/file/d/1XGLUhHpwr0NxU7T4vYNRyaqwSK5HU3N4/view?usp=share_link"
+USERS_SAMPLE = "https://drive.google.com/file/d/1MomVjEwY2tPJ845zuHeTPt1l53GX2UKd/view?usp=share_link"
+
+[CBM_COLS_CONFIG]
+ID_COLS = ["user_id", "item_id"]
+DROP_COLS = ["last_watch_dt", "watched_pct", "total_dur"]
