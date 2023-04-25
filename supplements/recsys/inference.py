@@ -13,7 +13,7 @@ from data_prep.prepare_ranker_data import (
 import logging
 
 
-def get_recommendations(user_id: int):
+def get_recommendations(user_id: int, top_k: int = 20):
     """
     function to get recommendation for a given user id
     """
@@ -22,36 +22,11 @@ def get_recommendations(user_id: int):
     ranker = Ranker()
 
     logging.info('getting 1st level candidates')
-#    candidates = lfm_model.infer(user_id = user_id) #FIXME: remove comment when feaature collection is done
+    candidates = lfm_model.infer(user_id = user_id, top_k = top_k)
 
     logging.info('getting features...')
-#    user_features = get_user_features(user_id, user_cols=settings.USER_FEATURES)
-#    item_features = get_items_features(list(candidates.keys()), item_ids = candidates)
-
-    #TODO - TMP hardcode, need to use the output of the 36-37 lines
-    candidates = {9169: 5, 10440: 1}
-    item_features = {
-            9169: {
-            'content_type': 'film',
-            'release_year': 2020,
-            'for_kids': 0,
-            'age_rating': 16
-                },
-
-            10440: {
-            'content_type': 'series',
-            'release_year': 2021,
-            'for_kids': None,
-            'age_rating': 18
-                }
-            }
-
-    user_features = {
-            'age': 'age_55_64',
-            'income': 'income_20_40',
-            'sex': 'M',
-            'kids_flg': 0
-        }
+    user_features = get_user_features(user_id, user_cols=settings.USER_FEATURES)
+    item_features = get_items_features(item_ids = list(candidates.keys()), item_cols = settings.ITEM_FEATURES)
 
     ranker_input = prepare_ranker_input(
         candidates = candidates,
@@ -65,4 +40,4 @@ def get_recommendations(user_id: int):
     return output
 
 # if __name__ == '__main__':
-#     print(get_recommendations(646903))
+#     print(get_recommendations(973171))
