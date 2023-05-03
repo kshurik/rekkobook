@@ -1,27 +1,26 @@
 # What comes after ML model development?
 This chapter describes what is production code and how to write it using compelementary tools
 such `poetry`, `Makefile` and code styling modules like `pylint`, `black`, `isort`, `flake8`.
-Finally, we will define architecture of our production microservice of RecSys we developed in [Chapter 1](https://rekkobook.com/chapter1/full_pipeline.html)
+Finally, we will define architecture of our production microservice of RecSys we developed in
+[Chapter 1](https://rekkobook.com/chapter1/full_pipeline.html)
 
 
-In any Machine Learning you will come across writing a production procedure. What is that?
-Production code refers to the code that is used to run a machine learning model in a real-world environment.
-This code is often written in a programming language such as Python and is executed on a server
-or virtual machine that is accessible to end-users. Thus, to get our model from notebook to users
-we need to write production code to use it in production environment.
+After developing a machine learning (ML) model, the next step is to write production code
+that enables the model to function in a real-world environment. Production code is typically
+written in a programming language such as Python and executed on a server or virtual machine
+that is accessible to end-users. The goal of production code is to ensure that the ML model
+performs as expected in a production environment, including handling real-world data, scaling
+to meet demand, and providing accurate and timely predictions.
 
 
-The purpose of production code is to ensure that a machine learning model is able to perform
-as expected in a production environment. This includes handling real-world data, scaling to meet
-demand, and providing accurate and timely predictions. Writing production code for machine learning
-requires a different set of skills than writing code for research or experimentation. In production,
-code must be robust, scalable, and reliable.
+To ensure that production code is robust, scalable, and reliable, different skills are required
+than those needed for research or experimentation. The production code pipeline involves several steps,
+including:
+- Replicating the development environment for full reproducibility of results;
+- Data preparation such as collecting necessary input and calculating runtime features;
+- Inference and postprocessing that includes making final predictions and any necessary
+postprocessing of predictions, such as scaling
 
-
-This pipeline include several steps such as:
-- Replicate development environment for full reproducibility of results: python and library versions;
-- Data preparation: collect necessary input, calculate runtime features;
-- Inference & postprocessing: make final predictions, do any postprocessing of predictions if necessary (scaling, etc.)
 
 In addition, strong coding requirements must be met which can be tracked and fixed using:
 - Use a consistent coding style and naming convention
@@ -325,4 +324,47 @@ the many routine processes, making it easier and faster for developers
 to build, test, and deploy their code.
 
 # Architecture for our RecSys Project
-TBD
+Let's recall the two-level architecture of a recommender system consists of two main components:
+the candidate generator and the ranker. The candidate generator is responsible for 
+selecting a set of items that are likely to be of interest to the user, and the ranker
+takes those items and ranks them in order of predicted relevance to the user. Keeping
+that in mind, the architecture for the light version will be as following:
+
+```{image} ./img/recsys_architecture.png
+:alt: fishy
+:class: bg-primary mb-1
+:width: 400px
+:align: center
+```
+
+Here is a detailed description of each component:
+1. Client - user interface to interact with the product;
+
+2. First-level model a.k.a candidate Generator: The candidate generator is the first level in the
+recommender system architecture. Its role is to select a set of items that are likely to be of
+interest to the user. It is usually designed to be very fast and efficient, as it needs to process
+a large number of potential items in a short amount of time. There are several ways to implement
+the candidate generator, such as collaborative filtering, content-based filtering, or a hybrid
+approach that combines both techniques.
+
+In the architecture above service described, the candidate generator receives a `user_id` as an
+input and uses a first-level model to select a set of candidate items that are likely to be of
+interest to that user. The first-level model can be a collaborative filtering model, a content-based
+filtering model, or a hybrid model that combines both techniques. The output of the candidate
+generator is a set of candidate items.
+
+3. FeatureStore - TBD
+
+4. ReRanker: The ranker is the second level in the recommender system architecture. Its role
+is to take the set of candidate items generated by the candidate generator and rank them in order
+of predicted relevance to the user. The ranker is usually a more complex and computationally
+expensive model than the candidate generator, as it needs to process a smaller set of potential
+items but with more detailed information.
+
+In production architecture described above, the ranker takes the set of candidate items generated
+by the first-level model and uses a feature store to enrich the data with additional information
+about the items and the user. This additional information could include item features such as genre,
+release date, or popularity, as well as user features such as demographics, past purchases,
+or browsing history. The ranker then applies a more sophisticated machine learning model to predict
+the relevance of each item to the user and sorts the items in order of predicted relevance.
+The output of the ranker is a sorted list of items that are likely to be of interest to the user.
