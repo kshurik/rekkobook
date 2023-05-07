@@ -1,14 +1,14 @@
 # What comes after ML model development?
-This chapter describes what is production code and how to write it using compelementary tools
-such `poetry`, `Makefile` and code styling modules like `pylint`, `black`, `isort`, `flake8`.
-Finally, we will define architecture of our production microservice of RecSys we developed in
+This chapter describes what is production code and how to write it using complementary tools
+such as `poetry`, `Makefile` and code styling modules like `pylint`, `black`, `isort` and `flake8`.
+Finally, we will define the architecture of our production microservice of RecSys we developed in
 [Chapter 1](https://rekkobook.com/chapter1/full_pipeline.html)
 
 
 After developing a machine learning (ML) model, the next step is to write production code
 that enables the model to function in a real-world environment. Production code is typically
 written in a programming language such as Python and executed on a server or virtual machine
-that is accessible to end-users. The goal of production code is to ensure that the ML model
+that is accessible to end users. The goal of production code is to ensure that the ML model
 performs as expected in a production environment, including handling real-world data, scaling
 to meet demand, and providing accurate and timely predictions.
 
@@ -29,15 +29,15 @@ In addition, strong coding requirements must be met which can be tracked and fix
 - Use version control to track changes and collaborate with others
 - Write unit tests to ensure that the code works as expected
 
-Therefore, various tools beside model and python code is used. Here, let's make an overview of these tools
-that used in development today.
+Therefore, various tools besides model and Python code are used. Here, let's make an overview of these tools
+that is used in development today.
 
 
 # Developement tools
 ## Poetry
-The first tool to use when creating production service or even any ML project to have full reproducibility
-of the results is library version control. Previously, `requirements.txt` was very popular amid developers
-and Data Scientists. It is pretty straightforward in usage -- add name and version of the library with a new line
+The first tool to use when creating a production service or even any ML project to have full reproducibility
+of the results is library version control. Previously, `requirements.txt` was very popular among developers
+and Data Scientists. It is pretty straightforward in usage -- add the name and version of the library with a new line
 
 ```
 pandas==1.1.5
@@ -45,48 +45,48 @@ numpy==1.23.5
 etc.
 ```
 However, more advanced config management has been discovered [`poetry`](https://python-poetry.org/) which allows
-to use it for dependencies management and configuration file for popular devtools (we will discuss it later).
+to use it for dependencies management and configuration file for popular dev tools (we will discuss it later).
 The main features are:
-- Dependecies management - resolves all dependencies for each library in the correct order. When using requirements.txt,
+- Dependencies management - resolves all dependencies for each library in the correct order. When using requirements.txt,
 developers have to manually manage the installation and updating of dependencies. This can be time-consuming
 and error-prone, especially when dealing with complex projects that have multiple dependencies. In contrast,
 Poetry automates most of the dependency management process, making it easier to install, update, and remove dependencies.;
-- Isolated virtualenv - automatically creates virtual environment for reproducibility with given Python version
+- Isolated virtualenv - automatically creates a virtual environment for reproducibility with a given Python version
 and libraries (no need to execute by hand, just one line of command in CLI);
-- CLI interaction to manage configuration file - intuitive commands to add / remove / install dependencies;
-- BONUS: some paramters for `pylint` styling guide, etc. can be set within the same config!
+- CLI interaction to manage configuration files - intuitive commands to add/remove/install dependencies;
+- BONUS: some parameters for the `pylint` styling guide, etc. can be set within the same config!
 
 
-Now, let's discuss details about how to use it. To initialize config we need to run installation
+Now, let's discuss details about how to use it. To initialize the config we need to run the installation
 ```
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-Then, we can initialize poetry config by executing (assuming we want to create dependency management for pre-existing project)
+Then, we can initialize the poetry config by executing (assuming we want to create dependency management for the pre-existing project)
 ```
 poetry init
 ```
-After we run, several optional questions will be asked to create the `pyproject.toml` file -- main configuration file.
-You can either fill it (for instance set python version) or just press enter to use suggested default values.
+After we run, several optional questions will be asked to create the `pyproject.toml` file -- the main configuration file.
+You can either fill it (for instance set the Python version) or just press enter to use suggested default values.
 
 Next, we add package names as following
 ```
 poetry add pandas
 ```
-or speicific version
+or specific version
 ```
 poetry add pandas==1.5.1
 ```
-Further it creates virtual environment with all packages and you can use it to run your scripts / notebooks
+Further, it creates a virtual environment with all packages and you can use it to run your scripts/notebooks
 or run by using bash commands
 ```
 poetry run python inference.py
 ```
 
-Also, you can set various parameters by utilizing full power of TOML extensions. In below there is an example of 
-a full poetry set up generated for the illustration purpose.
+Also, you can set various parameters by utilizing the full power of TOML extensions. Below there is an example of 
+a full poetry set-up generated for illustration purposes.
 
-- `[tool.poetry]` - meta information about the project
+- `[tool.poetry]` - meta-information about the project
 - `[tool.poetry.dependencies]` - main dependencies used in production
 - `[tool.poetry.group.dev.dependencies]` - development packages only needed for test and code style guides
 - `[build-system]` - poetry system parameters
@@ -159,28 +159,28 @@ disable = [
 ]
 ```
 
-Overall, poetry provides easy and efficient way to reproduce development environment,
-resolve dependencies and gives opportunity to use customization in some devtools.
+Overall, poetry provides an easy and efficient way to reproduce development environment,
+resolve dependencies and allows using customization in some dev tools.
 
 ## Styling guide and code quality
 As we have mentioned earlier, production code must be robust, scalable & reliable. Tracking
 the quality of the code by reviews only is exhaustive and almost impossible to achieve -- we
-are prone to errors too. However, most common mistakes like typos and convieniet bugs can
-be checked automatically and fixed. Here, we will describe main Python tools to achieve that
+are prone to errors too. However, most common mistakes like typos and convenient bugs can
+be checked automatically and fixed. Here, we will describe the main Python tools to achieve that
 - `[pylint](https://pypi.org/project/pylint/)` - code analyzer which does not run your code.
-It checks for errors, coding standard, makes clear sugesstions on how to improve it
-and even grade it on the scale of 0 to 10;
+It checks for errors, and the coding standard makes clear suggestions on how to improve it
+and even grade it on a scale of 0 to 10;
 
 ```{image} ./img/pylint.png
 :alt: fishy
 :class: bg-primary mb-1
 :width: 400px
-:align: center
+:align: centre
 ```
 
-- `[black](https://pypi.org/project/black/)` - in Python community there is well-known
-PEP-8 standard to follow. This library is a code formatter which is PEP 8 compliant
-opinionated formatter. It formats all code in given directory / files inplace fast and efficiently;
+- `[black](https://pypi.org/project/black/)` - in the Python community there is well-known
+PEP-8 standard to follow. This library is a code formatter which is PEP 8-compliant
+opinionated formatter. It formats all code in given directory/files in place fast and efficiently;
 
 Before formatting with black
 ```{code-cell} ipython3
@@ -213,8 +213,8 @@ def some_kaif_function(input_df: pd.DataFrame, param_1: int, param_2: str, path:
 
 ```
 
-- `[isort](https://pycqa.github.io/isort/)` - a library to make appropiate imports:
-alphabetical order and group by types to sections. Below is the example from official homepage
+- `[isort](https://pycqa.github.io/isort/)` - a library to make appropriate imports:
+alphabetical order and group by types to sections. Below is the example from the official homepage
 
 Before the isort
 ```{code-cell} ipython3
@@ -269,8 +269,8 @@ as they allow developers to quickly and easily build, test, and deploy their cod
 without having to manually type in commands for each step.
 
 For example, let's say you have a Python project with multiple modules, each with
-their own dependencies. You would need to install these dependencies and set up
-the environment in order to run the project. With a Makefile, you can automate this
+its dependencies. You would need to install these dependencies and set up
+the environment to run the project. With a Makefile, you can automate this
 process by defining targets for each step of the build,
 such as "install dependencies", "set up environment", "run tests", etc. 
 
@@ -281,7 +281,7 @@ Here's an example Makefile for a Python project:
 install:
     pip install -r requirements.txt
 
-# set up environment
+# set up the environment
 setup:
     virtualenv env
     source env/bin/activate
@@ -290,21 +290,21 @@ setup:
 test:
     python -m unittest discover -s tests
 
-# clean up environment
+# clean up the environment
 clean:
     rm -rf env/
     @find . | grep __pycache__ | xargs rm -rf
 
-# let's add formatiing stuff here as well
+# let's add formatting stuff here as well
 
 pylint:
-	pylint app config tests # folder names
+    pylint app config tests # folder names
 
 isort:
-	isort app config tests --jobs=0
+    isort app config tests --jobs=0
 
 black:
-	black app config tests
+    black app config tests
 
 fmt: isort black
 ```
@@ -314,9 +314,9 @@ This Makefile defines four targets: `install`, `setup`, `test`, and `clean`.
 - `make setup` will create a virtual environment and activate it;
 - `make test` will run all the tests in the `tests` directory;
 - `make clean` will remove the virtual environment and any cached Python files;
-- `make pylint` will run code formatting check;
-- `make isort` will do proper import of modules;
-- `make black` will run formatting inplace;
+- `make pylint` will run a code formatting check;
+- `make isort` will do a proper import of modules;
+- `make black` will run formatting in place;
 - `make fmt` will call `make isort` & `make black` for full formatting
 
 Overall, Makefiles are important for Python development because they automate
@@ -328,17 +328,17 @@ Let's recall the two-level architecture of a recommender system consists of two 
 the candidate generator and the ranker. The candidate generator is responsible for 
 selecting a set of items that are likely to be of interest to the user, and the ranker
 takes those items and ranks them in order of predicted relevance to the user. Keeping
-that in mind, the architecture for the light version will be as following:
+that in mind, the architecture for the light version will be as follows:
 
 ```{image} ./img/recsys_architecture.png
 :alt: fishy
 :class: bg-primary mb-1
 :width: 400px
-:align: center
+:align: centre
 ```
 
 Here is a detailed description of each component:
-1. Client - user interface to interact with the product;
+1. Client-user interface to interact with the product;
 
 2. First-level model a.k.a candidate Generator: The candidate generator is the first level in the
 recommender system architecture. Its role is to select a set of items that are likely to be of
@@ -361,7 +361,7 @@ of predicted relevance to the user. The ranker is usually a more complex and com
 expensive model than the candidate generator, as it needs to process a smaller set of potential
 items but with more detailed information.
 
-In production architecture described above, the ranker takes the set of candidate items generated
+In the production architecture described above, the ranker takes the set of candidate items generated
 by the first-level model and uses a feature store to enrich the data with additional information
 about the items and the user. This additional information could include item features such as genre,
 release date, or popularity, as well as user features such as demographics, past purchases,
