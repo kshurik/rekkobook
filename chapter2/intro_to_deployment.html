@@ -255,6 +255,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -436,7 +440,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 2 - PRODUCTION CODE &amp; DEPLOYMENT</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Production Code &amp; Deployment</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">What comes after ML model development?</a></li>
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 3 - Estimation of RecSys and other ML models in real world</span></p>
 <ul class="nav bd-sidenav">
@@ -574,7 +580,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -587,6 +595,46 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   What comes after ML model development?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#developement-tools">
+   Developement tools
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poetry">
+     Poetry
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#styling-guide-and-code-quality">
+     Styling guide and code quality
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#makefile">
+     Makefile
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architecture-for-our-recsys-project">
+   Architecture for our RecSys Project
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -595,7 +643,289 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="what-comes-after-ml-model-development">
 <h1>What comes after ML model development?<a class="headerlink" href="#what-comes-after-ml-model-development" title="Permalink to this heading">#</a></h1>
-<p>TBD</p>
+<p>This chapter describes what is production code and how to write it using complementary tools
+such as <code class="docutils literal notranslate"><span class="pre">poetry</span></code>, <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and code styling modules like <code class="docutils literal notranslate"><span class="pre">pylint</span></code>, <code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">isort</span></code> and <code class="docutils literal notranslate"><span class="pre">flake8</span></code>.
+Finally, we will define the architecture of our production microservice of RecSys we developed in
+<a class="reference external" href="https://rekkobook.com/chapter1/full_pipeline.html">Chapter 1</a></p>
+<p>After developing a machine learning (ML) model, the next step is to write production code
+that enables the model to function in a real-world environment. Production code is typically
+written in a programming language such as Python and executed on a server or virtual machine
+that is accessible to end users. The goal of production code is to ensure that the ML model
+performs as expected in a production environment, including handling real-world data, scaling
+to meet demand, and providing accurate and timely predictions.</p>
+<p>To ensure that production code is robust, scalable, and reliable, different skills are required
+than those needed for research or experimentation. The production code pipeline involves several steps,
+including:</p>
+<ul class="simple">
+<li><p>Replicating the development environment for full reproducibility of results;</p></li>
+<li><p>Data preparation such as collecting necessary input and calculating runtime features;</p></li>
+<li><p>Inference and postprocessing that includes making final predictions and any necessary
+postprocessing of predictions, such as scaling</p></li>
+</ul>
+<p>In addition, strong coding requirements must be met which can be tracked and fixed using:</p>
+<ul class="simple">
+<li><p>Use a consistent coding style and naming convention</p></li>
+<li><p>Write clear and concise comments</p></li>
+<li><p>Include error handling and logging</p></li>
+<li><p>Use version control to track changes and collaborate with others</p></li>
+<li><p>Write unit tests to ensure that the code works as expected</p></li>
+</ul>
+<p>Therefore, various tools besides model and Python code are used. Here, let’s make an overview of these tools
+that is used in development today.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="developement-tools">
+<h1>Developement tools<a class="headerlink" href="#developement-tools" title="Permalink to this heading">#</a></h1>
+<section id="poetry">
+<h2>Poetry<a class="headerlink" href="#poetry" title="Permalink to this heading">#</a></h2>
+<p>The first tool to use when creating a production service or even any ML project to have full reproducibility
+of the results is library version control. Previously, <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> was very popular among developers
+and Data Scientists. It is pretty straightforward in usage – add the name and version of the library with a new line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">==</span><span class="mf">1.1.5</span>
+<span class="n">numpy</span><span class="o">==</span><span class="mf">1.23.5</span>
+<span class="n">etc</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>However, more advanced config management has been discovered <a class="reference external" href="https://python-poetry.org/"><code class="docutils literal notranslate"><span class="pre">poetry</span></code></a> which allows
+to use it for dependencies management and configuration file for popular dev tools (we will discuss it later).
+The main features are:</p>
+<ul class="simple">
+<li><p>Dependencies management - resolves all dependencies for each library in the correct order. When using requirements.txt,
+developers have to manually manage the installation and updating of dependencies. This can be time-consuming
+and error-prone, especially when dealing with complex projects that have multiple dependencies. In contrast,
+Poetry automates most of the dependency management process, making it easier to install, update, and remove dependencies.;</p></li>
+<li><p>Isolated virtualenv - automatically creates a virtual environment for reproducibility with a given Python version
+and libraries (no need to execute by hand, just one line of command in CLI);</p></li>
+<li><p>CLI interaction to manage configuration files - intuitive commands to add/remove/install dependencies;</p></li>
+<li><p>BONUS: some parameters for the <code class="docutils literal notranslate"><span class="pre">pylint</span></code> styling guide, etc. can be set within the same config!</p></li>
+</ul>
+<p>Now, let’s discuss details about how to use it. To initialize the config we need to run the installation</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">install</span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">poetry</span><span class="o">.</span><span class="n">org</span> <span class="o">|</span> <span class="n">python3</span> <span class="o">-</span>
+</pre></div>
+</div>
+<p>Then, we can initialize the poetry config by executing (assuming we want to create dependency management for the pre-existing project)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">poetry</span> <span class="n">init</span>
+</pre></div>
+</div>
+<p>After we run, several optional questions will be asked to create the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file – the main configuration file.
+You can either fill it (for instance set the Python version) or just press enter to use suggested default values.</p>
+<p>Next, we add package names as following</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">poetry</span> <span class="n">add</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+<p>or specific version</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">poetry</span> <span class="n">add</span> <span class="n">pandas</span><span class="o">==</span><span class="mf">1.5.1</span>
+</pre></div>
+</div>
+<p>Further, it creates a virtual environment with all packages and you can use it to run your scripts/notebooks
+or run by using bash commands</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">poetry</span> <span class="n">run</span> <span class="n">python</span> <span class="n">inference</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Also, you can set various parameters by utilizing the full power of TOML extensions. Below there is an example of
+a full poetry set-up generated for illustration purposes.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[tool.poetry]</span></code> - meta-information about the project</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[tool.poetry.dependencies]</span></code> - main dependencies used in production</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[tool.poetry.group.dev.dependencies]</span></code> - development packages only needed for test and code style guides</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[build-system]</span></code> - poetry system parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[tool.isort],</span> <span class="pre">[tool.black],</span> <span class="pre">[tool.pylint]</span></code> - parameters to set up custom code style and checks.
+We will discuss them in the next part.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">poetry</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;rekko_handbook&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;RecSys Handbook&quot;</span>
+<span class="n">authors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;khalilbekov92@gmail.com&quot;</span><span class="p">]</span>
+<span class="n">readme</span> <span class="o">=</span> <span class="s2">&quot;README.md&quot;</span>
+<span class="n">packages</span> <span class="o">=</span> <span class="p">[{</span><span class="n">include</span> <span class="o">=</span> <span class="s2">&quot;rekko_handbook&quot;</span><span class="p">}]</span>
+
+<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">poetry</span><span class="o">.</span><span class="n">dependencies</span><span class="p">]</span>
+<span class="n">python</span> <span class="o">=</span> <span class="s2">&quot;&gt;=3.9,&lt;3.12&quot;</span>
+<span class="n">loguru</span> <span class="o">=</span> <span class="s2">&quot;0.6.0&quot;</span>
+<span class="n">pandas</span> <span class="o">=</span> <span class="s2">&quot;1.5.3&quot;</span>
+<span class="n">presto</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">client</span> <span class="o">=</span> <span class="s2">&quot;0.8.3&quot;</span>
+<span class="n">clickhouse</span><span class="o">-</span><span class="n">driver</span> <span class="o">=</span> <span class="s2">&quot;0.2.5&quot;</span>
+<span class="n">dynaconf</span> <span class="o">=</span> <span class="s2">&quot;^3.1.12&quot;</span>
+<span class="n">torch</span> <span class="o">=</span> <span class="s2">&quot;^2.0.0&quot;</span>
+<span class="n">transformers</span> <span class="o">=</span> <span class="s2">&quot;^4.27.3&quot;</span>
+<span class="n">tqdm</span> <span class="o">=</span> <span class="s2">&quot;^4.65.0&quot;</span>
+<span class="n">scipy</span> <span class="o">=</span> <span class="s2">&quot;^1.10.1&quot;</span>
+<span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="o">=</span> <span class="s2">&quot;^1.2.2&quot;</span>
+<span class="n">boto3</span> <span class="o">=</span> <span class="s2">&quot;^1.26.106&quot;</span>
+<span class="n">python</span><span class="o">-</span><span class="n">dotenv</span> <span class="o">=</span> <span class="s2">&quot;^1.0.0&quot;</span>
+
+<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">poetry</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">dev</span><span class="o">.</span><span class="n">dependencies</span><span class="p">]</span>
+<span class="n">pytest</span> <span class="o">=</span> <span class="s2">&quot;^7.2.2&quot;</span>
+<span class="n">pylint</span> <span class="o">=</span> <span class="s2">&quot;^2.17.1&quot;</span>
+<span class="n">flake8</span> <span class="o">=</span> <span class="s2">&quot;^6.0.0&quot;</span>
+<span class="n">black</span> <span class="o">=</span> <span class="s2">&quot;^23.1.0&quot;</span>
+<span class="n">isort</span> <span class="o">=</span> <span class="s2">&quot;^5.12.0&quot;</span>
+<span class="n">pytest</span><span class="o">-</span><span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;^3.2.0&quot;</span>
+
+<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">isort</span><span class="p">]</span>
+<span class="n">line_length</span> <span class="o">=</span> <span class="mi">120</span>
+<span class="n">multi_line_output</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">include_trailing_comma</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">black</span><span class="p">]</span>
+<span class="n">line</span><span class="o">-</span><span class="n">length</span> <span class="o">=</span> <span class="mi">120</span>
+<span class="n">target</span><span class="o">-</span><span class="n">version</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;py39&#39;</span><span class="p">]</span>
+<span class="n">skip</span><span class="o">-</span><span class="n">string</span><span class="o">-</span><span class="n">normalization</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="p">[</span><span class="n">build</span><span class="o">-</span><span class="n">system</span><span class="p">]</span>
+<span class="n">requires</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;poetry-core&gt;=1.4.1&quot;</span><span class="p">]</span>
+<span class="n">build</span><span class="o">-</span><span class="n">backend</span> <span class="o">=</span> <span class="s2">&quot;poetry.core.masonry.api&quot;</span>
+
+<span class="p">[</span><span class="n">tool</span><span class="o">.</span><span class="n">pylint</span><span class="o">.</span><span class="s1">&#39;FORMAT&#39;</span><span class="p">]</span>
+<span class="nb">min</span><span class="o">-</span><span class="n">similarity</span><span class="o">-</span><span class="n">lines</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">fail</span><span class="o">-</span><span class="n">under</span> <span class="o">=</span> <span class="mf">9.7</span>
+<span class="n">py</span><span class="o">-</span><span class="n">version</span> <span class="o">=</span> <span class="mf">3.9</span>
+<span class="n">good</span><span class="o">-</span><span class="n">names</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;bp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;db&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;df&#39;</span>
+<span class="p">]</span>
+<span class="nb">max</span><span class="o">-</span><span class="n">line</span><span class="o">-</span><span class="n">length</span> <span class="o">=</span> <span class="mi">120</span>
+<span class="n">disable</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;locally-disabled&#39;</span><span class="p">,</span> <span class="s1">&#39;suppressed-message&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;missing-module-docstring&#39;</span><span class="p">,</span> <span class="s1">&#39;missing-class-docstring&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;missing-function-docstring&#39;</span><span class="p">,</span> <span class="s1">&#39;too-few-public-methods&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wrong-import-position&#39;</span><span class="p">,</span> <span class="s1">&#39;import-outside-toplevel&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fixme&#39;</span><span class="p">,</span> <span class="s1">&#39;too-many-locals&#39;</span><span class="p">,</span> <span class="s1">&#39;too-many-arguments&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;too-many-instance-attributes&#39;</span><span class="p">,</span> <span class="s1">&#39;c-extension-no-member&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Overall, poetry provides an easy and efficient way to reproduce development environment,
+resolve dependencies and allows using customization in some dev tools.</p>
+</section>
+<section id="styling-guide-and-code-quality">
+<h2>Styling guide and code quality<a class="headerlink" href="#styling-guide-and-code-quality" title="Permalink to this heading">#</a></h2>
+<p>As we have mentioned earlier, production code must be robust, scalable &amp; reliable. Tracking
+the quality of the code by reviews only is exhaustive and almost impossible to achieve – we
+are prone to errors too. However, most common mistakes like typos and convenient bugs can
+be checked automatically and fixed. Here, we will describe the main Python tools to achieve that</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[pylint](https://pypi.org/project/pylint/)</span></code> - code analyzer which does not run your code.
+It checks for errors, and the coding standard makes clear suggestions on how to improve it
+and even grade it on a scale of 0 to 10;</p></li>
+</ul>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[black](https://pypi.org/project/black/)</span></code> - in the Python community there is well-known
+PEP-8 standard to follow. This library is a code formatter which is PEP 8-compliant
+opinionated formatter. It formats all code in given directory/files in place fast and efficiently;</p></li>
+</ul>
+<p>Before formatting with black</p>
+<p>After formatting with black</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[isort](https://pycqa.github.io/isort/)</span></code> - a library to make appropriate imports:
+alphabetical order and group by types to sections. Below is the example from the official homepage</p></li>
+</ul>
+<p>Before the isort</p>
+<p>After isort</p>
+</section>
+<section id="makefile">
+<h2>Makefile<a class="headerlink" href="#makefile" title="Permalink to this heading">#</a></h2>
+<p>Makefiles are important tools for managing and automating the building and
+deployment of software projects. In Python development, Makefiles are especially
+useful in managing the compilation, packaging, and testing of code. A Makefile
+is essentially a script that defines a set of rules and actions to be performed
+when certain conditions are met. These rules can be used to automate repetitive
+tasks, such as compiling code, running tests, and generating documentation.</p>
+<p>They are particularly useful for large projects with many files and dependencies,
+as they allow developers to quickly and easily build, test, and deploy their code
+without having to manually type in commands for each step.</p>
+<p>For example, let’s say you have a Python project with multiple modules, each with
+its dependencies. You would need to install these dependencies and set up
+the environment to run the project. With a Makefile, you can automate this
+process by defining targets for each step of the build,
+such as “install dependencies”, “set up environment”, “run tests”, etc.</p>
+<p>Here’s an example Makefile for a Python project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># install dependencies</span>
+<span class="n">install</span><span class="p">:</span>
+    <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># set up the environment</span>
+<span class="n">setup</span><span class="p">:</span>
+    <span class="n">virtualenv</span> <span class="n">env</span>
+    <span class="n">source</span> <span class="n">env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="c1"># run tests</span>
+<span class="n">test</span><span class="p">:</span>
+    <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span> <span class="n">discover</span> <span class="o">-</span><span class="n">s</span> <span class="n">tests</span>
+
+<span class="c1"># clean up the environment</span>
+<span class="n">clean</span><span class="p">:</span>
+    <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">env</span><span class="o">/</span>
+    <span class="nd">@find</span> <span class="o">.</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">__pycache__</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span>
+
+<span class="c1"># let&#39;s add formatting stuff here as well</span>
+
+<span class="n">pylint</span><span class="p">:</span>
+    <span class="n">pylint</span> <span class="n">app</span> <span class="n">config</span> <span class="n">tests</span> <span class="c1"># folder names</span>
+
+<span class="n">isort</span><span class="p">:</span>
+    <span class="n">isort</span> <span class="n">app</span> <span class="n">config</span> <span class="n">tests</span> <span class="o">--</span><span class="n">jobs</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="n">black</span><span class="p">:</span>
+    <span class="n">black</span> <span class="n">app</span> <span class="n">config</span> <span class="n">tests</span>
+
+<span class="n">fmt</span><span class="p">:</span> <span class="n">isort</span> <span class="n">black</span>
+</pre></div>
+</div>
+<p>This Makefile defines four targets: <code class="docutils literal notranslate"><span class="pre">install</span></code>, <code class="docutils literal notranslate"><span class="pre">setup</span></code>, <code class="docutils literal notranslate"><span class="pre">test</span></code>, and <code class="docutils literal notranslate"><span class="pre">clean</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> will install all the dependencies listed in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">setup</span></code> will create a virtual environment and activate it;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> will run all the tests in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> will remove the virtual environment and any cached Python files;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">pylint</span></code> will run a code formatting check;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">isort</span></code> will do a proper import of modules;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">black</span></code> will run formatting in place;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">fmt</span></code> will call <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">isort</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">black</span></code> for full formatting</p></li>
+</ul>
+<p>Overall, Makefiles are important for Python development because they automate
+the many routine processes, making it easier and faster for developers
+to build, test, and deploy their code.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="architecture-for-our-recsys-project">
+<h1>Architecture for our RecSys Project<a class="headerlink" href="#architecture-for-our-recsys-project" title="Permalink to this heading">#</a></h1>
+<p>Let’s recall the two-level architecture of a recommender system consists of two main components:
+the candidate generator and the ranker. The candidate generator is responsible for
+selecting a set of items that are likely to be of interest to the user, and the ranker
+takes those items and ranks them in order of predicted relevance to the user. Keeping
+that in mind, the architecture for the light version will be as follows:</p>
+<p>Here is a detailed description of each component:</p>
+<ol class="arabic simple">
+<li><p>Client-user interface to interact with the product;</p></li>
+<li><p>First-level model a.k.a candidate Generator: The candidate generator is the first level in the
+recommender system architecture. Its role is to select a set of items that are likely to be of
+interest to the user. It is usually designed to be very fast and efficient, as it needs to process
+a large number of potential items in a short amount of time. There are several ways to implement
+the candidate generator, such as collaborative filtering, content-based filtering, or a hybrid
+approach that combines both techniques.</p></li>
+</ol>
+<p>In the architecture above service described, the candidate generator receives a <code class="docutils literal notranslate"><span class="pre">user_id</span></code> as an
+input and uses a first-level model to select a set of candidate items that are likely to be of
+interest to that user. The first-level model can be a collaborative filtering model, a content-based
+filtering model, or a hybrid model that combines both techniques. The output of the candidate
+generator is a set of candidate items.</p>
+<ol class="arabic simple" start="3">
+<li><p>FeatureStore - TBD</p></li>
+<li><p>ReRanker: The ranker is the second level in the recommender system architecture. Its role
+is to take the set of candidate items generated by the candidate generator and rank them in order
+of predicted relevance to the user. The ranker is usually a more complex and computationally
+expensive model than the candidate generator, as it needs to process a smaller set of potential
+items but with more detailed information.</p></li>
+</ol>
+<p>In the production architecture described above, the ranker takes the set of candidate items generated
+by the first-level model and uses a feature store to enrich the data with additional information
+about the items and the user. This additional information could include item features such as genre,
+release date, or popularity, as well as user features such as demographics, past purchases,
+or browsing history. The ranker then applies a more sophisticated machine learning model to predict
+the relevance of each item to the user and sorts the items in order of predicted relevance.
+The output of the ranker is a sorted list of items that are likely to be of interest to the user.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -646,6 +976,54 @@ title="Print to PDF"
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   What comes after ML model development?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#developement-tools">
+   Developement tools
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poetry">
+     Poetry
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#styling-guide-and-code-quality">
+     Styling guide and code quality
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#makefile">
+     Makefile
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architecture-for-our-recsys-project">
+   Architecture for our RecSys Project
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>
