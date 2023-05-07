@@ -204,6 +204,13 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../chapter2/api_dev.html">
+                        API Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
                         INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
@@ -344,6 +351,13 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../chapter2/api_dev.html">
+                        API Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
                         INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
@@ -442,6 +456,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../chapter2/intro_to_deployment.html">What comes after ML model development?</a></li>
 
+
+<li class="toctree-l1"><a class="reference internal" href="../chapter2/api_dev.html">Application Programming Interface (<code class="docutils literal notranslate"><span class="pre">API</span></code>)</a></li>
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 3 - Estimation of RecSys and other ML models in real world</span></p>
@@ -1160,8 +1176,8 @@ Also, if we want to get recommendations based on some user groups we can easily 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [1428, 2636, 1771, 178, 3112, 4930, 961, 31116...
-2    [2897, 50641, 1162, 116, 91690, 26843, 91673, ...
+1    [5915, 2636, 74727, 845, 759, 26843, 764, 309,...
+2    [4930, 8208, 26258, 8341, 26422, 49957, 26578,...
 dtype: object
 </pre></div>
 </div>
@@ -1235,7 +1251,7 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1283,35 +1299,35 @@ for all users i.e. <em>base_recommendations</em></p>
       <td>1</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[1428, 2636, 1771, 178, 3112, 4930, 961, 31116...</td>
+      <td>[5915, 2636, 74727, 845, 759, 26843, 764, 309,...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2897, 50641, 1162, 116, 91690, 26843, 91673, ...</td>
+      <td>[4930, 8208, 26258, 8341, 26422, 49957, 26578,...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2897, 50641, 1162, 116, 91690, 26843, 91673, ...</td>
+      <td>[4930, 8208, 26258, 8341, 26422, 49957, 26578,...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[1428, 2636, 1771, 178, 3112, 4930, 961, 31116...</td>
+      <td>[5915, 2636, 74727, 845, 759, 26843, 764, 309,...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2897, 50641, 1162, 116, 91690, 26843, 91673, ...</td>
+      <td>[5915, 2636, 74727, 845, 759, 26843, 764, 309,...</td>
     </tr>
   </tbody>
 </table>
@@ -1383,8 +1399,8 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [1428, 2636, 1771, 178, 3112, 4930, 961, 31116...
-2    [2897, 50641, 1162, 116, 91690, 26843, 91673, ...
+1    [5915, 2636, 74727, 845, 759, 26843, 764, 309,...
+2    [4930, 8208, 26258, 8341, 26422, 49957, 26578,...
 dtype: object
 </pre></div>
 </div>
@@ -1483,7 +1499,7 @@ dtype: object
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1528,31 +1544,31 @@ dtype: object
       <th>0</th>
       <td>1</td>
       <td>1</td>
-      <td>[1428, 2636, 1771, 178, 3112, 4930, 961, 31116...</td>
+      <td>[5915, 2636, 74727, 845, 759, 26843, 764, 309,...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
-      <td>[2897, 50641, 1162, 116, 91690, 26843, 91673, ...</td>
+      <td>[4930, 8208, 26258, 8341, 26422, 49957, 26578,...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>2</td>
-      <td>[2897, 50641, 1162, 116, 91690, 26843, 91673, ...</td>
+      <td>[4930, 8208, 26258, 8341, 26422, 49957, 26578,...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
       <td>1</td>
-      <td>[1428, 2636, 1771, 178, 3112, 4930, 961, 31116...</td>
+      <td>[5915, 2636, 74727, 845, 759, 26843, 764, 309,...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
-      <td>[2897, 50641, 1162, 116, 91690, 26843, 91673, ...</td>
+      <td>1</td>
+      <td>[5915, 2636, 74727, 845, 759, 26843, 764, 309,...</td>
     </tr>
   </tbody>
 </table>

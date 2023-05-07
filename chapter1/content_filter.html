@@ -204,6 +204,13 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../chapter2/api_dev.html">
+                        API Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
                         INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
@@ -344,6 +351,13 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../chapter2/api_dev.html">
+                        API Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
                         INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
@@ -442,6 +456,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../chapter2/intro_to_deployment.html">What comes after ML model development?</a></li>
 
+
+<li class="toctree-l1"><a class="reference internal" href="../chapter2/api_dev.html">Application Programming Interface (<code class="docutils literal notranslate"><span class="pre">API</span></code>)</a></li>
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 3 - Estimation of RecSys and other ML models in real world</span></p>
@@ -1003,7 +1019,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;board&#39;, &#39;creatures&#39;, &#39;freedom&#39;, &#39;three&#39;, &#39;siblings&#39;, &#39;giant&#39;, &#39;hope&#39;, &#39;discover&#39;, &#39;terrifying&#39;, &#39;years&#39;, &#39;room&#39;, &#39;running&#39;, &#39;world&#39;, &#39;adult&#39;, &#39;judy&#39;, &#39;unwittingly&#39;, &#39;proves&#39;, &#39;magical&#39;, &#39;opens&#39;, &#39;monkeys&#39;, &#39;alan&#39;, &#39;evil&#39;, &#39;finish&#39;, &#39;trapped&#39;, &#39;enchanted&#39;, &#39;door&#39;, &#39;inside&#39;, &#39;rhinoceroses&#39;, &#39;game&#39;, &#39;invite&#39;, &#39;living&#39;, &#39;peter&#39;, &#39;find&#39;, &#39;risky&#39;], tags=[&#39;1&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;proves&#39;, &#39;opens&#39;, &#39;monkeys&#39;, &#39;enchanted&#39;, &#39;judy&#39;, &#39;years&#39;, &#39;room&#39;, &#39;invite&#39;, &#39;three&#39;, &#39;door&#39;, &#39;risky&#39;, &#39;running&#39;, &#39;freedom&#39;, &#39;peter&#39;, &#39;alan&#39;, &#39;creatures&#39;, &#39;unwittingly&#39;, &#39;rhinoceroses&#39;, &#39;game&#39;, &#39;board&#39;, &#39;trapped&#39;, &#39;living&#39;, &#39;siblings&#39;, &#39;evil&#39;, &#39;giant&#39;, &#39;find&#39;, &#39;finish&#39;, &#39;adult&#39;, &#39;magical&#39;, &#39;inside&#39;, &#39;discover&#39;, &#39;terrifying&#39;, &#39;hope&#39;, &#39;world&#39;], tags=[&#39;1&#39;])
 </pre></div>
 </div>
 </div>
@@ -1132,23 +1148,23 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>5713</td>
-      <td>0.960792</td>
+      <td>13835</td>
+      <td>0.965675</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>13835</td>
-      <td>0.959312</td>
+      <td>29872</td>
+      <td>0.961076</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>29872</td>
-      <td>0.955469</td>
+      <td>43165</td>
+      <td>0.959090</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>24433</td>
-      <td>0.952309</td>
+      <td>37792</td>
+      <td>0.955800</td>
     </tr>
   </tbody>
 </table>
@@ -1202,117 +1218,117 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>5713</td>
-      <td>0.960792</td>
-      <td>rollover</td>
-    </tr>
-    <tr>
-      <th>2</th>
       <td>13835</td>
-      <td>0.959312</td>
+      <td>0.965675</td>
       <td>k2</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>2</th>
       <td>29872</td>
-      <td>0.955469</td>
+      <td>0.961076</td>
       <td>angels die hard</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>24433</td>
-      <td>0.952309</td>
-      <td>the creeping terror</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>7772</td>
-      <td>0.950592</td>
-      <td>this island earth</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>40652</td>
-      <td>0.948681</td>
-      <td>homeless in america</td>
-    </tr>
-    <tr>
-      <th>7</th>
+      <th>3</th>
       <td>43165</td>
-      <td>0.948522</td>
+      <td>0.959090</td>
       <td>the zookeeper's wife</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>19227</td>
-      <td>0.947409</td>
-      <td>carbon nation</td>
+      <th>4</th>
+      <td>37792</td>
+      <td>0.955800</td>
+      <td>creature</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>2551</td>
-      <td>0.947173</td>
-      <td>it conquered the world</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>27111</td>
-      <td>0.945639</td>
-      <td>the threat</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>27658</td>
-      <td>0.945554</td>
-      <td>giperboloid inzhenera garina</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>28001</td>
-      <td>0.945510</td>
-      <td>reach me</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>44339</td>
-      <td>0.945172</td>
-      <td>the underground world</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>40695</td>
-      <td>0.944770</td>
-      <td>krakh inzhenera garina</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>35604</td>
-      <td>0.944538</td>
-      <td>public enemies</td>
-    </tr>
-    <tr>
-      <th>16</th>
+      <th>5</th>
       <td>11256</td>
-      <td>0.944000</td>
+      <td>0.954714</td>
       <td>sun faa sau si</td>
     </tr>
     <tr>
-      <th>17</th>
-      <td>4199</td>
-      <td>0.943885</td>
+      <th>6</th>
+      <td>8916</td>
+      <td>0.953403</td>
+      <td>killer klowns from outer space</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>3824</td>
+      <td>0.953235</td>
+      <td>requiem for a dream</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>44339</td>
+      <td>0.952021</td>
+      <td>the underground world</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>5713</td>
+      <td>0.950811</td>
+      <td>rollover</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>19227</td>
+      <td>0.950287</td>
+      <td>carbon nation</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2175</td>
+      <td>0.949238</td>
       <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>18407</td>
+      <td>0.949197</td>
+      <td>the nazis - a warning from history</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>24433</td>
+      <td>0.948638</td>
+      <td>the creeping terror</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>37739</td>
+      <td>0.947726</td>
+      <td>google and the world brain</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>5412</td>
+      <td>0.946529</td>
+      <td>976-evil</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>28001</td>
+      <td>0.946439</td>
+      <td>reach me</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>3536</td>
+      <td>0.946373</td>
+      <td>quatermass and the pit</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>39308</td>
-      <td>0.943822</td>
-      <td>NaN</td>
+      <td>34460</td>
+      <td>0.946031</td>
+      <td>maciste e la regina di samar</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>43461</td>
-      <td>0.943804</td>
-      <td>megafault</td>
+      <td>21688</td>
+      <td>0.945635</td>
+      <td>the monster that challenged the world</td>
     </tr>
   </tbody>
 </table>
