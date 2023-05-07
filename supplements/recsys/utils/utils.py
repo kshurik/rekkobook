@@ -1,8 +1,12 @@
 import dill
+import json
 import numpy as np
 import pandas as pd
+from datetime import datetime, timedelta
 
+from cachetools import cached, TTLCache
 
+@cached(cache=TTLCache(maxsize = 1024, ttl = timedelta(hours = 12), timer = datetime.now))
 def read_parquet_from_gdrive(url):
     """
     gets csv data from a given url (from file -> share -> copy link)
@@ -58,3 +62,14 @@ def load_model(path: str):
     with open(path, "rb") as obj_file:
         obj = dill.load(obj_file)
     return obj
+
+class JsonEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        else:
+            return super(JsonEncoder, self).default(obj)

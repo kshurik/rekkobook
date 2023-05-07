@@ -13,7 +13,6 @@ from utils.utils import (
     read_parquet_from_gdrive,
 )
 
-
 def prepare_data_for_train() -> Tuple[pd.DataFrame]:
     """
     function to prepare data to train catboost classifier.
