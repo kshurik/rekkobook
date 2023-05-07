@@ -1,7 +1,7 @@
 # Application Programming Interface (`API`)
 Previously, we discussed the process and tools of production code writing. In this chapter,
-we will focus on Application Programming Interface - API which is used in any service
-to communicate with each other. Let's dive into that.
+we will focus on Application Programming Interface - API which is used in any service to
+communicate with each other. Let's dive into that.
 
 
 API stands for Application Programming Interface. It is a set of rules and protocols that
@@ -18,8 +18,8 @@ APIs are essential for software development as they allow developers to create s
 with other applications. This means that developers do not need to create everything from scratch,
 but instead, they can use APIs to connect their software to other applications, services, or data sources.
 
-In the case of a two-level recommender system, the API would allow different components of the
-system to communicate with each other. For example, the client requests user data, which is then
+In the case of a two-level recommender system, the API would allow different components of the system
+to communicate with each other. For example, the client requests user data, which is then
 processed by the first-level model. The API would allow the model to communicate with the feature
 store to enrich the data and then pass it on to the ranker model. Finally, the ranker model would
 use the API to send back the sorted items to the client.
