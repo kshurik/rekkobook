@@ -24,6 +24,8 @@ parts:
   chapters:
   - file: chapter2/intro_to_deployment
     title: Introduction to Production Code & Deployment
+  - file: chapter2/api_dev
+    title: API Development
 - caption: CHAPTER 3 - Estimation of RecSys and other ML models in real world
   chapters:
   - file: chapter3/intro_to_analytics
