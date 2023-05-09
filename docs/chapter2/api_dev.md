@@ -3,7 +3,6 @@ Previously, we discussed the process and tools of production code writing. In th
 we will focus on Application Programming Interface - API which is used in any service to
 communicate with each other. Let's dive into that.
 
-
 API stands for Application Programming Interface. It is a set of rules and protocols that
 allows different software applications to communicate with each other. In simpler terms,
 an API is like a waiter in a restaurant who takes your order and communicates it to the kitchen.
