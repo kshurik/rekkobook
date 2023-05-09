@@ -346,7 +346,6 @@ interest to the user. It is usually designed to be very fast and efficient, as i
 a large number of potential items in a short amount of time. There are several ways to implement
 the candidate generator, such as collaborative filtering, content-based filtering, or a hybrid
 approach that combines both techniques.
-
 In the architecture above service described, the candidate generator receives a `user_id` as an
 input and uses a first-level model to select a set of candidate items that are likely to be of
 interest to that user. The first-level model can be a collaborative filtering model, a content-based
@@ -356,7 +355,6 @@ generator is a set of candidate items.
 3. FeatureStore - a feature store is a centralized repository of features used in machine learning models.
 It enables easy sharing and reuse of features across different models and teams. Instead of storing features in
 separate databases, a feature store allows for efficient storage and retrieval of feature for inference.
- 
 In this project, we will be using parquet files as an example of a feature store, rather than traditional
 databases. This will allow for easy integration and understanding key points of the project
 instead of technical stuff with data storage.

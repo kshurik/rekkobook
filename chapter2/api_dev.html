@@ -628,9 +628,21 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#api-development-flask-fastapi">
-   API development: Flask &amp; FastAPI
+  <a class="reference internal nav-link" href="#api-development">
+   API development
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flask-fastapi">
+     Flask &amp; FastAPI
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recsys-project-pipeline">
+     RecSys Project Pipeline
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -666,8 +678,17 @@ use the API to send back the sorted items to the client.</p>
 that come to mind. Both frameworks have their own strengths and weaknesses, and choosing
 between them depends on the specific needs of the project which we will discuss further</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="api-development-flask-fastapi">
-<h1>API development: Flask &amp; FastAPI<a class="headerlink" href="#api-development-flask-fastapi" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="api-development">
+<h1>API development<a class="headerlink" href="#api-development" title="Permalink to this heading">#</a></h1>
+<p>We dived into the world of APIs, web frameworks, and their application to building recommendation systems.
+Now, we will introduce Flask, a popular Python web framework, and FastAPI, a newer and
+faster web framework for building APIs.</p>
+<p>After a brief overview, we will dive into a hands-on example of building an API using Flask.
+Specifically, we will use Flask to build a two-level recommender system that recommends movies to users based
+on their preferences - this will include both training and inference pipeline. This project will
+showcase how Flask can be used to build a scalable and efficient API for machine learning-based applications.</p>
+<section id="flask-fastapi">
+<h2>Flask &amp; FastAPI<a class="headerlink" href="#flask-fastapi" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Flask</span></code> is a popular web framework for building APIs in Python that provides a simple and
 flexible approach to building RESTful APIs. It is easy to learn, has a minimalistic design,
 and is suitable for small to medium-sized projects. Flask is known for its flexibility,
@@ -708,6 +729,125 @@ small to medium-sized APIs. FastAPI, on the other hand, is a high-performance fr
 with performance in mind. It is ideal for building large-scale APIs that require high levels of
 performance and efficiency. The choice between Flask and FastAPI ultimately depends on the specific
 requirements of the project, the level of control needed, and the expected levels of performance and scalability.</p>
+</section>
+<section id="recsys-project-pipeline">
+<h2>RecSys Project Pipeline<a class="headerlink" href="#recsys-project-pipeline" title="Permalink to this heading">#</a></h2>
+<p>In the previous section, we discussed the theory of API development and compared FlaskAPI and FastAPI
+frameworks for building APIs. Now, we will apply this knowledge to develop an API for a two-level
+recommender system. Our recommender system has four parts as we discussed <a class="reference external" href="https://rekkobook.com/chapter2/intro_to_deployment.html#architecture-for-our-recsys-project">here</a>: a client, first-level training and inference
+for candidate generation, a feature store that stores user and item features as parquet files, and a
+reranker as the second-level model. The output of our API will be recommendations along with status
+(success or error) and a message (null if the status is a success).</p>
+<p>To develop this API, we will be using the Flask framework. Also, we will use the Flask <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/appcontext/">app context</a> to load both the first-level and second-level models when the app is run for the first time.
+Additionally, we will add caching of data downloading to reduce the response time of the API.</p>
+<p>First, let’s look at the structure of the project illustrated below</p>
+<p>The breakdown of each component is as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/artefacts</span></code> - storage for model objects. Of course, in real production cloud storage is used and we could imitate that
+by using <a class="reference external" href="https://simonjcarr.medium.com/running-s3-object-storage-locally-with-minio-f50540ffc239">minio</a> for local deployment,
+but, first of all, we focus on general ideas and approaches;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/configs</span></code> - configuration files orchestrated by <a class="reference external" href="https://www.dynaconf.com/">Dynaconf</a> for convenience development;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/data_prep</span></code> - data preparation module for training and inference of ReRanker;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/models</span></code> - component with two modules for models - <a class="reference external" href="http://lfm.py">lfm.py</a> for LightFM, <a class="reference external" href="http://ranker.py">ranker.py</a> - for second-level model
+and <a class="reference external" href="http://pipeline.py">pipeline.py</a> is designed for running all necessary steps for inference;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/utils</span></code> - some common functions to use everywhere;</p></li>
+</ul>
+<p>Also, in the root, we have several files we already mentioned - <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, <code class="docutils literal notranslate"><span class="pre">poetry.lock</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. I will skip them because
+we discussed their need in the previous chapter. Here, we will focus on <a class="reference external" href="http://api.py">api.py</a>, <a class="reference external" href="http://train.py">train.py</a> and some details in model classes.
+Let’s go top-down and elaborate on the first two modules.</p>
+<p><code class="docutils literal notranslate"><span class="pre">[train.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/train.py)</span></code> - can be run using <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">train_{model_name}</span></code> where model_name is either lfm or cbm.
+It executes a training pipeline for a given model to use it further to run <a class="reference external" href="http://api.py">api.py</a> for inference. So, what does
+<a class="reference external" href="http://train.py">train.py</a> have in a nutshell? It has two functions based on modules in <code class="docutils literal notranslate"><span class="pre">[/models](https://github.com/kshurik/rekkobook/tree/chapter2/api_example/supplements/recsys/models)</span></code>.</p>
+<ul class="simple">
+<li><p>First, train_lfm uses <a class="reference external" href="https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/lfm.py">/models/lfm.py</a>
+to train the LightFM model using either local parquet data if a path is given, otherwise, it uses prepared data from my GDrive;</p></li>
+<li><p>Then, we have <a class="reference external" href="https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/ranker.py">/models/ranker.py</a> which
+uses resulting artefacts from <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">run</span> <span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">train_lfm</span></code> to prepare data with <code class="docutils literal notranslate"><span class="pre">[/data_prep](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/data_prep/prepare_ranker_data.py)</span></code> module for catboost and trains 2nd level model</p></li>
+</ul>
+<p>We discussed methods to train both models and I want to highlight their structure. I designed them to have similar structures with similar methods
+Both <code class="docutils literal notranslate"><span class="pre">LFMModel</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">Ranker</span></code> from /models have two methods: fit() to train the model and save, infer() to use in production for inference.
+Also, there is an is_infer parameter to define while initializing classes - if True it loads the model from a given path in <code class="docutils literal notranslate"><span class="pre">/[configs](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/configs/models_params.toml)</span></code></p>
+<ul class="simple">
+<li><p>Finally, we have <code class="docutils literal notranslate"><span class="pre">[pipeline.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/pipeline.py)</span></code> which triggers all steps to get a recommendation for a given user id.
+In the beginning, it goes to LFMModel artefacts to get the required number of candidates, then enriches those candidates
+and users with features and after that uses ReRanker for the final output. It output has the following format (user_id: 176549, top_k: 10)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># success</span>
+<span class="p">{</span>
+   <span class="s2">&quot;recommendations&quot;</span><span class="p">:[</span>
+      <span class="mi">9728</span><span class="p">,</span>
+      <span class="mi">13865</span><span class="p">,</span>
+      <span class="mi">10440</span><span class="p">,</span>
+      <span class="mi">15297</span><span class="p">,</span>
+      <span class="mi">3734</span><span class="p">,</span>
+      <span class="mi">4151</span><span class="p">,</span>
+      <span class="mi">4880</span><span class="p">,</span>
+      <span class="mi">142</span><span class="p">,</span>
+      <span class="mi">2657</span><span class="p">,</span>
+      <span class="mi">6809</span>
+   <span class="p">],</span>
+   <span class="s2">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;msg&quot;</span><span class="p">:</span><span class="n">null</span>
+<span class="p">}</span>
+
+<span class="c1"># failed for some reason</span>
+<span class="p">{</span>
+   <span class="s2">&quot;recommendations&quot;</span><span class="p">:[],</span>
+   <span class="s2">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;error message&quot;</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
+<p>To be it more concise, error handling must be better to distinguish between various reasons for faster debugging
+(no such user - cold start problem, failed to fetch item features, user features etc.)</p>
+<p>To wrap up, the main worker to get the job done with inference is done in <code class="docutils literal notranslate"><span class="pre">[api.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/api.py)</span></code>. run() extracts user_id and top_k parameters from the query and triggers get_recommnedations() - cristal clear.</p>
+<p>As you can see, in the code to create a basic Flask application you just need to set 3 lines
+that I highlighted with the line number from the right</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="c1"># init application</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span> <span class="c1"># line 1</span>
+
+<span class="c1"># set URL to get predictions</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/get_recommendation&#39;</span><span class="p">)</span> <span class="c1"># line 2 -- definition of URL/endpoint for request</span>
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">))</span>
+    <span class="n">top_k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;top_k&#39;</span><span class="p">))</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">get_recommendations</span><span class="p">(</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">user_id</span><span class="p">,</span>
+        <span class="n">lfm_model</span> <span class="o">=</span> <span class="n">lfm_model</span><span class="p">,</span>
+        <span class="n">ranker</span> <span class="o">=</span> <span class="n">ranker</span><span class="p">,</span>
+        <span class="n">top_k</span> <span class="o">=</span> <span class="n">top_k</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="bp">cls</span> <span class="o">=</span> <span class="n">JsonEncoder</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span> <span class="c1"># line 3 - run application</span>
+</pre></div>
+</div>
+<p>However, I wanted to highlight <a class="reference external" href="https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/api.py#L12">this</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
+    <span class="n">lfm_model</span> <span class="o">=</span>  <span class="n">LFMModel</span><span class="p">()</span>
+    <span class="n">ranker</span> <span class="o">=</span> <span class="n">Ranker</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>detail called <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/appcontext/">Flask App Context</a>. In production, you often need low latency to process
+all incoming requests fast. Thus, in the case of ML models, you do not need to load models for each request but load them once when you deploy
+your service. Usually, you need your model from scratch only if you updated it otherwise you use the same model to predict.</p>
+<p>Another trick is used in the data preparation step <a class="reference external" href="https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/utils/utils.py#L10">here</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@cached</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="n">TTLCache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span> <span class="n">timer</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>To ensure that the API is efficient, we will also add caching of data downloading. This will help to reduce the number
+of requests that need to be made to the feature store and improve the response time of the API. It is a decorator provided
+by <code class="docutils literal notranslate"><span class="pre">cachetools</span></code> library. The idea is to read data once in 12 hours assuming we do not update it more frequently. Also,
+it could be developed such that depending on the data source different time thresholds could be set. For instance,
+movies’ metadata will not change more likely (description, genre etc) while users’ data can be changed more often
+depending on their watching behavior.</p>
+<p>Overall, all the code can be found <a class="reference external" href="https://github.com/kshurik/rekkobook/tree/chapter2/api_example/supplements/recsys">here</a>
+at branch chapter2/api_example to clone, run and get a full understanding of what is going on</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -780,9 +920,21 @@ requirements of the project, the level of control needed, and the expected level
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#api-development-flask-fastapi">
-   API development: Flask &amp; FastAPI
+  <a class="reference internal nav-link" href="#api-development">
+   API development
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flask-fastapi">
+     Flask &amp; FastAPI
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recsys-project-pipeline">
+     RecSys Project Pipeline
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
