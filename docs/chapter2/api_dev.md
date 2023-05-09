@@ -92,7 +92,7 @@ frameworks for building APIs. Now, we will apply this knowledge to develop an AP
 recommender system. Our recommender system has four parts as we discussed [here](https://rekkobook.com/chapter2/intro_to_deployment.html#architecture-for-our-recsys-project): a client, first-level training and inference
 for candidate generation, a feature store that stores user and item features as parquet files, and a
 reranker as the second-level model. The output of our API will be recommendations along with status
-(success or error) and a message (null if the status is success).
+(success or error) and a message (null if the status is a success).
 
 To develop this API, we will be using the Flask framework. Also, we will use the Flask [app context](https://flask.palletsprojects.com/en/1.1.x/appcontext/) to load both the first-level and second-level models when the app is run for the first time.
 Additionally, we will add caching of data downloading to reduce the response time of the API.
@@ -104,11 +104,117 @@ First, let's look at the structure of the project illustrated below
 :width: 400px
 :align: centre
 ```
+The breakdown of each component is as follows:
+- `/artefacts` - storage for model objects. Of course, in real production cloud storage is used and we could imitate that
+by using [minio](https://simonjcarr.medium.com/running-s3-object-storage-locally-with-minio-f50540ffc239) for local deployment,
+but, first of all, we focus on general ideas and approaches;
+- `/configs` - configuration files orchestrated by [Dynaconf](https://www.dynaconf.com/) for convenience development;
+- `/data_prep` - data preparation module for training and inference of ReRanker;
+- `/models` - component with two modules for models - lfm.py for LightFM, ranker.py - for second-level model
+and pipeline.py is designed for running all necessary steps for inference;
+- `/utils` - some common functions to use everywhere;
 
+Also, in the root, we have several files we already mentioned - `Makefile`, `poetry.lock` & `pyproject.toml`. I will skip them because
+we discussed their need in the previous chapter. Here, we will focus on api.py, train.py and some details in model classes.
+Let's go top-down and elaborate on the first two modules.
 
+`[train.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/train.py)` - can be run using `poetry run python train.py train_{model_name}` where model_name is either lfm or cbm.
+It executes a training pipeline for a given model to use it further to run api.py for inference. So, what does
+train.py have in a nutshell? It has two functions based on modules in `[/models](https://github.com/kshurik/rekkobook/tree/chapter2/api_example/supplements/recsys/models)`.
 
-We will use Flask's app context to load both models only once when the app is first run. This helps to improve the performance of the API by reducing the time it takes to load the models for each request.
+- First, train_lfm uses [/models/lfm.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/lfm.py)
+to train the LightFM model using either local parquet data if a path is given, otherwise, it uses prepared data from my GDrive;
 
-To ensure that the API is efficient, we will also add caching of data downloading. This will help to reduce the number of requests that need to be made to the feature store and improve the response time of the API.
+- Then, we have [/models/ranker.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/ranker.py) which
+uses resulting artefacts from `poetry run python train.py train_lfm` to prepare data with `[/data_prep](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/data_prep/prepare_ranker_data.py)` module for catboost and trains 2nd level model
 
-The API's output will consist of recommendations, status, and message. The status will indicate whether the request was successful or not, and the message will provide additional information about the request, such as an error message if the request failed. With these components in mind, we can start building our recommendation system API with Flask.
+We discussed methods to train both models and I want to highlight their structure. I designed them to have similar structures with similar methods
+Both `LFMModel` & `Ranker` from /models have two methods: fit() to train the model and save, infer() to use in production for inference.
+Also, there is an is_infer parameter to define while initializing classes - if True it loads the model from a given path in `/[configs](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/configs/models_params.toml)`
+
+- Finally, we have `[pipeline.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/pipeline.py)` which triggers all steps to get a recommendation for a given user id.
+In the beginning, it goes to LFMModel artefacts to get the required number of candidates, then enriches those candidates
+and users with features and after that uses ReRanker for the final output. It output has the following format (user_id: 176549, top_k: 10)
+```
+# success
+{
+   "recommendations":[
+      9728,
+      13865,
+      10440,
+      15297,
+      3734,
+      4151,
+      4880,
+      142,
+      2657,
+      6809
+   ],
+   "status":"success",
+   "msg":null
+}
+
+# failed for some reason
+{
+   "recommendations":[],
+   "status":"error",
+   "msg": "error message"
+}
+
+```
+To be it more concise, error handling must be better to distinguish between various reasons for faster debugging
+(no such user - cold start problem, failed to fetch item features, user features etc.)
+
+To wrap up, the main worker to get the job done with inference is done in `[api.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/api.py)`. run() extracts user_id and top_k parameters from the query and triggers get_recommnedations() - cristal clear.
+
+As you can see, in the code to create a basic Flask application you just need to set 3 lines
+that I highlighted with the line number from the right
+```
+from flask import Flask, request
+
+# init application
+app = Flask(__name__) # line 1
+
+# set URL to get predictions
+@app.route('/get_recommendation') # line 2 -- definition of URL/endpoint for request
+def run():
+    user_id = int(request.args.get('user_id'))
+    top_k = int(request.args.get('top_k'))
+    response = get_recommendations(
+        user_id = user_id,
+        lfm_model = lfm_model,
+        ranker = ranker,
+        top_k = top_k
+    )
+    return json.dumps(response, cls = JsonEncoder)
+
+if __name__ == '__main__':
+    app.run(debug=True, host="0.0.0.0", port=8000) # line 3 - run application
+```
+
+However, I wanted to highlight [this](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/api.py#L12)
+
+```
+with app.app_context():
+    lfm_model =  LFMModel()
+    ranker = Ranker()
+```
+
+detail called [Flask App Context](https://flask.palletsprojects.com/en/1.1.x/appcontext/). In production, you often need low latency to process
+all incoming requests fast. Thus, in the case of ML models, you do not need to load models for each request but load them once when you deploy
+your service. Usually, you need your model from scratch only if you updated it otherwise you use the same model to predict.
+
+Another trick is used in the data preparation step [here](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/utils/utils.py#L10)
+
+```
+@cached(cache=TTLCache(maxsize=1024, ttl=timedelta(hours=12), timer=datetime.now))
+```
+To ensure that the API is efficient, we will also add caching of data downloading. This will help to reduce the number
+of requests that need to be made to the feature store and improve the response time of the API. It is a decorator provided
+by `cachetools` library. The idea is to read data once in 12 hours assuming we do not update it more frequently. Also,
+it could be developed such that depending on the data source different time thresholds could be set. For instance,
+movies' metadata will not change more likely (description, genre etc) while users' data can be changed more often
+depending on their watching behavior.
+
+Overall, all the code can be found [here](https://github.com/kshurik/rekkobook/tree/chapter2/api_example/supplements/recsys)
+at branch chapter2/api_example to clone, run and get a full understanding of what is going on
