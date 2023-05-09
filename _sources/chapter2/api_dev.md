@@ -117,21 +117,21 @@ Also, in the root, we have several files we already mentioned - `Makefile`, `poe
 we discussed their need in the previous chapter. Here, we will focus on api.py, train.py and some details in model classes.
 Let's go top-down and elaborate on the first two modules.
 
-`[train.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/train.py)` - can be run using `poetry run python train.py train_{model_name}` where model_name is either lfm or cbm.
+`[train.py]`(https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/train.py) - can be run using `poetry run python train.py train_{model_name}` where model_name is either lfm or cbm.
 It executes a training pipeline for a given model to use it further to run api.py for inference. So, what does
-train.py have in a nutshell? It has two functions based on modules in `[/models](https://github.com/kshurik/rekkobook/tree/chapter2/api_example/supplements/recsys/models)`.
+train.py have in a nutshell? It has two functions based on modules in `[/models]`(https://github.com/kshurik/rekkobook/tree/chapter2/api_example/supplements/recsys/models).
 
 - First, train_lfm uses [/models/lfm.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/lfm.py)
 to train the LightFM model using either local parquet data if a path is given, otherwise, it uses prepared data from my GDrive;
 
 - Then, we have [/models/ranker.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/ranker.py) which
-uses resulting artefacts from `poetry run python train.py train_lfm` to prepare data with `[/data_prep](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/data_prep/prepare_ranker_data.py)` module for catboost and trains 2nd level model
+uses resulting artefacts from `poetry run python train.py train_lfm` to prepare data with `[/data_prep]`(https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/data_prep/prepare_ranker_data.py) module for catboost and trains 2nd level model
 
 We discussed methods to train both models and I want to highlight their structure. I designed them to have similar structures with similar methods
 Both `LFMModel` & `Ranker` from /models have two methods: fit() to train the model and save, infer() to use in production for inference.
-Also, there is an is_infer parameter to define while initializing classes - if True it loads the model from a given path in `/[configs](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/configs/models_params.toml)`
+Also, there is an is_infer parameter to define while initializing classes - if True it loads the model from a given path in `/[configs]`(https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/configs/models_params.toml)
 
-- Finally, we have `[pipeline.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/pipeline.py)` which triggers all steps to get a recommendation for a given user id.
+- Finally, we have `[pipeline.py]`(https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/models/pipeline.py) which triggers all steps to get a recommendation for a given user id.
 In the beginning, it goes to LFMModel artefacts to get the required number of candidates, then enriches those candidates
 and users with features and after that uses ReRanker for the final output. It output has the following format (user_id: 176549, top_k: 10)
 ```
@@ -164,7 +164,7 @@ and users with features and after that uses ReRanker for the final output. It ou
 To be it more concise, error handling must be better to distinguish between various reasons for faster debugging
 (no such user - cold start problem, failed to fetch item features, user features etc.)
 
-To wrap up, the main worker to get the job done with inference is done in `[api.py](https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/api.py)`. run() extracts user_id and top_k parameters from the query and triggers get_recommnedations() - cristal clear.
+To wrap up, the main worker to get the job done with inference is done in `[api.py]`(https://github.com/kshurik/rekkobook/blob/chapter2/api_example/supplements/recsys/api.py). run() extracts user_id and top_k parameters from the query and triggers get_recommnedations() - cristal clear.
 
 As you can see, in the code to create a basic Flask application you just need to set 3 lines
 that I highlighted with the line number from the right
