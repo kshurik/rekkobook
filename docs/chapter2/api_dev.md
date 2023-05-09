@@ -28,7 +28,18 @@ When it comes to building APIs in Python, Flask and FastAPI are one of the popul
 that come to mind. Both frameworks have their own strengths and weaknesses, and choosing
 between them depends on the specific needs of the project which we will discuss further
 
-# API development: Flask & FastAPI
+# API development
+We dived into the world of APIs, web frameworks, and their application to building recommendation systems.
+Now, we will introduce Flask, a popular Python web framework, and FastAPI, a newer and
+faster web framework for building APIs. 
+
+
+After a brief overview, we will dive into a hands-on example of building an API using Flask.
+Specifically, we will use Flask to build a two-level recommender system that recommends movies to users based
+on their preferences - this will include both training and inference pipeline. This project will
+showcase how Flask can be used to build a scalable and efficient API for machine learning-based applications.
+
+## Flask & FastAPI
 `Flask` is a popular web framework for building APIs in Python that provides a simple and
 flexible approach to building RESTful APIs. It is easy to learn, has a minimalistic design,
 and is suitable for small to medium-sized projects. Flask is known for its flexibility,
@@ -74,3 +85,30 @@ small to medium-sized APIs. FastAPI, on the other hand, is a high-performance fr
 with performance in mind. It is ideal for building large-scale APIs that require high levels of
 performance and efficiency. The choice between Flask and FastAPI ultimately depends on the specific
 requirements of the project, the level of control needed, and the expected levels of performance and scalability.
+
+## RecSys Project Pipeline
+In the previous section, we discussed the theory of API development and compared FlaskAPI and FastAPI
+frameworks for building APIs. Now, we will apply this knowledge to develop an API for a two-level
+recommender system. Our recommender system has four parts as we discussed [here](https://rekkobook.com/chapter2/intro_to_deployment.html#architecture-for-our-recsys-project): a client, first-level training and inference
+for candidate generation, a feature store that stores user and item features as parquet files, and a
+reranker as the second-level model. The output of our API will be recommendations along with status
+(success or error) and a message (null if the status is success).
+
+To develop this API, we will be using the Flask framework. Also, we will use the Flask [app context](https://flask.palletsprojects.com/en/1.1.x/appcontext/) to load both the first-level and second-level models when the app is run for the first time.
+Additionally, we will add caching of data downloading to reduce the response time of the API.
+
+First, let's look at the structure of the project illustrated below
+```{image} ./img/api_example.png
+:alt: fishy
+:class: bg-primary mb-1
+:width: 400px
+:align: centre
+```
+
+
+
+We will use Flask's app context to load both models only once when the app is first run. This helps to improve the performance of the API by reducing the time it takes to load the models for each request.
+
+To ensure that the API is efficient, we will also add caching of data downloading. This will help to reduce the number of requests that need to be made to the feature store and improve the response time of the API.
+
+The API's output will consist of recommendations, status, and message. The status will indicate whether the request was successful or not, and the message will provide additional information about the request, such as an error message if the request failed. With these components in mind, we can start building our recommendation system API with Flask.
