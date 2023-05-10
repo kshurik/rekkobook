@@ -26,6 +26,8 @@ parts:
     title: Introduction to Production Code & Deployment
   - file: chapter2/api_dev
     title: API Development
+  - file: chapter2/docker
+    title: Containerization with Docker
 - caption: CHAPTER 3 - Estimation of RecSys and other ML models in real world
   chapters:
   - file: chapter3/intro_to_analytics
