@@ -40,7 +40,7 @@ the base image, the dependencies, the application code, and the startup command.
 
 Here is an example Dockerfile for our project:
 ```
-# sse an official Python image
+# use an official Python image
 FROM python:3.9-slim-buster
 
 # set variable for working directory
@@ -57,13 +57,13 @@ RUN pip install poetry
 RUN poetry export --with=dev --without-hashes --output requirements.txt \
     && pip3 install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code to the container
+# copy the rest of the app code to the container
 COPY . $work_dir
 
-# Expose the port used by the microservice
+# expose the port used by the microservice
 EXPOSE 8080
 
-# load the models and start the microservice
+# load the models and start the app
 CMD ["python", "run.py"]
 ```
 
