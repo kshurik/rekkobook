@@ -1,9 +1,0 @@
-version: '3.10'
-services:
-    rekko-app:
-      build: .
-      ports:
-          - "5000:5000"
-      volumes:
-          - ./:/home
-      container_name: rekko_app
