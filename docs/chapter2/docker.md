@@ -1,3 +1,5 @@
+(chapter2_part3)=
+
 # Containerization with Docker of a two-level recsys microservice
 In this chapter, we will explore Docker and containerization technique and move to an example with 
 a two-level recsys microservice. We will start by discussing what Docker is and why it is useful
