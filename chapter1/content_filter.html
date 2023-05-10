@@ -211,6 +211,13 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../chapter2/docker.html">
+                        Containerization with Docker
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
                         INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
@@ -358,6 +365,13 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../chapter2/docker.html">
+                        Containerization with Docker
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
                         INTRODUCTION TO PRODUCT ANALYTCS
                       </a>
@@ -459,6 +473,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="../chapter2/api_dev.html">Application Programming Interface (<code class="docutils literal notranslate"><span class="pre">API</span></code>)</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="../chapter2/docker.html">Containerization with Docker</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 3 - Estimation of RecSys and other ML models in real world</span></p>
 <ul class="nav bd-sidenav">
@@ -1019,7 +1034,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;find&#39;, &#39;finish&#39;, &#39;discover&#39;, &#39;room&#39;, &#39;inside&#39;, &#39;running&#39;, &#39;enchanted&#39;, &#39;trapped&#39;, &#39;adult&#39;, &#39;magical&#39;, &#39;board&#39;, &#39;proves&#39;, &#39;unwittingly&#39;, &#39;opens&#39;, &#39;years&#39;, &#39;freedom&#39;, &#39;risky&#39;, &#39;rhinoceroses&#39;, &#39;evil&#39;, &#39;peter&#39;, &#39;terrifying&#39;, &#39;siblings&#39;, &#39;world&#39;, &#39;alan&#39;, &#39;hope&#39;, &#39;door&#39;, &#39;creatures&#39;, &#39;three&#39;, &#39;giant&#39;, &#39;game&#39;, &#39;living&#39;, &#39;monkeys&#39;, &#39;judy&#39;, &#39;invite&#39;], tags=[&#39;1&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;find&#39;, &#39;three&#39;, &#39;trapped&#39;, &#39;room&#39;, &#39;monkeys&#39;, &#39;door&#39;, &#39;giant&#39;, &#39;magical&#39;, &#39;terrifying&#39;, &#39;siblings&#39;, &#39;years&#39;, &#39;hope&#39;, &#39;freedom&#39;, &#39;proves&#39;, &#39;inside&#39;, &#39;creatures&#39;, &#39;invite&#39;, &#39;world&#39;, &#39;adult&#39;, &#39;board&#39;, &#39;evil&#39;, &#39;unwittingly&#39;, &#39;enchanted&#39;, &#39;living&#39;, &#39;alan&#39;, &#39;discover&#39;, &#39;game&#39;, &#39;running&#39;, &#39;opens&#39;, &#39;finish&#39;, &#39;risky&#39;, &#39;judy&#39;, &#39;peter&#39;, &#39;rhinoceroses&#39;], tags=[&#39;1&#39;])
 </pre></div>
 </div>
 </div>
@@ -1148,23 +1163,23 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>13835</td>
-      <td>0.960294</td>
+      <td>29872</td>
+      <td>0.963593</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>18468</td>
-      <td>0.954853</td>
+      <td>35604</td>
+      <td>0.952625</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>7772</td>
-      <td>0.951407</td>
+      <td>2551</td>
+      <td>0.951629</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>40695</td>
-      <td>0.948887</td>
+      <td>42040</td>
+      <td>0.950778</td>
     </tr>
   </tbody>
 </table>
@@ -1218,117 +1233,117 @@ To do that we need:</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>13835</td>
-      <td>0.960294</td>
-      <td>k2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>18468</td>
-      <td>0.954853</td>
-      <td>the incredible petrified world</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>7772</td>
-      <td>0.951407</td>
-      <td>this island earth</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>40695</td>
-      <td>0.948887</td>
-      <td>krakh inzhenera garina</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>5713</td>
-      <td>0.948667</td>
-      <td>rollover</td>
-    </tr>
-    <tr>
-      <th>6</th>
       <td>29872</td>
-      <td>0.946859</td>
+      <td>0.963593</td>
       <td>angels die hard</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>27658</td>
-      <td>0.946437</td>
-      <td>giperboloid inzhenera garina</td>
+      <th>2</th>
+      <td>35604</td>
+      <td>0.952625</td>
+      <td>public enemies</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>37739</td>
-      <td>0.942134</td>
-      <td>google and the world brain</td>
+      <th>3</th>
+      <td>2551</td>
+      <td>0.951629</td>
+      <td>it conquered the world</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>43165</td>
-      <td>0.940786</td>
-      <td>the zookeeper's wife</td>
+      <th>4</th>
+      <td>42040</td>
+      <td>0.950778</td>
+      <td>equalizer 2000</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>5</th>
+      <td>11256</td>
+      <td>0.950405</td>
+      <td>sun faa sau si</td>
+    </tr>
+    <tr>
+      <th>6</th>
       <td>40614</td>
-      <td>0.940742</td>
+      <td>0.950083</td>
       <td>devil's playground</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>30134</td>
-      <td>0.940551</td>
-      <td>spy</td>
+      <th>7</th>
+      <td>44339</td>
+      <td>0.949672</td>
+      <td>the underground world</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>40183</td>
-      <td>0.940270</td>
-      <td>break blade 1: kakusei no toki</td>
+      <th>8</th>
+      <td>43461</td>
+      <td>0.949558</td>
+      <td>megafault</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>41349</td>
-      <td>0.940088</td>
-      <td>sleepwalker</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>37877</td>
-      <td>0.939126</td>
-      <td>bowery battalion</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>14178</td>
-      <td>0.938972</td>
-      <td>battle for terra</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>19227</td>
-      <td>0.938850</td>
-      <td>carbon nation</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>37654</td>
-      <td>0.938811</td>
-      <td>nuit de chien</td>
-    </tr>
-    <tr>
-      <th>18</th>
+      <th>9</th>
       <td>35181</td>
-      <td>0.938796</td>
+      <td>0.948277</td>
       <td>конек-горбунок</td>
     </tr>
     <tr>
+      <th>10</th>
+      <td>19227</td>
+      <td>0.947385</td>
+      <td>carbon nation</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>5713</td>
+      <td>0.947380</td>
+      <td>rollover</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>43165</td>
+      <td>0.946871</td>
+      <td>the zookeeper's wife</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>13835</td>
+      <td>0.946861</td>
+      <td>k2</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2175</td>
+      <td>0.946680</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>7772</td>
+      <td>0.946376</td>
+      <td>this island earth</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>24433</td>
+      <td>0.945515</td>
+      <td>the creeping terror</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>39139</td>
+      <td>0.944559</td>
+      <td>maciste, l'eroe più grande del mondo</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>13475</td>
+      <td>0.944318</td>
+      <td>shadow man</td>
+    </tr>
+    <tr>
       <th>19</th>
-      <td>33298</td>
-      <td>0.938532</td>
-      <td>necessary evil</td>
+      <td>20830</td>
+      <td>0.944137</td>
+      <td>iron man 3</td>
     </tr>
   </tbody>
 </table>

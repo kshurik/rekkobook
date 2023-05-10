@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Docker and containerization of a two-level recsys microservice &#8212; RecSys Handbook</title>
+    <title>Containerization with Docker of a two-level recsys microservice &#8212; RecSys Handbook</title>
   
   
   
@@ -68,6 +68,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter2/docker';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to Product Analytics" href="../chapter3/intro_to_analytics.html" />
+    <link rel="prev" title="Application Programming Interface (API)" href="api_dev.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -204,6 +206,13 @@ const thebe_selector_output = ".output, .cell_output"
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="api_dev.html">
                         API Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Containerization with Docker
                       </a>
                     </li>
                 
@@ -355,6 +364,13 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Containerization with Docker
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../chapter3/intro_to_analytics.html">
                         INTRODUCTION TO PRODUCT ANALYTCS
@@ -451,12 +467,13 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 2 - PRODUCTION CODE &amp; DEPLOYMENT</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_to_deployment.html">What comes after ML model development?</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="api_dev.html">Application Programming Interface (<code class="docutils literal notranslate"><span class="pre">API</span></code>)</a></li>
 
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Containerization with Docker</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 3 - Estimation of RecSys and other ML models in real world</span></p>
 <ul class="nav bd-sidenav">
@@ -604,7 +621,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Docker and containerization of a two-level recsys microservice</h1>
+    <h1>Containerization with Docker of a two-level recsys microservice</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -633,8 +650,8 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="docker-and-containerization-of-a-two-level-recsys-microservice">
-<h1>Docker and containerization of a two-level recsys microservice<a class="headerlink" href="#docker-and-containerization-of-a-two-level-recsys-microservice" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="containerization-with-docker-of-a-two-level-recsys-microservice">
+<h1>Containerization with Docker of a two-level recsys microservice<a class="headerlink" href="#containerization-with-docker-of-a-two-level-recsys-microservice" title="Permalink to this heading">#</a></h1>
 <p>In this chapter, we will explore Docker and containerization technique and move to an example with
 a two-level recsys microservice. We will start by discussing what Docker is and why it is useful
 for building and deploying software applications. Then, we will go on to show how to build a
@@ -741,6 +758,20 @@ CMD [&quot;python&quot;, &quot;run.py&quot;]
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="api_dev.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Application Programming Interface (<code class="docutils literal notranslate"><span class="pre">API</span></code>)</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../chapter3/intro_to_analytics.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Introduction to Product Analytics</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
             
