@@ -17,7 +17,7 @@ with app.app_context():
 @app.route('/get_recommendation')
 def run():
     user_id = int(request.args.get('user_id'))
-    top_k = int(request.args.get('top_k'))
+    top_k = int(request.args.get('top_k', 20))
     response = get_recommendations(
         user_id = user_id,
         lfm_model = lfm_model,
@@ -27,4 +27,4 @@ def run():
     return json.dumps(response, cls = JsonEncoder)
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    app.run(debug=True, host="0.0.0.0", port=8080)
