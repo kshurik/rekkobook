@@ -518,6 +518,16 @@ const thebe_selector_output = ".output, .cell_output"
         </label>
     </div>
     <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="btn btn-sm"
   data-toggle="tooltip"
@@ -579,6 +589,21 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
+      <li><a href="../_sources/chapter2/intro_to_deployment.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
       <li><a href="../_sources/chapter2/intro_to_deployment.md" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
@@ -843,23 +868,113 @@ the quality of the code by reviews only is exhaustive and almost impossible to a
 are prone to errors too. However, most common mistakes like typos and convenient bugs can
 be checked automatically and fixed. Here, we will describe the main Python tools to achieve that</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[pylint](https://pypi.org/project/pylint/)</span></code> - code analyzer which does not run your code.
+<li><p><code class="docutils literal notranslate"><span class="pre">[pylint]</span></code>(<a class="reference external" href="https://pypi.org/project/pylint/">https://pypi.org/project/pylint/</a>) - code analyzer which does not run your code.
 It checks for errors, and the coding standard makes clear suggestions on how to improve it
 and even grade it on a scale of 0 to 10;</p></li>
 </ul>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[black](https://pypi.org/project/black/)</span></code> - in the Python community there is well-known
+<li><p><code class="docutils literal notranslate"><span class="pre">[black]</span></code>(<a class="reference external" href="https://pypi.org/project/black/">https://pypi.org/project/black/</a>) - in the Python community there is well-known
 PEP-8 standard to follow. This library is a code formatter which is PEP 8-compliant
 opinionated formatter. It formats all code in given directory/files in place fast and efficiently;</p></li>
 </ul>
 <p>Before formatting with black</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">some_kaif_function</span><span class="p">(</span><span class="n">input_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">param_1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">param_2</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    some example function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">input_df</span><span class="p">[</span><span class="s1">&#39;check_bool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">input_df</span><span class="p">[</span><span class="n">param_2</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">param_1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">input_df</span><span class="p">[</span><span class="n">param_2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">param_1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">input_df</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>After formatting with black</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">some_kaif_function</span><span class="p">(</span><span class="n">input_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">param_1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">param_2</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    some example function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">input_df</span><span class="p">[</span><span class="s2">&quot;check_bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">input_df</span><span class="p">[</span><span class="n">param_2</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">param_1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">input_df</span><span class="p">[</span><span class="n">param_2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">param_1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">input_df</span>
+</pre></div>
+</div>
+</div>
+</div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[isort](https://pycqa.github.io/isort/)</span></code> - a library to make appropriate imports:
+<li><p><code class="docutils literal notranslate"><span class="pre">[isort]</span></code>(<a class="reference external" href="https://pycqa.github.io/isort/">https://pycqa.github.io/isort/</a>) - a library to make appropriate imports:
 alphabetical order and group by types to sections. Below is the example from the official homepage</p></li>
 </ul>
 <p>Before the isort</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">my_lib</span> <span class="kn">import</span> <span class="n">Object</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">my_lib</span> <span class="kn">import</span> <span class="n">Object3</span>
+
+<span class="kn">from</span> <span class="nn">my_lib</span> <span class="kn">import</span> <span class="n">Object2</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">third_party</span> <span class="kn">import</span> <span class="n">lib15</span><span class="p">,</span> <span class="n">lib1</span><span class="p">,</span> <span class="n">lib2</span><span class="p">,</span> <span class="n">lib3</span><span class="p">,</span> <span class="n">lib4</span><span class="p">,</span> <span class="n">lib5</span><span class="p">,</span> <span class="n">lib6</span><span class="p">,</span> <span class="n">lib7</span><span class="p">,</span> <span class="n">lib8</span><span class="p">,</span> <span class="n">lib9</span><span class="p">,</span> <span class="n">lib10</span><span class="p">,</span> <span class="n">lib11</span><span class="p">,</span> <span class="n">lib12</span><span class="p">,</span> <span class="n">lib13</span><span class="p">,</span> <span class="n">lib14</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">from</span> <span class="nn">third_party</span> <span class="kn">import</span> <span class="n">lib3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hey&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;yo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">my_lib</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">my_lib</span> <span class="kn">import</span> <span class="n">Object3</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;my_lib&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <p>After isort</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">third_party</span> <span class="kn">import</span> <span class="p">(</span><span class="n">lib1</span><span class="p">,</span> <span class="n">lib2</span><span class="p">,</span> <span class="n">lib3</span><span class="p">,</span> <span class="n">lib4</span><span class="p">,</span> <span class="n">lib5</span><span class="p">,</span> <span class="n">lib6</span><span class="p">,</span> <span class="n">lib7</span><span class="p">,</span> <span class="n">lib8</span><span class="p">,</span>
+                         <span class="n">lib9</span><span class="p">,</span> <span class="n">lib10</span><span class="p">,</span> <span class="n">lib11</span><span class="p">,</span> <span class="n">lib12</span><span class="p">,</span> <span class="n">lib13</span><span class="p">,</span> <span class="n">lib14</span><span class="p">,</span> <span class="n">lib15</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">my_lib</span> <span class="kn">import</span> <span class="n">Object</span><span class="p">,</span> <span class="n">Object2</span><span class="p">,</span> <span class="n">Object3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hey&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;yo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="makefile">
 <h2>Makefile<a class="headerlink" href="#makefile" title="Permalink to this heading">#</a></h2>

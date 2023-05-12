@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 (chapter2_part1)=
 
 # What comes after ML model development?
@@ -169,7 +181,7 @@ As we have mentioned earlier, production code must be robust, scalable & reliabl
 the quality of the code by reviews only is exhaustive and almost impossible to achieve -- we
 are prone to errors too. However, most common mistakes like typos and convenient bugs can
 be checked automatically and fixed. Here, we will describe the main Python tools to achieve that
-- `[pylint](https://pypi.org/project/pylint/)` - code analyzer which does not run your code.
+- `[pylint]`(https://pypi.org/project/pylint/) - code analyzer which does not run your code.
 It checks for errors, and the coding standard makes clear suggestions on how to improve it
 and even grade it on a scale of 0 to 10;
 
@@ -180,7 +192,7 @@ and even grade it on a scale of 0 to 10;
 :align: centre
 ```
 
-- `[black](https://pypi.org/project/black/)` - in the Python community there is well-known
+- `[black]`(https://pypi.org/project/black/) - in the Python community there is well-known
 PEP-8 standard to follow. This library is a code formatter which is PEP 8-compliant
 opinionated formatter. It formats all code in given directory/files in place fast and efficiently;
 
@@ -215,7 +227,7 @@ def some_kaif_function(input_df: pd.DataFrame, param_1: int, param_2: str, path:
 
 ```
 
-- `[isort](https://pycqa.github.io/isort/)` - a library to make appropriate imports:
+- `[isort]`(https://pycqa.github.io/isort/) - a library to make appropriate imports:
 alphabetical order and group by types to sections. Below is the example from the official homepage
 
 Before the isort
