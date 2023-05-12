@@ -782,6 +782,7 @@ reranker as the second-level model. The output of our API will be recommendation
 <p>To develop this API, we will be using the Flask framework. Also, we will use the Flask <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/appcontext/">app context</a> to load both the first-level and second-level models when the app is run for the first time.
 Additionally, we will add caching of data downloading to reduce the response time of the API.</p>
 <p>First, let’s look at the structure of the project illustrated below</p>
+<p><img alt="" src="../_images/api_example.png" /></p>
 <p>The breakdown of each component is as follows:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">/artefacts</span></code> - storage for model objects. Of course, in real production cloud storage is used and we could imitate that
