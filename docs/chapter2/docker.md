@@ -140,4 +140,4 @@ INFO:werkzeug:WARNING: This is a development server. Do not use it in a producti
 ```
 Therefore, you can take a local URL and test it in a browser or by request module. In the browser, just put `http://127.0.0.1:8080/get_recommendation?user_id=176549&top_k=100`
 
-Congrats! You are all done with your RecSys containerization.
+Congrats! You are all done with your RecSys containerization. Full example to run you can find [here](https://github.com/kshurik/rekkobook/tree/chapter2/docker_example) at docker_example branch.
