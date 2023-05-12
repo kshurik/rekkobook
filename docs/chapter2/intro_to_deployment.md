@@ -231,7 +231,7 @@ def some_kaif_function(input_df: pd.DataFrame, param_1: int, param_2: str, path:
 alphabetical order and group by types to sections. Below is the example from the official homepage
 
 Before the isort
-```{code-cell} ipython3
+```
 from my_lib import Object
 
 import os
@@ -249,13 +249,10 @@ import sys
 from __future__ import absolute_import
 
 from third_party import lib3
-
-print("Hey")
-print("yo")
 ```
 
 After isort
-```{code-cell} ipython3
+```
 from __future__ import absolute_import
 
 import os
@@ -266,8 +263,6 @@ from third_party import (lib1, lib2, lib3, lib4, lib5, lib6, lib7, lib8,
 
 from my_lib import Object, Object2, Object3
 
-print("Hey")
-print("yo")
 ```
 
 ## Makefile
