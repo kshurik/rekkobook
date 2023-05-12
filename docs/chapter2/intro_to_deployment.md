@@ -381,11 +381,12 @@ There are four base modules for structuring an ML service:
 - models;
 - utils
 
-`Configs` hold the parameters and settings of the project, data preparation contains the code
+Configs hold the parameters and settings of the project, data preparation contains the code
 for data processing and feature engineering, models contain the code for training, evaluating,
 and deploying models, and utils have common functions and classes that are frequently used throughout the project.
 
-Configs are an essential part of any ML project as they hold the settings and parameters of
+
+`Configs` are an essential part of any ML project as they hold the settings and parameters of
 the project. Dynaconf is a popular Python package that simplifies working with configurations.
 Dynaconf enables developers to store configuration parameters in a file or an environment
 variable and read them in their code. An example of working with Dynaconf you can find in our project [here](https://github.com/kshurik/rekkobook/tree/chapter2/api_example/supplements/recsys/configs). It is a set of TOML files with parameters that
