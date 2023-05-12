@@ -185,12 +185,7 @@ be checked automatically and fixed. Here, we will describe the main Python tools
 It checks for errors, and the coding standard makes clear suggestions on how to improve it
 and even grade it on a scale of 0 to 10;
 
-```{image} ./img/pylint.png
-:alt: fishy
-:class: bg-primary mb-1
-:width: 400px
-:align: centre
-```
+![](/img/pylint.png)
 
 - `[black]`(https://pypi.org/project/black/) - in the Python community there is well-known
 PEP-8 standard to follow. This library is a code formatter which is PEP 8-compliant
@@ -339,12 +334,7 @@ selecting a set of items that are likely to be of interest to the user, and the 
 takes those items and ranks them in order of predicted relevance to the user. Keeping
 that in mind, the architecture for the light version will be as follows:
 
-```{image} ./img/recsys_architecture.png
-:alt: fishy
-:class: bg-primary mb-1
-:width: 400px
-:align: centre
-```
+![](/img/recsys_architecture.png)
 
 Here is a detailed description of each component:
 1. `Client-user interface` to interact with the product;

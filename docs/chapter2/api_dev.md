@@ -111,12 +111,9 @@ To develop this API, we will be using the Flask framework. Also, we will use the
 Additionally, we will add caching of data downloading to reduce the response time of the API.
 
 First, let's look at the structure of the project illustrated below
-```{image} ./img/api_example.png
-:alt: fishy
-:class: bg-primary mb-1
-:width: 400px
-:align: centre
-```
+
+![](img/api_example.png)
+
 The breakdown of each component is as follows:
 - `/artefacts` - storage for model objects. Of course, in real production cloud storage is used and we could imitate that
 by using [minio](https://simonjcarr.medium.com/running-s3-object-storage-locally-with-minio-f50540ffc239) for local deployment,
