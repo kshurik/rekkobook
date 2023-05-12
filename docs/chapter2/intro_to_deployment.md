@@ -370,3 +370,45 @@ release date, or popularity, as well as user features such as demographics, past
 or browsing history. The ranker then applies a more sophisticated machine learning model to predict
 the relevance of each item to the user and sorts the items in order of predicted relevance.
 The output of the ranker is a sorted list of items that are likely to be of interest to the user.
+
+# How to structure the project
+Structuring an ML service is essential for a well-organized, maintainable, and scalable project.
+A well-structured project is easy to understand and easy to modify when requirements change.
+
+There are four base modules for structuring an ML service:
+- configs;
+- data preparation;
+- models;
+- utils
+
+`Configs` hold the parameters and settings of the project, data preparation contains the code
+for data processing and feature engineering, models contain the code for training, evaluating,
+and deploying models, and utils have common functions and classes that are frequently used throughout the project.
+
+Configs are an essential part of any ML project as they hold the settings and parameters of
+the project. Dynaconf is a popular Python package that simplifies working with configurations.
+Dynaconf enables developers to store configuration parameters in a file or an environment
+variable and read them in their code. An example of working with Dynaconf you can find in our project [here](https://github.com/kshurik/rekkobook/tree/chapter2/api_example/supplements/recsys/configs). It is a set of TOML files with parameters that
+are combined together using the Dynaconf loaders
+
+
+The `data preparation` module is responsible for loading and processing the input data before
+feeding it into the ML models. This module may contain functions for tasks such as data cleaning,
+normalization, feature engineering, and splitting the data into training and validation sets.
+Depending on the nature of the data and the specific ML problem being tackled, this module can be
+quite complex and may require its own submodules. 
+
+
+The `models` module contains the actual ML models inference used to make predictions. This module may include
+different models for different tasks, as well as the code necessary to train and evaluate these models.
+In addition, this module may also include functions for loading and saving pre-trained models,
+as well as for fine-tuning models with new data.
+
+
+Finally, the `utils` module contains commonly used functions or classes shared across
+different parts of the service. This module may include functions for logging, visualization,
+file I/O, or any other utility functions that are not specific to either the data preparation or modeling modules.
+
+
+Thus, by separating the code into these four modules, the ML service can be organized in a logical
+and modular way, making it easier to maintain and extend over time.
