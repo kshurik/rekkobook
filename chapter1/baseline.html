@@ -478,7 +478,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">CHAPTER 3 - Estimation of RecSys and other ML models in real world</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../chapter3/intro_to_analytics.html">INTRODUCTION TO PRODUCT ANALYTCS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter3/intro_to_analytics.html">Introduction to Product Analytics</a></li>
+
 </ul>
 
     </div>
@@ -1164,8 +1165,9 @@ We get all interacted items for each user and save them in dictionary {‘userId
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of users with known items: 671 
-
-Example of known item ids for particaular user: [&#39;1371&#39;, &#39;1405&#39;, &#39;2105&#39;, &#39;2193&#39;, &#39;2294&#39;, &#39;2455&#39;]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example of known item ids for particaular user: [&#39;1371&#39;, &#39;1405&#39;, &#39;2105&#39;, &#39;2193&#39;, &#39;2294&#39;, &#39;2455&#39;]
 </pre></div>
 </div>
 </div>
@@ -1192,8 +1194,8 @@ Also, if we want to get recommendations based on some user groups we can easily 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [26599, 31225, 27523, 2755, 72356, 2897, 2927,...
-2    [128846, 107978, 6461, 309, 26791, 3575, 74727...
+1    [2086, 3580, 27523, 107412, 107978, 93855, 616...
+2    [64278, 5062, 25801, 8197, 31413, 820, 1649, 1...
 dtype: object
 </pre></div>
 </div>
@@ -1243,7 +1245,7 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1255,7 +1257,7 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1267,7 +1269,7 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1313,37 +1315,37 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[128846, 107978, 6461, 309, 26791, 3575, 74727...</td>
+      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[128846, 107978, 6461, 309, 26791, 3575, 74727...</td>
+      <td>[64278, 5062, 25801, 8197, 31413, 820, 1649, 1...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[128846, 107978, 6461, 309, 26791, 3575, 74727...</td>
+      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[26599, 31225, 27523, 2755, 72356, 2897, 2927,...</td>
+      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[128846, 107978, 6461, 309, 26791, 3575, 74727...</td>
+      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
     </tr>
   </tbody>
 </table>
@@ -1415,8 +1417,8 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [26599, 31225, 27523, 2755, 72356, 2897, 2927,...
-2    [128846, 107978, 6461, 309, 26791, 3575, 74727...
+1    [2086, 3580, 27523, 107412, 107978, 93855, 616...
+2    [64278, 5062, 25801, 8197, 31413, 820, 1649, 1...
 dtype: object
 </pre></div>
 </div>
@@ -1491,7 +1493,7 @@ dtype: object
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1503,7 +1505,7 @@ dtype: object
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1515,7 +1517,7 @@ dtype: object
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
   </tbody>
@@ -1559,32 +1561,32 @@ dtype: object
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>2</td>
-      <td>[128846, 107978, 6461, 309, 26791, 3575, 74727...</td>
+      <td>1</td>
+      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>2</td>
-      <td>[128846, 107978, 6461, 309, 26791, 3575, 74727...</td>
+      <td>[64278, 5062, 25801, 8197, 31413, 820, 1649, 1...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>2</td>
-      <td>[128846, 107978, 6461, 309, 26791, 3575, 74727...</td>
+      <td>1</td>
+      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
       <td>1</td>
-      <td>[26599, 31225, 27523, 2755, 72356, 2897, 2927,...</td>
+      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>2</td>
-      <td>[128846, 107978, 6461, 309, 26791, 3575, 74727...</td>
+      <td>1</td>
+      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
     </tr>
   </tbody>
 </table>
