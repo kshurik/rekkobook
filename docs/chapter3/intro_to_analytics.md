@@ -9,16 +9,16 @@ product or service. By leveraging data, businesses can gain valuable insights in
 engagement, conversion rates, and overall product effectiveness. This chapter focuses on 
 the application of product analytics specifically for ranking and recommendation models,
 exploring the techniques and methodologies used to evaluate and optimize these essential
-components of user experiences. This discipline helps you to understand “who” did “what,
-when, and where.” It complements qualitative methods and tools that helps you understand
-“why and how” a user did something while interacting with your product.
+components of user experiences. This discipline helps you to understand "who" did "what,
+when, and where". It complements qualitative methods and tools that helps you understand
+"why and how" a user did something while interacting with your product.
 
 
-This tool helps data people and, consecutively, business to get inshigts on:
+This tool helps data people and, consecutively, business to get insights on:
 - What aspects of product users engage with;
 - What are the bottlenecks to improve the product;
 - What are opportunities to reach a ceratin business goal;
-- What are general patterns of successful/unsuccessful fearure;
+- What are general patterns of successful/unsuccessful fearure
 
 ## The Role of Product Analytics
 Product analytics encompasses a wide range of practices and methodologies aimed at
@@ -27,17 +27,17 @@ of data to gain insights into user behavior, preferences, and interactions with 
 Product analytics enables businesses to make data-driven decisions, identify areas
 for improvement, and drive product enhancements. It encompasses various aspects, including:
 
-1. Dashboards and Visualizations: Product analytics often involves creating interactive
+1. `Dashboards and Visualizations`: Product analytics often involves creating interactive
 dashboards and visualizations that provide a comprehensive view of key metrics and performance
 indicators. These visual representations allow stakeholders to monitor the product's performance
-in real-time and quickly identify trends, anomalies, and areas for improvement.
+in (near)real-time and quickly identify trends, anomalies, and areas for improvement.
 
-2. Monitoring and Alerting: Continuous monitoring of key metrics and user behavior is crucial
+2. `Monitoring and Alerting`: Continuous monitoring of key metrics and user behavior is crucial
 for effective product analytics. Monitoring systems help track user interactions, identify 
 performance issues, and alert the relevant teams when anomalies occur. This proactive approach
 enables businesses to address issues promptly and ensure optimal user experiences.
 
-3. Metrics Tree: A metrics tree is a hierarchical structure that defines the key metrics and
+3. `Metrics Tree`: A metrics tree is a hierarchical structure that defines the key metrics and
 goals of the product. It provides a framework for measuring the product's performance and
 aligning it with the organization's objectives. By breaking down high-level goals into specific
 metrics, businesses can gain a deeper understanding of the factors that contribute to the
@@ -75,8 +75,8 @@ to execute your researches. Overall, you can think of product analytics of three
 
 1. `Data collection` - extracting, processing and managing raw data;
 2. `Analysis` -  allows data person to define the goal of analysis to
-generate thoroguhg report;
-3. `Reporting` - converting conclusions and action points to make data driven decisions
+generate thorough report;
+3. `Reporting` - converting analysis results into conclusions and action points to make data driven decisions
 on how to proceed with product/service improvements
 
 In practice, most end users will focus on what you have in step 3. The result can
@@ -92,15 +92,19 @@ the relevance and effectiveness of their models. Some key strategies for optimiz
 1. A/B Testing: Conducting controlled experiments by comparing different versions of ranking
 and recommendation models to identify the most effective approach. A/B testing helps evaluate
 the impact of changes and improvements on key metrics and allows for data-driven decision-making.
+Also, more advanced approach is to estimate the potential improvement of the product metrics
+without executing A/B tests. After some time and controlled experiments, you can gather the
+history and use online data to estimate offline product metrics. However, this requires
+a lot of effort and great data process to come to this level.
 
 2. User Feedback Analysis: Collecting and analyzing user feedback, such as ratings, reviews,
 and surveys, provides valuable insights into user preferences and satisfaction. This feedback
 can be used to tailor and refine the ranking and recommendation algorithms to better meet user needs.
 
 3. Continuous Monitoring and Iterative Improvement: Implementing robust monitoring systems
-to track user interactions, evaluate model performance over time, and identify areas for improvement.
-By continuously analyzing data and iterating on the models, businesses can refine their algorithms
-to deliver more accurate and relevant recommendations.
+to track user interactions, evaluate model performance over time for data drift,
+and identify areas for improvement. By continuously analyzing data and iterating on the models,
+businesses can refine their algorithms to deliver more accurate and relevant recommendations.
 
 4. Feature Engineering: Iteratively improving the input features of the ranking and recommendation
 models based on user feedback and observed patterns. Feature engineering involves selecting, 
@@ -110,4 +114,4 @@ transforming, and creating relevant features that enhance the performance of the
 Product analytics serves as a powerful tool for evaluating and optimizing ranking and recommendation
 models. By leveraging metrics, dashboards, monitoring systems, and user feedback analysis,
 businesses can gain valuable insights into user behavior, measure model performance,
-and make data-driven decisions
+and make data-driven decisions.
