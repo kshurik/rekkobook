@@ -1165,9 +1165,8 @@ We get all interacted items for each user and save them in dictionary {‘userId
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of users with known items: 671 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example of known item ids for particaular user: [&#39;1371&#39;, &#39;1405&#39;, &#39;2105&#39;, &#39;2193&#39;, &#39;2294&#39;, &#39;2455&#39;]
+
+Example of known item ids for particaular user: [&#39;1371&#39;, &#39;1405&#39;, &#39;2105&#39;, &#39;2193&#39;, &#39;2294&#39;, &#39;2455&#39;]
 </pre></div>
 </div>
 </div>
@@ -1194,8 +1193,8 @@ Also, if we want to get recommendations based on some user groups we can easily 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [2086, 3580, 27523, 107412, 107978, 93855, 616...
-2    [64278, 5062, 25801, 8197, 31413, 820, 1649, 1...
+1    [54328, 65216, 59392, 30, 2636, 6163, 74727, 4...
+2    [2721, 2755, 93855, 50641, 26843, 1428, 2330, ...
 dtype: object
 </pre></div>
 </div>
@@ -1251,7 +1250,7 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1263,7 +1262,7 @@ for all users i.e. <em>base_recommendations</em></p>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1317,35 +1316,35 @@ for all users i.e. <em>base_recommendations</em></p>
       <td>1</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
+      <td>[54328, 65216, 59392, 30, 2636, 6163, 74727, 4...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[64278, 5062, 25801, 8197, 31413, 820, 1649, 1...</td>
+      <td>[54328, 65216, 59392, 30, 2636, 6163, 74727, 4...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
+      <td>[54328, 65216, 59392, 30, 2636, 6163, 74727, 4...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
+      <td>[2721, 2755, 93855, 50641, 26843, 1428, 2330, ...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
       <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
-      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
+      <td>[54328, 65216, 59392, 30, 2636, 6163, 74727, 4...</td>
     </tr>
   </tbody>
 </table>
@@ -1417,8 +1416,8 @@ groupwise or not and return ids</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-1    [2086, 3580, 27523, 107412, 107978, 93855, 616...
-2    [64278, 5062, 25801, 8197, 31413, 820, 1649, 1...
+1    [54328, 65216, 59392, 30, 2636, 6163, 74727, 4...
+2    [2721, 2755, 93855, 50641, 26843, 1428, 2330, ...
 dtype: object
 </pre></div>
 </div>
@@ -1499,7 +1498,7 @@ dtype: object
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>2</td>
+      <td>1</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1511,7 +1510,7 @@ dtype: object
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
+      <td>2</td>
       <td>[74727, 128846, 702, 127728, 65216, 43267, 867...</td>
     </tr>
     <tr>
@@ -1562,31 +1561,31 @@ dtype: object
       <th>0</th>
       <td>1</td>
       <td>1</td>
-      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
+      <td>[54328, 65216, 59392, 30, 2636, 6163, 74727, 4...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>2</td>
-      <td>[64278, 5062, 25801, 8197, 31413, 820, 1649, 1...</td>
+      <td>1</td>
+      <td>[54328, 65216, 59392, 30, 2636, 6163, 74727, 4...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>1</td>
-      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
+      <td>[54328, 65216, 59392, 30, 2636, 6163, 74727, 4...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>1</td>
-      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
+      <td>2</td>
+      <td>[2721, 2755, 93855, 50641, 26843, 1428, 2330, ...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
       <td>1</td>
-      <td>[2086, 3580, 27523, 107412, 107978, 93855, 616...</td>
+      <td>[54328, 65216, 59392, 30, 2636, 6163, 74727, 4...</td>
     </tr>
   </tbody>
 </table>
